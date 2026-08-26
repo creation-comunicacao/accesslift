@@ -1,0 +1,123 @@
+import { equipmentCategories, mockEquipments } from "../data/equipment";
+import { heightRangeFilters } from "../data/equipment";
+import type { CatalogFilters, CatalogSort, Equipment, EquipmentCategorySlug } from "../types/equipment";
+
+export const getPublishedEquipment = () =>
+  mockEquipments.filter((equipment) => equipment.status === "published");
+
+export const getEquipmentByCategory = (category: EquipmentCategorySlug) =>
+  mockEquipments.filter((equipment) => equipment.category === category);
+
+export const getCategoryBySlug = (slug: EquipmentCategorySlug) =>
+  equipmentCategories.find((category) => category.slug === slug);
+
+export const getEquipmentBySlug = (slug: string) =>
+  mockEquipments.find((equipment) => equipment.slug === slug);
+
+export const getRelatedEquipment = (equipment: Equipment, limit = 3) => {
+  const sameCategory = mockEquipments.filter(
+    (candidate) =>
+      candidate.id !== equipment.id && candidate.category === equipment.category,
+  );
+
+  const currentHeight = parseMeters(equipment.specs.alturaTrabalho);
+
+  if (currentHeight === null) {
+    return sameCategory.slice(0, limit);
+  }
+
+  return sameCategory
+    .map((candidate) => {
+      const height = parseMeters(candidate.specs.alturaTrabalho);
+      return {
+        equipment: candidate,
+        distance: height === null ? Number.POSITIVE_INFINITY : Math.abs(height - currentHeight),
+      };
+    })
+    .sort((a, b) => a.distance - b.distance || a.equipment.brand.localeCompare(b.equipment.brand))
+    .map((item) => item.equipment)
+    .slice(0, limit);
+};
+
+export const matchEquipmentDetailPath = (path: string) => {
+  const match = path.match(/^\/equipamentos\/([^/]+)\/?$/);
+  return match?.[1] || null;
+};
+
+export const defaultCatalogFilters: CatalogFilters = {
+  category: "all",
+  brand: "all",
+  heightRange: "all",
+  energy: "all",
+  environment: "all",
+};
+
+export const hasActiveCatalogFilters = (filters: CatalogFilters) =>
+  Object.values(filters).some((value) => value !== "all");
+
+const parseMeters = (value: string | null | undefined) => {
+  if (!value) {
+    return null;
+  }
+
+  const normalized = value.replace(",", ".").match(/\d+(\.\d+)?/);
+  return normalized ? Number(normalized[0]) : null;
+};
+
+const matchesHeightRange = (equipment: Equipment, rangeId: string) => {
+  if (rangeId === "all") {
+    return true;
+  }
+
+  const range = heightRangeFilters.find((item) => item.id === rangeId);
+  const height = parseMeters(equipment.specs.alturaTrabalho);
+
+  if (!range || height === null) {
+    return false;
+  }
+
+  const aboveMin = range.minMeters === null || height >= range.minMeters;
+  const belowMax = range.maxMeters === null || height <= range.maxMeters;
+
+  return aboveMin && belowMax;
+};
+
+const normalizeValue = (value: string | null | undefined) =>
+  value
+    ?.normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase() || "";
+
+export const filterEquipment = (equipments: Equipment[], filters: CatalogFilters) =>
+  equipments.filter((equipment) => {
+    const categoryMatch =
+      filters.category === "all" || equipment.category === filters.category;
+    const brandMatch = filters.brand === "all" || equipment.brand === filters.brand;
+    const heightMatch = matchesHeightRange(equipment, filters.heightRange);
+    const energyMatch =
+      filters.energy === "all" ||
+      normalizeValue(equipment.specs.alimentacao).includes(filters.energy);
+    const environmentMatch =
+      filters.environment === "all" ||
+      equipment.applications.some((application) =>
+        normalizeValue(application).includes(filters.environment),
+      );
+
+    return categoryMatch && brandMatch && heightMatch && energyMatch && environmentMatch;
+  });
+
+export const sortEquipment = (equipments: Equipment[], sort: CatalogSort) => {
+  const sorted = [...equipments];
+
+  switch (sort) {
+    case "brand-asc":
+      return sorted.sort((a, b) => a.brand.localeCompare(b.brand));
+    case "model-asc":
+      return sorted.sort((a, b) => a.model.localeCompare(b.model));
+    case "category-asc":
+      return sorted.sort((a, b) => a.category.localeCompare(b.category));
+    case "featured":
+    default:
+      return sorted;
+  }
+};

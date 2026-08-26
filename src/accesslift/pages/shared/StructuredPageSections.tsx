@@ -1,0 +1,235 @@
+import { ArrowRight, BadgeCheck, ClipboardCheck, PackageCheck } from "lucide-react";
+import { getEquipmentByCategory } from "../../catalog/catalog";
+import { EquipmentCard } from "../../components/cards/EquipmentCard";
+import {
+  CheckAvailabilityButton,
+  RequestQuoteButton,
+  TalkToSpecialistButton,
+  WhatsAppButton,
+} from "../../components/buttons/CtaButtons";
+import { Button } from "../../components/buttons/Button";
+import { Accordion } from "../../components/ui/Accordion";
+import { Badge } from "../../components/ui/Badge";
+import type { EquipmentCategorySlug } from "../../types/equipment";
+import type { FaqItem } from "../../data/pageContent";
+
+type SectionListProps = {
+  eyebrow: string;
+  title: string;
+  items: string[];
+};
+
+type ProcessSectionProps = {
+  title: string;
+  steps: string[];
+};
+
+type RelatedEquipmentSectionProps = {
+  categories: EquipmentCategorySlug[];
+};
+
+type FaqSectionProps = {
+  items: FaqItem[];
+};
+
+export function ConversionHero({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <section className="industrial-grid border-b border-slate-200 bg-slate-50">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.78fr] lg:items-end">
+        <div>
+          <Badge tone="lime">{eyebrow}</Badge>
+          <h1 className="mt-5 text-slate-950">{title}</h1>
+          <p className="mt-4 max-w-2xl text-lg text-slate-600">{description}</p>
+        </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-5 premium-shadow">
+          <p className="text-xs font-black uppercase tracking-wider text-slate-500">
+            Conversao
+          </p>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+            <RequestQuoteButton />
+            <TalkToSpecialistButton />
+            <WhatsAppButton className="sm:col-span-2 lg:col-span-1" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ValueSection({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+      <div className="rounded-lg border border-slate-200 bg-white p-6 premium-shadow">
+        <Badge tone="steel">Proposta de valor</Badge>
+        <h2 className="mt-4 text-slate-950">{title}</h2>
+        <p className="mt-3 max-w-3xl text-slate-600">{description}</p>
+      </div>
+    </section>
+  );
+}
+
+export function SectionList({ eyebrow, title, items }: SectionListProps) {
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-10 md:px-6">
+      <Badge tone="lime">{eyebrow}</Badge>
+      <h2 className="mt-4 text-slate-950">{title}</h2>
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        {items.map((item) => (
+          <article key={item} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+            <BadgeCheck className="h-7 w-7 text-lime-700" aria-hidden />
+            <h3 className="mt-4 text-slate-950">{item}</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Conteudo estrutural preparado para substituicao por texto final aprovado.
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function ProcessSection({ title, steps }: ProcessSectionProps) {
+  if (steps.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="bg-slate-50 py-12">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <Badge tone="lime">Processo</Badge>
+        <h2 className="mt-4 text-slate-950">{title}</h2>
+        <div className="mt-6 grid gap-3 md:grid-cols-4 lg:grid-cols-5">
+          {steps.map((step, index) => (
+            <article key={`${step}-${index}`} className="relative rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-lime-300 text-sm font-black text-slate-950">
+                {index + 1}
+              </span>
+              <h3 className="mt-4 text-base text-slate-950">{step}</h3>
+              {index < steps.length - 1 && (
+                <ArrowRight className="absolute right-4 top-6 hidden h-5 w-5 text-slate-300 lg:block" aria-hidden />
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function DifferentialsSection() {
+  const items = ["Entrega", "Retirada", "Assistencia", "Manutencao", "Atendimento emergencial", "Treinamento"];
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+      <Badge tone="lime">Accesslift</Badge>
+      <h2 className="mt-4 text-slate-950">Diferenciais Accesslift</h2>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item) => (
+          <article key={item} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+            <ClipboardCheck className="h-7 w-7 text-lime-700" aria-hidden />
+            <h3 className="mt-4 text-slate-950">{item}</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Estrutura pronta para detalhamento real do servico.
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function RelatedEquipmentSection({ categories }: RelatedEquipmentSectionProps) {
+  const related = categories
+    .flatMap((category) => getEquipmentByCategory(category))
+    .filter((equipment, index, list) => list.findIndex((item) => item.id === equipment.id) === index)
+    .slice(0, 6);
+
+  if (related.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <Badge tone="lime">Catalogo</Badge>
+          <h2 className="mt-4 text-slate-950">Equipamentos relacionados</h2>
+          <p className="mt-2 text-sm font-semibold text-slate-600">
+            Carregados do catalogo por categoria, sem duplicar dados na pagina.
+          </p>
+        </div>
+        <Button href="/equipamentos/" variant="secondary">
+          Ver catalogo
+        </Button>
+      </div>
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {related.map((equipment) => (
+          <EquipmentCard key={equipment.id} equipment={equipment} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function FaqSection({ items }: FaqSectionProps) {
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="bg-slate-50 py-12">
+      <div className="mx-auto max-w-4xl px-4 md:px-6">
+        <Badge tone="lime">FAQ</Badge>
+        <h2 className="mt-4 text-slate-950">Perguntas frequentes</h2>
+        <div className="mt-6">
+          <Accordion
+            items={items.map((item, index) => ({
+              id: `faq-${index}`,
+              title: item.question,
+              content: item.answer,
+            }))}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function FinalConversionSection() {
+  return (
+    <section className="bg-slate-950 py-12 text-white">
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
+        <div>
+          <PackageCheck className="h-9 w-9 text-lime-300" aria-hidden />
+          <h2 className="mt-4 text-white">Precisa consultar disponibilidade ou orcamento?</h2>
+          <p className="mt-3 max-w-2xl text-slate-300">
+            Use os canais de conversao preparados para atendimento comercial, sem numero de WhatsApp ficticio.
+          </p>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          <CheckAvailabilityButton />
+          <RequestQuoteButton />
+          <TalkToSpecialistButton />
+        </div>
+      </div>
+    </section>
+  );
+}
