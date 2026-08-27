@@ -35,6 +35,12 @@ const specLabels: Array<{
   { key: "alimentacao", label: "Alimentacao" },
   { key: "peso", label: "Peso" },
   { key: "largura", label: "Largura" },
+  { key: "comprimento", label: "Comprimento" },
+  { key: "alturaRecolhida", label: "Altura recolhida" },
+  { key: "dimensaoPlataforma", label: "Dimensoes da plataforma" },
+  { key: "raioGiro", label: "Raio de giro" },
+  { key: "pneus", label: "Pneus" },
+  { key: "bateria", label: "Bateria" },
   { key: "alcanceHorizontal", label: "Alcance horizontal" },
 ];
 
@@ -222,6 +228,16 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
               </div>
             </section>
           )}
+
+          <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+            <h2 className="text-xl font-black text-slate-950">Precisa de locacao?</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Consulte as modalidades de locacao e fale com a equipe para validar a disponibilidade do equipamento.
+            </p>
+            <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="mt-4">
+              Conhecer locacao
+            </Button>
+          </section>
         </div>
 
         <aside className="h-fit rounded-lg border border-slate-200 bg-white p-5 premium-shadow lg:sticky lg:top-28">
@@ -245,6 +261,28 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           ) : (
             <p className="mt-3 rounded-md border border-dashed border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-600">
               PDF ainda nao cadastrado para este equipamento.
+            </p>
+          )}
+          {equipment.manualPdf && (
+            <a
+              href={equipment.manualPdf}
+              className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md border border-slate-300 px-4 text-sm font-extrabold text-slate-800 transition hover:bg-slate-50"
+              download
+              onClick={() =>
+                trackEvent({
+                  name: "technical_sheet_download",
+                  payload: { equipment_slug: equipment.slug, document_type: "manual" },
+                })
+              }
+            >
+              <Download className="h-4 w-4" aria-hidden />
+              Baixar manual
+            </a>
+          )}
+          {(equipment.documentSource || equipment.documentUpdatedAt) && (
+            <p className="mt-3 text-xs leading-5 text-slate-500">
+              {equipment.documentSource ? `Fonte: ${equipment.documentSource}. ` : ""}
+              {equipment.documentUpdatedAt ? `Atualizado em ${equipment.documentUpdatedAt}.` : ""}
             </p>
           )}
           <div className="mt-5 grid gap-2">

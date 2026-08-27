@@ -27,24 +27,6 @@ export const homeFinderFields: HomeFinderField[] = [
       { label: "14 a 16 m", value: "14-a-16m" },
     ],
   },
-  {
-    key: "environment",
-    label: "Ambiente",
-    options: [
-      { label: "Qualquer ambiente", value: "all" },
-      { label: "Interno", value: "interno" },
-      { label: "Externo", value: "externo" },
-    ],
-  },
-  {
-    key: "energy",
-    label: "Energia",
-    options: [
-      { label: "Qualquer energia", value: "all" },
-      { label: "Eletrica", value: "eletrica" },
-      { label: "Outras opcoes disponiveis", value: "outras" },
-    ],
-  },
 ];
 
 export const homeTrustItems = [

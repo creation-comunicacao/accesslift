@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.accesslift.com.br/</loc>
-  </url>
-  <url>
-    <loc>https://www.accesslift.com.br/plataformas-tesoura/</loc>
-  </url>
-  <url>
-    <loc>https://www.accesslift.com.br/plataformas-articuladas/</loc>
-  </url>
-  <url>
-    <loc>https://www.accesslift.com.br/equipamentos/</loc>
-  </url>
+  <url><loc>https://www.accesslift.com.br/</loc></url>
+  <url><loc>https://www.accesslift.com.br/locacao-de-plataformas-elevatorias/</loc></url>
+  <url><loc>https://www.accesslift.com.br/plataformas-elevatorias/</loc></url>
+  <url><loc>https://www.accesslift.com.br/plataformas-tesoura/</loc></url>
+  <url><loc>https://www.accesslift.com.br/plataformas-articuladas/</loc></url>
+  <url><loc>https://www.accesslift.com.br/equipamentos/</loc></url>
+  <url><loc>https://www.accesslift.com.br/servicos/</loc></url>
+  <url><loc>https://www.accesslift.com.br/servicos/assistencia-tecnica/</loc></url>
+  <url><loc>https://www.accesslift.com.br/servicos/manutencao-preventiva/</loc></url>
+  <url><loc>https://www.accesslift.com.br/servicos/treinamento-de-operadores/</loc></url>
+  <url><loc>https://www.accesslift.com.br/seguranca-e-nr35/</loc></url>
+  <url><loc>https://www.accesslift.com.br/segmentos-e-aplicacoes/</loc></url>
+  <url><loc>https://www.accesslift.com.br/segmentos/industria/</loc></url>
+  <url><loc>https://www.accesslift.com.br/segmentos/construcao-civil/</loc></url>
+  <url><loc>https://www.accesslift.com.br/segmentos/supermercados-e-hipermercados/</loc></url>
+  <url><loc>https://www.accesslift.com.br/segmentos/atacados/</loc></url>
+  <url><loc>https://www.accesslift.com.br/area-de-atendimento/</loc></url>
+  <url><loc>https://www.accesslift.com.br/empresa/</loc></url>
+  <url><loc>https://www.accesslift.com.br/solicite-orcamento/</loc></url>
+  <url><loc>https://www.accesslift.com.br/contato/</loc></url>
 </urlset>

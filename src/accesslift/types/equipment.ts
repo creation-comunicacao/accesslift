@@ -22,6 +22,12 @@ export type EquipmentSpecs = {
   alimentacao: string | null;
   peso: string | null;
   largura: string | null;
+  comprimento?: string | null;
+  alturaRecolhida?: string | null;
+  dimensaoPlataforma?: string | null;
+  raioGiro?: string | null;
+  pneus?: string | null;
+  bateria?: string | null;
   alcanceHorizontal?: string | null;
 };
 
@@ -44,6 +50,7 @@ export type Equipment = {
   id: string;
   brand: EquipmentBrand;
   model: string;
+  version?: string | null;
   category: EquipmentCategorySlug;
   slug: string;
   status: PublishStatus;
@@ -59,6 +66,13 @@ export type Equipment = {
   applications: string[];
   faq: EquipmentFaqItem[];
   technicalSheetPdf: string | null;
+  manualPdf?: string | null;
+  manualVersion?: string | null;
+  manualLanguage?: string | null;
+  documentSource?: string | null;
+  documentUpdatedAt?: string | null;
+  oldUrl?: string | null;
+  technicalDataSource?: string | null;
   seo: EquipmentSeo;
 };
 
@@ -81,6 +95,4 @@ export type CatalogFilters = {
   category: EquipmentCategorySlug | "all";
   brand: EquipmentBrand | "all";
   heightRange: string;
-  energy: string;
-  environment: string;
 };

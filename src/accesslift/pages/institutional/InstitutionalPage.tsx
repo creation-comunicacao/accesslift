@@ -2,6 +2,7 @@ import { Building2, MapPin, ShieldCheck } from "lucide-react";
 import { RelatedEquipmentSection, SectionList, ValueSection, FinalConversionSection } from "../shared/StructuredPageSections";
 import { ConversionHero } from "../shared/StructuredPageSections";
 import { Badge } from "../../components/ui/Badge";
+import { Button } from "../../components/buttons/Button";
 import type { InstitutionalPageConfig } from "../../data/institutional";
 
 type InstitutionalPageProps = {
@@ -42,7 +43,7 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
           })}
         </div>
       </section>
-      {page.path === "/sobre-a-accesslift/" && (
+      {page.path === "/empresa/" && (
         <>
           <SectionList
             eyebrow="Diferenciais"
@@ -50,6 +51,11 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
             items={["Entrega", "Retirada", "Assistencia", "Manutencao", "Atendimento emergencial", "Treinamento"]}
           />
           <RelatedEquipmentSection categories={["plataformas-tesoura", "plataformas-articuladas"]} />
+          <section className="mx-auto flex max-w-7xl flex-wrap gap-3 px-4 pb-12 md:px-6">
+            <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary">Conhecer locacao</Button>
+            <Button href="/servicos/" variant="secondary">Conhecer servicos</Button>
+            <Button href="/area-de-atendimento/" variant="ghost">Area de atendimento</Button>
+          </section>
         </>
       )}
       {page.path === "/area-de-atendimento/" && (
@@ -57,6 +63,18 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
           title="Sao Paulo + raio de ate 150 km"
           description="Esta pagina comunica apenas a area estrutural definida no blueprint. Nao foram criadas paginas por cidade ou bairro."
         />
+      )}
+      {page.referenceLink && (
+        <section className="mx-auto max-w-7xl px-4 pb-12 md:px-6">
+          <a
+            href={page.referenceLink.href}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-11 items-center rounded-md border border-slate-300 px-4 text-sm font-extrabold text-slate-800 transition hover:bg-slate-50"
+          >
+            {page.referenceLink.label}
+          </a>
+        </section>
       )}
       <FinalConversionSection />
     </>

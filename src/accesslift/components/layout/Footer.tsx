@@ -8,8 +8,7 @@ const footerGroups = [
     title: "Navegacao",
     links: [
       { label: "Plataformas", href: "/plataformas-elevatorias/" },
-      { label: "Locacao", href: "/locacao-de-plataformas/" },
-      { label: "Venda", href: "/venda-de-plataformas/" },
+      { label: "Locacao", href: "/locacao-de-plataformas-elevatorias/" },
       { label: "Servicos", href: "/servicos/" },
     ],
   },
@@ -24,10 +23,8 @@ const footerGroups = [
   {
     title: "Servicos",
     links: [
-      { label: "Entrega e retirada", href: "/servicos/entrega-e-retirada/" },
       { label: "Assistencia tecnica", href: "/servicos/assistencia-tecnica/" },
       { label: "Manutencao preventiva", href: "/servicos/manutencao-preventiva/" },
-      { label: "Atendimento emergencial", href: "/servicos/atendimento-emergencial/" },
       { label: "Treinamento de operadores", href: "/servicos/treinamento-de-operadores/" },
     ],
   },
@@ -36,18 +33,18 @@ const footerGroups = [
     links: [
       { label: "Construcao civil", href: "/segmentos/construcao-civil/" },
       { label: "Industria", href: "/segmentos/industria/" },
-      { label: "Supermercados", href: "/segmentos/supermercados/" },
+      { label: "Supermercados e Hipermercados", href: "/segmentos/supermercados-e-hipermercados/" },
       { label: "Atacados", href: "/segmentos/atacados/" },
     ],
   },
   {
     title: "Institucional",
     links: [
-      { label: "A Accesslift", href: "/sobre-a-accesslift/" },
-      { label: "Clientes", href: "/clientes/" },
+      { label: "Empresa", href: "/empresa/" },
       { label: "Area de atendimento", href: "/area-de-atendimento/" },
       { label: "Seguranca e NR35", href: "/seguranca-e-nr35/" },
-      { label: "Conteudos", href: "/blog/" },
+      { label: "Trabalhe Conosco", href: "/trabalhe-conosco/" },
+      { label: "Politica de privacidade", href: "/politica-de-privacidade/" },
     ],
   },
 ];
@@ -64,7 +61,7 @@ export function Footer() {
             <span className="text-lg font-black">Accesslift</span>
           </div>
           <p className="max-w-sm text-sm leading-6 text-slate-300">
-            Locacao, venda e suporte para plataformas elevatorias em Sao Paulo e regioes em raio de ate 150 km da base.
+            Locacao e suporte para plataformas elevatorias em Sao Paulo e regioes em raio de ate 150 km da base.
           </p>
           <div className="grid gap-2 text-sm text-slate-300">
             <span>{contactConfig.address}</span>

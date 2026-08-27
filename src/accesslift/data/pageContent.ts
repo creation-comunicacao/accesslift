@@ -15,7 +15,13 @@ export type CommercialPageConfig = {
   benefits: string[];
   process: string[];
   relatedCategories: EquipmentCategorySlug[];
+  contentSections?: Array<{
+    title: string;
+    description?: string;
+    items?: string[];
+  }>;
   faq: FaqItem[];
+  faqSchemaEligible?: boolean;
   seo: PageSeo & { h1: string };
 };
 
@@ -31,6 +37,7 @@ export type ServicePageConfig = {
   applications: string[];
   relatedCategories: EquipmentCategorySlug[];
   faq: FaqItem[];
+  faqSchemaEligible?: boolean;
   seo: PageSeo & { h1: string };
 };
 
@@ -46,6 +53,7 @@ export type SegmentPageConfig = {
   differentials: string[];
   relatedCategories: EquipmentCategorySlug[];
   faq: FaqItem[];
+  faqSchemaEligible?: boolean;
   seo: PageSeo & { h1: string };
 };
 
@@ -66,9 +74,9 @@ export const commercialPages: CommercialPageConfig[] = [
   {
     path: "/plataformas-elevatorias/",
     eyebrow: "Plataformas elevatorias",
-    title: "Plataformas elevatorias para locacao e venda",
+    title: "Plataformas Elevatorias para Trabalhos em Altura",
     description:
-      "Pagina comercial preparada para apresentar categorias, catalogo e jornadas de conversao da Accesslift.",
+      "Conheca os principais tipos de plataformas elevatorias disponiveis na frota Accesslift.",
     valueProposition:
       "Estrutura para orientar a escolha entre plataformas tesoura e articuladas, conectando o usuario ao catalogo dinamico.",
     benefits: [
@@ -78,21 +86,34 @@ export const commercialPages: CommercialPageConfig[] = [
     ],
     process: ["Entender a necessidade", "Comparar categorias", "Consultar disponibilidade", "Solicitar orcamento"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
+    contentSections: [
+      {
+        title: "O que sao plataformas elevatorias",
+        description: "Plataformas elevatorias moveis sao equipamentos utilizados para acesso e execucao de atividades em altura. A escolha depende das caracteristicas da operacao.",
+      },
+      {
+        title: "Como escolher",
+        items: ["Altura de trabalho", "Alcance horizontal", "Obstaculos", "Piso e espaco disponivel", "Acessos", "Ambiente e capacidade necessaria"],
+      },
+      {
+        title: "Frota eletrica",
+        description: "A frota comunicada pela Accesslift e eletrica. Essa caracteristica aparece de forma transversal nas paginas e nao como categoria SEO independente.",
+      },
+    ],
     faq: placeholderFaq,
     seo: {
-      h1: "Plataformas elevatorias para locacao e venda",
-      title: "Plataformas elevatorias | Accesslift",
-      description: "Pagina comercial preparada para plataformas elevatorias Accesslift.",
+      h1: "Plataformas Elevatorias para Trabalhos em Altura",
+      title: "Plataformas Elevatorias: Tesoura e Articulada | Accesslift",
+      description: "Plataformas elevatorias tesoura e articuladas para trabalhos em altura.",
       canonicalPath: "/plataformas-elevatorias/",
-      indexDirective: "noindex",
     },
   },
   {
-    path: "/locacao-de-plataformas/",
+    path: "/locacao-de-plataformas-elevatorias/",
     eyebrow: "Locacao",
     title: "Locacao de plataformas elevatorias",
     description:
-      "Estrutura comercial para locacao diaria, semanal e mensal de plataformas elevatorias.",
+      "Locacao diaria, semanal e mensal de plataformas elevatorias tesoura e articuladas, com entrega e suporte em Sao Paulo e regiao.",
     valueProposition:
       "Pagina preparada para explicar modalidades de locacao sem assumir especificacoes tecnicas nao cadastradas.",
     benefits: [
@@ -102,13 +123,30 @@ export const commercialPages: CommercialPageConfig[] = [
     ],
     process: ["Necessidade", "Escolha do equipamento", "Suporte", "Entrega", "Operacao"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
+    contentSections: [
+      {
+        title: "Como escolher a plataforma",
+        description: "A escolha deve considerar altura de trabalho, necessidade de alcance horizontal, acessos, espaco disponivel, condicoes do piso, ambiente e duracao da operacao.",
+      },
+      {
+        title: "Modalidades de locacao",
+        items: ["Locacao diaria", "Locacao semanal", "Locacao mensal"],
+      },
+      {
+        title: "Quanto custa",
+        description: "O valor varia conforme modelo, periodo, cidade, logistica e caracteristicas da operacao. A cotacao deve ser personalizada.",
+      },
+      {
+        title: "Area de atendimento",
+        description: "Sao Paulo e localidades em raio de ate 150 km da base, conforme condicoes do atendimento.",
+      },
+    ],
     faq: placeholderFaq,
     seo: {
-      h1: "Locacao de plataformas elevatorias",
-      title: "Locacao de plataformas elevatorias | Accesslift",
+      h1: "Locacao de Plataformas Elevatorias",
+      title: "Locacao de Plataformas Elevatorias | Accesslift",
       description: "Locacao diaria, semanal e mensal de plataformas elevatorias.",
-      canonicalPath: "/locacao-de-plataformas/",
-      indexDirective: "noindex",
+      canonicalPath: "/locacao-de-plataformas-elevatorias/",
     },
   },
   {
@@ -142,20 +180,19 @@ export const servicePages: ServicePageConfig[] = [
     path: "/servicos/",
     eyebrow: "Servicos",
     title: "Servicos Accesslift",
-    description: "Hub de servicos comerciais e operacionais previstos na V2 Accesslift.",
+    description: "Entrega e retirada, assistencia tecnica, manutencao e treinamento para plataformas elevatorias.",
     problem: "Operacoes em altura precisam de atendimento claro antes, durante e depois da escolha do equipamento.",
-    proposal: "Centralizar servicos relacionados a entrega, retirada, assistencia, manutencao e treinamento.",
+    proposal: "Centralizar entrega e retirada, assistencia, manutencao e treinamento em uma jornada de suporte clara.",
     benefits: ["Estrutura modular", "Links internos para servicos", "CTAs de atendimento"],
     process: ["Identificar demanda", "Selecionar servico", "Falar com especialista", "Registrar solicitacao"],
-    applications: ["Locacao", "Venda", "Suporte operacional"],
+    applications: ["Locacao", "Suporte operacional", "Operacoes em altura"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
     faq: placeholderFaq,
     seo: {
-      h1: "Servicos Accesslift",
-      title: "Servicos | Accesslift",
-      description: "Entrega, retirada, assistencia tecnica, manutencao e treinamento.",
+      h1: "Servicos e Suporte para Plataformas Elevatorias",
+      title: "Servicos para Plataformas Elevatorias | Accesslift",
+      description: "Servicos e suporte para plataformas elevatorias.",
       canonicalPath: "/servicos/",
-      indexDirective: "noindex",
     },
   },
   {
@@ -184,18 +221,17 @@ export const servicePages: ServicePageConfig[] = [
     title: "Assistencia tecnica",
     description: "Template preparado para suporte tecnico e operacional.",
     problem: "A operacao pode precisar de suporte para manter continuidade e seguranca.",
-    proposal: "Pagina pronta para detalhar canais, escopo e condicoes de assistencia apos validacao interna.",
-    benefits: ["Suporte operacional", "Atendimento especializado", "Base pronta para SLA futuro"],
+    proposal: "Pagina pronta para detalhar canais, escopo e condicoes de assistencia, incluindo o fluxo de atendimento emergencial quando aplicavel.",
+    benefits: ["Suporte operacional", "Atendimento especializado", "Fluxo de atendimento claro"],
     process: ["Contato", "Triagem", "Orientacao", "Acompanhamento"],
     applications: ["Locacao", "Operacao em campo", "Manutencao"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
     faq: placeholderFaq,
     seo: {
-      h1: "Assistencia tecnica para plataformas elevatorias",
-      title: "Assistencia tecnica | Accesslift",
+      h1: "Assistencia Tecnica para Plataformas Elevatorias",
+      title: "Assistencia Tecnica de Plataformas Elevatorias | Accesslift",
       description: "Assistencia tecnica para operacao com plataformas elevatorias.",
       canonicalPath: "/servicos/assistencia-tecnica/",
-      indexDirective: "noindex",
     },
   },
   {
@@ -211,11 +247,10 @@ export const servicePages: ServicePageConfig[] = [
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
     faq: placeholderFaq,
     seo: {
-      h1: "Manutencao preventiva de plataformas elevatorias",
-      title: "Manutencao preventiva | Accesslift",
+      h1: "Manutencao Preventiva de Plataformas Elevatorias",
+      title: "Manutencao de Plataformas Elevatorias | Accesslift",
       description: "Manutencao preventiva para apoiar disponibilidade operacional.",
       canonicalPath: "/servicos/manutencao-preventiva/",
-      indexDirective: "noindex",
     },
   },
   {
@@ -251,11 +286,10 @@ export const servicePages: ServicePageConfig[] = [
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
     faq: placeholderFaq,
     seo: {
-      h1: "Treinamento de operadores de plataformas",
-      title: "Treinamento de operadores | Accesslift",
+      h1: "Treinamento para Operadores de Plataformas Elevatorias",
+      title: "Treinamento para Operadores de Plataformas | Accesslift",
       description: "Treinamento de operadores para uso correto de plataformas elevatorias.",
       canonicalPath: "/servicos/treinamento-de-operadores/",
-      indexDirective: "noindex",
     },
   },
 ];
@@ -274,11 +308,10 @@ export const segmentPages: SegmentPageConfig[] = [
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
     faq: placeholderFaq,
     seo: {
-      h1: "Segmentos e aplicacoes de plataformas elevatorias",
-      title: "Segmentos e aplicacoes | Accesslift",
+      h1: "Plataformas Elevatorias para Diferentes Operacoes",
+      title: "Aplicacoes de Plataformas Elevatorias | Accesslift",
       description: "Aplicacoes de plataformas elevatorias por segmento de mercado.",
       canonicalPath: "/segmentos-e-aplicacoes/",
-      indexDirective: "noindex",
     },
   },
   {
@@ -298,7 +331,6 @@ export const segmentPages: SegmentPageConfig[] = [
       title: "Plataformas para construcao civil | Accesslift",
       description: "Estrutura de pagina para aplicacoes em construcao civil.",
       canonicalPath: "/segmentos/construcao-civil/",
-      indexDirective: "noindex",
     },
   },
   {
@@ -318,13 +350,12 @@ export const segmentPages: SegmentPageConfig[] = [
       title: "Plataformas para industria | Accesslift",
       description: "Estrutura de pagina para aplicacoes industriais.",
       canonicalPath: "/segmentos/industria/",
-      indexDirective: "noindex",
     },
   },
   {
-    path: "/segmentos/supermercados/",
+    path: "/segmentos/supermercados-e-hipermercados/",
     eyebrow: "Segmento",
-    title: "Supermercados",
+    title: "Supermercados e Hipermercados",
     description: "Template para aplicacoes em supermercados.",
     context: "Estrutura pronta para demandas comerciais, manutencao e acesso em areas operacionais.",
     needs: ["Leitura facil", "Operacao organizada", "Suporte comercial"],
@@ -334,11 +365,10 @@ export const segmentPages: SegmentPageConfig[] = [
     relatedCategories: ["plataformas-tesoura"],
     faq: placeholderFaq,
     seo: {
-      h1: "Plataformas para supermercados",
-      title: "Plataformas para supermercados | Accesslift",
-      description: "Estrutura de pagina para aplicacoes em supermercados.",
-      canonicalPath: "/segmentos/supermercados/",
-      indexDirective: "noindex",
+      h1: "Plataformas Elevatorias para Supermercados e Hipermercados",
+      title: "Plataformas para Supermercados e Hipermercados | Accesslift",
+      description: "Plataformas elevatorias para aplicacoes em supermercados e hipermercados.",
+      canonicalPath: "/segmentos/supermercados-e-hipermercados/",
     },
   },
   {
@@ -358,7 +388,6 @@ export const segmentPages: SegmentPageConfig[] = [
       title: "Plataformas para atacados | Accesslift",
       description: "Estrutura de pagina para aplicacoes em atacados.",
       canonicalPath: "/segmentos/atacados/",
-      indexDirective: "noindex",
     },
   },
 ];

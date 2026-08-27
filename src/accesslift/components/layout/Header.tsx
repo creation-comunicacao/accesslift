@@ -9,23 +9,21 @@ type HeaderProps = {
 };
 
 const platformItems = [
+  { label: "Plataformas Elevatorias", href: "/plataformas-elevatorias/" },
   { label: "Plataformas Tesoura", href: "/plataformas-tesoura/" },
   { label: "Plataformas Articuladas", href: "/plataformas-articuladas/" },
   { label: "Todos os Equipamentos", href: "/equipamentos/" },
 ];
 
 const desktopLinks = [
-  { label: "Locacao", href: "/locacao-de-plataformas/" },
-  { label: "Venda", href: "/venda-de-plataformas/" },
+  { label: "Locacao", href: "/locacao-de-plataformas-elevatorias/" },
   { label: "Servicos", href: "/servicos/" },
   { label: "Aplicacoes", href: "/segmentos-e-aplicacoes/" },
-  { label: "A Accesslift", href: "/sobre-a-accesslift/" },
-  { label: "Conteudos", href: "/blog/" },
+  { label: "A Accesslift", href: "/empresa/" },
   { label: "Contato", href: "/contato/" },
 ];
 
 const mobileLinks = [
-  { label: "Plataformas", href: "/plataformas-elevatorias/" },
   ...platformItems,
   ...desktopLinks,
 ];
@@ -50,7 +48,7 @@ export function Header({ currentPath }: HeaderProps) {
       <div className="hidden border-b border-slate-100 bg-slate-950 text-white lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs font-bold text-slate-300">
           <span>Atendimento em Sao Paulo e regioes em raio de ate 150 km da base</span>
-          <span>Locacao diaria, semanal, mensal, venda e suporte tecnico</span>
+          <span>Locacao diaria, semanal, mensal e suporte tecnico</span>
         </div>
       </div>
 

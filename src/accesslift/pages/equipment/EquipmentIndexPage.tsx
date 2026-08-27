@@ -51,8 +51,8 @@ export function EquipmentIndexPage() {
     <>
       <PageIntro
         eyebrow="Equipamentos"
-        title="Catalogo dinamico de equipamentos"
-        description="Equipamentos renderizados a partir de dados, com filtros combinaveis sem gerar URLs indexaveis ou paginas automaticas por combinacao."
+        title="Plataformas Elevatorias para Locacao"
+        description="Consulte os modelos disponiveis por tipo, marca e faixa de altura. Os filtros funcionam em estado local e nao geram paginas indexaveis."
       />
 
       <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6">

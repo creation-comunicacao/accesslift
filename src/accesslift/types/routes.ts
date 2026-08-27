@@ -30,6 +30,7 @@ export type AppRoute = {
   kind: RouteKind;
   seo: PageSeo;
   parentPath?: string;
+  isAlias?: boolean;
 };
 
 export type BreadcrumbItem = {

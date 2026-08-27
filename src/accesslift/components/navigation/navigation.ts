@@ -1,6 +1,10 @@
 import type { BreadcrumbItem } from "../../types/routes";
 import { MAIN_ROUTES, findRouteByPath } from "../../routes/routes";
-import { getEquipmentBySlug, matchEquipmentDetailPath } from "../../catalog/catalog";
+import {
+  getCategoryBySlug,
+  getEquipmentBySlug,
+  matchEquipmentDetailPath,
+} from "../../catalog/catalog";
 import { getBlogPostBySlug, matchBlogPostPath } from "../../data/blog";
 
 export const getBreadcrumbItems = (path: string): BreadcrumbItem[] => {
@@ -19,9 +23,11 @@ export const getBreadcrumbItems = (path: string): BreadcrumbItem[] => {
 
   if (equipmentSlug) {
     const equipment = getEquipmentBySlug(equipmentSlug);
+    const category = equipment ? getCategoryBySlug(equipment.category) : undefined;
 
     return [
       { label: "Equipamentos", path: "/equipamentos/" },
+      ...(category ? [{ label: category.name, path: `/${category.slug}/` }] : []),
       { label: equipment ? `${equipment.brand} ${equipment.model}` : "Equipamento" },
     ];
   }

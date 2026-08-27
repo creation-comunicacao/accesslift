@@ -1,5 +1,5 @@
 import type { CatalogFilters, CatalogSort, EquipmentBrand, EquipmentCategorySlug } from "../../types/equipment";
-import { energyFilters, environmentFilters, equipmentBrands, heightRangeFilters } from "../../data/equipment";
+import { equipmentBrands, heightRangeFilters } from "../../data/equipment";
 
 type CatalogFiltersPanelProps = {
   filters: CatalogFilters;
@@ -30,7 +30,7 @@ export function CatalogFiltersPanel({
   };
 
   return (
-    <div className={`grid gap-4 ${compact ? "" : "lg:grid-cols-3 xl:grid-cols-6"}`}>
+    <div className={`grid gap-4 ${compact ? "" : "lg:grid-cols-3"}`}>
       <label className={labelClasses}>
         Tipo
         <select
@@ -82,40 +82,6 @@ export function CatalogFiltersPanel({
       </label>
 
       <label className={labelClasses}>
-        Energia
-        <select
-          className={selectClasses}
-          aria-label="Filtrar por energia"
-          value={filters.energy}
-          onChange={(event) => updateFilter("energy", event.target.value)}
-        >
-          <option value="all">Todas</option>
-          {energyFilters.map((energy) => (
-            <option key={energy.id} value={energy.id}>
-              {energy.label}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className={labelClasses}>
-        Ambiente
-        <select
-          className={selectClasses}
-          aria-label="Filtrar por ambiente"
-          value={filters.environment}
-          onChange={(event) => updateFilter("environment", event.target.value)}
-        >
-          <option value="all">Todos</option>
-          {environmentFilters.map((environment) => (
-            <option key={environment.id} value={environment.id}>
-              {environment.label}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className={labelClasses}>
         Ordenacao
         <select
           className={selectClasses}
@@ -132,7 +98,7 @@ export function CatalogFiltersPanel({
 
       <button
         type="button"
-        className="min-h-12 rounded-md border border-slate-300 px-4 text-sm font-extrabold text-slate-700 transition hover:border-slate-500 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 lg:col-span-3 xl:col-span-6"
+        className="min-h-12 rounded-md border border-slate-300 px-4 text-sm font-extrabold text-slate-700 transition hover:border-slate-500 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 lg:col-span-3"
         onClick={onClear}
       >
         Limpar filtros

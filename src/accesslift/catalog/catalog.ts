@@ -48,8 +48,6 @@ export const defaultCatalogFilters: CatalogFilters = {
   category: "all",
   brand: "all",
   heightRange: "all",
-  energy: "all",
-  environment: "all",
 };
 
 export const hasActiveCatalogFilters = (filters: CatalogFilters) =>
@@ -82,28 +80,13 @@ const matchesHeightRange = (equipment: Equipment, rangeId: string) => {
   return aboveMin && belowMax;
 };
 
-const normalizeValue = (value: string | null | undefined) =>
-  value
-    ?.normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase() || "";
-
 export const filterEquipment = (equipments: Equipment[], filters: CatalogFilters) =>
   equipments.filter((equipment) => {
     const categoryMatch =
       filters.category === "all" || equipment.category === filters.category;
     const brandMatch = filters.brand === "all" || equipment.brand === filters.brand;
     const heightMatch = matchesHeightRange(equipment, filters.heightRange);
-    const energyMatch =
-      filters.energy === "all" ||
-      normalizeValue(equipment.specs.alimentacao).includes(filters.energy);
-    const environmentMatch =
-      filters.environment === "all" ||
-      equipment.applications.some((application) =>
-        normalizeValue(application).includes(filters.environment),
-      );
-
-    return categoryMatch && brandMatch && heightMatch && energyMatch && environmentMatch;
+    return categoryMatch && brandMatch && heightMatch;
   });
 
 export const sortEquipment = (equipments: Equipment[], sort: CatalogSort) => {

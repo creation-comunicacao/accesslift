@@ -1,4 +1,5 @@
 import type { CommercialPageConfig } from "../../data/pageContent";
+import { Fragment } from "react";
 import {
   ConversionHero,
   DifferentialsSection,
@@ -24,6 +25,15 @@ export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
       />
       <ValueSection title="Proposta de valor" description={page.valueProposition} />
       <SectionList eyebrow="Beneficios" title="Beneficios preparados" items={page.benefits} />
+      {page.contentSections?.map((section) => (
+        <Fragment key={section.title}>
+          {section.items ? (
+            <SectionList eyebrow="Guia de locacao" title={section.title} items={section.items} />
+          ) : section.description ? (
+            <ValueSection title={section.title} description={section.description} />
+          ) : null}
+        </Fragment>
+      ))}
       <RelatedEquipmentSection categories={page.relatedCategories} />
       <DifferentialsSection />
       <ProcessSection title="Como funciona" steps={page.process} />

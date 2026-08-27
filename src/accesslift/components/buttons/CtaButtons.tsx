@@ -6,7 +6,7 @@ import { Button } from "./Button";
 export function RequestQuoteButton({ className = "" }: { className?: string }) {
   return (
     <Button
-      href="/orcamento/"
+      href="/solicite-orcamento/"
       className={className}
       icon={<Send className="h-4 w-4" aria-hidden />}
       onClick={() => trackEvent({ name: "quote_request", payload: { source: "cta" } })}
@@ -25,7 +25,7 @@ export function CheckAvailabilityButton({
 }) {
   return (
     <Button
-      href="/orcamento/"
+      href={equipmentSlug ? `/solicite-orcamento/?equipment=${encodeURIComponent(equipmentSlug)}` : "/solicite-orcamento/"}
       variant="secondary"
       className={className}
       icon={<PackageCheck className="h-4 w-4" aria-hidden />}

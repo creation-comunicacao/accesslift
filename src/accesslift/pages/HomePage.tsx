@@ -42,8 +42,6 @@ const defaultFinderFilters: CatalogFilters = {
   category: "all",
   brand: "all",
   heightRange: "all",
-  energy: "all",
-  environment: "all",
 };
 
 const featuredEquipment = homeFeaturedEquipmentSlugs
@@ -56,7 +54,7 @@ const trustIcons = [ShieldCheck, Truck, Headphones, MapPin];
 const segments = [
   { title: "Industria", description: "Manutencao, instalacoes e intervencoes em areas industriais.", href: "/segmentos/industria/", icon: Factory },
   { title: "Construcao civil", description: "Obras, fachadas e etapas de execucao em altura.", href: "/segmentos/construcao-civil/", icon: Construction },
-  { title: "Supermercados", description: "Manutencao, iluminacao e comunicacao visual em lojas.", href: "/segmentos/supermercados/", icon: ShoppingCart },
+  { title: "Supermercados e Hipermercados", description: "Manutencao, iluminacao e comunicacao visual em lojas.", href: "/segmentos/supermercados-e-hipermercados/", icon: ShoppingCart },
   { title: "Atacados", description: "Operacoes em grandes espacos comerciais e de abastecimento.", href: "/segmentos/atacados/", icon: Building2 },
 ];
 
@@ -119,11 +117,11 @@ export function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-16">
           <div>
             <Badge tone="lime">Accesslift</Badge>
-            <h1 className="mt-5 max-w-4xl text-slate-950">Plataformas elevatorias para levar sua operacao mais alto</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Locacao e venda de plataformas elevatorias tesoura e articuladas, com entrega propria, assistencia tecnica e suporte especializado para operacoes em Sao Paulo e regiao.</p>
+            <h1 className="mt-5 max-w-4xl text-slate-950">Locacao de Plataformas Elevatorias em Sao Paulo</h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Locacao de plataformas elevatorias tesoura e articuladas, com frota eletrica, entrega propria, assistencia tecnica e suporte especializado para operacoes em Sao Paulo e regiao.</p>
             <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
               <RequestQuoteButton />
-              <Button variant="secondary" onClick={openCatalogWithFinder} icon={<Search className="h-4 w-4" aria-hidden />}>Encontrar minha plataforma</Button>
+              <Button href="/equipamentos/" variant="secondary" icon={<Search className="h-4 w-4" aria-hidden />}>Ver equipamentos</Button>
             </div>
             <p className="mt-5 text-sm font-semibold text-slate-600">Locacao diaria, semanal ou mensal <span aria-hidden>•</span> Atendimento em um raio de ate 150 km da nossa base</p>
           </div>
