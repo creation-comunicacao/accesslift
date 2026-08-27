@@ -57,8 +57,9 @@ const removeStaleJsonLd = (activeIds: string[]) => {
 export function Seo({ seo }: SeoProps) {
   useEffect(() => {
     const canonical = `${SITE_ORIGIN}${seo.canonicalPath}`;
+    const isProduction = import.meta.env.VITE_SITE_ENV === "production";
     const robots =
-      import.meta.env.DEV || seo.indexDirective === "noindex"
+      !isProduction || seo.indexDirective === "noindex"
         ? "noindex,nofollow"
         : "index,follow";
 

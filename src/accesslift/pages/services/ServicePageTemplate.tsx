@@ -20,10 +20,32 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
   const isMaintenance = page.path === "/servicos/manutencao-preventiva/";
   const isTraining = page.path === "/servicos/treinamento-de-operadores/";
   const isServicesHub = page.path === "/servicos/";
+  const serviceImage = isServicesHub
+    ? {
+        src: "/images/accesslift/oficiais/plataformas-07.jpeg",
+        alt: "Entrega de plataformas elevatorias da frota Accesslift",
+      }
+    : isAssistance || isTraining
+      ? {
+          src: "/images/accesslift/oficiais/treinamento-assistencia.jpeg",
+          alt: "Equipe Accesslift em atendimento em ambiente industrial",
+        }
+      : null;
 
   return (
     <>
       <ConversionHero eyebrow={page.eyebrow} title={page.seo.h1} description={page.description} />
+      {serviceImage && (
+        <section className="mx-auto max-w-7xl px-4 pt-12 md:px-6">
+          <img
+            src={serviceImage.src}
+            alt={serviceImage.alt}
+            className="aspect-[16/7] w-full rounded-lg border border-slate-200 object-cover premium-shadow"
+            loading="lazy"
+            decoding="async"
+          />
+        </section>
+      )}
       <ValueSection title="Problema ou oportunidade" description={page.problem} />
       <ValueSection title="Proposta do servico" description={page.proposal} />
       <SectionList eyebrow="Beneficios" title="Beneficios do servico" items={page.benefits} />

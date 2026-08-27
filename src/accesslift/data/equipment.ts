@@ -35,6 +35,70 @@ const categoryLabelBySlug: Record<EquipmentCategorySlug, string> = {
   "plataformas-articuladas": "Plataforma Articulada",
 };
 
+const officialImagesBySlug: Partial<
+  Record<string, { mainImage: { src: string; alt: string }; gallery: Array<{ src: string; alt: string }> }>
+> = {
+  "jlg-1930es": {
+    mainImage: {
+      src: "/images/accesslift/oficiais/jlg-1930ES.jpeg",
+      alt: "Plataforma tesoura JLG 1930ES da frota Accesslift",
+    },
+    gallery: [
+      { src: "/images/accesslift/oficiais/jlg-1930ES-01.jpeg", alt: "Plataforma tesoura JLG 1930ES, vista lateral" },
+      { src: "/images/accesslift/oficiais/jlg-1930ES-02.jpeg", alt: "Plataforma tesoura JLG 1930ES em operacao" },
+    ],
+  },
+  "jlg-3246es": {
+    mainImage: {
+      src: "/images/accesslift/oficiais/jlg-3246ES.jpeg",
+      alt: "Plataforma tesoura JLG 3246ES da frota Accesslift",
+    },
+    gallery: [
+      { src: "/images/accesslift/oficiais/jlg-3246ES-01.jpeg", alt: "Plataforma tesoura JLG 3246ES, outra perspectiva" },
+      { src: "/images/accesslift/oficiais/jlg-3246ES-02.jpeg", alt: "Plataforma tesoura JLG 3246ES em ambiente interno" },
+      { src: "/images/accesslift/oficiais/jlg-3246ES-03.jpeg", alt: "Plataforma tesoura JLG 3246ES, vista lateral" },
+      { src: "/images/accesslift/oficiais/jlg-3246ES-04.jpeg", alt: "Plataforma tesoura JLG 3246ES em operacao" },
+    ],
+  },
+  "genie-z34": {
+    mainImage: {
+      src: "/images/accesslift/oficiais/genie-z34-22.jpeg",
+      alt: "Plataforma articulada Genie Z-34 da frota Accesslift",
+    },
+    gallery: [
+      { src: "/images/accesslift/oficiais/genie-z34-22-01.jpeg", alt: "Plataforma articulada Genie Z-34, outra perspectiva" },
+      { src: "/images/accesslift/oficiais/genie-z34-22-02.jpeg", alt: "Plataforma articulada Genie Z-34 em ambiente externo" },
+      { src: "/images/accesslift/oficiais/genie-z34-22-03.jpeg", alt: "Plataforma articulada Genie Z-34, vista lateral" },
+      { src: "/images/accesslift/oficiais/genie-z34-22-04.jpeg", alt: "Plataforma articulada Genie Z-34 em operacao" },
+    ],
+  },
+  "genie-z45": {
+    mainImage: {
+      src: "/images/accesslift/oficiais/genie-z45-25.jpeg",
+      alt: "Plataforma articulada Genie Z-45 da frota Accesslift",
+    },
+    gallery: [],
+  },
+  "skyjack-sj3219": {
+    mainImage: {
+      src: "/images/accesslift/oficiais/skyjet-sj3219.jpeg",
+      alt: "Plataforma tesoura Skyjack SJ3219 da frota Accesslift",
+    },
+    gallery: [
+      { src: "/images/accesslift/oficiais/skyjet-sj3219-01.jpeg", alt: "Plataforma tesoura Skyjack SJ3219, outra perspectiva" },
+      { src: "/images/accesslift/oficiais/skyjet-sj3219-02.jpeg", alt: "Plataforma tesoura Skyjack SJ3219, vista lateral" },
+      { src: "/images/accesslift/oficiais/skyjet-sj3219-03.jpeg", alt: "Plataforma tesoura Skyjack SJ3219 em operacao" },
+    ],
+  },
+  "skyjack-sj3226": {
+    mainImage: {
+      src: "/images/accesslift/oficiais/skyjet-sj3226.jpeg",
+      alt: "Plataforma tesoura Skyjack SJ3226 da frota Accesslift",
+    },
+    gallery: [{ src: "/images/accesslift/oficiais/skyjet-sj3226-01.jpeg", alt: "Plataforma tesoura Skyjack SJ3226, outra perspectiva" }],
+  },
+};
+
 const equipmentSeeds: EquipmentSeed[] = [
   { brand: "JLG", model: "1930ES", category: "plataformas-tesoura" },
   { brand: "JLG", model: "2632ES", category: "plataformas-tesoura", validateBeforePublish: true },
@@ -69,6 +133,7 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
   const categoryLabel = categoryLabelBySlug[seed.category];
   const slug = seed.slug || `${slugify(seed.brand)}-${slugify(seed.model)}`;
   const title = `${categoryLabel} ${seed.brand} ${seed.model}`;
+  const officialImages = officialImagesBySlug[slug];
 
   return {
     id: slug,
@@ -78,11 +143,11 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
     slug,
     status: "draft",
     validationStatus: seed.validateBeforePublish ? "validate-before-publish" : "ready",
-    mainImage: {
+    mainImage: officialImages?.mainImage || {
       src: null,
       alt: `${title} - imagem principal a cadastrar`,
     },
-    gallery: [],
+    gallery: officialImages?.gallery || [],
     title,
     summary: "Equipamento mockado para desenvolvimento do catalogo dinamico. Dados tecnicos oficiais pendentes de cadastro.",
     specs: {
@@ -95,7 +160,7 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
       alcanceHorizontal: seed.category === "plataformas-articuladas" ? null : undefined,
       ...equipmentSpecsBySlug[slug],
     },
-    images: [],
+    images: officialImages ? [officialImages.mainImage, ...officialImages.gallery] : [],
     characteristics: [],
     differentials: [],
     applications: [],

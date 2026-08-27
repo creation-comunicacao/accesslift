@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
 
-Sitemap: https://www.accesslift.com.br/sitemap.xml
+Sitemap: http://localhost:3000/sitemap.xml

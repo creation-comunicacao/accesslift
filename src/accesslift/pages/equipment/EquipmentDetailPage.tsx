@@ -2,7 +2,6 @@ import {
   BadgeCheck,
   Download,
   FileText,
-  ImageIcon,
   PackageCheck,
   Ruler,
   ShieldCheck,
@@ -59,16 +58,16 @@ function ImagePanel({ equipment }: EquipmentDetailPageProps) {
           decoding="async"
         />
       ) : (
-        <div
-          className="industrial-grid flex aspect-[4/3] w-full items-center justify-center rounded-lg border border-slate-200 bg-slate-100 p-6 text-center premium-shadow"
-          role="img"
-          aria-label={equipment.mainImage.alt}
-        >
-          <div>
-            <ImageIcon className="mx-auto h-10 w-10 text-slate-400" aria-hidden />
-            <p className="mt-3 text-sm font-extrabold text-slate-600">
-              Imagem principal a cadastrar
-            </p>
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-slate-200 bg-slate-100 premium-shadow">
+          <img
+            src="/images/accesslift/oficiais/plataformas-07.jpeg"
+            alt="Frota de plataformas elevatorias da Accesslift"
+            className="h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+          <div className="absolute inset-x-4 bottom-4 rounded-md bg-slate-950/90 p-3 text-center text-sm font-extrabold text-white">
+            Imagem geral da frota. A foto especifica deste modelo ainda sera cadastrada.
           </div>
         </div>
       )}

@@ -61,30 +61,30 @@ const segments = [
 const clients = ["Lorenzetti", "Assai", "Atacadao", "Claro", "EZTEC"];
 
 function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) {
-  const isArticulated = type === "articulada";
+  const visual = {
+    hero: {
+      src: "/images/accesslift/oficiais/plataformas-07.jpeg",
+      alt: "Frota Accesslift em entrega de plataformas elevatorias",
+    },
+    tesoura: {
+      src: "/images/accesslift/oficiais/jlg-3246ES.jpeg",
+      alt: "Plataforma tesoura JLG 3246ES da frota Accesslift",
+    },
+    articulada: {
+      src: "/images/accesslift/oficiais/genie-z34-22.jpeg",
+      alt: "Plataforma articulada Genie Z-34 da frota Accesslift",
+    },
+  }[type];
 
   return (
     <figure className="relative min-h-64 overflow-hidden rounded-lg border border-slate-800 bg-slate-950 text-white premium-shadow">
-      <div className="industrial-grid absolute inset-0 opacity-40" />
-      <div className="absolute inset-x-6 bottom-8 h-3 rounded-full bg-slate-700" />
-      <div className="absolute bottom-10 left-8 h-24 w-36 rounded-md border-4 border-lime-300 bg-slate-900 shadow-2xl">
-        <div className="grid h-full grid-cols-4 gap-2 p-3">
-          <span className="rounded-sm bg-slate-700" />
-          <span className="rounded-sm bg-slate-700" />
-          <span className="rounded-sm bg-slate-700" />
-          <span className="rounded-sm bg-slate-700" />
-        </div>
-      </div>
-      <div className="absolute bottom-24 left-20 h-28 w-4 rotate-[-18deg] rounded-full bg-lime-300" />
-      <div className="absolute bottom-32 left-36 h-24 w-4 rotate-[35deg] rounded-full bg-lime-300" />
-      {isArticulated || type === "hero" ? (
-        <div className="absolute right-8 top-12 h-14 w-32 rounded-md border-4 border-lime-300 bg-slate-900" />
-      ) : (
-        <div className="absolute right-8 top-20 h-12 w-40 rounded-md border-4 border-lime-300 bg-slate-900" />
-      )}
-      <figcaption className="absolute right-6 top-6 rounded-full bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-wider text-lime-200">
-        Imagem da frota a cadastrar
-      </figcaption>
+      <img
+        src={visual.src}
+        alt={visual.alt}
+        className="absolute inset-0 h-full w-full object-cover"
+        loading={type === "hero" ? "eager" : "lazy"}
+        decoding="async"
+      />
     </figure>
   );
 }

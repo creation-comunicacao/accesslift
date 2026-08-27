@@ -19,6 +19,17 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
   return (
     <>
       <ConversionHero eyebrow={page.eyebrow} title={page.seo.h1} description={page.description} />
+      {page.path === "/empresa/" && (
+        <section className="mx-auto max-w-7xl px-4 pt-12 md:px-6">
+          <img
+            src="/images/accesslift/oficiais/empresa.jpeg"
+            alt="Frota de plataformas elevatorias no patio da Accesslift"
+            className="aspect-[16/7] w-full rounded-lg border border-slate-200 object-cover premium-shadow"
+            loading="lazy"
+            decoding="async"
+          />
+        </section>
+      )}
       <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
         <div className="grid gap-5 md:grid-cols-2">
           {page.sections.map((section) => {
