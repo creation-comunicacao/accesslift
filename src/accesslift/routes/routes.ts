@@ -6,9 +6,9 @@ export const MAIN_ROUTES: AppRoute[] = [
     label: "Inicio",
     kind: "home",
     seo: {
-      title: "Locacao de Plataformas Elevatorias em SP | Accesslift",
+      title: "Locação de Plataformas Elevatórias em SP | Accesslift",
       description:
-        "Locacao de plataformas elevatorias tesoura e articuladas em Sao Paulo e regiao, com frota eletrica, entrega, assistencia tecnica e suporte.",
+        "Locação de plataformas elevatórias tesoura e articuladas em São Paulo. Frota elétrica, entrega própria e suporte técnico Accesslift. Solicite um orçamento.",
       canonicalPath: "/",
     },
   },

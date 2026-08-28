@@ -21,7 +21,7 @@ export const homeFinderFields: HomeFinderField[] = [
     label: "Altura de trabalho",
     options: [
       { label: "Qualquer altura", value: "all" },
-      { label: "Ate 8 m", value: "ate-8m" },
+      { label: "Até 8 m", value: "ate-8m" },
       { label: "8 a 10 m", value: "8-a-10m" },
       { label: "10 a 14 m", value: "10-a-14m" },
       { label: "14 a 16 m", value: "14-a-16m" },
@@ -30,27 +30,27 @@ export const homeFinderFields: HomeFinderField[] = [
 ];
 
 export const homeTrustItems = [
-  { value: "12 anos", label: "de experiencia" },
-  { value: "Entrega propria", label: "e retirada" },
-  { value: "Assistencia tecnica", label: "propria" },
-  { value: "150 km", label: "de raio de atendimento" },
+  { value: "Tesoura e Articuladas", label: "Plataformas" },
+  { value: "Entrega e retirada", label: "próprias" },
+  { value: "Assistência técnica", label: "própria" },
+  { value: "São Paulo e região", label: "Atendimento" },
 ];
 
 export const homeCategoryCards = [
   {
     title: "Plataformas Tesoura",
-    heading: "Elevacao vertical com estabilidade e area de trabalho",
+    heading: "Elevação vertical com estabilidade e área de trabalho",
     description:
-      "Indicadas para operacoes que exigem acesso vertical e uma plataforma de trabalho estavel, especialmente em manutencao, instalacoes, obras e operacoes industriais e comerciais.",
+      "Indicadas principalmente para trabalhos que exigem elevação vertical, estabilidade e uma área de trabalho adequada para operador, ferramentas e materiais. São utilizadas em atividades de manutenção, instalação, montagem e operações industriais, comerciais e de construção.",
     href: "/plataformas-tesoura/",
     label: "Ver plataformas tesoura",
     visual: "tesoura" as const,
   },
   {
     title: "Plataformas Articuladas",
-    heading: "Altura e alcance para acessar pontos mais dificeis",
+    heading: "Altura e alcance para acessar pontos mais difíceis",
     description:
-      "O braco articulado permite alcancar areas elevadas contornando obstaculos, tornando esse tipo de plataforma indicado para trabalhos que exigem maior flexibilidade de posicionamento.",
+      "Indicadas para trabalhos que, além da altura, exigem alcance horizontal e capacidade de contornar obstáculos. São uma alternativa para operações em que o acesso não pode ser realizado somente por elevação vertical.",
     href: "/plataformas-articuladas/",
     label: "Ver plataformas articuladas",
     visual: "articulada" as const,
@@ -59,28 +59,78 @@ export const homeCategoryCards = [
 
 export const homeDifferentials = [
   {
-    title: "Entrega e retirada",
+    title: "12 anos de experiência",
     description:
-      "Logistica para transportar o equipamento ate sua operacao e realizar a retirada ao termino da locacao.",
+      "Experiência no atendimento a empresas e operações que utilizam plataformas elevatórias para trabalhos em altura.",
   },
   {
-    title: "Assistencia tecnica propria",
-    description: "Suporte tecnico especializado para os equipamentos durante a operacao.",
+    title: "Entrega e retirada próprias",
+    description:
+      "Estrutura própria para realizar a entrega e a retirada dos equipamentos dentro da área de atendimento da Accesslift.",
   },
   {
-    title: "Manutencao preventiva",
+    title: "Assistência técnica própria",
+    description: "Equipe técnica própria para suporte aos equipamentos durante a locação.",
+  },
+  {
+    title: "Manutenção preventiva",
     description:
-      "Acompanhamento e manutencao para preservar as condicoes adequadas de funcionamento dos equipamentos.",
+      "Cuidados preventivos fazem parte da estrutura necessária para manter os equipamentos preparados para as operações de nossos clientes.",
   },
   {
     title: "Atendimento emergencial",
-    description: "Suporte para situacoes que exigem atendimento tecnico durante a locacao.",
+    description: "Suporte para situações que exijam atendimento técnico durante a locação, de acordo com a necessidade da operação.",
   },
   {
     title: "Treinamento de operadores",
-    description: "Treinamento para apoiar a utilizacao adequada e segura das plataformas elevatorias.",
+    description: "Treinamento para utilização das plataformas elevatórias, com orientação sobre equipamentos, controles, limites e cuidados durante a operação.",
   },
 ];
+
+export type HomeClient = {
+  name: string;
+  logoSrc: string | null;
+  logoAlt: string;
+};
+
+export type HomeGoogleReview = {
+  id: string;
+  author: string;
+  rating: number;
+  excerpt: string;
+};
+
+export const homeClients: HomeClient[] = [
+  { name: "Lorenzetti", logoSrc: null, logoAlt: "Logo Lorenzetti" },
+  { name: "Assaí Atacadista", logoSrc: null, logoAlt: "Logo Assaí Atacadista" },
+  { name: "Atacadão", logoSrc: null, logoAlt: "Logo Atacadão" },
+  { name: "Claro", logoSrc: null, logoAlt: "Logo Claro" },
+  { name: "EZTEC", logoSrc: null, logoAlt: "Logo EZTEC" },
+];
+
+// Text, author and rating verified on the public Google profile supplied by the client.
+export const homeGoogleReviews: HomeGoogleReview[] = [
+  {
+    id: "google-edil-rodrigues",
+    author: "edil Rodrigues",
+    rating: 5,
+    excerpt: "Pontualidade na entrega e equipamentos em excelente estado .",
+  },
+  {
+    id: "google-marcelo-kruze",
+    author: "Marcelo Kruze",
+    rating: 5,
+    excerpt: "Plataformas ótimas e a locação correu tudo bem e preço justo.",
+  },
+  {
+    id: "google-cassio-simonetti-santos-neto",
+    author: "Cassio Simonetti Santos Neto",
+    rating: 5,
+    excerpt: "Máquinas em ótimo estado de conservação !!!",
+  },
+];
+export const googleReviewsProfileUrl =
+  "https://www.google.com/search?q=accesslift&oq=accesslift+&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABgeMgYIAhAAGB4yBggDEEUYPDIGCAQQRRg8MgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEINzI3N2owajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x94ce5aa4e0c36387:0xe507e2d8dad0c75b,1,,,,";
 
 export const homeRentalSteps = [
   { title: "Conte o que voce precisa", description: "Altura, local, periodo e caracteristicas da operacao." },
