@@ -1,4 +1,4 @@
-import { BadgeCheck, Ruler, Wrench } from "lucide-react";
+import { BadgeCheck, ImageIcon, Ruler, Wrench } from "lucide-react";
 import type { Equipment } from "../../types/equipment";
 import { CheckAvailabilityButton } from "../buttons/CtaButtons";
 import { Button } from "../buttons/Button";
@@ -30,16 +30,10 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
           decoding="async"
         />
       ) : (
-        <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-md border border-slate-200 bg-slate-100">
-          <img
-            src="/images/accesslift/oficiais/plataformas-07.jpeg"
-            alt="Frota de plataformas elevatorias da Accesslift"
-            className="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-          <p className="absolute bottom-2 left-2 right-2 rounded bg-slate-950/85 px-2 py-1.5 text-center text-xs font-extrabold text-white">
-            Imagem geral da frota. Foto do modelo a cadastrar.
+        <div className="mb-4 flex aspect-[4/3] flex-col items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-50 px-5 text-center">
+          <ImageIcon className="h-9 w-9 text-slate-400" aria-hidden />
+          <p className="mt-3 text-xs font-extrabold text-slate-600">
+            Foto especifica do modelo ainda nao cadastrada.
           </p>
         </div>
       )}

@@ -29,6 +29,7 @@ const productionPaths = [
 
 const auditOnlyPaths = [
   "/equipamentos/jlg-1930es/",
+  "/equipamentos/jlg-2630/",
   "/equipamentos/jlg-2632es/",
   "/equipamentos/jlg-3246es/",
   "/equipamentos/jlg-e450aj/",
@@ -38,6 +39,7 @@ const auditOnlyPaths = [
   "/equipamentos/genie-z45/",
   "/equipamentos/skyjack-sj3219/",
   "/equipamentos/skyjack-sj3226/",
+  "/equipamentos/skyjack-sj4732/",
   "/equipamentos/skyjack-sj4740e/",
   "/equipamentos/zoomlion-zs1212/",
   "/equipamentos/zoomlion-za14/",

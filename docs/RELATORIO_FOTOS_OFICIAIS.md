@@ -1,51 +1,57 @@
-# Relatorio de fotos oficiais Accesslift
+# Relatorio DE/PARA de fotos oficiais Accesslift
 
-Data da auditoria: 2026-08-27
+Data da auditoria: 2026-08-28
 
-## Resultado
+## Resultado consolidado
 
-- Origem auditada: `/Users/faiaxx/Library/Mobile Documents/com~apple~CloudDocs/Accesslift/Fotos renomeadas/`.
-- Arquivos de imagem encontrados: 62.
-- Arquivos preservados na aplicacao: 62, em `public/images/accesslift/oficiais/`.
-- Os nomes de arquivo originais foram mantidos, inclusive maiusculas, hifens e extensoes.
-- Todas as 62 fotos possuem referencia direta no codigo da aplicacao. As fotos cuja correspondencia com um produto e segura estao nas galerias dos equipamentos; as demais foram organizadas por contexto institucional, entrega, treinamento, marca ou validacao de modelo.
+- Origem: `/Users/faiaxx/Library/Mobile Documents/com~apple~CloudDocs/Accesslift/Fotos renomeadas/`.
+- Imagens recebidas: 62.
+- Imagens preservadas em `public/images/accesslift/oficiais/`: 62.
+- Imagens com destino visual definido na aplicacao: 62.
+- Imagens usadas como fallback geral em cards de equipamento: 0.
+- Equipamentos sem foto propria usam placeholder neutro, sem imagem de outro modelo ou da frota.
+- Nenhuma especificacao tecnica foi deduzida a partir das fotos.
 
-## Fotos associadas a equipamentos com correspondencia direta
+## DE/PARA por equipamento
 
-| Equipamento | Arquivos oficiais utilizados ou disponiveis |
-| --- | --- |
-| JLG 1930ES | `jlg-1930ES.jpeg`, `jlg-1930ES-01.jpeg`, `jlg-1930ES-02.jpeg` |
-| JLG 3246ES | `jlg-3246ES.jpeg`, `jlg-3246ES-01.jpeg`, `jlg-3246ES-02.jpeg`, `jlg-3246ES-03.jpeg`, `jlg-3246ES-04.jpeg` |
-| Genie Z-34/22 | `genie-z34-22.jpeg`, `genie-z34-22-01.jpeg`, `genie-z34-22-02.jpeg`, `genie-z34-22-03.jpeg`, `genie-z34-22-04.jpeg`, `plataforma-articulada-z34-genie.jpg` |
-| Genie Z-45/25 | `genie-z45-25.jpeg`, `plataforma-articulada-z45-genie.jpg` |
-| Skyjack SJ3219 | `skyjet-sj3219.jpeg`, `skyjet-sj3219-01.jpeg`, `skyjet-sj3219-02.jpeg`, `skyjet-sj3219-03.jpeg` |
-| Skyjack SJ3226 | `skyjet-sj3226.jpeg`, `skyjet-sj3226-01.jpeg` |
+| DE: arquivo original | PARA: titulo na aplicacao | Destino |
+| --- | --- | --- |
+| `jlg-1930ES.jpeg`, `jlg-1930ES-01.jpeg`, `jlg-1930ES-02.jpeg`, `plataforma-tesoura-jlg-1930.jpg` | Plataforma Tesoura JLG 1930ES | `/equipamentos/jlg-1930es/` |
+| `plataforma-tesoura-jlg-2630.jpg` | Plataforma Tesoura JLG 2630 | `/equipamentos/jlg-2630/` |
+| `jlg-3246ES.jpeg`, `jlg-3246ES-01.jpeg`, `jlg-3246ES-02.jpeg`, `jlg-3246ES-03.jpeg`, `jlg-3246ES-04.jpeg`, `jlg-3246.png`, `plataformas-05.jpeg`, `plataformas-06.jpeg` | Plataforma Tesoura JLG 3246ES | `/equipamentos/jlg-3246es/` |
+| `genie-z34-22.jpeg`, `genie-z34-22-01.jpeg`, `genie-z34-22-02.jpeg`, `genie-z34-22-03.jpeg`, `genie-z34-22-04.jpeg`, `plataforma-articulada-z34-genie.jpg` | Plataforma Articulada Genie Z-34/22 | `/equipamentos/genie-z34/` |
+| `genie-z45-25.jpeg`, `plataforma-articulada-z45-genie.jpg`, `plataformas.jpeg` | Plataforma Articulada Genie Z-45/25 | `/equipamentos/genie-z45/` |
+| `skyjet-sj3219.jpeg`, `skyjet-sj3219-01.jpeg`, `skyjet-sj3219-02.jpeg`, `skyjet-sj3219-03.jpeg` | Plataforma Tesoura Skyjack SJ3219 | `/equipamentos/skyjack-sj3219/` |
+| `skyjet-sj3226.jpeg`, `skyjet-sj3226-01.jpeg` | Plataforma Tesoura Skyjack SJ3226 | `/equipamentos/skyjack-sj3226/` |
+| `skyjet-sj4732.jpeg`, `skyjet-sj4732-02.jpeg`, `skyjet-sj4732-03.jpeg` | Plataforma Tesoura Skyjack SJ4732 | `/equipamentos/skyjack-sj4732/` |
+| `Zoomlion-ZS1212AC-01.jpeg`, `Zoomlion-ZS1212AC.jpeg` | Plataforma Tesoura Zoomlion ZS1212 | `/equipamentos/zoomlion-zs1212/` |
+| `Zoomlion-ZA14JE-01.jpeg`, `Zoomlion-ZA14JE.jpeg`, `Zoomlion-ZA14JE-LI.jpeg` | Plataforma Articulada Zoomlion ZA14 | `/equipamentos/zoomlion-za14/` |
 
-O nome `skyjet` foi preservado porque e o nome recebido no acervo; a associacao na interface continua sendo Skyjack.
+O nome `skyjet` foi mantido nos arquivos porque foi assim recebido no acervo. A marca exibida na interface e Skyjack.
 
-## Fotos institucionais e de contexto
+## DE/PARA por categoria
 
-- Empresa e frota: `empresa.jpeg`, `empresa-01.jpeg`, `empresa-02.jpeg`, `plataformas.jpeg` e suas variacoes numeradas.
-- Entrega e retirada: `entrega-retirada-plataforma-frota.jpeg`, `entrega-retirada-plataforma-frota-propria.jpeg` e suas variacoes numeradas.
-- Treinamento e assistencia: `treinamento-assistencia.jpeg` e suas variacoes numeradas.
-- Marcas e catalogo geral: `genie.jpeg`, `genie-0.jpeg`, `genie-01.jpeg`, `skyjet.jpeg`.
+Os arquivos abaixo mostram a categoria e a marca, mas o modelo nao esta legivel. Por isso nao foram associados a uma pagina individual.
 
-Essas fotos estao prontas no acervo para associacao a novas secoes do site quando houver definicao editorial.
+| DE: arquivo original | PARA: titulo na aplicacao | Destino |
+| --- | --- | --- |
+| `genie.jpeg`, `genie-0.jpeg`, `genie-01.jpeg`, `plataformas-02.jpeg`, `plataformas-03.jpeg`, `plataformas-04.jpeg`, `plataformas-08.jpeg`, `plataformas-09.jpeg` | Plataformas Articuladas da Frota | `/plataformas-articuladas/` |
+| `skyjet.jpeg` | Plataformas Tesoura da Frota | `/plataformas-tesoura/` |
 
-## Arquivos que exigem validacao antes de aparecerem em um produto do catalogo
+Cada imagem de categoria informa visualmente que o modelo nao foi identificado. Ela nao e usada em cards ou paginas de produtos especificos.
 
-| Arquivos | Motivo |
-| --- | --- |
-| `plataforma-tesoura-jlg-2630.jpg` | O catalogo atual registra JLG 2632ES, nao 2630. |
-| `skyjet-sj4732.jpeg`, `skyjet-sj4732-02.jpeg`, `skyjet-sj4732-03.jpeg` | O catalogo atual registra SJ4740 E, nao SJ4732. |
-| `Zoomlion-ZA14JE.jpeg`, `Zoomlion-ZA14JE-01.jpeg`, `Zoomlion-ZA14JE-LI.jpeg` | O catalogo atual registra ZA14; a variante JE precisa de confirmacao. |
-| `Zoomlion-ZS1212AC.jpeg`, `Zoomlion-ZS1212AC-01.jpeg` | O catalogo atual registra ZS1212; a variante AC precisa de confirmacao. |
-| `jlg-3246.png` | Arquivo adicional do modelo, ainda sem classificacao de uso editorial. |
+## DE/PARA institucional e servicos
 
-Esses arquivos foram incorporados e exibidos em uma galeria identificada como "Imagens de modelos em validacao". Eles nao foram associados a outro modelo ou variante no catalogo, o que evita informacao visual enganosa e respeita a regra de nao inventar dados tecnicos.
+| DE: arquivo original | PARA: titulo na aplicacao | Destino |
+| --- | --- | --- |
+| `empresa.jpeg`, `empresa-01.jpeg`, `empresa-02.jpeg`, `plataformas-01.jpeg` | Frota e Operacao | `/empresa/` e `/sobre-a-accesslift/` |
+| `entrega-retirada-plataforma-frota.jpeg`, `entrega-retirada-plataforma-frota-propria.jpeg`, `entrega-retirada-plataforma-frota-propria-01.jpeg` a `entrega-retirada-plataforma-frota-propria-06.jpeg`, `plataformas-07.jpeg` | Entrega e Retirada com Frota Propria | `/servicos/entrega-e-retirada/` |
+| `treinamento-assistencia.jpeg`, `treinamento-assistencia-01.jpeg`, `treinamento-assistencia-02.jpeg`, `treinamento-assistencia-03.jpeg` | Equipe em Atendimento | `/servicos/treinamento-de-operadores/` |
 
-## Pendencias
+## Modelos mantidos sem foto especifica
 
-- Confirmar se as variantes 2630/2632, SJ4732/SJ4740 E, ZA14/ZA14JE e ZS1212/ZS1212AC podem ser tratadas como equivalentes na comunicacao comercial.
-- Fornecer a orientacao editorial para aproveitar as fotos de entrega, equipe e frota nas demais paginas.
-- O acervo foi implementado no workspace ativo: `/Users/faiaxx/educational-social-network/frontend`. A pasta externa `creation-comunicacao/frontend` continua precisando receber uma sincronizacao local para refletir esta versao no servidor que estiver sendo executado dali.
+Os seguintes cadastros continuam no catalogo porque ja faziam parte do blueprint, mas nao receberam imagem de outro equipamento: JLG 2632ES, JLG E450AJ, Genie GS-1930, Genie GS-2632 e Skyjack SJ4740 E.
+
+## Regra aplicada
+
+Uma imagem so foi vinculada a uma pagina individual quando o nome do arquivo ou a identificacao visivel permitiu reconhecer o modelo. Fotos sem modelo legivel foram direcionadas apenas para categoria, institucional ou servico. Cards e detalhes sem foto usam um placeholder neutro.

@@ -3,6 +3,8 @@ import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { CheckAvailabilityButton, RequestQuoteButton, TalkToSpecialistButton } from "../../components/buttons/CtaButtons";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/buttons/Button";
+import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
+import { categoryGalleryBySlug } from "../../data/officialMedia";
 import type { EquipmentCategorySlug } from "../../types/equipment";
 
 type CategoryTemplateProps = {
@@ -106,6 +108,11 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
           <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">{content.choiceNote}</p>
         </div>
       </section>
+      <OfficialMediaGallery
+        title={slug === "plataformas-tesoura" ? "Plataformas tesoura da frota" : "Plataformas articuladas da frota"}
+        description="Imagens sem identificacao legivel de modelo permanecem na categoria e nao sao usadas como foto de um equipamento especifico."
+        images={categoryGalleryBySlug[slug]}
+      />
     </>
   );
 }
