@@ -1,6 +1,8 @@
 import type { ServicePageConfig } from "../../data/pageContent";
 import { SupportRequestForm } from "../../components/forms/SupportRequestForm";
 import { Button } from "../../components/buttons/Button";
+import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
+import { deliveryGallery, trainingGallery } from "../../data/officialMedia";
 import {
   ConversionHero,
   FaqSection,
@@ -19,6 +21,7 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
   const isAssistance = page.path === "/servicos/assistencia-tecnica/";
   const isMaintenance = page.path === "/servicos/manutencao-preventiva/";
   const isTraining = page.path === "/servicos/treinamento-de-operadores/";
+  const isDelivery = page.path === "/servicos/entrega-e-retirada/";
   const isServicesHub = page.path === "/servicos/";
   const serviceImage = isServicesHub
     ? {
@@ -45,6 +48,20 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
             decoding="async"
           />
         </section>
+      )}
+      {isDelivery && (
+        <OfficialMediaGallery
+          title="Entrega e retirada com frota propria"
+          description="Imagens da operacao logistica Accesslift para apoiar a explicacao do servico."
+          images={deliveryGallery}
+        />
+      )}
+      {isTraining && (
+        <OfficialMediaGallery
+          title="Equipe em atendimento"
+          description="Registro visual de atividades da equipe. Detalhes de treinamento, carga horaria e certificacao dependem de confirmacao comercial."
+          images={trainingGallery}
+        />
       )}
       <ValueSection title="Problema ou oportunidade" description={page.problem} />
       <ValueSection title="Proposta do servico" description={page.proposal} />

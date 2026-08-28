@@ -46,6 +46,7 @@ const officialImagesBySlug: Partial<
     gallery: [
       { src: "/images/accesslift/oficiais/jlg-1930ES-01.jpeg", alt: "Plataforma tesoura JLG 1930ES, vista lateral" },
       { src: "/images/accesslift/oficiais/jlg-1930ES-02.jpeg", alt: "Plataforma tesoura JLG 1930ES em operacao" },
+      { src: "/images/accesslift/oficiais/plataforma-tesoura-jlg-1930.jpg", alt: "Plataforma tesoura JLG 1930ES" },
     ],
   },
   "jlg-3246es": {
@@ -58,6 +59,7 @@ const officialImagesBySlug: Partial<
       { src: "/images/accesslift/oficiais/jlg-3246ES-02.jpeg", alt: "Plataforma tesoura JLG 3246ES em ambiente interno" },
       { src: "/images/accesslift/oficiais/jlg-3246ES-03.jpeg", alt: "Plataforma tesoura JLG 3246ES, vista lateral" },
       { src: "/images/accesslift/oficiais/jlg-3246ES-04.jpeg", alt: "Plataforma tesoura JLG 3246ES em operacao" },
+      { src: "/images/accesslift/oficiais/jlg-3246.png", alt: "Plataforma tesoura JLG 3246ES" },
     ],
   },
   "genie-z34": {
@@ -70,6 +72,7 @@ const officialImagesBySlug: Partial<
       { src: "/images/accesslift/oficiais/genie-z34-22-02.jpeg", alt: "Plataforma articulada Genie Z-34 em ambiente externo" },
       { src: "/images/accesslift/oficiais/genie-z34-22-03.jpeg", alt: "Plataforma articulada Genie Z-34, vista lateral" },
       { src: "/images/accesslift/oficiais/genie-z34-22-04.jpeg", alt: "Plataforma articulada Genie Z-34 em operacao" },
+      { src: "/images/accesslift/oficiais/plataforma-articulada-z34-genie.jpg", alt: "Plataforma articulada Genie Z-34" },
     ],
   },
   "genie-z45": {
@@ -77,7 +80,7 @@ const officialImagesBySlug: Partial<
       src: "/images/accesslift/oficiais/genie-z45-25.jpeg",
       alt: "Plataforma articulada Genie Z-45 da frota Accesslift",
     },
-    gallery: [],
+    gallery: [{ src: "/images/accesslift/oficiais/plataforma-articulada-z45-genie.jpg", alt: "Plataforma articulada Genie Z-45" }],
   },
   "skyjack-sj3219": {
     mainImage: {

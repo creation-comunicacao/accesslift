@@ -3,6 +3,8 @@ import { mockEquipments } from "../../data/equipment";
 import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { PageIntro } from "../../components/layout/PageIntro";
 import { Button } from "../../components/buttons/Button";
+import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
+import { brandGallery, pendingModelGallery } from "../../data/officialMedia";
 
 export function CatalogPage() {
   return (
@@ -30,6 +32,16 @@ export function CatalogPage() {
           ))}
         </div>
       </section>
+      <OfficialMediaGallery
+        title="Marcas presentes no acervo"
+        description="Registro visual de equipamentos por marca. A ficha de cada produto continua dependente da confirmacao do modelo e dos dados tecnicos oficiais."
+        images={brandGallery}
+      />
+      <OfficialMediaGallery
+        title="Imagens de modelos em validacao"
+        description="Estas imagens fazem parte do acervo oficial, mas o nome do arquivo indica uma variante diferente da cadastrada no catalogo. Elas permanecem identificadas e nao sao vinculadas a uma pagina de produto ate validacao."
+        images={pendingModelGallery}
+      />
     </>
   );
 }

@@ -8,7 +8,7 @@ Data da auditoria: 2026-08-27
 - Arquivos de imagem encontrados: 62.
 - Arquivos preservados na aplicacao: 62, em `public/images/accesslift/oficiais/`.
 - Os nomes de arquivo originais foram mantidos, inclusive maiusculas, hifens e extensoes.
-- As fotos efetivamente utilizadas pelo front foram atualizadas para apontar para esse acervo oficial quando a correspondencia com o modelo e segura.
+- Todas as 62 fotos possuem referencia direta no codigo da aplicacao. As fotos cuja correspondencia com um produto e segura estao nas galerias dos equipamentos; as demais foram organizadas por contexto institucional, entrega, treinamento, marca ou validacao de modelo.
 
 ## Fotos associadas a equipamentos com correspondencia direta
 
@@ -42,7 +42,7 @@ Essas fotos estao prontas no acervo para associacao a novas secoes do site quand
 | `Zoomlion-ZS1212AC.jpeg`, `Zoomlion-ZS1212AC-01.jpeg` | O catalogo atual registra ZS1212; a variante AC precisa de confirmacao. |
 | `jlg-3246.png` | Arquivo adicional do modelo, ainda sem classificacao de uso editorial. |
 
-Esses arquivos foram incorporados e preservados. Eles nao foram exibidos como se correspondessem a outro modelo ou variante. Isso evita informacao visual enganosa e respeita a regra de nao inventar dados tecnicos.
+Esses arquivos foram incorporados e exibidos em uma galeria identificada como "Imagens de modelos em validacao". Eles nao foram associados a outro modelo ou variante no catalogo, o que evita informacao visual enganosa e respeita a regra de nao inventar dados tecnicos.
 
 ## Pendencias
 

@@ -3,7 +3,9 @@ import { RelatedEquipmentSection, SectionList, ValueSection, FinalConversionSect
 import { ConversionHero } from "../shared/StructuredPageSections";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/buttons/Button";
+import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
 import type { InstitutionalPageConfig } from "../../data/institutional";
+import { companyGallery } from "../../data/officialMedia";
 
 type InstitutionalPageProps = {
   page: InstitutionalPageConfig;
@@ -56,6 +58,11 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
       </section>
       {page.path === "/empresa/" && (
         <>
+          <OfficialMediaGallery
+            title="Frota e operacao"
+            description="Registro fotografico da frota e da operacao Accesslift. As imagens apoiam a apresentacao institucional sem substituir dados tecnicos do catalogo."
+            images={companyGallery}
+          />
           <SectionList
             eyebrow="Diferenciais"
             title="Diferenciais preparados"
