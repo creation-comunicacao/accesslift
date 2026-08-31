@@ -28,6 +28,9 @@ export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
         eyebrow={page.eyebrow}
         title={page.seo.h1}
         description={page.description}
+        primaryCta={page.primaryCta}
+        secondaryCta={page.secondaryCta}
+        supportItems={page.supportItems}
       />
       {showOperationGallery && (
         <OfficialMediaGallery
@@ -41,9 +44,20 @@ export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
       {page.contentSections?.map((section) => (
         <Fragment key={section.title}>
           {section.items ? (
-            <SectionList eyebrow="Guia de locacao" title={section.title} items={section.items} />
+            <SectionList
+              eyebrow={section.eyebrow || "Guia de locacao"}
+              title={section.title}
+              description={section.description}
+              items={section.items}
+              cta={section.cta}
+            />
           ) : section.description ? (
-            <ValueSection title={section.title} description={section.description} />
+            <ValueSection
+              eyebrow={section.eyebrow}
+              title={section.title}
+              description={section.description}
+              cta={section.cta}
+            />
           ) : null}
         </Fragment>
       ))}
@@ -51,7 +65,12 @@ export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
       <DifferentialsSection />
       <ProcessSection title="Como funciona" steps={page.process} />
       <FaqSection items={page.faq} />
-      <FinalConversionSection />
+      <FinalConversionSection
+        title={page.finalCta?.title}
+        description={page.finalCta?.description}
+        primary={page.finalCta?.primary}
+        secondary={page.finalCta?.secondary}
+      />
     </>
   );
 }

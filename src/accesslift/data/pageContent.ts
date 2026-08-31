@@ -6,11 +6,25 @@ export type FaqItem = {
   answer: string;
 };
 
+export type CtaLink = {
+  label: string;
+  href: string;
+};
+
+export type ContentItem = {
+  title: string;
+  description: string;
+  cta?: CtaLink;
+};
+
 export type CommercialPageConfig = {
   path: string;
   eyebrow: string;
   title: string;
   description: string;
+  primaryCta?: CtaLink;
+  secondaryCta?: CtaLink;
+  supportItems?: string[];
   valueProposition: string;
   benefits: string[];
   process: string[];
@@ -18,10 +32,18 @@ export type CommercialPageConfig = {
   contentSections?: Array<{
     title: string;
     description?: string;
-    items?: string[];
+    eyebrow?: string;
+    items?: Array<string | ContentItem>;
+    cta?: CtaLink;
   }>;
   faq: FaqItem[];
   faqSchemaEligible?: boolean;
+  finalCta?: {
+    title: string;
+    description: string;
+    primary: CtaLink;
+    secondary?: CtaLink;
+  };
   seo: PageSeo & { h1: string };
 };
 
@@ -76,76 +98,190 @@ export const commercialPages: CommercialPageConfig[] = [
     eyebrow: "Plataformas elevatorias",
     title: "Plataformas Elevatorias para Trabalhos em Altura",
     description:
-      "Conheca os principais tipos de plataformas elevatorias disponiveis na frota Accesslift.",
+      "Equipamentos desenvolvidos para proporcionar acesso elevado em diferentes atividades de manutencao, instalacao, construcao e operacoes industriais e comerciais.",
+    primaryCta: { label: "Ver equipamentos", href: "/equipamentos/" },
+    secondaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
     valueProposition:
-      "Estrutura para orientar a escolha entre plataformas tesoura e articuladas, conectando o usuario ao catalogo dinamico.",
+      "Uma plataforma elevatoria permite posicionar operadores, ferramentas e materiais em pontos elevados para a execucao de diferentes tipos de trabalho.",
     benefits: [
-      "Catalogo preparado para dados administraveis",
-      "Categorias SEO reais para tesoura e articulada",
-      "Jornada direta para orcamento e disponibilidade",
+      "Plataformas tesoura para acessos predominantemente verticais",
+      "Plataformas articuladas para altura com alcance horizontal",
+      "Frota eletrica com marcas JLG, Genie, Skyjack e Zoomlion",
     ],
-    process: ["Entender a necessidade", "Comparar categorias", "Consultar disponibilidade", "Solicitar orcamento"],
+    process: ["Avaliar altura de trabalho", "Verificar alcance horizontal", "Checar espaco e acessos", "Considerar capacidade", "Solicitar orientacao"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
     contentSections: [
       {
-        title: "O que sao plataformas elevatorias",
-        description: "Plataformas elevatorias moveis sao equipamentos utilizados para acesso e execucao de atividades em altura. A escolha depende das caracteristicas da operacao.",
+        eyebrow: "O que e",
+        title: "O que e uma plataforma elevatoria?",
+        description: "Existem equipamentos com caracteristicas distintas de altura, capacidade, dimensoes e movimentacao. A escolha deve considerar nao apenas a altura que se pretende alcancar, mas tambem as condicoes de acesso ao ponto de trabalho. Entre as principais familias disponibilizadas pela Accesslift estao as plataformas tesoura e as plataformas articuladas.",
       },
       {
-        title: "Como escolher",
-        items: ["Altura de trabalho", "Alcance horizontal", "Obstaculos", "Piso e espaco disponivel", "Acessos", "Ambiente e capacidade necessaria"],
+        eyebrow: "Tesoura x articulada",
+        title: "Plataforma tesoura ou articulada: qual escolher?",
+        items: [
+          {
+            title: "Plataforma Tesoura",
+            description: "A movimentacao e predominantemente vertical. E indicada quando o ponto de trabalho pode ser alcancado diretamente acima da posicao do equipamento, existe espaco adequado para posicionamento e e desejavel uma area de plataforma para operador, ferramentas e materiais.",
+            cta: { label: "Conhecer plataformas tesoura", href: "/plataformas-tesoura/" },
+          },
+          {
+            title: "Plataforma Articulada",
+            description: "Combina elevacao com alcance horizontal. A estrutura articulada permite acessar pontos que nao estao diretamente acima da base do equipamento, especialmente quando existem obstaculos ou necessidade de alcance lateral.",
+            cta: { label: "Conhecer plataformas articuladas", href: "/plataformas-articuladas/" },
+          },
+        ],
       },
       {
-        title: "Frota eletrica",
-        description: "A frota comunicada pela Accesslift e eletrica. Essa caracteristica aparece de forma transversal nas paginas e nao como categoria SEO independente.",
+        eyebrow: "Como escolher",
+        title: "O que considerar na escolha de uma plataforma elevatoria?",
+        items: [
+          { title: "Altura de trabalho", description: "A altura necessaria para executar a atividade e um dos primeiros criterios para selecionar o equipamento." },
+          { title: "Alcance horizontal", description: "Em algumas operacoes nao basta subir verticalmente. E necessario alcancar o ponto de trabalho lateralmente ou superar obstaculos." },
+          { title: "Espaco disponivel", description: "Largura de acessos, corredores, portas e espaco para manobra podem limitar os equipamentos adequados." },
+          { title: "Capacidade da plataforma", description: "E importante considerar operadores, ferramentas e materiais que permanecerao na plataforma durante o trabalho." },
+          { title: "Condicoes do local", description: "Ambiente, piso, acesso e demais caracteristicas da operacao tambem devem fazer parte da avaliacao." },
+        ],
+        cta: { label: "Preciso de ajuda para escolher", href: "/solicite-orcamento/" },
+      },
+      {
+        eyebrow: "Frota",
+        title: "Frota eletrica para diferentes aplicacoes",
+        description: "A frota atual da Accesslift reune plataformas eletricas das categorias tesoura e articulada, com diferentes dimensoes, alturas de trabalho e capacidades. A escolha do modelo deve ser realizada de acordo com a aplicacao e as condicoes do local. Marcas da frota: JLG, Genie, Skyjack e Zoomlion.",
+        cta: { label: "Ver todos os equipamentos", href: "/equipamentos/" },
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Plataformas elevatorias para locacao",
+        description: "A Accesslift disponibiliza equipamentos para locacoes diarias, semanais e mensais, com entrega e retirada proprias e suporte tecnico durante a operacao.",
+        cta: { label: "Conhecer a locacao", href: "/locacao-de-plataformas-elevatorias/" },
       },
     ],
-    faq: placeholderFaq,
+    faq: [],
+    finalCta: {
+      title: "Encontre a plataforma adequada a sua operacao",
+      description: "Compare os modelos disponiveis ou fale com a Accesslift para receber auxilio na escolha.",
+      primary: { label: "Ver equipamentos", href: "/equipamentos/" },
+      secondary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
       h1: "Plataformas Elevatorias para Trabalhos em Altura",
       title: "Plataformas Elevatorias: Tesoura e Articulada | Accesslift",
-      description: "Plataformas elevatorias tesoura e articuladas para trabalhos em altura.",
+      description: "Conheca plataformas elevatorias tesoura e articuladas, entenda suas aplicacoes e encontre equipamentos para trabalhos em altura.",
       canonicalPath: "/plataformas-elevatorias/",
     },
   },
   {
     path: "/locacao-de-plataformas-elevatorias/",
     eyebrow: "Locacao",
-    title: "Locacao de plataformas elevatorias",
+    title: "Locacao de Plataformas Elevatorias",
     description:
-      "Locacao diaria, semanal e mensal de plataformas elevatorias tesoura e articuladas, com entrega e suporte em Sao Paulo e regiao.",
-    valueProposition:
-      "Pagina preparada para explicar modalidades de locacao sem assumir especificacoes tecnicas nao cadastradas.",
-    benefits: [
-      "Locacao diaria, semanal e mensal previstas",
-      "Equipamentos relacionados vindos do catalogo",
-      "CTAs para orcamento e especialista",
+      "Equipamentos para trabalhos em altura com opcoes de locacao diaria, semanal ou mensal, entrega e retirada proprias e suporte tecnico da Accesslift em Sao Paulo e regiao.",
+    primaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    secondaryCta: { label: "Ver equipamentos", href: "/equipamentos/" },
+    supportItems: [
+      "Plataformas Tesoura e Articuladas",
+      "Locacao diaria, semanal e mensal",
+      "Entrega e retirada proprias",
+      "Assistencia tecnica propria",
     ],
-    process: ["Necessidade", "Escolha do equipamento", "Suporte", "Entrega", "Operacao"],
+    valueProposition:
+      "Cada trabalho em altura apresenta condicoes diferentes. Altura necessaria, espaco disponivel, caracteristicas do piso, obstaculos e necessidade de alcance horizontal sao alguns dos fatores que devem ser considerados na escolha da plataforma.",
+    benefits: [
+      "Escolha orientada pela necessidade da operacao",
+      "Equipamentos relacionados vindos do catalogo central",
+      "Orcamento personalizado conforme periodo, local e modelo",
+    ],
+    process: ["Conte sobre o trabalho", "Identificamos as opcoes", "Definimos a locacao", "Entrega do equipamento", "Suporte durante a operacao"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
     contentSections: [
       {
-        title: "Como escolher a plataforma",
-        description: "A escolha deve considerar altura de trabalho, necessidade de alcance horizontal, acessos, espaco disponivel, condicoes do piso, ambiente e duracao da operacao.",
+        eyebrow: "Escolha",
+        title: "Uma locacao que comeca pela escolha do equipamento",
+        description: "Por isso, a Accesslift nao trabalha apenas com a disponibilizacao do equipamento. Nossa equipe auxilia na identificacao da plataforma mais adequada as caracteristicas da operacao. Para trabalhos predominantemente verticais, uma plataforma tesoura pode ser a alternativa mais adequada. Quando o ponto de trabalho exige alcance horizontal ou acesso sobre obstaculos, uma plataforma articulada pode atender melhor a necessidade.",
+        cta: { label: "Conhecer os tipos de plataforma", href: "/plataformas-elevatorias/" },
       },
       {
-        title: "Modalidades de locacao",
-        items: ["Locacao diaria", "Locacao semanal", "Locacao mensal"],
+        eyebrow: "Modalidades",
+        title: "Locacao pelo periodo que sua operacao precisa",
+        description: "A Accesslift disponibiliza diferentes periodos de locacao para adequar o equipamento ao cronograma de cada trabalho.",
+        items: [
+          { title: "Locacao diaria", description: "Para atividades pontuais e operacoes que precisam do equipamento por periodos mais curtos." },
+          { title: "Locacao semanal", description: "Uma alternativa para servicos com varios dias de execucao ou cronogramas que exigem maior disponibilidade do equipamento." },
+          { title: "Locacao mensal", description: "Indicada para operacoes continuas, obras, manutencoes e projetos com necessidade prolongada de acesso em altura." },
+        ],
       },
       {
-        title: "Quanto custa",
-        description: "O valor varia conforme modelo, periodo, cidade, logistica e caracteristicas da operacao. A cotacao deve ser personalizada.",
+        eyebrow: "Tipos",
+        title: "Plataformas tesoura e articuladas para locacao",
+        items: [
+          {
+            title: "Plataformas Tesoura",
+            description: "Projetadas para elevacao predominantemente vertical, as plataformas tesoura oferecem area de trabalho para operador, ferramentas e materiais e atendem diferentes atividades de manutencao, instalacao, montagem e construcao.",
+            cta: { label: "Ver plataformas tesoura", href: "/plataformas-tesoura/" },
+          },
+          {
+            title: "Plataformas Articuladas",
+            description: "Alem da elevacao, as plataformas articuladas permitem alcance horizontal e acesso a pontos de trabalho que exigem movimentacao sobre ou ao redor de obstaculos.",
+            cta: { label: "Ver plataformas articuladas", href: "/plataformas-articuladas/" },
+          },
+        ],
       },
       {
-        title: "Area de atendimento",
-        description: "Sao Paulo e localidades em raio de ate 150 km da base, conforme condicoes do atendimento.",
+        eyebrow: "Suporte",
+        title: "Suporte que acompanha a locacao",
+        description: "Uma plataforma parada pode afetar o andamento de uma operacao. Por isso, a estrutura da Accesslift vai alem da entrega do equipamento. A empresa conta com entrega e retirada proprias, assistencia tecnica propria, manutencao preventiva, atendimento emergencial e treinamento de operadores.",
+        cta: { label: "Conhecer nossos servicos", href: "/servicos/" },
+      },
+      {
+        eyebrow: "Quanto custa",
+        title: "Quanto custa alugar uma plataforma elevatoria?",
+        description: "O valor da locacao depende de fatores como modelo do equipamento, altura de trabalho, periodo de utilizacao, local de entrega e caracteristicas da operacao. Por esse motivo, a Accesslift trabalha com orcamento de acordo com cada necessidade, em vez de utilizar um preco unico para todos os projetos.",
+        cta: { label: "Solicitar cotacao", href: "/solicite-orcamento/" },
+      },
+      {
+        eyebrow: "Area de atendimento",
+        title: "Locacao de plataformas elevatorias em Sao Paulo e regiao",
+        description: "A Accesslift atende Sao Paulo e municipios dentro de um raio de ate 150 km de sua base, conforme disponibilidade e condicoes da operacao.",
+        cta: { label: "Consultar area de atendimento", href: "/area-de-atendimento/" },
       },
     ],
-    faq: placeholderFaq,
+    faq: [
+      {
+        question: "Qual plataforma elevatoria devo alugar?",
+        answer: "A escolha depende da altura, do tipo de acesso, do espaco disponivel, dos obstaculos existentes e das caracteristicas da operacao. A equipe Accesslift pode auxiliar na identificacao das opcoes adequadas.",
+      },
+      {
+        question: "A Accesslift trabalha com locacao diaria?",
+        answer: "Sim. Ha opcoes de locacao diaria, semanal e mensal, conforme a necessidade da operacao.",
+      },
+      {
+        question: "Qual a diferenca entre plataforma tesoura e articulada?",
+        answer: "A plataforma tesoura e voltada principalmente a elevacao vertical. A articulada tambem oferece alcance horizontal, facilitando o acesso a pontos sobre ou ao redor de obstaculos.",
+      },
+      {
+        question: "A Accesslift realiza a entrega do equipamento?",
+        answer: "Sim. A Accesslift possui estrutura propria para entrega e retirada dentro de sua area de atendimento, conforme as condicoes da locacao.",
+      },
+      {
+        question: "Ha suporte tecnico durante a locacao?",
+        answer: "Sim. A assistencia tecnica propria faz parte da estrutura de suporte da Accesslift.",
+      },
+      {
+        question: "Nao sei qual equipamento preciso. Posso solicitar orcamento mesmo assim?",
+        answer: "Sim. No formulario de orcamento, o cliente pode informar a necessidade da operacao mesmo sem definir previamente o modelo da plataforma.",
+      },
+    ],
+    faqSchemaEligible: true,
+    finalCta: {
+      title: "Precisa alugar uma plataforma elevatoria?",
+      description: "Conte para a Accesslift onde sera realizado o trabalho, a altura aproximada e o periodo de utilizacao.",
+      primary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
       h1: "Locacao de Plataformas Elevatorias",
       title: "Locacao de Plataformas Elevatorias | Accesslift",
-      description: "Locacao diaria, semanal e mensal de plataformas elevatorias.",
+      description: "Locacao de plataformas elevatorias tesoura e articuladas em Sao Paulo. Diarias, semanais ou mensais, com entrega propria e suporte tecnico.",
       canonicalPath: "/locacao-de-plataformas-elevatorias/",
     },
   },

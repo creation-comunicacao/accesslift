@@ -18,7 +18,7 @@ export const MAIN_ROUTES: AppRoute[] = [
     kind: "catalog",
     seo: {
       title: "Plataformas Elevatorias: Tesoura e Articulada | Accesslift",
-      description: "Conheca plataformas elevatorias tesoura e articuladas para trabalhos em altura e encontre o equipamento adequado para locacao.",
+      description: "Conheca plataformas elevatorias tesoura e articuladas, entenda suas aplicacoes e encontre equipamentos para trabalhos em altura.",
       canonicalPath: "/plataformas-elevatorias/",
     },
   },
@@ -27,8 +27,8 @@ export const MAIN_ROUTES: AppRoute[] = [
     label: "Locacao de Plataformas",
     kind: "static",
     seo: {
-      title: "Locacao de plataformas elevatorias | Accesslift",
-      description: "Locacao diaria, semanal e mensal de plataformas elevatorias.",
+      title: "Locacao de Plataformas Elevatorias | Accesslift",
+      description: "Locacao de plataformas elevatorias tesoura e articuladas em Sao Paulo. Diarias, semanais ou mensais, com entrega propria e suporte tecnico.",
       canonicalPath: "/locacao-de-plataformas-elevatorias/",
     },
   },
@@ -51,7 +51,7 @@ export const MAIN_ROUTES: AppRoute[] = [
     parentPath: "/plataformas-elevatorias/",
     seo: {
       title: "Plataforma Tesoura: Modelos e Locacao | Accesslift",
-      description: "Conheca plataformas elevatorias tesoura eletricas para locacao. Compare modelos, alturas e encontre a opcao adequada para sua operacao.",
+      description: "Conheca plataformas elevatorias tesoura para locacao, compare alturas e capacidades e encontre o modelo adequado para sua operacao.",
       canonicalPath: "/plataformas-tesoura/",
     },
   },
@@ -62,7 +62,7 @@ export const MAIN_ROUTES: AppRoute[] = [
     parentPath: "/plataformas-elevatorias/",
     seo: {
       title: "Plataforma Articulada: Modelos e Locacao | Accesslift",
-      description: "Conheca plataformas elevatorias articuladas eletricas para locacao, com altura e alcance horizontal para operacoes com obstaculos.",
+      description: "Conheca plataformas elevatorias articuladas para locacao, compare altura e alcance e encontre equipamentos para trabalhos em pontos de dificil acesso.",
       canonicalPath: "/plataformas-articuladas/",
     },
   },

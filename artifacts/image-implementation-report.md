@@ -8,13 +8,13 @@ Data: 2026-08-31
 - Arquivos encontrados na pasta atual: 62.
 - Duplicatas com sufixo `(1)` encontradas na pasta atual: 0.
 - Hashes unicos na pasta atual antes da normalizacao: 62.
-- Imagens publicadas em `public/images/accesslift`: 62.
-- Referencias de imagem no codigo auditadas: 62.
+- Imagens publicadas em `public/images/accesslift`: 64.
+- Referencias de imagem no codigo auditadas: 64.
 - Arquivos faltando: 0.
 - Arquivos sobrando/sem uso: 0.
 - Referencias antigas removidas: `/upload/`, `/images/accesslift/oficiais`, `/images/accesslift/equipment`, `/images/accesslift/site` e nomes `skyjet`.
 
-Observacao: o texto colado mencionava 47 imagens unicas e 20 duplicatas `(1)`, mas a pasta fornecida nesta execucao ja continha 62 arquivos e nenhum arquivo com `(1)`. Por isso implementei as 62 imagens presentes na origem atual. Os JPEGs foram normalizados com `sips`, entao hashes posteriores podem mudar mesmo preservando conteudo visual e dimensoes.
+Observacao: o texto colado mencionava 47 imagens unicas e 20 duplicatas `(1)`, mas a pasta fornecida nesta execucao ja continha 62 arquivos e nenhum arquivo com `(1)`. Por isso implementei as 62 imagens presentes na origem atual. Depois, foram adicionadas mais 2 imagens da Genie Z-34/22 enviadas por WhatsApp, totalizando 64 imagens publicadas. Os JPEGs foram normalizados com `sips`, entao hashes posteriores podem mudar mesmo preservando conteudo visual e dimensoes.
 
 ## Tabela de implementacao
 
@@ -39,6 +39,8 @@ Observacao: o texto colado mencionava 47 imagens unicas e 20 duplicatas `(1)`, m
 | `genie-z34-22-02.jpeg` | `equipamentos/genie/plataforma-articulada-genie-z34-22-vista-frontal.jpeg` | Equipamento | Genie Z-34/22 | Galeria do equipamento | Vista frontal da plataforma Genie Z-34/22 | Implementada |
 | `genie-z34-22-03.jpeg` | `equipamentos/genie/plataforma-articulada-genie-z34-22-em-operacao.jpeg` | Equipamento | Genie Z-34/22 | Galeria do equipamento | Plataforma Genie Z-34/22 em operacao | Implementada |
 | `genie-z34-22-04.jpeg` | `equipamentos/genie/plataforma-articulada-genie-z34-22-detalhe-cesto.jpeg` | Equipamento | Genie Z-34/22 | Galeria do equipamento | Cesto da plataforma articulada Genie Z-34/22 | Implementada |
+| `WhatsApp Image 2026-08-31 at 14.51.13 (1).jpeg` | `equipamentos/genie/plataforma-articulada-genie-z34-22-evento-lubrax.jpeg` | Equipamento | Genie Z-34/22 | Galeria do equipamento e /plataformas-articuladas/ | Plataforma articulada Genie Z-34/22 da Access Lift em evento Lubrax | Implementada |
+| `WhatsApp Image 2026-08-31 at 14.50.58 (1).jpeg` | `equipamentos/genie/plataforma-articulada-genie-z34-22-evento-byd-ford.jpeg` | Equipamento | Genie Z-34/22 | Galeria do equipamento e /plataformas-articuladas/ | Plataforma articulada Genie Z-34/22 da Access Lift em evento BYD e Ford | Implementada |
 | `plataforma-articulada-z34-genie.jpg` | `equipamentos/genie/plataforma-articulada-genie-z34-render.jpg` | Equipamento | Genie Z-34/22 | Galeria do equipamento | Imagem de catalogo da plataforma articulada Genie Z-34 | Implementada |
 | `genie-z45-25.jpeg` | `equipamentos/genie/plataforma-articulada-genie-z45-25-principal.jpeg` | Equipamento | Genie Z-45 | Cards e detalhe | Plataforma articulada Genie Z-45 da Access Lift | Implementada |
 | `plataforma-articulada-z45-genie.jpg` | `equipamentos/genie/plataforma-articulada-genie-z45.jpg` | Equipamento | Genie Z-45 | Galeria do equipamento | Imagem de catalogo da plataforma articulada Genie Z-45 | Implementada |
@@ -93,7 +95,7 @@ Observacao: o texto colado mencionava 47 imagens unicas e 20 duplicatas `(1)`, m
 
 - `npm run lint`: aprovado.
 - `npm run build`: aprovado.
-- Auditoria de referencias: `publicImages=62`, `refs=62`, `unused=[]`, `missing=[]`, `withoutImage=[]`.
+- Auditoria de referencias: `publicImages=64`, `refs=64`, `unused=[]`, `missing=[]`, `withoutImage=[]`.
 - Preview de producao no browser: sem erros de console apos a correcao de montagem do React.
 - Rotas verificadas visualmente: home, locacao, catalogo, detalhe JLG 3246ES, empresa, entrega e treinamento.
 

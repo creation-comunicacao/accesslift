@@ -125,6 +125,8 @@ const officialImagesBySlug: Partial<
       { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-vista-frontal.jpeg"), alt: "Vista frontal da plataforma Genie Z-34/22", width: 957, height: 1280 },
       { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-em-operacao.jpeg"), alt: "Plataforma Genie Z-34/22 em operação", width: 957, height: 1280 },
       { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-detalhe-cesto.jpeg"), alt: "Cesto da plataforma articulada Genie Z-34/22", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-evento-lubrax.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento Lubrax", width: 1197, height: 1600 },
+      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-evento-byd-ford.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento BYD e Ford", width: 1197, height: 1600 },
       { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-render.jpg"), alt: "Imagem de catálogo da plataforma articulada Genie Z-34", width: 313, height: 599 },
       { src: asset("logistica/transporte-plataforma-genie-z34-22-frota-propria.jpeg"), alt: "Transporte da plataforma Genie Z-34/22 pela frota própria", width: 868, height: 1160 },
     ],

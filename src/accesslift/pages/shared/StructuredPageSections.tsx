@@ -11,12 +11,14 @@ import { Button } from "../../components/buttons/Button";
 import { Accordion } from "../../components/ui/Accordion";
 import { Badge } from "../../components/ui/Badge";
 import type { EquipmentCategorySlug } from "../../types/equipment";
-import type { FaqItem } from "../../data/pageContent";
+import type { ContentItem, CtaLink, FaqItem } from "../../data/pageContent";
 
 type SectionListProps = {
   eyebrow: string;
   title: string;
-  items: string[];
+  description?: string;
+  items: Array<string | ContentItem>;
+  cta?: CtaLink;
 };
 
 type ProcessSectionProps = {
@@ -36,10 +38,16 @@ export function ConversionHero({
   eyebrow,
   title,
   description,
+  primaryCta,
+  secondaryCta,
+  supportItems = [],
 }: {
   eyebrow: string;
   title: string;
   description: string;
+  primaryCta?: CtaLink;
+  secondaryCta?: CtaLink;
+  supportItems?: string[];
 }) {
   return (
     <section className="industrial-grid border-b border-slate-200 bg-slate-50">
@@ -48,14 +56,31 @@ export function ConversionHero({
           <Badge tone="lime">{eyebrow}</Badge>
           <h1 className="mt-5 text-slate-950">{title}</h1>
           <p className="mt-4 max-w-2xl text-lg text-slate-600">{description}</p>
+          {supportItems.length > 0 && (
+            <div className="mt-6 grid max-w-3xl gap-3 sm:grid-cols-2">
+              {supportItems.map((item) => (
+                <span key={item} className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700">
+                  {item}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-5 premium-shadow">
           <p className="text-xs font-black uppercase tracking-wider text-slate-500">
             Conversao
           </p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
-            <RequestQuoteButton />
-            <TalkToSpecialistButton />
+            {primaryCta ? (
+              <Button href={primaryCta.href}>{primaryCta.label}</Button>
+            ) : (
+              <RequestQuoteButton />
+            )}
+            {secondaryCta ? (
+              <Button href={secondaryCta.href} variant="secondary">{secondaryCta.label}</Button>
+            ) : (
+              <TalkToSpecialistButton />
+            )}
             <WhatsAppButton className="sm:col-span-2 lg:col-span-1" />
           </div>
         </div>
@@ -67,22 +92,31 @@ export function ConversionHero({
 export function ValueSection({
   title,
   description,
+  eyebrow = "Proposta de valor",
+  cta,
 }: {
   title: string;
   description: string;
+  eyebrow?: string;
+  cta?: CtaLink;
 }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
       <div className="rounded-lg border border-slate-200 bg-white p-6 premium-shadow">
-        <Badge tone="steel">Proposta de valor</Badge>
+        <Badge tone="steel">{eyebrow}</Badge>
         <h2 className="mt-4 text-slate-950">{title}</h2>
         <p className="mt-3 max-w-3xl text-slate-600">{description}</p>
+        {cta && (
+          <Button href={cta.href} variant="secondary" className="mt-5">
+            {cta.label}
+          </Button>
+        )}
       </div>
     </section>
   );
 }
 
-export function SectionList({ eyebrow, title, items }: SectionListProps) {
+export function SectionList({ eyebrow, title, description, items, cta }: SectionListProps) {
   if (items.length === 0) {
     return null;
   }
@@ -91,17 +125,30 @@ export function SectionList({ eyebrow, title, items }: SectionListProps) {
     <section className="mx-auto max-w-7xl px-4 py-10 md:px-6">
       <Badge tone="lime">{eyebrow}</Badge>
       <h2 className="mt-4 text-slate-950">{title}</h2>
+      {description && <p className="mt-3 max-w-3xl text-slate-600">{description}</p>}
       <div className="mt-6 grid gap-4 md:grid-cols-3">
-        {items.map((item) => (
-          <article key={item} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+        {items.map((item) => {
+          const normalized = typeof item === "string" ? { title: item, description: "" } : item;
+
+          return (
+          <article key={normalized.title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
             <BadgeCheck className="h-7 w-7 text-lime-700" aria-hidden />
-            <h3 className="mt-4 text-slate-950">{item}</h3>
-            <p className="mt-2 text-sm text-slate-600">
-              Conteudo estrutural preparado para substituicao por texto final aprovado.
-            </p>
+            <h3 className="mt-4 text-slate-950">{normalized.title}</h3>
+            {normalized.description && <p className="mt-2 text-sm leading-6 text-slate-600">{normalized.description}</p>}
+            {normalized.cta && (
+              <Button href={normalized.cta.href} variant="ghost" className="mt-4">
+                {normalized.cta.label}
+              </Button>
+            )}
           </article>
-        ))}
+          );
+        })}
       </div>
+      {cta && (
+        <div className="mt-6">
+          <Button href={cta.href} variant="secondary">{cta.label}</Button>
+        </div>
+      )}
     </section>
   );
 }
@@ -213,20 +260,30 @@ export function FaqSection({ items }: FaqSectionProps) {
   );
 }
 
-export function FinalConversionSection() {
+export function FinalConversionSection({
+  title = "Precisa consultar disponibilidade ou orcamento?",
+  description = "Use os canais de conversao preparados para atendimento comercial, sem numero de WhatsApp ficticio.",
+  primary,
+  secondary,
+}: {
+  title?: string;
+  description?: string;
+  primary?: CtaLink;
+  secondary?: CtaLink;
+}) {
   return (
     <section className="bg-slate-950 py-12 text-white">
       <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
         <div>
           <PackageCheck className="h-9 w-9 text-lime-300" aria-hidden />
-          <h2 className="mt-4 text-white">Precisa consultar disponibilidade ou orcamento?</h2>
+          <h2 className="mt-4 text-white">{title}</h2>
           <p className="mt-3 max-w-2xl text-slate-300">
-            Use os canais de conversao preparados para atendimento comercial, sem numero de WhatsApp ficticio.
+            {description}
           </p>
         </div>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          <CheckAvailabilityButton />
-          <RequestQuoteButton />
+          {primary ? <Button href={primary.href}>{primary.label}</Button> : <CheckAvailabilityButton />}
+          {secondary ? <Button href={secondary.href} variant="secondary">{secondary.label}</Button> : <RequestQuoteButton />}
           <TalkToSpecialistButton />
         </div>
       </div>
