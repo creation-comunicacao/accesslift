@@ -25,13 +25,19 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
   const isServicesHub = page.path === "/servicos/";
   const serviceImage = isServicesHub
     ? {
-        src: "/images/accesslift/oficiais/plataformas-07.jpeg",
+        src: "/images/accesslift/logistica/transporte-plataformas-elevatorias-frota-03.jpeg",
         alt: "Entrega de plataformas elevatorias da frota Accesslift",
+        width: 1599,
+        height: 899,
       }
     : isAssistance || isTraining
       ? {
-          src: "/images/accesslift/oficiais/treinamento-assistencia.jpeg",
+          src: isAssistance
+            ? "/images/accesslift/servicos/assistencia-tecnica-em-plataforma-elevatoria.jpeg"
+            : "/images/accesslift/servicos/treinamento-operacao-plataforma-elevatoria.jpeg",
           alt: "Equipe Accesslift em atendimento em ambiente industrial",
+          width: 960,
+          height: 1280,
         }
       : null;
 
@@ -43,6 +49,9 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
           <img
             src={serviceImage.src}
             alt={serviceImage.alt}
+            width={serviceImage.width}
+            height={serviceImage.height}
+            sizes="(min-width: 1024px) 1184px, 100vw"
             className="aspect-[16/7] w-full rounded-lg border border-slate-200 object-cover premium-shadow"
             loading="lazy"
             decoding="async"

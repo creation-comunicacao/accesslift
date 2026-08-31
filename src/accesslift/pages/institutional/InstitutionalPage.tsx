@@ -24,8 +24,11 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
       {page.path === "/empresa/" && (
         <section className="mx-auto max-w-7xl px-4 pt-12 md:px-6">
           <img
-            src="/images/accesslift/oficiais/empresa.jpeg"
-            alt="Frota de plataformas elevatorias no patio da Accesslift"
+            src="/images/accesslift/empresa/operacao-access-lift-em-ambiente-industrial.jpeg"
+            alt="Operação da Access Lift em ambiente industrial"
+            width={1086}
+            height={1448}
+            sizes="(min-width: 1024px) 1184px, 100vw"
             className="aspect-[16/7] w-full rounded-lg border border-slate-200 object-cover premium-shadow"
             loading="lazy"
             decoding="async"

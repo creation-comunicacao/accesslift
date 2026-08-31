@@ -1,5 +1,7 @@
 import type { CommercialPageConfig } from "../../data/pageContent";
 import { Fragment } from "react";
+import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
+import { operationGallery } from "../../data/officialMedia";
 import {
   ConversionHero,
   DifferentialsSection,
@@ -16,6 +18,10 @@ type CommercialPageTemplateProps = {
 };
 
 export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
+  const showOperationGallery =
+    page.path === "/plataformas-elevatorias/" ||
+    page.path === "/locacao-de-plataformas-elevatorias/";
+
   return (
     <>
       <ConversionHero
@@ -23,6 +29,13 @@ export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
         title={page.seo.h1}
         description={page.description}
       />
+      {showOperationGallery && (
+        <OfficialMediaGallery
+          title="Plataformas em operação"
+          description="Registros de plataformas elevatórias em ambientes industriais e internos, usados como apoio visual para aplicações e benefícios da locação."
+          images={operationGallery}
+        />
+      )}
       <ValueSection title="Proposta de valor" description={page.valueProposition} />
       <SectionList eyebrow="Beneficios" title="Beneficios preparados" items={page.benefits} />
       {page.contentSections?.map((section) => (

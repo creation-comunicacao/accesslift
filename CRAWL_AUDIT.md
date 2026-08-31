@@ -1,39 +1,58 @@
-# Homologacao rastreavel, sem indexacao
+# Auditoria tecnica da Home para crawlers
 
-## Arquitetura atual
+## Resultado
 
-Este projeto usa React + Vite e entrega uma SPA. O HTML inicial do servidor contem o elemento `#root`; H1, textos, links e metadados especificos de rota sao inseridos apos a execucao de JavaScript no cliente.
+A Home agora e pre-renderizada durante o build e o HTML inicial publicado em `dist/index.html` contem o conteudo textual principal da pagina, incluindo H1, H2, paragrafos, cards, CTAs, links de navegacao e conteudo do rodape. O app continua hidratando no cliente para preservar navegacao SPA, interacoes, layout, componentes e comportamento atual.
 
-Portanto, esta configuracao permite que crawlers acessem rotas, assets, `robots.txt` e `sitemap.xml`, mas nao atende ao criterio de HTML principal entregue por SSR/SSG. A auditoria final de SEO deve ocorrer depois de uma migracao para Next.js com SSR/SSG, ou outra solucao de pre-renderizacao validada.
+## Diagnostico
 
-## Variaveis obrigatorias na Vercel de homologacao
+- Framework e versao: React `^19.0.1`, React DOM `^19.0.1`, Vite `^6.2.3`, `@vitejs/plugin-react` `^5.0.4`.
+- Arquitetura identificada: SPA React servida por Vite, com rotas controladas no cliente e rewrite de Vercel para `index.html`.
+- Estrategia anterior: CSR. O servidor retornava apenas o shell com `<div id="root"></div>`, e o conteudo da Home dependia da execucao de JavaScript.
+- Estrategia final: SSG/pre-render incremental da Home no pos-build, usando os mesmos componentes React como fonte de verdade e hidratacao via `hydrateRoot`.
+- Causa do bloqueio para crawler: conteudo principal ausente do HTML inicial.
 
-Defina no ambiente de Preview/Homologacao:
+## Arquivos modificados
 
-```text
-VITE_SITE_ENV=staging
-VITE_SITE_URL=https://SEU-DOMINIO-DE-HOMOLOGACAO.vercel.app
-```
+- `package.json`: adiciona o passo `tsx scripts/prerender-home.tsx` ao build.
+- `scripts/prerender-home.tsx`: gera a Home estatica em `dist/index.html` com corpo pre-renderizado e metadados essenciais.
+- `src/App.tsx`: aceita `initialPath` para renderizacao estatica.
+- `src/accesslift/AccessliftApp.tsx`: remove dependencia obrigatoria de `window` na inicializacao da rota.
+- `src/main.tsx`: usa `hydrateRoot` quando o HTML ja contem markup pre-renderizado.
+- `CRAWL_AUDIT.md`: atualiza este diagnostico.
 
-`VITE_SITE_ENV=staging` mantem `meta[name="robots"]` como `noindex,nofollow` em todas as paginas. O `robots.txt` permite leitura para que ferramentas de auditoria possam acessar o ambiente; isso nao libera indexacao enquanto o noindex estiver presente.
+## Metadados e rastreabilidade
 
-Para producao, use `VITE_SITE_ENV=production` e a URL canonica definitiva apenas no go-live autorizado.
+- Documento com `lang="pt-BR"` em `index.html`.
+- Home com `<title>Locação de Plataformas Elevatórias em SP | Accesslift</title>`.
+- Home com meta description, canonical `https://www.accesslift.com.br/`, Open Graph, Twitter Card e JSON-LD.
+- Links relevantes continuam como `<a href="...">`.
+- `robots.txt` e `sitemap.xml` sao gerados por `scripts/generate-crawl-files.mjs`.
 
-## Vercel
+Observacao: por padrao local/staging, `meta[name="robots"]` fica `noindex,nofollow`. Em producao, configure `VITE_SITE_ENV=production` para permitir `index,follow` nas paginas indexaveis.
 
-O projeto da Vercel deve apontar seu Root Directory para `frontend`. O arquivo `vercel.json` fornece o rewrite SPA para que acessos diretos e refresh em rotas internas recebam `index.html` com HTTP 200.
+## Validacao executada
 
-Nao habilite Vercel Deployment Protection, Basic Auth, WAF ou challenge de bot na URL usada para a auditoria. Caso exista, crie uma URL de Preview publica temporaria.
+- `npm run lint`: passou.
+- `npm run build`: passou; o build do Vite concluiu e a Home foi pre-renderizada.
+- `npm run preview -- --host 127.0.0.1 --port 4173`: servidor local usado para validacao HTTP.
+- `curl http://127.0.0.1:4173/ -o artifacts/home-rendered.html`: salvou o HTML bruto retornado pela Home.
+- Verificacao textual em `artifacts/home-rendered.html`: H1 presente, H2s presentes, CTAs presentes, rodape presente, 60 anchors rastreaveis.
+- Navegador local: DOM hidratado salvo em `artifacts/home-dom.html`, screenshot full-page salvo em `artifacts/home-full-page.png`, sem erros de console.
 
-## Validacao apos deploy
+## URLs verificadas
 
-Use a URL de homologacao e valide:
+- `http://127.0.0.1:4173/`: HTTP 200.
+- `http://127.0.0.1:4173/robots.txt`: HTTP 200.
+- `http://127.0.0.1:4173/sitemap.xml`: HTTP 200.
 
-```text
-/
-/locacao-de-plataformas-elevatorias/
-/plataformas-tesoura/
-/equipamentos/genie-z34/
-```
+## Entregaveis
 
-Em cada URL, confirme HTTP 200, `meta robots` com `noindex,nofollow`, `robots.txt` com `Allow: /` e um `sitemap.xml` gerado com o host de homologacao.
+- `artifacts/home-rendered.html`
+- `artifacts/home-dom.html`
+- `artifacts/home-full-page.png`
+- `CRAWL_AUDIT.md`
+
+## Limitacoes de infraestrutura
+
+Nao ha middleware, autenticacao ou protecao de preview no codigo deste projeto. Em hospedagem, confirme que nao ha Deployment Protection, Basic Auth, WAF, challenge de bot ou header `X-Robots-Tag` bloqueando a URL usada pela auditoria. O `sitemap.xml` local usa `http://localhost:3000` quando `VITE_SITE_URL` nao e definido; defina `VITE_SITE_URL` no ambiente de deploy para gravar o dominio correto.

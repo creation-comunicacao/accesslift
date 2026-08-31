@@ -46,9 +46,25 @@ const notFoundSeo: PageSeo = {
   indexDirective: "noindex",
 };
 
-export function AccessliftApp() {
+type AccessliftAppProps = {
+  initialPath?: string;
+};
+
+const getInitialPath = (initialPath?: string) => {
+  if (initialPath) {
+    return normalizePath(initialPath);
+  }
+
+  if (typeof window !== "undefined") {
+    return normalizePath(window.location.pathname);
+  }
+
+  return "/";
+};
+
+export function AccessliftApp({ initialPath }: AccessliftAppProps) {
   const [currentPath, setCurrentPath] = useState(() =>
-    normalizePath(window.location.pathname),
+    getInitialPath(initialPath),
   );
 
   useEffect(() => {

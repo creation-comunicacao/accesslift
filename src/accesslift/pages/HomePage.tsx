@@ -70,16 +70,22 @@ const segments = [
 function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) {
   const visual = {
     hero: {
-      src: "/images/accesslift/oficiais/plataformas-07.jpeg",
+      src: "/images/accesslift/logistica/transporte-plataformas-elevatorias-frota-03.jpeg",
       alt: "Entrega de plataformas elevatórias pela Accesslift",
+      width: 1599,
+      height: 899,
     },
     tesoura: {
-      src: "/images/accesslift/oficiais/jlg-3246ES.jpeg",
+      src: "/images/accesslift/equipamentos/jlg/plataforma-tesoura-jlg-3246es-access-lift.jpeg",
       alt: "Plataforma tesoura JLG 3246ES da frota Accesslift",
+      width: 957,
+      height: 1280,
     },
     articulada: {
-      src: "/images/accesslift/oficiais/genie-z34-22.jpeg",
+      src: "/images/accesslift/equipamentos/genie/plataforma-articulada-genie-z34-22-principal.jpeg",
       alt: "Plataforma articulada Genie Z-34/22 da frota Accesslift",
+      width: 868,
+      height: 1160,
     },
   }[type];
 
@@ -88,6 +94,9 @@ function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) 
       <img
         src={visual.src}
         alt={visual.alt}
+        width={visual.width}
+        height={visual.height}
+        sizes={type === "hero" ? "(min-width: 1024px) 45vw, 100vw" : "(min-width: 1024px) 25vw, 100vw"}
         className="absolute inset-0 h-full w-full object-cover"
         loading={type === "hero" ? "eager" : "lazy"}
         decoding="async"

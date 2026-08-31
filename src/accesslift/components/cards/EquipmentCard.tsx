@@ -22,7 +22,10 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
         <img
           src={equipment.mainImage.src}
           alt={equipment.mainImage.alt}
-          className="mb-4 aspect-[4/3] w-full rounded-md border border-slate-200 bg-slate-100 object-cover"
+          width={equipment.mainImage.width}
+          height={equipment.mainImage.height}
+          sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
+          className="mb-4 aspect-[4/3] w-full rounded-md border border-slate-200 bg-slate-50 object-contain"
           loading="lazy"
           decoding="async"
         />

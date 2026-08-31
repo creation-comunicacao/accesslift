@@ -11,6 +11,8 @@ export type IndexDirective = "index" | "noindex";
 export type EquipmentImage = {
   src: string | null;
   alt: string;
+  width?: number;
+  height?: number;
 };
 
 export type EquipmentValidationStatus = "ready" | "validate-before-publish";

@@ -54,7 +54,10 @@ function ImagePanel({ equipment }: EquipmentDetailPageProps) {
         <img
           src={equipment.mainImage.src}
           alt={equipment.mainImage.alt}
-          className="aspect-[4/3] w-full rounded-lg border border-slate-200 bg-slate-100 object-cover premium-shadow"
+          width={equipment.mainImage.width}
+          height={equipment.mainImage.height}
+          sizes="(min-width: 1024px) 48vw, 100vw"
+          className="aspect-[4/3] w-full rounded-lg border border-slate-200 bg-slate-50 object-contain premium-shadow"
           loading="eager"
           decoding="async"
         />
@@ -75,7 +78,10 @@ function ImagePanel({ equipment }: EquipmentDetailPageProps) {
                 key={`${image.src}-${image.alt}`}
                 src={image.src}
                 alt={image.alt}
-                className="aspect-square rounded-md border border-slate-200 bg-slate-100 object-cover"
+                width={image.width}
+                height={image.height}
+                sizes="(min-width: 1024px) 160px, 33vw"
+                className="aspect-square rounded-md border border-slate-200 bg-slate-50 object-contain"
                 loading="lazy"
                 decoding="async"
               />

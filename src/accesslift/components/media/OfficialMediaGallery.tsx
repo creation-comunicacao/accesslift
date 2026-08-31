@@ -19,6 +19,9 @@ export function OfficialMediaGallery({ title, description, images }: OfficialMed
             <img
               src={image.src}
               alt={image.alt}
+              width={image.width}
+              height={image.height}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               className="aspect-[4/3] w-full object-cover"
               loading="lazy"
               decoding="async"
