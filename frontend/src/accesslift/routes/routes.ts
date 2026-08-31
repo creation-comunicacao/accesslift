@@ -1,17 +1,14 @@
 import type { AppRoute } from "../types/routes";
 
-const seoDescription =
-  "Accesslift: locacao, venda e suporte para plataformas elevatorias em Sao Paulo e regioes atendidas.";
-
 export const MAIN_ROUTES: AppRoute[] = [
   {
     path: "/",
     label: "Inicio",
     kind: "home",
     seo: {
-      title: "Plataformas elevatorias para locacao e venda | Accesslift",
+      title: "Locação de Plataformas Elevatórias em SP | Accesslift",
       description:
-        "Locacao e venda de plataformas elevatorias tesoura e articuladas, com entrega propria, assistencia tecnica e suporte em Sao Paulo e regiao.",
+        "Locação de plataformas elevatórias tesoura e articuladas em São Paulo. Frota elétrica, entrega própria e suporte técnico Accesslift. Solicite um orçamento.",
       canonicalPath: "/",
     },
   },
@@ -20,29 +17,31 @@ export const MAIN_ROUTES: AppRoute[] = [
     label: "Plataformas Elevatorias",
     kind: "catalog",
     seo: {
-      title: "Plataformas elevatorias | Accesslift",
-      description: "Catalogo preparado para plataformas elevatorias de locacao e venda.",
+      title: "Plataformas Elevatorias: Tesoura e Articulada | Accesslift",
+      description: "Conheca plataformas elevatorias tesoura e articuladas para trabalhos em altura e encontre o equipamento adequado para locacao.",
       canonicalPath: "/plataformas-elevatorias/",
+    },
+  },
+  {
+    path: "/locacao-de-plataformas-elevatorias/",
+    label: "Locacao de Plataformas",
+    kind: "static",
+    seo: {
+      title: "Locacao de plataformas elevatorias | Accesslift",
+      description: "Locacao diaria, semanal e mensal de plataformas elevatorias.",
+      canonicalPath: "/locacao-de-plataformas-elevatorias/",
     },
   },
   {
     path: "/locacao-de-plataformas/",
     label: "Locacao de Plataformas",
     kind: "static",
+    isAlias: true,
     seo: {
       title: "Locacao de plataformas elevatorias | Accesslift",
-      description: "Locacao diaria, semanal e mensal de plataformas elevatorias.",
-      canonicalPath: "/locacao-de-plataformas/",
-    },
-  },
-  {
-    path: "/venda-de-plataformas/",
-    label: "Venda de Plataformas",
-    kind: "static",
-    seo: {
-      title: "Venda de plataformas elevatorias | Accesslift",
-      description: "Venda de plataformas elevatorias com atendimento comercial especializado.",
-      canonicalPath: "/venda-de-plataformas/",
+      description: "Rota temporaria da V2. Consulte a pagina canonica de locacao.",
+      canonicalPath: "/locacao-de-plataformas-elevatorias/",
+      indexDirective: "noindex",
     },
   },
   {
@@ -51,8 +50,8 @@ export const MAIN_ROUTES: AppRoute[] = [
     kind: "category",
     parentPath: "/plataformas-elevatorias/",
     seo: {
-      title: "Plataformas tesoura | Accesslift",
-      description: "Categoria preparada para catalogo de plataformas tesoura.",
+      title: "Plataforma Tesoura: Modelos e Locacao | Accesslift",
+      description: "Conheca plataformas elevatorias tesoura eletricas para locacao. Compare modelos, alturas e encontre a opcao adequada para sua operacao.",
       canonicalPath: "/plataformas-tesoura/",
     },
   },
@@ -62,8 +61,8 @@ export const MAIN_ROUTES: AppRoute[] = [
     kind: "category",
     parentPath: "/plataformas-elevatorias/",
     seo: {
-      title: "Plataformas articuladas | Accesslift",
-      description: "Categoria preparada para catalogo de plataformas articuladas.",
+      title: "Plataforma Articulada: Modelos e Locacao | Accesslift",
+      description: "Conheca plataformas elevatorias articuladas eletricas para locacao, com altura e alcance horizontal para operacoes com obstaculos.",
       canonicalPath: "/plataformas-articuladas/",
     },
   },
@@ -72,8 +71,8 @@ export const MAIN_ROUTES: AppRoute[] = [
     label: "Equipamentos",
     kind: "equipment",
     seo: {
-      title: "Equipamentos | Accesslift",
-      description: "Estrutura de catalogo dinamico para equipamentos Accesslift.",
+      title: "Plataformas Elevatorias para Locacao | Accesslift",
+      description: "Compare plataformas elevatorias tesoura e articuladas das marcas JLG, Genie, Skyjack e Zoomlion e consulte disponibilidade.",
       canonicalPath: "/equipamentos/",
     },
   },
@@ -85,17 +84,6 @@ export const MAIN_ROUTES: AppRoute[] = [
       title: "Servicos | Accesslift",
       description: "Entrega, retirada, assistencia tecnica, manutencao e treinamento.",
       canonicalPath: "/servicos/",
-    },
-  },
-  {
-    path: "/servicos/entrega-e-retirada/",
-    label: "Entrega e Retirada",
-    kind: "service",
-    parentPath: "/servicos/",
-    seo: {
-      title: "Entrega e retirada de plataformas | Accesslift",
-      description: "Servico de entrega e retirada para plataformas elevatorias.",
-      canonicalPath: "/servicos/entrega-e-retirada/",
     },
   },
   {
@@ -118,17 +106,6 @@ export const MAIN_ROUTES: AppRoute[] = [
       title: "Manutencao preventiva | Accesslift",
       description: "Manutencao preventiva para apoiar disponibilidade operacional.",
       canonicalPath: "/servicos/manutencao-preventiva/",
-    },
-  },
-  {
-    path: "/servicos/atendimento-emergencial/",
-    label: "Atendimento Emergencial",
-    kind: "service",
-    parentPath: "/servicos/",
-    seo: {
-      title: "Atendimento emergencial | Accesslift",
-      description: "Atendimento emergencial para demandas de plataformas elevatorias.",
-      canonicalPath: "/servicos/atendimento-emergencial/",
     },
   },
   {
@@ -175,14 +152,14 @@ export const MAIN_ROUTES: AppRoute[] = [
     },
   },
   {
-    path: "/segmentos/supermercados/",
-    label: "Supermercados",
+    path: "/segmentos/supermercados-e-hipermercados/",
+    label: "Supermercados e Hipermercados",
     kind: "segment",
     parentPath: "/segmentos-e-aplicacoes/",
     seo: {
-      title: "Plataformas para supermercados | Accesslift",
-      description: "Estrutura de pagina para aplicacoes em supermercados.",
-      canonicalPath: "/segmentos/supermercados/",
+      title: "Plataformas para Supermercados e Hipermercados | Accesslift",
+      description: "Plataformas elevatorias para aplicacoes em supermercados e hipermercados.",
+      canonicalPath: "/segmentos/supermercados-e-hipermercados/",
     },
   },
   {
@@ -197,13 +174,13 @@ export const MAIN_ROUTES: AppRoute[] = [
     },
   },
   {
-    path: "/sobre-a-accesslift/",
-    label: "Sobre a Accesslift",
+    path: "/empresa/",
+    label: "Empresa",
     kind: "static",
     seo: {
-      title: "Sobre a Accesslift",
-      description: "Pagina institucional preparada para a nova versao do site Accesslift.",
-      canonicalPath: "/sobre-a-accesslift/",
+      title: "Accesslift | Locacao de Plataformas Elevatorias em SP",
+      description: "Accesslift: especialistas em plataformas elevatorias para locacao em Sao Paulo.",
+      canonicalPath: "/empresa/",
     },
   },
   {
@@ -221,8 +198,9 @@ export const MAIN_ROUTES: AppRoute[] = [
     label: "Area de Atendimento",
     kind: "static",
     seo: {
-      title: "Area de atendimento | Accesslift",
-      description: "Atendimento em Sao Paulo e regioes em raio de ate 150 km da base.",
+      title: "Locacao de Plataformas Elevatorias em Sao Paulo | Accesslift",
+      description:
+        "Locacao de plataformas elevatorias em Sao Paulo e regiao, com atendimento em um raio de ate 150 km da base Accesslift. Consulte sua cidade.",
       canonicalPath: "/area-de-atendimento/",
     },
   },
@@ -251,19 +229,113 @@ export const MAIN_ROUTES: AppRoute[] = [
     label: "Contato",
     kind: "contact",
     seo: {
-      title: "Contato | Accesslift",
-      description: "Canais de contato Accesslift.",
+      title: "Contato | Accesslift Plataformas Elevatorias",
+      description: "Fale com a Accesslift para locacao, orcamento e suporte a plataformas elevatorias.",
       canonicalPath: "/contato/",
+    },
+  },
+  {
+    path: "/solicite-orcamento/",
+    label: "Orcamento",
+    kind: "quote",
+    seo: {
+      title: "Orcamento de Plataforma Elevatoria | Accesslift",
+      description: "Solicite orcamento para locacao de plataforma elevatoria. Informe cidade, periodo e altura aproximada para avaliarmos as opcoes.",
+      canonicalPath: "/solicite-orcamento/",
+    },
+  },
+  {
+    path: "/trabalhe-conosco/",
+    label: "Trabalhe Conosco",
+    kind: "static",
+    seo: {
+      title: "Trabalhe Conosco | Accesslift",
+      description: "Oportunidades e contato para trabalhar com a Accesslift.",
+      canonicalPath: "/trabalhe-conosco/",
+      indexDirective: "noindex",
+    },
+  },
+  {
+    path: "/politica-de-privacidade/",
+    label: "Politica de Privacidade",
+    kind: "static",
+    seo: {
+      title: "Politica de Privacidade | Accesslift",
+      description: "Politica de privacidade da Accesslift.",
+      canonicalPath: "/politica-de-privacidade/",
+      indexDirective: "noindex",
+    },
+  },
+  {
+    path: "/sobre-a-accesslift/",
+    label: "Empresa",
+    kind: "static",
+    isAlias: true,
+    seo: {
+      title: "Accesslift | Locacao de Plataformas Elevatorias em SP",
+      description: "Rota temporaria da V2. Consulte a pagina institucional canonica.",
+      canonicalPath: "/empresa/",
+      indexDirective: "noindex",
     },
   },
   {
     path: "/orcamento/",
     label: "Orcamento",
     kind: "quote",
+    isAlias: true,
     seo: {
-      title: "Solicitar orcamento | Accesslift",
-      description: "Solicite orcamento para locacao ou venda de plataformas elevatorias.",
-      canonicalPath: "/orcamento/",
+      title: "Orcamento de Plataforma Elevatoria | Accesslift",
+      description: "Rota temporaria da V2. Consulte a pagina canonica de orcamento.",
+      canonicalPath: "/solicite-orcamento/",
+      indexDirective: "noindex",
+    },
+  },
+  {
+    path: "/segmentos/supermercados/",
+    label: "Supermercados e Hipermercados",
+    kind: "segment",
+    isAlias: true,
+    seo: {
+      title: "Plataformas para Supermercados e Hipermercados | Accesslift",
+      description: "Rota temporaria da V2. Consulte a pagina canonica do segmento.",
+      canonicalPath: "/segmentos/supermercados-e-hipermercados/",
+      indexDirective: "noindex",
+    },
+  },
+  {
+    path: "/venda-de-plataformas/",
+    label: "Venda de Plataformas",
+    kind: "static",
+    isAlias: true,
+    seo: {
+      title: "Venda de plataformas elevatorias | Accesslift",
+      description: "Pagina complementar de venda, sem destaque na navegacao principal.",
+      canonicalPath: "/venda-de-plataformas/",
+      indexDirective: "noindex",
+    },
+  },
+  {
+    path: "/servicos/entrega-e-retirada/",
+    label: "Entrega e Retirada",
+    kind: "service",
+    isAlias: true,
+    seo: {
+      title: "Entrega e retirada de plataformas | Accesslift",
+      description: "Servico integrado ao pilar de suporte da Accesslift.",
+      canonicalPath: "/servicos/",
+      indexDirective: "noindex",
+    },
+  },
+  {
+    path: "/servicos/atendimento-emergencial/",
+    label: "Atendimento Emergencial",
+    kind: "service",
+    isAlias: true,
+    seo: {
+      title: "Atendimento emergencial | Accesslift",
+      description: "Servico integrado a assistencia tecnica da Accesslift.",
+      canonicalPath: "/servicos/assistencia-tecnica/",
+      indexDirective: "noindex",
     },
   },
 ];
@@ -283,11 +355,10 @@ export const findRouteByPath = (path: string) =>
 export const primaryNavigation = MAIN_ROUTES.filter((route) =>
   [
     "/plataformas-elevatorias/",
-    "/locacao-de-plataformas/",
-    "/venda-de-plataformas/",
+    "/locacao-de-plataformas-elevatorias/",
     "/servicos/",
     "/segmentos-e-aplicacoes/",
-    "/area-de-atendimento/",
-    "/blog/",
+    "/empresa/",
+    "/contato/",
   ].includes(route.path),
 );

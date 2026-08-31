@@ -4,6 +4,7 @@ import { LeadForm } from "../components/forms/LeadForm";
 import { contactConfig } from "../data/contact";
 import { ConversionHero, FinalConversionSection } from "./shared/StructuredPageSections";
 import { RequestQuoteButton, WhatsAppButton } from "../components/buttons/CtaButtons";
+import { Button } from "../components/buttons/Button";
 
 export function ContactPage() {
   const contactItems = [
@@ -46,6 +47,7 @@ export function ContactPage() {
             <RequestQuoteButton />
             <WhatsAppButton />
           </div>
+          <Button href="/servicos/assistencia-tecnica/" variant="ghost" className="mt-3 px-0">Preciso de assistencia tecnica</Button>
         </div>
         <div>
           <h2 className="mb-5 text-slate-950">Formulario de contato</h2>

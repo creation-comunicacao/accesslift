@@ -13,6 +13,8 @@ import { BlogIndexPage } from "./pages/blog/BlogIndexPage";
 import { BlogPostPage } from "./pages/blog/BlogPostPage";
 import { ContactPage } from "./pages/ContactPage";
 import { QuotePage } from "./pages/QuotePage";
+import { CareerPage } from "./pages/CareerPage";
+import { CoveragePage } from "./pages/CoveragePage";
 import { StandardPage } from "./pages/StandardPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import type { PageSeo } from "./types/routes";
@@ -20,6 +22,7 @@ import { getEquipmentBySlug, matchEquipmentDetailPath } from "./catalog/catalog"
 import { getBreadcrumbItems } from "./components/navigation/navigation";
 import {
   findCommercialPage,
+  findCoveragePage,
   findSegmentPage,
   findServicePage,
 } from "./data/pageContent";
@@ -76,6 +79,7 @@ export function AccessliftApp() {
       findCommercialPage(currentPath) ||
       findServicePage(currentPath) ||
       findSegmentPage(currentPath) ||
+      findCoveragePage(currentPath) ||
       findInstitutionalPage(currentPath),
     [currentPath],
   );
@@ -113,13 +117,21 @@ export function AccessliftApp() {
     const baseSeo = dynamicSeo || route?.seo || notFoundSeo;
     const breadcrumbSchema = buildBreadcrumbSchema(getBreadcrumbItems(currentPath));
     const configuredFaq =
-      configuredPage && "faq" in configuredPage ? configuredPage.faq : undefined;
-    const faqSchema = buildFaqSchema(configuredFaq || equipment?.faq);
+      configuredPage && "faq" in configuredPage && configuredPage.faqSchemaEligible
+        ? configuredPage.faq
+        : undefined;
+    const equipmentFaq =
+      equipment?.status === "published" && equipment.seo.indexDirective === "index"
+        ? equipment.faq
+        : undefined;
+    const faqSchema = buildFaqSchema(configuredFaq || equipmentFaq);
     const structuredData = [
       buildOrganizationSchema(),
       breadcrumbSchema,
       faqSchema,
-      equipment ? buildEquipmentSchema(equipment) : null,
+      equipment?.status === "published" && equipment.seo.indexDirective === "index"
+        ? buildEquipmentSchema(equipment)
+        : null,
     ].filter((schema): schema is NonNullable<typeof schema> => Boolean(schema));
 
     return {
@@ -145,9 +157,10 @@ export function AccessliftApp() {
       case "/":
         return <HomePage />;
       case "/plataformas-elevatorias/":
+      case "/locacao-de-plataformas-elevatorias/":
       case "/locacao-de-plataformas/":
       case "/venda-de-plataformas/": {
-        const pageConfig = findCommercialPage(route.path);
+        const pageConfig = findCommercialPage(route.path) || findCommercialPage("/locacao-de-plataformas-elevatorias/");
         return pageConfig ? <CommercialPageTemplate page={pageConfig} /> : <NotFoundPage />;
       }
       case "/plataformas-tesoura/":
@@ -168,25 +181,33 @@ export function AccessliftApp() {
       case "/segmentos-e-aplicacoes/":
       case "/segmentos/construcao-civil/":
       case "/segmentos/industria/":
+      case "/segmentos/supermercados-e-hipermercados/":
       case "/segmentos/supermercados/":
       case "/segmentos/atacados/": {
-        const pageConfig = findSegmentPage(route.path);
+        const pageConfig =
+          findSegmentPage(route.path) ||
+          findSegmentPage("/segmentos/supermercados-e-hipermercados/");
         return pageConfig ? <SegmentPageTemplate page={pageConfig} /> : <NotFoundPage />;
       }
       case "/blog/":
         return <BlogIndexPage />;
+      case "/empresa/":
       case "/sobre-a-accesslift/":
-      case "/area-de-atendimento/":
       case "/seguranca-e-nr35/": {
-        const pageConfig = findInstitutionalPage(route.path);
+        const pageConfig = findInstitutionalPage(route.path) || findInstitutionalPage("/empresa/");
         return pageConfig ? <InstitutionalPage page={pageConfig} /> : <NotFoundPage />;
       }
       case "/clientes/":
         return <ClientsPage />;
+      case "/area-de-atendimento/":
+        return <CoveragePage />;
       case "/contato/":
         return <ContactPage />;
+      case "/solicite-orcamento/":
       case "/orcamento/":
         return <QuotePage />;
+      case "/trabalhe-conosco/":
+        return <CareerPage />;
       default:
         return <StandardPage route={route} />;
     }

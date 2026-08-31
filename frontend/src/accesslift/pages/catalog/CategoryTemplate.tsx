@@ -2,6 +2,9 @@ import { getCategoryBySlug, getEquipmentByCategory, sortEquipment } from "../../
 import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { CheckAvailabilityButton, RequestQuoteButton, TalkToSpecialistButton } from "../../components/buttons/CtaButtons";
 import { Badge } from "../../components/ui/Badge";
+import { Button } from "../../components/buttons/Button";
+import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
+import { categoryGalleryBySlug } from "../../data/officialMedia";
 import type { EquipmentCategorySlug } from "../../types/equipment";
 
 type CategoryTemplateProps = {
@@ -11,17 +14,23 @@ type CategoryTemplateProps = {
 const categoryContent = {
   "plataformas-tesoura": {
     eyebrow: "Categoria SEO",
-    title: "Plataformas Tesoura",
+    title: "Plataformas Elevatorias Tesoura",
     description:
       "Pagina de categoria real para plataformas tesoura, independente dos filtros do catalogo.",
     bestFor: ["Trabalhos verticais", "Ambientes com acesso direto", "Operacoes de manutencao e instalacao"],
+    choiceNote: "A altura de trabalho deve ser avaliada junto com as caracteristicas do local. Esta pagina nao cria URLs artificiais por metragem.",
+    counterpartHref: "/plataformas-articuladas/",
+    counterpartLabel: "Ver plataformas articuladas",
   },
   "plataformas-articuladas": {
     eyebrow: "Categoria SEO",
-    title: "Plataformas Articuladas",
+    title: "Plataformas Elevatorias Articuladas",
     description:
       "Pagina de categoria real para plataformas articuladas, preparada para equipamentos com alcance horizontal quando aplicavel.",
     bestFor: ["Acesso com obstaculos", "Aplicacoes externas e industriais", "Demandas com alcance lateral quando validado"],
+    choiceNote: "Altura de trabalho e alcance horizontal sao medidas diferentes. Ambas devem ser avaliadas com as caracteristicas da operacao.",
+    counterpartHref: "/plataformas-tesoura/",
+    counterpartLabel: "Ver plataformas tesoura",
   },
 };
 
@@ -78,7 +87,32 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
             <EquipmentCard key={equipment.id} equipment={equipment} />
           ))}
         </div>
+
+        <div className="mt-8 flex flex-wrap gap-3 border-t border-slate-200 pt-6">
+          <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary">
+            Ver opcoes de locacao
+          </Button>
+          <Button href="/segmentos-e-aplicacoes/" variant="ghost">
+            Ver aplicacoes
+          </Button>
+          <Button href="/equipamentos/" variant="ghost">
+            Ver todos os equipamentos
+          </Button>
+          <Button href={content.counterpartHref} variant="ghost">
+            {content.counterpartLabel}
+          </Button>
+        </div>
+
+        <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-5">
+          <h2 className="text-xl font-black text-slate-950">Como avaliar a escolha</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">{content.choiceNote}</p>
+        </div>
       </section>
+      <OfficialMediaGallery
+        title={slug === "plataformas-tesoura" ? "Plataformas tesoura da frota" : "Plataformas articuladas da frota"}
+        description="Imagens sem identificacao legivel de modelo permanecem na categoria e nao sao usadas como foto de um equipamento especifico."
+        images={categoryGalleryBySlug[slug]}
+      />
     </>
   );
 }

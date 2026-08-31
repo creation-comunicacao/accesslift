@@ -11,6 +11,10 @@ export type InstitutionalPageConfig = {
     items?: string[];
   }>;
   seo: PageSeo & { h1: string };
+  referenceLink?: {
+    label: string;
+    href: string;
+  };
 };
 
 export type ClientProof = {
@@ -31,11 +35,11 @@ export const clientProofs: ClientProof[] = [
 
 export const institutionalPages: InstitutionalPageConfig[] = [
   {
-    path: "/sobre-a-accesslift/",
+    path: "/empresa/",
     eyebrow: "Institucional",
-    title: "Sobre a Accesslift",
+    title: "Accesslift: especialistas em plataformas elevatorias",
     description:
-      "Estrutura institucional preparada para contar historia, proposta, atuacao e diferenciais sem inventar fatos ainda nao fornecidos.",
+      "Conheca a Accesslift, sua atuacao em Sao Paulo e a estrutura de atendimento para operacoes em altura.",
     sections: [
       {
         title: "Historia",
@@ -45,7 +49,11 @@ export const institutionalPages: InstitutionalPageConfig[] = [
       {
         title: "Proposta",
         description:
-          "Organizar locacao, venda, suporte e atendimento comercial em uma jornada clara para quem precisa operar em altura.",
+          "Locacao de plataformas elevatorias com frota eletrica, atendimento comercial e suporte para a operacao.",
+      },
+      {
+        title: "Experiencia",
+        description: "12 anos de experiencia no setor, conforme informacao aprovada no documento mestre.",
       },
       {
         title: "Atuacao",
@@ -56,21 +64,20 @@ export const institutionalPages: InstitutionalPageConfig[] = [
         title: "Servicos e equipamentos",
         description:
           "Estrutura conectada ao catalogo dinamico e aos servicos previstos na V2.",
-        items: ["Locacao", "Venda", "Entrega e retirada", "Assistencia", "Manutencao", "Treinamento"],
+        items: ["Locacao", "Entrega e retirada", "Assistencia", "Manutencao", "Treinamento"],
       },
     ],
     seo: {
-      h1: "Sobre a Accesslift",
-      title: "Sobre a Accesslift",
-      description: "Pagina institucional preparada para a nova versao do site Accesslift.",
-      canonicalPath: "/sobre-a-accesslift/",
-      indexDirective: "noindex",
+      h1: "Accesslift: Especialistas em Plataformas Elevatorias",
+      title: "Accesslift | Locacao de Plataformas Elevatorias em SP",
+      description: "Conheca a Accesslift, empresa com 12 anos de experiencia em locacao de plataformas elevatorias, assistencia tecnica e suporte em Sao Paulo.",
+      canonicalPath: "/empresa/",
     },
   },
   {
     path: "/area-de-atendimento/",
     eyebrow: "Area de atendimento",
-    title: "Area de atendimento Accesslift",
+    title: "Locacao de Plataformas Elevatorias em Sao Paulo e Regiao",
     description:
       "Pagina estrutural para comunicar atendimento em Sao Paulo e regioes em raio de ate 150 km da base.",
     sections: [
@@ -85,11 +92,10 @@ export const institutionalPages: InstitutionalPageConfig[] = [
       },
     ],
     seo: {
-      h1: "Area de atendimento em Sao Paulo",
-      title: "Area de atendimento | Accesslift",
-      description: "Atendimento em Sao Paulo e regioes em raio de ate 150 km da base.",
+      h1: "Locacao de Plataformas Elevatorias em Sao Paulo e Regiao",
+      title: "Locacao de Plataformas Elevatorias em Sao Paulo | Accesslift",
+      description: "Locacao de plataformas elevatorias em Sao Paulo e regiao, com entrega, retirada e suporte. Consulte atendimento na sua cidade.",
       canonicalPath: "/area-de-atendimento/",
-      indexDirective: "noindex",
     },
   },
   {
@@ -116,11 +122,14 @@ export const institutionalPages: InstitutionalPageConfig[] = [
       },
     ],
     seo: {
-      h1: "Seguranca e NR-35",
-      title: "Seguranca e NR35 | Accesslift",
-      description: "Estrutura para conteudo de seguranca e NR35.",
+      h1: "Plataformas Elevatorias e NR-35",
+      title: "NR-35 e Plataformas Elevatorias para Trabalho em Altura | Accesslift",
+      description: "Entenda a relacao entre NR-35, trabalho em altura e plataformas elevatorias. Conheca equipamentos disponiveis para locacao.",
       canonicalPath: "/seguranca-e-nr35/",
-      indexDirective: "noindex",
+    },
+    referenceLink: {
+      label: "Consultar a NR-35 no portal oficial do Ministerio do Trabalho e Emprego",
+      href: "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-35-atualizada-2025.pdf",
     },
   },
 ];

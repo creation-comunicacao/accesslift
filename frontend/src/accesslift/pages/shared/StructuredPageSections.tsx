@@ -189,7 +189,7 @@ export function RelatedEquipmentSection({ categories }: RelatedEquipmentSectionP
   );
 }
 
-export function FaqSection({ items }: FaqSectionProps) {
+export function FaqSection({ items, title = "Perguntas frequentes" }: FaqSectionProps & { title?: string }) {
   if (items.length === 0) {
     return null;
   }
@@ -198,7 +198,7 @@ export function FaqSection({ items }: FaqSectionProps) {
     <section className="bg-slate-50 py-12">
       <div className="mx-auto max-w-4xl px-4 md:px-6">
         <Badge tone="lime">FAQ</Badge>
-        <h2 className="mt-4 text-slate-950">Perguntas frequentes</h2>
+        <h2 className="mt-4 text-slate-950">{title}</h2>
         <div className="mt-6">
           <Accordion
             items={items.map((item, index) => ({

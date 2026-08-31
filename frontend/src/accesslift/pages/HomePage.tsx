@@ -1,92 +1,97 @@
-import { useState } from "react";
 import {
   ArrowRight,
+  Award,
   Building2,
   ClipboardCheck,
   Construction,
   Factory,
   Headphones,
   MapPin,
-  Search,
   ShieldCheck,
   ShoppingCart,
-  Sparkles,
+  Star,
   Truck,
   Wrench,
   Zap,
 } from "lucide-react";
 import { getEquipmentBySlug } from "../catalog/catalog";
 import { EquipmentCard } from "../components/cards/EquipmentCard";
-import {
-  RequestQuoteButton,
-  TalkToSpecialistButton,
-  WhatsAppButton,
-} from "../components/buttons/CtaButtons";
+import { RequestQuoteButton } from "../components/buttons/CtaButtons";
 import { Button } from "../components/buttons/Button";
-import { Accordion } from "../components/ui/Accordion";
 import { Badge } from "../components/ui/Badge";
-import { blogPosts } from "../data/blog";
-import { equipmentBrands, homeFeaturedEquipmentSlugs } from "../data/equipment";
+import { homeFeaturedEquipmentSlugs } from "../data/equipment";
 import {
+  googleReviewsProfileUrl,
   homeCategoryCards,
+  homeClients,
   homeDifferentials,
-  homeFaqItems,
-  homeFinderFields,
-  homeRentalSteps,
+  homeGoogleReviews,
   homeTrustItems,
 } from "../data/homeContent";
-import type { CatalogFilters } from "../types/equipment";
-import { navigateTo } from "../utils/navigation";
-
-const defaultFinderFilters: CatalogFilters = {
-  category: "all",
-  brand: "all",
-  heightRange: "all",
-  energy: "all",
-  environment: "all",
-};
 
 const featuredEquipment = homeFeaturedEquipmentSlugs
   .map(getEquipmentBySlug)
   .filter((equipment): equipment is NonNullable<typeof equipment> => Boolean(equipment));
 
-const differentialIcons = [Truck, Headphones, Wrench, Zap, ClipboardCheck];
+const differentialIcons = [Award, Truck, Headphones, Wrench, Zap, ClipboardCheck];
 const trustIcons = [ShieldCheck, Truck, Headphones, MapPin];
 
 const segments = [
-  { title: "Industria", description: "Manutencao, instalacoes e intervencoes em areas industriais.", href: "/segmentos/industria/", icon: Factory },
-  { title: "Construcao civil", description: "Obras, fachadas e etapas de execucao em altura.", href: "/segmentos/construcao-civil/", icon: Construction },
-  { title: "Supermercados", description: "Manutencao, iluminacao e comunicacao visual em lojas.", href: "/segmentos/supermercados/", icon: ShoppingCart },
-  { title: "Atacados", description: "Operacoes em grandes espacos comerciais e de abastecimento.", href: "/segmentos/atacados/", icon: Building2 },
+  {
+    title: "Indústria",
+    description: "Apoio a atividades de manutenção, instalações, montagens e intervenções em estruturas e instalações industriais.",
+    href: "/segmentos/industria/",
+    label: "Ver aplicações na indústria",
+    icon: Factory,
+  },
+  {
+    title: "Construção Civil",
+    description: "Plataformas para diferentes etapas e necessidades de acesso em obras e serviços de construção.",
+    href: "/segmentos/construcao-civil/",
+    label: "Ver aplicações na construção",
+    icon: Construction,
+  },
+  {
+    title: "Supermercados e Hipermercados",
+    description: "Equipamentos para manutenção, instalações e trabalhos em altura em grandes áreas comerciais.",
+    href: "/segmentos/supermercados-e-hipermercados/",
+    label: "Ver aplicações em supermercados",
+    icon: ShoppingCart,
+  },
+  {
+    title: "Atacados",
+    description: "Soluções para trabalhos em altura em estruturas, instalações e áreas operacionais de estabelecimentos atacadistas.",
+    href: "/segmentos/atacados/",
+    label: "Ver aplicações em atacados",
+    icon: Building2,
+  },
 ];
 
-const clients = ["Lorenzetti", "Assai", "Atacadao", "Claro", "EZTEC"];
-
 function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) {
-  const isArticulated = type === "articulada";
+  const visual = {
+    hero: {
+      src: "/images/accesslift/oficiais/plataformas-07.jpeg",
+      alt: "Entrega de plataformas elevatórias pela Accesslift",
+    },
+    tesoura: {
+      src: "/images/accesslift/oficiais/jlg-3246ES.jpeg",
+      alt: "Plataforma tesoura JLG 3246ES da frota Accesslift",
+    },
+    articulada: {
+      src: "/images/accesslift/oficiais/genie-z34-22.jpeg",
+      alt: "Plataforma articulada Genie Z-34/22 da frota Accesslift",
+    },
+  }[type];
 
   return (
     <figure className="relative min-h-64 overflow-hidden rounded-lg border border-slate-800 bg-slate-950 text-white premium-shadow">
-      <div className="industrial-grid absolute inset-0 opacity-40" />
-      <div className="absolute inset-x-6 bottom-8 h-3 rounded-full bg-slate-700" />
-      <div className="absolute bottom-10 left-8 h-24 w-36 rounded-md border-4 border-lime-300 bg-slate-900 shadow-2xl">
-        <div className="grid h-full grid-cols-4 gap-2 p-3">
-          <span className="rounded-sm bg-slate-700" />
-          <span className="rounded-sm bg-slate-700" />
-          <span className="rounded-sm bg-slate-700" />
-          <span className="rounded-sm bg-slate-700" />
-        </div>
-      </div>
-      <div className="absolute bottom-24 left-20 h-28 w-4 rotate-[-18deg] rounded-full bg-lime-300" />
-      <div className="absolute bottom-32 left-36 h-24 w-4 rotate-[35deg] rounded-full bg-lime-300" />
-      {isArticulated || type === "hero" ? (
-        <div className="absolute right-8 top-12 h-14 w-32 rounded-md border-4 border-lime-300 bg-slate-900" />
-      ) : (
-        <div className="absolute right-8 top-20 h-12 w-40 rounded-md border-4 border-lime-300 bg-slate-900" />
-      )}
-      <figcaption className="absolute right-6 top-6 rounded-full bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-wider text-lime-200">
-        Imagem da frota a cadastrar
-      </figcaption>
+      <img
+        src={visual.src}
+        alt={visual.alt}
+        className="absolute inset-0 h-full w-full object-cover"
+        loading={type === "hero" ? "eager" : "lazy"}
+        decoding="async"
+      />
     </figure>
   );
 }
@@ -96,81 +101,72 @@ function SectionHeader({ eyebrow, title, description, inverted = false }: { eyeb
     <div className="mb-8 max-w-3xl">
       <Badge tone="lime">{eyebrow}</Badge>
       <h2 className={`mt-4 ${inverted ? "text-white" : "text-slate-950"}`}>{title}</h2>
-      {description && <p className={`mt-3 text-base ${inverted ? "text-slate-300" : "text-slate-600"}`}>{description}</p>}
+      {description && <p className={`mt-3 text-base leading-7 ${inverted ? "text-slate-300" : "text-slate-600"}`}>{description}</p>}
     </div>
   );
 }
 
 export function HomePage() {
-  const [finderFilters, setFinderFilters] = useState<CatalogFilters>(defaultFinderFilters);
-
-  const updateFinderFilter = (key: keyof CatalogFilters, value: string) => {
-    setFinderFilters((current) => ({ ...current, [key]: value } as CatalogFilters));
-  };
-
-  const openCatalogWithFinder = () => {
-    window.sessionStorage.setItem("accesslift-catalog-filters", JSON.stringify(finderFilters));
-    navigateTo("/equipamentos/");
-  };
-
   return (
     <>
       <section className="industrial-grid overflow-hidden bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-16">
           <div>
             <Badge tone="lime">Accesslift</Badge>
-            <h1 className="mt-5 max-w-4xl text-slate-950">Plataformas elevatorias para levar sua operacao mais alto</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Locacao e venda de plataformas elevatorias tesoura e articuladas, com entrega propria, assistencia tecnica e suporte especializado para operacoes em Sao Paulo e regiao.</p>
+            <h1 className="mt-5 max-w-4xl text-slate-950">Locação de Plataformas Elevatórias em São Paulo</h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+              Plataformas tesoura e articuladas para trabalhos em altura, com frota elétrica, entrega própria e suporte técnico da Accesslift.
+            </p>
             <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
               <RequestQuoteButton />
-              <Button variant="secondary" onClick={openCatalogWithFinder} icon={<Search className="h-4 w-4" aria-hidden />}>Encontrar minha plataforma</Button>
+              <Button href="/equipamentos/" variant="secondary">Ver equipamentos</Button>
             </div>
-            <p className="mt-5 text-sm font-semibold text-slate-600">Locacao diaria, semanal ou mensal <span aria-hidden>•</span> Atendimento em um raio de ate 150 km da nossa base</p>
           </div>
           <EquipmentVisual type="hero" />
         </div>
-      </section>
-
-      <section className="border-y border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 md:grid-cols-4 md:px-6">
-          {homeTrustItems.map((item, index) => {
-            const Icon = trustIcons[index];
-            return (
-            <div key={item.value} className="flex items-center gap-3 rounded-lg bg-slate-50 p-4">
-              <Icon className="h-6 w-6 shrink-0 text-lime-700" aria-hidden />
-              <div><p className="text-lg font-black text-slate-950">{item.value}</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">{item.label}</p></div>
-            </div>
-            );
-          })}
+        <div className="border-y border-slate-200 bg-white">
+          <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 md:grid-cols-4 md:px-6">
+            {homeTrustItems.map((item, index) => {
+              const Icon = trustIcons[index];
+              return (
+                <div key={item.value} className="flex min-h-20 items-center gap-3 rounded-lg bg-slate-50 p-4">
+                  <Icon className="h-6 w-6 shrink-0 text-lime-700" aria-hidden />
+                  <div>
+                    <p className="text-base font-black text-slate-950">{item.value}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-500">{item.label}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
-        <SectionHeader eyebrow="Descoberta" title="Encontre a plataforma certa para o seu trabalho" description="Cada operacao exige uma combinacao diferente de altura, alcance e espaco de trabalho. Selecione as caracteristicas da sua necessidade e conheca os equipamentos mais adequados." />
-        <div className="rounded-lg border border-slate-200 bg-white p-4 premium-shadow md:p-6">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {homeFinderFields.map((field) => (
-              <label key={field.key} className="grid gap-2 text-xs font-black uppercase tracking-wider text-slate-600">
-                {field.label}
-                <select className="min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-bold normal-case text-slate-800 outline-none transition hover:border-slate-400 focus:border-lime-500 focus:ring-2 focus:ring-lime-200" value={finderFilters[field.key]} onChange={(event) => updateFinderFilter(field.key, event.target.value)}>
-                  {field.options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-                </select>
-              </label>
-            ))}
+        <SectionHeader
+          eyebrow="Locação"
+          title="Plataforma elevatória para a necessidade da sua operação"
+          description="A Accesslift atua na locação de plataformas elevatórias para empresas que precisam realizar trabalhos em altura com equipamentos adequados à aplicação, ao ambiente e à altura de trabalho."
+        />
+        <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="max-w-4xl space-y-4 text-base leading-7 text-slate-600">
+            <p>Disponibilizamos locações diárias, semanais e mensais, com plataformas para diferentes demandas de manutenção, instalação, construção, montagem e operações industriais e comerciais.</p>
+            <p>Nossa equipe auxilia na escolha do equipamento considerando as características do trabalho, como altura necessária, acesso ao local, espaço disponível e necessidade de alcance vertical ou horizontal.</p>
           </div>
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-5">
-            <p className="max-w-2xl text-sm font-semibold text-slate-600">Nao sabe qual plataforma escolher? Nossa equipe pode ajudar a identificar o equipamento adequado para sua operacao.</p>
-            <div className="flex flex-wrap gap-3">
-              <Button onClick={openCatalogWithFinder} icon={<Search className="h-4 w-4" aria-hidden />}>Ver equipamentos</Button>
-              <TalkToSpecialistButton />
-            </div>
-          </div>
+          <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
+            Conhecer a locação
+          </Button>
         </div>
       </section>
 
       <section className="bg-slate-950 py-14 text-white">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <SectionHeader eyebrow="Categorias" title="Uma plataforma para cada necessidade de acesso em altura" description="Conheca as duas categorias principais do catalogo Accesslift." inverted />
+          <SectionHeader
+            eyebrow="Tipos de plataforma"
+            title="Encontre a plataforma certa para o seu trabalho"
+            description="A escolha entre uma plataforma tesoura e uma plataforma articulada depende principalmente do tipo de acesso e da movimentação necessária para executar o serviço."
+            inverted
+          />
           <div className="grid gap-5 lg:grid-cols-2">
             {homeCategoryCards.map((category) => (
               <article key={category.title} className="grid gap-5 rounded-lg border border-slate-800 bg-slate-900 p-4 md:grid-cols-[0.9fr_1fr] md:p-5">
@@ -187,81 +183,150 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
-        <SectionHeader eyebrow="Catalogo" title="Equipamentos para diferentes alturas e aplicacoes" description="Nossa frota reune plataformas elevatorias de fabricantes reconhecidos, com modelos para diferentes necessidades de acesso e trabalho em altura." />
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{featuredEquipment.map((equipment) => <EquipmentCard key={equipment.id} equipment={equipment} />)}</div>
-        <Button href="/equipamentos/" variant="secondary" className="mt-8" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>Ver todos os equipamentos</Button>
-      </section>
-
       <section className="bg-slate-50 py-14">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <SectionHeader eyebrow="Diferencial Accesslift" title="Mais do que alugar uma plataforma. Suporte para sua operacao." description="Da escolha do equipamento a retirada, a Accesslift acompanha sua operacao com estrutura propria e servicos que ajudam a manter o trabalho em movimento." />
+          <SectionHeader
+            eyebrow="Diferenciais Accesslift"
+            title="Mais do que disponibilizar equipamentos"
+            description="A locação de uma plataforma elevatória precisa funcionar do início ao fim da operação. Por isso, a Accesslift combina equipamentos, logística e suporte para atender cada projeto com proximidade."
+          />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {homeDifferentials.map(({ title, description }, index) => {
               const Icon = differentialIcons[index];
-              return <article key={title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow"><Icon className="h-7 w-7 text-lime-700" aria-hidden /><h3 className="mt-4 text-slate-950">{title}</h3><p className="mt-2 text-sm text-slate-600">{description}</p></article>;
+              return (
+                <article key={title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+                  <Icon className="h-7 w-7 text-lime-700" aria-hidden />
+                  <h3 className="mt-4 text-slate-950">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+                </article>
+              );
             })}
           </div>
-          <Button href="/servicos/" variant="secondary" className="mt-8" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>Conheca nossos servicos</Button>
+          <Button href="/servicos/" variant="secondary" className="mt-8">Conheça nossos serviços</Button>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
-        <SectionHeader eyebrow="Aplicacoes" title="Solucoes para diferentes tipos de operacao" description="A Accesslift atende empresas de diversos segmentos, com equipamentos adequados a cada ambiente e atividade." />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {segments.map(({ title, description, href, icon: Icon }) => (
-            <a key={href} href={href} className="group rounded-lg border border-slate-200 bg-white p-5 soft-shadow transition hover:-translate-y-0.5 hover:border-slate-300"><Icon className="h-8 w-8 text-slate-950" aria-hidden /><h3 className="mt-5 text-slate-950">{title}</h3><p className="mt-2 text-sm text-slate-600">{description}</p><span className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-lime-700">Ver solucoes <ArrowRight className="h-4 w-4" aria-hidden /></span></a>
-          ))}
+        <SectionHeader
+          eyebrow="Equipamentos"
+          title="Plataformas elevatórias para diferentes alturas e aplicações"
+          description="A frota Accesslift reúne plataformas elevatórias das categorias tesoura e articulada, com modelos de fabricantes reconhecidos como JLG, Genie, Skyjack e Zoomlion. Compare os equipamentos por categoria, marca, altura de trabalho e capacidade para encontrar as opções mais adequadas à sua necessidade."
+        />
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {featuredEquipment.map((equipment) => <EquipmentCard key={equipment.id} equipment={equipment} />)}
         </div>
+        <Button href="/equipamentos/" variant="secondary" className="mt-8" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
+          Ver todos os equipamentos
+        </Button>
       </section>
 
-      <section className="border-y border-slate-200 bg-white py-10">
+      <section className="border-y border-slate-200 bg-white py-14">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <SectionHeader eyebrow="Marcas" title="Fabricantes reconhecidos em plataformas elevatorias" description="Marcas presentes no catalogo Accesslift." />
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{equipmentBrands.map((brand) => <div key={brand} className="rounded-lg border border-slate-200 bg-slate-50 p-6 text-center text-2xl font-black text-slate-950">{brand}</div>)}</div>
+          <SectionHeader
+            eyebrow="Segmentos"
+            title="Plataformas elevatórias para diferentes setores"
+            description="Atendemos empresas que precisam executar trabalhos em altura em diferentes ambientes e condições operacionais."
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {segments.map(({ title, description, href, label, icon: Icon }) => (
+              <a key={href} href={href} className="group rounded-lg border border-slate-200 bg-white p-5 soft-shadow transition hover:-translate-y-0.5 hover:border-slate-300">
+                <Icon className="h-8 w-8 text-slate-950" aria-hidden />
+                <h3 className="mt-5 text-slate-950">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-lime-700">{label} <ArrowRight className="h-4 w-4" aria-hidden /></span>
+              </a>
+            ))}
+          </div>
+          <Button href="/segmentos-e-aplicacoes/" variant="secondary" className="mt-8">Conhecer todas as aplicações</Button>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
-        <SectionHeader eyebrow="Locacao" title="Alugar uma plataforma pode ser simples" />
-        <div className="grid gap-3 md:grid-cols-5">
-          {homeRentalSteps.map((step, index) => (
-            <article key={step.title} className="relative rounded-lg border border-slate-200 bg-white p-5 soft-shadow"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-lime-300 text-sm font-black text-slate-950">{index + 1}</span><h3 className="mt-4 text-base text-slate-950">{step.title}</h3><p className="mt-2 text-sm text-slate-600">{step.description}</p>{index < homeRentalSteps.length - 1 && <ArrowRight className="absolute right-4 top-6 hidden h-5 w-5 text-slate-300 md:block" aria-hidden />}</article>
-          ))}
-        </div>
-        <RequestQuoteButton className="mt-8" />
-      </section>
-
-      <section className="bg-slate-950 py-14 text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 md:px-6 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-          <div><Badge tone="amber">Suporte operacional</Badge><h2 className="mt-4 text-white">Atendimento que acompanha a sua operacao</h2><p className="mt-4 max-w-2xl text-slate-300">Da escolha do equipamento ao suporte durante a locacao, nossa equipe esta pronta para ajudar sua operacao a seguir em movimento.</p></div>
-          <div className="grid gap-3 sm:grid-cols-2"><TalkToSpecialistButton /><RequestQuoteButton /><WhatsAppButton className="sm:col-span-2" /></div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
-        <SectionHeader eyebrow="Prova social" title="Experiencia em operacoes que trabalham em altura" description="Nomes citados no blueprint. Logos e depoimentos permanecem pendentes de autorizacao e validacao." />
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{clients.map((client) => <div key={client} className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5 text-center"><p className="text-lg font-black text-slate-950">{client}</p><p className="mt-2 text-xs font-bold uppercase tracking-wider text-slate-500">Referencia a validar</p></div>)}</div>
       </section>
 
       <section className="bg-slate-50 py-14">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[0.8fr_1fr] lg:items-center">
-          <div className="rounded-lg border border-slate-200 bg-white p-6 premium-shadow"><MapPin className="h-9 w-9 text-lime-700" aria-hidden /><h2 className="mt-5 text-slate-950">Sao Paulo e regiao</h2><p className="mt-3 text-slate-600">Atendimento em um raio de ate 150 km da nossa base.</p><Button href="/area-de-atendimento/" variant="secondary" className="mt-5">Consulte a area de atendimento</Button></div>
-          <div className="industrial-grid min-h-72 rounded-lg border border-slate-200 bg-white p-6"><div className="flex h-full items-center justify-center rounded-full border-2 border-dashed border-lime-500 bg-lime-50 text-center"><div><p className="text-4xl font-black text-slate-950">150 km</p><p className="mt-2 text-sm font-bold text-slate-600">raio de atendimento</p></div></div></div>
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <Badge tone="lime">Área de atendimento</Badge>
+            <h2 className="mt-4 text-slate-950">Locação de plataformas elevatórias em São Paulo e região</h2>
+            <div className="mt-4 space-y-4 text-base leading-7 text-slate-600">
+              <p>A Accesslift atende empresas em São Paulo e municípios dentro de um raio de até 150 km de nossa base, conforme disponibilidade e condições da operação.</p>
+              <p>Nossa estrutura de atendimento integra locação, entrega e retirada dos equipamentos e suporte técnico durante a operação.</p>
+              <p className="font-extrabold text-slate-800">Precisa saber se atendemos sua cidade?</p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href="/area-de-atendimento/" variant="secondary">Consultar atendimento</Button>
+              <RequestQuoteButton />
+            </div>
+          </div>
+          <div className="industrial-grid min-h-72 rounded-lg border border-slate-200 bg-white p-6 premium-shadow">
+            <div className="flex h-full min-h-60 items-center justify-center rounded-full border-2 border-dashed border-lime-500 bg-lime-50 text-center">
+              <div>
+                <p className="text-4xl font-black text-slate-950">150 km</p>
+                <p className="mt-2 text-sm font-bold text-slate-600">raio de atendimento</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
-        <SectionHeader eyebrow="Central de Conhecimento" title="Conteudos para orientar sua decisao" description="Materiais preparados para a base editorial da Accesslift." />
-        <div className="grid gap-4 md:grid-cols-3">{blogPosts.slice(0, 3).map((post) => <article key={post.id} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow"><Sparkles className="h-7 w-7 text-lime-700" aria-hidden /><h3 className="mt-5 text-slate-950">{post.title}</h3><p className="mt-2 text-sm text-slate-600">{post.summary}</p><Button href="/blog/" variant="ghost" className="mt-4 px-0">Ver na Central de Conhecimento</Button></article>)}</div>
-      </section>
+        <SectionHeader
+          eyebrow="Clientes e avaliações"
+          title="A confiança de quem trabalha com a Accesslift"
+          description="Há 12 anos, a Accesslift atende empresas de diferentes portes e segmentos, construindo relações baseadas em atendimento próximo, equipamentos adequados e suporte durante a locação. A experiência de nossos clientes ajuda a mostrar, na prática, o compromisso que buscamos manter em cada atendimento."
+        />
+        <h3 className="text-xl font-black text-slate-950">Empresas que já confiaram na Accesslift</h3>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {homeClients.map((client) => (
+            <div key={client.name} className="flex min-h-28 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-5 text-center">
+              {client.logoSrc ? (
+                <img src={client.logoSrc} alt={client.logoAlt} className="max-h-14 max-w-full object-contain" loading="lazy" decoding="async" />
+              ) : (
+                <p className="text-lg font-black text-slate-950">{client.name}</p>
+              )}
+            </div>
+          ))}
+        </div>
 
-      <section className="bg-slate-50 py-14"><div className="mx-auto max-w-4xl px-4 md:px-6"><SectionHeader eyebrow="FAQ" title="Perguntas frequentes" /><Accordion items={homeFaqItems} /></div></section>
+        {(homeGoogleReviews.length > 0 || googleReviewsProfileUrl) && (
+          <div className="mt-10 border-t border-slate-200 pt-10">
+            <h3 className="text-2xl font-black text-slate-950">Avaliações da Accesslift no Google</h3>
+            {homeGoogleReviews.length > 0 ? (
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                {homeGoogleReviews.slice(0, 5).map((review) => (
+                  <article key={review.id} className="rounded-lg border border-slate-200 bg-white p-5 premium-shadow">
+                    <div className="flex gap-1" aria-label={`${review.rating} de 5 estrelas`}>
+                      {Array.from({ length: review.rating }, (_, index) => <Star key={index} className="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden />)}
+                    </div>
+                    <blockquote className="mt-4 text-sm leading-6 text-slate-700">“{review.excerpt}”</blockquote>
+                    <p className="mt-4 text-sm font-black text-slate-950">{review.author}</p>
+                    <p className="text-xs font-semibold text-slate-500">Avaliação no Google</p>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+                Consulte as avaliações publicadas no perfil da Accesslift diretamente no Google.
+              </p>
+            )}
+            {googleReviewsProfileUrl && (
+              <a href={googleReviewsProfileUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-lime-700 hover:text-lime-800">
+                Ver avaliações da Accesslift no Google <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
+            )}
+          </div>
+        )}
+      </section>
 
       <section className="bg-lime-300 py-14">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
-          <div><Badge tone="outline">Vamos conversar</Badge><h2 className="mt-4 text-slate-950">Precisa de uma plataforma para sua operacao?</h2><p className="mt-3 max-w-2xl text-slate-800">Solicite um orcamento ou fale com nossa equipe para encontrar a solucao mais adequada.</p></div>
-          <div className="grid gap-3 sm:grid-cols-2"><RequestQuoteButton /><WhatsAppButton /></div>
+          <div>
+            <Badge tone="outline">Vamos conversar</Badge>
+            <h2 className="mt-4 text-slate-950">Precisa de uma plataforma elevatória?</h2>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-800">Conte para a Accesslift onde será realizado o trabalho, a altura aproximada e o período de utilização. Nossa equipe pode ajudar a identificar a plataforma mais adequada para sua necessidade.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <RequestQuoteButton />
+            <Button href="/contato/" variant="secondary">Falar com a Accesslift</Button>
+          </div>
         </div>
       </section>
     </>
