@@ -17,12 +17,12 @@ export type BlogPost = {
 export const blogIndexSeo: PageSeo & { h1: string } = {
   h1: "Central de Conhecimento",
   title: "Blog | Accesslift",
-  description: "Base preparada para conteudo administravel e artigos Accesslift.",
+  description: "Base preparada para conteúdo administrável e artigos Accesslift.",
   canonicalPath: "/blog/",
   indexDirective: "noindex",
 };
 
-export const blogCategories = ["Escolha de equipamento", "Locacao", "Seguranca", "Operacao"];
+export const blogCategories = ["Escolha de equipamento", "Locação", "Segurança", "Operação"];
 
 export const blogPosts: BlogPost[] = [
   {
@@ -30,17 +30,17 @@ export const blogPosts: BlogPost[] = [
     slug: "como-escolher-plataforma-elevatoria",
     status: "draft",
     category: "Escolha de equipamento",
-    title: "Como escolher uma plataforma elevatoria",
-    summary: "Rascunho estrutural para futuro conteudo aprovado.",
+    title: "Como escolher uma plataforma elevatória",
+    summary: "Rascunho estrutural para futuro conteúdo aprovado.",
     body: [
-      "Este artigo esta em rascunho estrutural e deve receber conteudo tecnico/comercial validado antes de publicacao.",
-      "A estrutura suporta secoes, categorias, relacionados e metadados SEO por artigo.",
+      "Este artigo está em rascunho estrutural e deve receber conteúdo técnico/comercial validado antes de publicação.",
+      "A estrutura suporta seções, categorias, relacionados e metadados SEO por artigo.",
     ],
     relatedSlugs: ["locacao-diaria-semanal-mensal"],
     seo: {
-      h1: "Como escolher uma plataforma elevatoria",
-      title: "Como escolher uma plataforma elevatoria | Accesslift",
-      description: "Rascunho preparado para conteudo futuro sobre escolha de plataformas.",
+      h1: "Como escolher uma plataforma elevatória",
+      title: "Como escolher uma plataforma elevatória | Accesslift",
+      description: "Rascunho preparado para conteúdo futuro sobre escolha de plataformas.",
       canonicalPath: "/blog/como-escolher-plataforma-elevatoria/",
       indexDirective: "noindex",
     },
@@ -49,17 +49,17 @@ export const blogPosts: BlogPost[] = [
     id: "draft-locacao",
     slug: "locacao-diaria-semanal-mensal",
     status: "draft",
-    category: "Locacao",
-    title: "Locacao diaria, semanal ou mensal",
-    summary: "Rascunho estrutural para explicar modalidades de locacao.",
+    category: "Locação",
+    title: "Locação diária, semanal ou mensal",
+    summary: "Rascunho estrutural para explicar modalidades de locação.",
     body: [
-      "Conteudo ainda pendente de aprovacao. A pagina esta pronta para receber texto oficial.",
+      "Conteúdo ainda pendente de aprovação. A página está pronta para receber texto oficial.",
     ],
     relatedSlugs: ["seguranca-operacao-altura"],
     seo: {
-      h1: "Locacao diaria, semanal ou mensal",
-      title: "Locacao diaria, semanal ou mensal | Accesslift",
-      description: "Rascunho preparado para conteudo futuro sobre locacao.",
+      h1: "Locação diária, semanal ou mensal",
+      title: "Locação diária, semanal ou mensal | Accesslift",
+      description: "Rascunho preparado para conteúdo futuro sobre locação.",
       canonicalPath: "/blog/locacao-diaria-semanal-mensal/",
       indexDirective: "noindex",
     },
@@ -68,17 +68,17 @@ export const blogPosts: BlogPost[] = [
     id: "draft-seguranca",
     slug: "seguranca-operacao-altura",
     status: "draft",
-    category: "Seguranca",
-    title: "Seguranca e operacao em altura",
-    summary: "Rascunho estrutural para conteudos sobre seguranca e NR-35.",
+    category: "Segurança",
+    title: "Segurança e operação em altura",
+    summary: "Rascunho estrutural para conteúdos sobre segurança e NR-35.",
     body: [
-      "Conteudo preparado como estrutura, sem declaracoes de certificacao ou conformidade nao fornecidas.",
+      "Conteúdo preparado como estrutura, sem declarações de certificação ou conformidade não fornecidas.",
     ],
     relatedSlugs: ["como-escolher-plataforma-elevatoria"],
     seo: {
-      h1: "Seguranca e operacao em altura",
-      title: "Seguranca e operacao em altura | Accesslift",
-      description: "Rascunho preparado para conteudo futuro sobre seguranca.",
+      h1: "Segurança e operação em altura",
+      title: "Segurança e operação em altura | Accesslift",
+      description: "Rascunho preparado para conteúdo futuro sobre segurança.",
       canonicalPath: "/blog/seguranca-operacao-altura/",
       indexDirective: "noindex",
     },

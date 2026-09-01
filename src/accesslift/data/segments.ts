@@ -8,26 +8,26 @@ export type Segment = {
 export const segments: Segment[] = [
   {
     slug: "industria",
-    title: "Industria",
-    summary: "Manutencao, instalacoes, inspecoes e intervencoes em estruturas industriais.",
+    title: "Indústria",
+    summary: "Manutenção, instalações, inspeções e intervenções em estruturas industriais.",
     href: "/segmentos/industria/",
   },
   {
     slug: "construcao-civil",
-    title: "Construcao civil",
-    summary: "Acesso elevado para instalacoes, montagens, acabamentos e diferentes etapas da obra.",
+    title: "Construção civil",
+    summary: "Acesso elevado para instalações, montagens, acabamentos e diferentes etapas da obra.",
     href: "/segmentos/construcao-civil/",
   },
   {
     slug: "supermercados-e-hipermercados",
     title: "Supermercados e hipermercados",
-    summary: "Manutencao, iluminacao, infraestrutura e comunicacao visual em grandes ambientes comerciais.",
+    summary: "Manutenção, iluminação, infraestrutura e comunicação visual em grandes ambientes comerciais.",
     href: "/segmentos/supermercados-e-hipermercados/",
   },
   {
     slug: "atacados",
     title: "Atacados",
-    summary: "Trabalhos em altura em grandes instalacoes atacadistas, infraestrutura e manutencao.",
+    summary: "Trabalhos em altura em grandes instalações atacadistas, infraestrutura e manutenção.",
     href: "/segmentos/atacados/",
   },
 ];

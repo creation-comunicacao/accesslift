@@ -40,8 +40,8 @@ import {
 } from "./seo/schema";
 
 const notFoundSeo: PageSeo = {
-  title: "Pagina nao encontrada | Accesslift",
-  description: "Rota nao encontrada na fundacao V2 Accesslift.",
+  title: "Página não encontrada | Accesslift",
+  description: "Rota não encontrada na fundacao V2 Accesslift.",
   canonicalPath: "/",
   indexDirective: "noindex",
 };

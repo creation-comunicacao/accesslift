@@ -43,7 +43,7 @@ export async function submitQuoteRequest(
   payload: QuoteRequestPayload,
 ): Promise<LeadSubmissionResult> {
   if (payload.antispam) {
-    throw new Error("Falha na validacao antispam.");
+    throw new Error("Falha na validação antispam.");
   }
 
   await new Promise((resolve) => window.setTimeout(resolve, 500));
@@ -58,7 +58,7 @@ export async function submitSupportRequest(
   payload: SupportRequestPayload,
 ): Promise<LeadSubmissionResult> {
   if (payload.antispam) {
-    throw new Error("Falha na validacao antispam.");
+    throw new Error("Falha na validação antispam.");
   }
 
   await new Promise((resolve) => window.setTimeout(resolve, 500));

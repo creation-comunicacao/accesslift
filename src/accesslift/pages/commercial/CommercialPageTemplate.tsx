@@ -45,7 +45,7 @@ export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
         <Fragment key={section.title}>
           {section.items ? (
             <SectionList
-              eyebrow={section.eyebrow || "Guia de locacao"}
+              eyebrow={section.eyebrow || "Guia de locação"}
               title={section.title}
               description={section.description}
               items={section.items}

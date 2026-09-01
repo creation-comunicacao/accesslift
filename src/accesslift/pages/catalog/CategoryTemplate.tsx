@@ -39,120 +39,120 @@ type CategoryContent = {
 const categoryContent: Record<EquipmentCategorySlug, CategoryContent> = {
   "plataformas-tesoura": {
     eyebrow: "Categoria SEO",
-    title: "Plataformas Elevatorias Tesoura",
+    title: "Plataformas Elevatórias Tesoura",
     description:
-      "Solucoes para trabalhos que exigem elevacao predominantemente vertical, com diferentes opcoes de altura, dimensoes e capacidade.",
-    primaryCta: { label: "Ver modelos disponiveis", href: "#modelos" },
+      "Soluções para trabalhos que exigem elevação predominantemente vertical, com diferentes opções de altura, dimensões e capacidade.",
+    primaryCta: { label: "Ver modelos disponíveis", href: "#modelos" },
     introTitle: "Quando utilizar uma plataforma tesoura?",
     intro:
-      "A plataforma tesoura realiza a elevacao da area de trabalho predominantemente na vertical. Essa caracteristica torna o equipamento adequado para atividades em que o ponto de execucao esta acima da posicao da maquina e nao exige grande alcance horizontal.",
+      "A plataforma tesoura realiza a elevação da área de trabalho predominantemente na vertical. Essa característica torna o equipamento adequado para atividades em que o ponto de execução está acima da posição da máquina e não exige grande alcance horizontal.",
     introComplement:
-      "Pode ser utilizada em diferentes atividades de manutencao, instalacoes, montagens, construcao e operacoes industriais e comerciais, sempre considerando as caracteristicas do equipamento e do local.",
-    modelsTitle: "Modelos de plataformas tesoura disponiveis",
-    bestFor: ["Trabalhos verticais", "Espaco adequado para posicionamento", "Manutencao, instalacao, montagem e construcao"],
+      "Pode ser utilizada em diferentes atividades de manutenção, instalações, montagens, construção e operações industriais e comerciais, sempre considerando as características do equipamento e do local.",
+    modelsTitle: "Modelos de plataformas tesoura disponíveis",
+    bestFor: ["Trabalhos verticais", "Espaço adequado para posicionamento", "Manutenção, instalação, montagem e construção"],
     choiceTitle: "Como escolher uma plataforma tesoura?",
     choiceItems: [
-      { title: "Altura de trabalho", description: "O equipamento deve atender a altura necessaria para execucao da atividade." },
-      { title: "Dimensoes", description: "Largura, comprimento e altura recolhida sao relevantes quando existem corredores, portas ou acessos limitados." },
-      { title: "Capacidade", description: "Considere o numero de operadores e os materiais e ferramentas necessarios para a atividade." },
-      { title: "Area da plataforma", description: "As dimensoes da plataforma podem ser importantes quando a atividade exige movimentacao do operador ou transporte de materiais." },
-      { title: "Condicoes da operacao", description: "O ambiente e as caracteristicas do piso e dos acessos devem ser avaliados antes da escolha." },
+      { title: "Altura de trabalho", description: "O equipamento deve atender a altura necessária para execução da atividade." },
+      { title: "Dimensões", description: "Largura, comprimento e altura recolhida são relevantes quando existem corredores, portas ou acessos limitados." },
+      { title: "Capacidade", description: "Considere o número de operadores e os materiais e ferramentas necessários para a atividade." },
+      { title: "Área da plataforma", description: "As dimensões da plataforma podem ser importantes quando a atividade exige movimentação do operador ou transporte de materiais." },
+      { title: "Condições da operação", description: "O ambiente e as características do piso e dos acessos devem ser avaliados antes da escolha." },
     ],
     counterpartTitle: "Quando considerar uma plataforma articulada?",
     counterpartDescription:
-      "Se o ponto de trabalho nao estiver diretamente acima da posicao do equipamento ou houver obstaculos que precisem ser contornados, uma plataforma articulada pode ser mais adequada. A principal diferenca esta no tipo de movimentacao: a tesoura prioriza elevacao vertical, enquanto a articulada acrescenta alcance horizontal.",
+      "Se o ponto de trabalho não estiver diretamente acima da posição do equipamento ou houver obstáculos que precisem ser contornados, uma plataforma articulada pode ser mais adequada. A principal diferença esta no tipo de movimentação: a tesoura prioriza elevação vertical, enquanto a articulada acrescenta alcance horizontal.",
     counterpartHref: "/plataformas-articuladas/",
     counterpartLabel: "Ver plataformas articuladas",
-    rentalTitle: "Locacao de plataforma tesoura",
+    rentalTitle: "Locação de plataforma tesoura",
     rentalDescription:
-      "A Accesslift disponibiliza plataformas tesoura para locacoes diarias, semanais e mensais, com entrega e retirada proprias e suporte tecnico durante a operacao. Nao sabe qual modelo escolher? Informe a altura aproximada, cidade e caracteristicas do trabalho para que nossa equipe possa auxiliar.",
+      "A Accesslift disponibiliza plataformas tesoura para locacoes diárias, semanais e mensais, com entrega e retirada próprias e suporte técnico durante a operação. Não sabe qual modelo escolher? Informe a altura aproximada, cidade e características do trabalho para que nossa equipe possa auxiliar.",
     faq: [
       {
         question: "Para que serve uma plataforma tesoura?",
-        answer: "E utilizada para trabalhos em altura que exigem principalmente elevacao vertical, em atividades como manutencao, instalacoes, montagens e diferentes operacoes industriais, comerciais e de construcao.",
+        answer: "E utilizada para trabalhos em altura que exigem principalmente elevação vertical, em atividades como manutenção, instalações, montagens e diferentes operações industriais, comerciais e de construção.",
       },
       {
-        question: "Qual a diferenca entre plataforma tesoura e articulada?",
-        answer: "A tesoura realiza movimentacao predominantemente vertical. A articulada acrescenta alcance horizontal e permite acessar pontos sobre ou ao redor de obstaculos.",
+        question: "Qual a diferença entre plataforma tesoura e articulada?",
+        answer: "A tesoura realiza movimentação predominantemente vertical. A articulada acrescenta alcance horizontal e permite acessar pontos sobre ou ao redor de obstáculos.",
       },
       {
         question: "Como saber a altura da plataforma que preciso?",
-        answer: "E necessario considerar a altura do ponto onde o trabalho sera executado e as especificacoes de altura de trabalho de cada modelo.",
+        answer: "E necessário considerar a altura do ponto onde o trabalho sera executado e as específicações de altura de trabalho de cada modelo.",
       },
       {
         question: "Posso alugar uma plataforma tesoura por apenas um dia?",
-        answer: "A Accesslift trabalha com locacoes diarias, semanais e mensais, conforme disponibilidade e condicoes da operacao.",
+        answer: "A Accesslift trabalha com locacoes diárias, semanais e mensais, conforme disponibilidade e condições da operação.",
       },
       {
         question: "A Accesslift entrega a plataforma?",
-        answer: "Sim. A empresa possui entrega e retirada proprias dentro da sua area de atendimento.",
+        answer: "Sim. A empresa possui entrega e retirada próprias dentro da sua área de atendimento.",
       },
     ],
-    finalTitle: "Encontre a plataforma tesoura para sua operacao",
-    finalDescription: "Compare os modelos disponiveis ou fale com nossa equipe.",
+    finalTitle: "Encontre a plataforma tesoura para sua operação",
+    finalDescription: "Compare os modelos disponíveis ou fale com nossa equipe.",
   },
   "plataformas-articuladas": {
     eyebrow: "Categoria SEO",
-    title: "Plataformas Elevatorias Articuladas",
+    title: "Plataformas Elevatórias Articuladas",
     description:
-      "Equipamentos para trabalhos em altura que exigem alcance vertical e horizontal, oferecendo maior flexibilidade para acessar pontos sobre ou ao redor de obstaculos.",
-    primaryCta: { label: "Ver modelos disponiveis", href: "#modelos" },
+      "Equipamentos para trabalhos em altura que exigem alcance vertical e horizontal, oferecendo maior flexibilidade para acessar pontos sobre ou ao redor de obstáculos.",
+    primaryCta: { label: "Ver modelos disponíveis", href: "#modelos" },
     introTitle: "Altura e alcance para acessar pontos de trabalho",
     intro:
-      "Nem todo trabalho em altura pode ser alcancado posicionando o equipamento diretamente abaixo do ponto de execucao. A plataforma articulada utiliza secoes articuladas para combinar elevacao e alcance horizontal, permitindo posicionar o operador em locais que exigem maior flexibilidade de acesso.",
+      "Nem todo trabalho em altura pode ser alcançado posicionando o equipamento diretamente abaixo do ponto de execução. A plataforma articulada utiliza seções articuladas para combinar elevação e alcance horizontal, permitindo posicionar o operador em locais que exigem maior flexibilidade de acesso.",
     introComplement:
-      "Essa caracteristica torna a categoria especialmente util quando existem estruturas, equipamentos, instalacoes ou outros obstaculos entre a base da plataforma e o ponto de trabalho.",
-    modelsTitle: "Modelos de plataformas articuladas disponiveis",
-    bestFor: ["Altura com alcance horizontal", "Acesso sobre ou ao redor de obstaculos", "Trabalhos industriais, comerciais e de infraestrutura"],
+      "Essa característica torna a categoria especialmente útil quando existem estruturas, equipamentos, instalações ou outros obstáculos entre a base da plataforma e o ponto de trabalho.",
+    modelsTitle: "Modelos de plataformas articuladas disponíveis",
+    bestFor: ["Altura com alcance horizontal", "Acesso sobre ou ao redor de obstáculos", "Trabalhos industriais, comerciais e de infraestrutura"],
     choiceTitle: "O que considerar ao escolher uma plataforma articulada?",
     choiceItems: [
-      { title: "Altura de trabalho", description: "Determine a altura necessaria para chegar ao ponto onde a atividade sera executada." },
-      { title: "Alcance horizontal", description: "E uma das especificacoes mais importantes nessa categoria e indica ate onde o equipamento pode alcancar lateralmente." },
-      { title: "Obstaculos", description: "Estruturas, instalacoes e equipamentos existentes no caminho influenciam a escolha e o posicionamento da plataforma." },
-      { title: "Espaco para posicionamento e manobra", description: "Dimensoes do equipamento e caracteristicas do local devem ser consideradas." },
-      { title: "Capacidade", description: "Considere operadores, ferramentas e materiais necessarios para realizar a atividade." },
+      { title: "Altura de trabalho", description: "Determine a altura necessária para chegar ao ponto onde a atividade sera executada." },
+      { title: "Alcance horizontal", description: "E uma das específicações mais importantes nessa categoria e indica até onde o equipamento pode alcançar lateralmente." },
+      { title: "Obstáculos", description: "Estruturas, instalações e equipamentos existentes no caminho influenciam a escolha e o posicionamento da plataforma." },
+      { title: "Espaço para posicionamento e manobra", description: "Dimensões do equipamento e características do local devem ser consideradas." },
+      { title: "Capacidade", description: "Considere operadores, ferramentas e materiais necessários para realizar a atividade." },
     ],
     applications: [
-      "manutencao de instalacoes e estruturas",
+      "manutenção de instalações e estruturas",
       "trabalhos industriais",
-      "instalacoes eletricas e infraestrutura",
+      "instalações elétricas e infraestrutura",
       "montagens",
-      "intervencoes em fachadas e estruturas",
-      "trabalhos em areas comerciais e logisticas",
-      "atividades de construcao",
+      "intervenções em fachadas e estruturas",
+      "trabalhos em áreas comerciais e logisticas",
+      "atividades de construção",
     ],
     counterpartTitle: "Quando uma plataforma tesoura pode ser suficiente?",
     counterpartDescription:
-      "Se o trabalho exige principalmente elevacao vertical e o equipamento pode ser posicionado diretamente abaixo da area de execucao, uma plataforma tesoura pode atender melhor a necessidade. Quando ha necessidade de alcance horizontal ou de superar obstaculos, a plataforma articulada ganha vantagem.",
+      "Se o trabalho exige principalmente elevação vertical e o equipamento pode ser posicionado diretamente abaixo da área de execução, uma plataforma tesoura pode atender melhor a necessidade. Quando ha necessidade de alcance horizontal ou de superar obstáculos, a plataforma articulada ganha vantagem.",
     counterpartHref: "/plataformas-tesoura/",
     counterpartLabel: "Ver plataformas tesoura",
-    rentalTitle: "Locacao de plataforma articulada",
+    rentalTitle: "Locação de plataforma articulada",
     rentalDescription:
-      "A Accesslift disponibiliza plataformas articuladas para locacoes diarias, semanais e mensais, com entrega e retirada proprias e suporte tecnico durante a operacao. Caso ainda nao saiba qual modelo utilizar, informe a altura aproximada e as caracteristicas do acesso ao ponto de trabalho.",
+      "A Accesslift disponibiliza plataformas articuladas para locacoes diárias, semanais e mensais, com entrega e retirada próprias e suporte técnico durante a operação. Caso ainda não saiba qual modelo utilizar, informe a altura aproximada e as características do acesso ao ponto de trabalho.",
     faq: [
       {
         question: "Para que serve uma plataforma articulada?",
-        answer: "E utilizada em trabalhos em altura que, alem da elevacao, exigem alcance horizontal ou acesso sobre e ao redor de obstaculos.",
+        answer: "E utilizada em trabalhos em altura que, além da elevação, exigem alcance horizontal ou acesso sobre e ao redor de obstáculos.",
       },
       {
-        question: "Qual a diferenca entre plataforma articulada e tesoura?",
-        answer: "A plataforma tesoura prioriza movimentacao vertical. A articulada combina altura e alcance horizontal.",
+        question: "Qual a diferença entre plataforma articulada e tesoura?",
+        answer: "A plataforma tesoura prioriza movimentação vertical. A articulada combina altura e alcance horizontal.",
       },
       {
         question: "O que significa alcance horizontal?",
-        answer: "E a capacidade de a plataforma alcancar lateralmente um ponto de trabalho em relacao a posicao do equipamento, dentro das especificacoes e condicoes definidas pelo fabricante.",
+        answer: "E a capacidade de a plataforma alcançar lateralmente um ponto de trabalho em relação a posição do equipamento, dentro das específicações e condições definidas pelo fabricante.",
       },
       {
         question: "Como escolher o modelo adequado?",
-        answer: "Altura, alcance horizontal, capacidade, espaco para posicionamento e caracteristicas do local estao entre os fatores que precisam ser considerados.",
+        answer: "Altura, alcance horizontal, capacidade, espaço para posicionamento e características do local estao entre os fatores que precisam ser considerados.",
       },
       {
-        question: "A Accesslift trabalha com locacao diaria?",
-        answer: "Sim. A empresa disponibiliza locacoes diarias, semanais e mensais, conforme disponibilidade e condicoes da operacao.",
+        question: "A Accesslift trabalha com locação diária?",
+        answer: "Sim. A empresa disponibiliza locações diárias, semanais e mensais, conforme disponibilidade e condições da operação.",
       },
     ],
-    finalTitle: "Precisa alcancar um ponto de dificil acesso?",
-    finalDescription: "Compare as plataformas articuladas disponiveis ou fale com a Accesslift para identificar as opcoes adequadas a sua operacao.",
+    finalTitle: "Precisa alcançar um ponto de difícil acesso?",
+    finalDescription: "Compare as plataformas articuladas disponíveis ou fale com a Accesslift para identificar as opções adequadas a sua operação.",
   },
 };
 
@@ -176,12 +176,12 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href={content.primaryCta.href}>{content.primaryCta.label}</Button>
               <Button href="/solicite-orcamento/" variant="secondary">
-                Solicitar orcamento
+                Solicitar orçamento
               </Button>
             </div>
           </div>
           <div className="rounded-lg border border-slate-200 bg-white p-5 premium-shadow">
-            <h2 className="text-xl font-black text-slate-950">Aplicacoes comuns</h2>
+            <h2 className="text-xl font-black text-slate-950">Aplicações comuns</h2>
             <ul className="mt-4 grid gap-3 text-sm font-semibold text-slate-600">
               {content.bestFor.map((item) => (
                 <li key={item} className="rounded-md bg-slate-50 px-3 py-2">
@@ -214,7 +214,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
             </Badge>
             <h2 className="mt-4 text-slate-950">{content.modelsTitle}</h2>
             <p className="mt-2 text-sm font-semibold text-slate-600">
-              Grade dinamica alimentada pelo cadastro central de equipamentos, sem transformar filtros de altura, marca ou eletrica em paginas indexaveis.
+              Grade dinamica alimentada pelo cadastro central de equipamentos, sem transformar filtros de altura, marca ou elétrica em paginas indexaveis.
             </p>
           </div>
           <CheckAvailabilityButton />
@@ -228,10 +228,10 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
 
         <div className="mt-8 flex flex-wrap gap-3 border-t border-slate-200 pt-6">
           <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary">
-            Ver opcoes de locacao
+            Ver opções de locação
           </Button>
           <Button href="/segmentos-e-aplicacoes/" variant="ghost">
-            Ver aplicacoes
+            Ver aplicações
           </Button>
           <Button href="/equipamentos/" variant="ghost">
             Ver todos os equipamentos
@@ -257,10 +257,10 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       {content.applications && (
         <section className="bg-slate-50 py-12">
           <div className="mx-auto max-w-7xl px-4 md:px-6">
-            <Badge tone="lime">Aplicacoes</Badge>
+            <Badge tone="lime">Aplicações</Badge>
             <h2 className="mt-4 text-slate-950">Onde uma plataforma articulada pode ser utilizada?</h2>
             <p className="mt-3 max-w-3xl text-slate-600">
-              Dependendo do modelo e das condicoes do local, plataformas articuladas podem atender atividades como:
+              Dependendo do modelo e das condições do local, plataformas articuladas podem atender atividades como:
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {content.applications.map((item) => (
@@ -270,7 +270,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
               ))}
             </div>
             <p className="mt-4 max-w-3xl text-sm text-slate-600">
-              A indicacao final do equipamento deve considerar as caracteristicas especificas da operacao.
+              A indicacao final do equipamento deve considerar as características especificas da operação.
             </p>
           </div>
         </section>
@@ -287,7 +287,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
             </Button>
           </article>
           <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-            <Badge tone="lime">Locacao</Badge>
+            <Badge tone="lime">Locação</Badge>
             <h2 className="mt-4 text-slate-950">{content.rentalTitle}</h2>
             <p className="mt-3 text-slate-600">{content.rentalDescription}</p>
             <RequestQuoteButton className="mt-5" />
@@ -297,7 +297,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
 
       <OfficialMediaGallery
         title={slug === "plataformas-tesoura" ? "Plataformas tesoura da frota" : "Plataformas articuladas da frota"}
-        description="Imagens sem identificacao legivel de modelo permanecem na categoria e nao sao usadas como foto de um equipamento especifico."
+        description="Imagens sem identificação legivel de modelo permanecem na categoria e não sao usadas como foto de um equipamento especifico."
         images={categoryGalleryBySlug[slug]}
       />
 
@@ -305,7 +305,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         <div className="mx-auto max-w-4xl px-4 md:px-6">
           <Badge tone="lime">FAQ</Badge>
           <h2 className="mt-4 text-slate-950">
-            {slug === "plataformas-tesoura" ? "Duvidas sobre plataformas tesoura" : "Duvidas sobre plataformas articuladas"}
+            {slug === "plataformas-tesoura" ? "Dúvidas sobre plataformas tesoura" : "Dúvidas sobre plataformas articuladas"}
           </h2>
           <div className="mt-6">
             <Accordion

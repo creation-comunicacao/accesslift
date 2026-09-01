@@ -60,13 +60,13 @@ export const operationGallery: OfficialMediaItem[] = [
 
 export const categoryGalleryBySlug = {
   "plataformas-articuladas": [
-    { src: asset("equipamentos/galeria/plataforma-articulada-genie-vista-operacional-01.jpeg"), alt: "Plataforma articulada Genie em ambiente operacional", width: 957, height: 1280, caption: "Modelo nao identificado na imagem." },
-    { src: asset("equipamentos/galeria/plataforma-articulada-genie-cesto-frontal.jpeg"), alt: "Cesto de plataforma articulada Genie visto de frente", width: 957, height: 1280, caption: "Modelo nao identificado na imagem." },
-    { src: asset("equipamentos/galeria/plataforma-articulada-genie-vista-traseira.jpeg"), alt: "Vista traseira de plataforma articulada Genie", width: 957, height: 1280, caption: "Modelo nao identificado na imagem." },
+    { src: asset("equipamentos/galeria/plataforma-articulada-genie-vista-operacional-01.jpeg"), alt: "Plataforma articulada Genie em ambiente operacional", width: 957, height: 1280, caption: "Modelo não identificado na imagem." },
+    { src: asset("equipamentos/galeria/plataforma-articulada-genie-cesto-frontal.jpeg"), alt: "Cesto de plataforma articulada Genie visto de frente", width: 957, height: 1280, caption: "Modelo não identificado na imagem." },
+    { src: asset("equipamentos/galeria/plataforma-articulada-genie-vista-traseira.jpeg"), alt: "Vista traseira de plataforma articulada Genie", width: 957, height: 1280, caption: "Modelo não identificado na imagem." },
     { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-evento-lubrax.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento Lubrax", width: 1197, height: 1600, caption: "Genie Z-34/22 em evento externo." },
     { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-evento-byd-ford.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento BYD e Ford", width: 1197, height: 1600, caption: "Genie Z-34/22 em evento externo." },
   ],
   "plataformas-tesoura": [
-    { src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-frota-access-lift.jpeg"), alt: "Plataforma tesoura Skyjack da frota Access Lift", width: 957, height: 1280, caption: "Modelo nao identificado na imagem." },
+    { src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-frota-access-lift.jpeg"), alt: "Plataforma tesoura Skyjack da frota Access Lift", width: 957, height: 1280, caption: "Modelo não identificado na imagem." },
   ],
 } satisfies Record<string, OfficialMediaItem[]>;

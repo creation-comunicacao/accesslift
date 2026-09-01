@@ -26,7 +26,7 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
   const serviceImage = isServicesHub
     ? {
         src: "/images/accesslift/logistica/transporte-plataformas-elevatorias-frota-03.jpeg",
-        alt: "Entrega de plataformas elevatorias da frota Accesslift",
+        alt: "Entrega de plataformas elevatórias da frota Accesslift",
         width: 1599,
         height: 899,
       }
@@ -67,15 +67,15 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
       )}
       {isDelivery && (
         <OfficialMediaGallery
-          title="Entrega e retirada com frota propria"
-          description="Imagens da operacao logistica Accesslift para apoiar a explicacao do servico."
+          title="Entrega e retirada com frota própria"
+          description="Imagens da operação logística Accesslift para apoiar a explicacao do serviço."
           images={deliveryGallery}
         />
       )}
       {isTraining && (
         <OfficialMediaGallery
           title="Equipe em atendimento"
-          description="Registro visual de atividades da equipe. Detalhes de treinamento, carga horaria e certificacao dependem de confirmacao comercial."
+          description="Registro visual de atividades da equipe. Detalhes de treinamento, carga horária e certificação dependem de confirmação comercial."
           images={trainingGallery}
         />
       )}
@@ -84,7 +84,7 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
           section.items ? (
             <SectionList
               key={section.title}
-              eyebrow={section.eyebrow || "Servico"}
+              eyebrow={section.eyebrow || "Serviço"}
               title={section.title}
               description={section.description}
               items={section.items}
@@ -93,7 +93,7 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
           ) : (
             <ValueSection
               key={section.title}
-              eyebrow={section.eyebrow || "Servico"}
+              eyebrow={section.eyebrow || "Serviço"}
               title={section.title}
               description={section.description || ""}
               cta={section.cta}
@@ -103,23 +103,23 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
       ) : (
         <>
           <ValueSection title="Problema ou oportunidade" description={page.problem} />
-          <ValueSection title="Proposta do servico" description={page.proposal} />
-          <SectionList eyebrow="Beneficios" title="Beneficios do servico" items={page.benefits} />
+          <ValueSection title="Proposta do serviço" description={page.proposal} />
+          <SectionList eyebrow="Beneficios" title="Beneficios do serviço" items={page.benefits} />
           <ProcessSection title="Como funciona" steps={page.process} />
-          <SectionList eyebrow="Aplicacoes" title="Aplicacoes previstas" items={page.applications} />
+          <SectionList eyebrow="Aplicações" title="Aplicações previstas" items={page.applications} />
         </>
       )}
       <RelatedEquipmentSection categories={page.relatedCategories} />
       {isServicesHub && (
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-          <h2 className="text-slate-950">Conheca os servicos</h2>
+          <h2 className="text-slate-950">Conheça os serviços</h2>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Button href="/servicos/assistencia-tecnica/" variant="secondary">Assistencia tecnica</Button>
-            <Button href="/servicos/manutencao-preventiva/" variant="secondary">Manutencao preventiva</Button>
+            <Button href="/servicos/assistencia-tecnica/" variant="secondary">Assistência técnica</Button>
+            <Button href="/servicos/manutencao-preventiva/" variant="secondary">Manutenção preventiva</Button>
             <Button href="/servicos/treinamento-de-operadores/" variant="secondary">Treinamento</Button>
-            <Button href="/locacao-de-plataformas-elevatorias/" variant="ghost">Locacao</Button>
-            <Button href="/area-de-atendimento/" variant="ghost">Area de atendimento</Button>
-            <Button href="/seguranca-e-nr35/" variant="ghost">Seguranca e NR-35</Button>
+            <Button href="/locacao-de-plataformas-elevatorias/" variant="ghost">Locação</Button>
+            <Button href="/area-de-atendimento/" variant="ghost">Área de atendimento</Button>
+            <Button href="/seguranca-e-nr35/" variant="ghost">Segurança e NR-35</Button>
           </div>
         </section>
       )}
@@ -127,9 +127,9 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
         <section className="bg-slate-50 py-12">
           <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="text-xs font-black uppercase tracking-wider text-lime-700">Solicite assistencia tecnica</p>
-              <h2 className="mt-3 text-slate-950">Envie as informacoes da ocorrencia</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">Informe modelo, local e descricao da situacao. As solicitacoes sao avaliadas conforme equipamento, localidade e relacao com a operacao Accesslift.</p>
+              <p className="text-xs font-black uppercase tracking-wider text-lime-700">Solicite assistência técnica</p>
+              <h2 className="mt-3 text-slate-950">Envie as informações da ocorrência</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">Informe modelo, local e descrição da situação. As solicitações sao avaliadas conforme equipamento, localidade e relação com a operação Accesslift.</p>
             </div>
             <SupportRequestForm />
           </div>
@@ -137,12 +137,12 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
       )}
       {isMaintenance && (
         <SectionList
-          eyebrow="Orientacao"
-          title="Preventiva, corretiva e assistencia"
+          eyebrow="Orientação"
+          title="Preventiva, corretiva e assistência"
           items={[
-            "Preventiva: acompanhamento das condicoes de funcionamento e identificacao de necessidades de intervencao.",
-            "Corretiva: intervencao aplicavel quando uma necessidade tecnica e identificada.",
-            "Assistencia: suporte tecnico e orientacao conforme a solicitacao e as condicoes do servico.",
+            "Preventiva: acompanhamento das condições de funcionamento e identificação de necessidades de intervenção.",
+            "Corretiva: intervenção aplicável quando uma necessidade técnica e identificada.",
+            "Assistência: suporte técnico e orientação conforme a solicitação e as condições do serviço.",
           ]}
         />
       )}
@@ -150,7 +150,7 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
             <h2 className="text-slate-950">Treinamento e NR-35</h2>
-            <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">Treinamento de operadores e NR-35 possuem objetivos e requisitos proprios. A pagina de seguranca apresenta esse contexto sem declarar carga horaria, certificado ou validade sem confirmacao.</p>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">Treinamento de operadores e NR-35 possuem objetivos e requisitos próprios. A página de segurança apresenta esse contexto sem declarar carga horária, certificado ou validade sem confirmação.</p>
             <Button href="/seguranca-e-nr35/" variant="secondary" className="mt-5">Entender NR-35</Button>
           </div>
         </section>

@@ -12,7 +12,7 @@ export function ContactPage() {
     { label: "Telefone", value: contactConfig.phone || "a configurar", icon: Phone },
     { label: "WhatsApp", value: contactConfig.whatsappNumber || "a configurar", icon: MessageCircle },
     { label: "E-mail", value: contactConfig.email || "a configurar", icon: Mail },
-    { label: "Area", value: contactConfig.address, icon: MapPin },
+    { label: "Área", value: contactConfig.address, icon: MapPin },
   ];
 
   return (
@@ -20,11 +20,11 @@ export function ContactPage() {
       <ConversionHero
         eyebrow="Contato"
         title="Fale com a Accesslift"
-        description="Entre em contato para locacao de plataformas elevatorias, suporte tecnico ou outras informacoes."
+        description="Entre em contato para locação de plataformas elevatórias, suporte técnico ou outras informações."
       />
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <h2 className="text-slate-950">Locacao e orcamento</h2>
+          <h2 className="text-slate-950">Locação e orçamento</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
             Precisa alugar uma plataforma ou consultar disponibilidade?
           </p>
@@ -52,17 +52,17 @@ export function ContactPage() {
             <WhatsAppButton />
           </div>
           <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-5">
-            <h3 className="text-slate-950">Precisa de suporte tecnico?</h3>
+            <h3 className="text-slate-950">Precisa de suporte técnico?</h3>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Para ocorrencias relacionadas a equipamentos em operacao, informe o modelo da plataforma, local e descricao da situacao.
+              Para ocorrências relacionadas a equipamentos em operação, informe o modelo da plataforma, local e descrição da situação.
             </p>
-            <Button href="/servicos/assistencia-tecnica/" variant="secondary" className="mt-4">Solicitar assistencia</Button>
+            <Button href="/servicos/assistencia-tecnica/" variant="secondary" className="mt-4">Solicitar assistência</Button>
           </div>
           <div className="mt-6 rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
             <h3 className="text-slate-950">Onde estamos</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Accesslift Plataformas Elevatorias</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">Accesslift Plataformas Elevatórias</p>
             <p className="mt-1 text-sm font-semibold text-slate-800">{contactConfig.address}</p>
-            <p className="mt-3 text-xs leading-5 text-slate-500">Mapa e horario de atendimento devem ser exibidos somente apos validacao final do cliente.</p>
+            <p className="mt-3 text-xs leading-5 text-slate-500">Mapa e horario de atendimento devem ser exibidos somente apos validação final do cliente.</p>
           </div>
         </div>
         <div>
@@ -71,9 +71,9 @@ export function ContactPage() {
         </div>
       </section>
       <FinalConversionSection
-        title="Procurando uma plataforma elevatoria?"
-        description="Se o contato for para cotacao, utilize nosso formulario de orcamento para enviar as principais informacoes da operacao."
-        primary={{ label: "Solicitar orcamento", href: "/solicite-orcamento/" }}
+        title="Procurando uma plataforma elevatória?"
+        description="Se o contato for para cotação, utilize nosso formulário de orçamento para enviar as principais informações da operação."
+        primary={{ label: "Solicitar orçamento", href: "/solicite-orcamento/" }}
       />
     </>
   );

@@ -7,9 +7,9 @@ export function ServicesPage() {
   return (
     <>
       <PageIntro
-        eyebrow="Servicos"
-        title="Servicos Accesslift"
-        description="Arquitetura preparada para servicos comerciais e operacionais sem duplicacao de componentes."
+        eyebrow="Serviços"
+        title="Serviços Accesslift"
+        description="Arquitetura preparada para serviços comerciais e operacionais sem duplicacao de componentes."
       />
       <section className="mx-auto grid max-w-7xl gap-4 px-4 pb-12 md:grid-cols-3 md:px-6">
         {commercialServices.map((service) => (

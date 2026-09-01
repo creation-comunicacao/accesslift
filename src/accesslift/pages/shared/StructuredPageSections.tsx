@@ -184,7 +184,7 @@ export function ProcessSection({ title, steps }: ProcessSectionProps) {
 }
 
 export function DifferentialsSection() {
-  const items = ["Entrega", "Retirada", "Assistencia", "Manutencao", "Atendimento emergencial", "Treinamento"];
+  const items = ["Entrega", "Retirada", "Assistência", "Manutenção", "Atendimento emergencial", "Treinamento"];
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
@@ -196,7 +196,7 @@ export function DifferentialsSection() {
             <ClipboardCheck className="h-7 w-7 text-lime-700" aria-hidden />
             <h3 className="mt-4 text-slate-950">{item}</h3>
             <p className="mt-2 text-sm text-slate-600">
-              Estrutura pronta para detalhamento real do servico.
+              Estrutura pronta para detalhamento real do serviço.
             </p>
           </article>
         ))}
@@ -219,14 +219,14 @@ export function RelatedEquipmentSection({ categories }: RelatedEquipmentSectionP
     <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
       <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <Badge tone="lime">Catalogo</Badge>
+          <Badge tone="lime">Catálogo</Badge>
           <h2 className="mt-4 text-slate-950">Equipamentos relacionados</h2>
           <p className="mt-2 text-sm font-semibold text-slate-600">
-            Carregados do catalogo por categoria, sem duplicar dados na pagina.
+            Carregados do catálogo por categoria, sem duplicar dados na página.
           </p>
         </div>
         <Button href="/equipamentos/" variant="secondary">
-          Ver catalogo
+          Ver catálogo
         </Button>
       </div>
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -263,8 +263,8 @@ export function FaqSection({ items }: FaqSectionProps) {
 }
 
 export function FinalConversionSection({
-  title = "Precisa consultar disponibilidade ou orcamento?",
-  description = "Use os canais de conversao preparados para atendimento comercial, sem numero de WhatsApp ficticio.",
+  title = "Precisa consultar disponibilidade ou orçamento?",
+  description = "Use os canais de conversao preparados para atendimento comercial, sem número de WhatsApp ficticio.",
   primary,
   secondary,
 }: {

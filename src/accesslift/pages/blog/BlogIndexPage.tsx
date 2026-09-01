@@ -27,7 +27,7 @@ export function BlogIndexPage() {
   return (
     <>
       <ConversionHero
-        eyebrow="Conteudo"
+        eyebrow="Conteúdo"
         title={blogIndexSeo.h1}
         description="Estrutura de Central de Conhecimento com listagem, categorias, busca local, cards, artigos relacionados e SEO por artigo."
       />
@@ -41,7 +41,7 @@ export function BlogIndexPage() {
                 className="min-h-12 w-full rounded-md border border-slate-300 bg-white pl-10 pr-3 text-sm font-medium outline-none transition focus:border-lime-500 focus:ring-2 focus:ring-lime-200"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Buscar conteudo"
+                placeholder="Buscar conteúdo"
               />
             </span>
           </label>

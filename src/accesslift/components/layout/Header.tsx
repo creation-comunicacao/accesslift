@@ -10,16 +10,16 @@ type HeaderProps = {
 };
 
 const platformItems = [
-  { label: "Plataformas Elevatorias", href: "/plataformas-elevatorias/" },
+  { label: "Plataformas Elevatórias", href: "/plataformas-elevatorias/" },
   { label: "Plataformas Tesoura", href: "/plataformas-tesoura/" },
   { label: "Plataformas Articuladas", href: "/plataformas-articuladas/" },
   { label: "Todos os Equipamentos", href: "/equipamentos/" },
 ];
 
 const desktopLinks = [
-  { label: "Locacao", href: "/locacao-de-plataformas-elevatorias/" },
-  { label: "Servicos", href: "/servicos/" },
-  { label: "Aplicacoes", href: "/segmentos-e-aplicacoes/" },
+  { label: "Locação", href: "/locacao-de-plataformas-elevatorias/" },
+  { label: "Serviços", href: "/servicos/" },
+  { label: "Aplicações", href: "/segmentos-e-aplicacoes/" },
   { label: "A Accesslift", href: "/empresa/" },
   { label: "Contato", href: "/contato/" },
 ];
@@ -48,8 +48,8 @@ export function Header({ currentPath }: HeaderProps) {
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
       <div className="hidden border-b border-slate-100 bg-slate-950 text-white lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs font-bold text-slate-300">
-          <span>Atendimento em Sao Paulo e regioes em raio de ate 150 km da base</span>
-          <span>Locacao diaria, semanal, mensal e suporte tecnico</span>
+          <span>Atendimento em São Paulo e regiões em raio de até 150 km da base</span>
+          <span>Locação diária, semanal, mensal e suporte técnico</span>
         </div>
       </div>
 
@@ -68,7 +68,7 @@ export function Header({ currentPath }: HeaderProps) {
           <span className="grid leading-none">
             <span className="text-lg font-black tracking-normal text-slate-950">Accesslift</span>
             <span className="hidden text-[10px] font-extrabold uppercase tracking-wider text-slate-500 sm:block">
-              Plataformas elevatorias
+              Plataformas elevatórias
             </span>
           </span>
         </a>

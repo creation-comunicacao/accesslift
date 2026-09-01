@@ -26,7 +26,7 @@ export function RequestQuoteButton({
         })
       }
     >
-      Solicitar orcamento
+      Solicitar orçamento
     </Button>
   );
 }

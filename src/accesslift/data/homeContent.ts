@@ -133,40 +133,40 @@ export const googleReviewsProfileUrl =
   "https://www.google.com/search?q=accesslift&oq=accesslift+&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABgeMgYIAhAAGB4yBggDEEUYPDIGCAQQRRg8MgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEINzI3N2owajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x94ce5aa4e0c36387:0xe507e2d8dad0c75b,1,,,,";
 
 export const homeRentalSteps = [
-  { title: "Conte o que voce precisa", description: "Altura, local, periodo e caracteristicas da operacao." },
-  { title: "Escolha do equipamento", description: "Nossa equipe auxilia na escolha de uma opcao compativel." },
-  { title: "Suporte", description: "Alinhamos as necessidades e o atendimento da operacao." },
+  { title: "Conte o que você precisa", description: "Altura, local, período e características da operação." },
+  { title: "Escolha do equipamento", description: "Nossa equipe auxilia na escolha de uma opção compativel." },
+  { title: "Suporte", description: "Alinhamos as necessidades e o atendimento da operação." },
   { title: "Entrega", description: "Organizamos a entrega conforme a programacao definida." },
-  { title: "Operacao", description: "Durante o periodo contratado, voce conta com nosso suporte." },
+  { title: "Operação", description: "Durante o período contratado, você conta com nosso suporte." },
 ];
 
 export const homeFaqItems = [
   {
     id: "faq-tesoura-articulada",
-    title: "Qual e a diferenca entre plataforma tesoura e articulada?",
+    title: "Qual e a diferença entre plataforma tesoura e articulada?",
     content:
-      "A plataforma tesoura e indicada para acesso vertical com area de trabalho estavel. A articulada atende operacoes que podem exigir alcance e acesso contornando obstaculos.",
+      "A plataforma tesoura e indicada para acesso vertical com área de trabalho estavel. A articulada atende operações que podem exigir alcance e acesso contornando obstáculos.",
   },
   {
     id: "faq-escolha",
-    title: "Como saber qual plataforma e mais adequada para minha operacao?",
+    title: "Como saber qual plataforma e mais adequada para minha operação?",
     content:
-      "A escolha depende da altura, do acesso, do ambiente e do espaco de trabalho. Nossa equipe pode ajudar a identificar o equipamento adequado para sua operacao.",
+      "A escolha depende da altura, do acesso, do ambiente e do espaço de trabalho. Nossa equipe pode ajudar a identificar o equipamento adequado para sua operação.",
   },
   {
     id: "faq-locacao",
-    title: "E possivel alugar por diaria, semana ou mes?",
-    content: "Sim. A Accesslift trabalha com locacao diaria, semanal ou mensal.",
+    title: "E possível alugar por diária, semana ou mês?",
+    content: "Sim. A Accesslift trabalha com locação diária, semanal ou mensal.",
   },
   {
     id: "faq-servicos",
-    title: "A Accesslift realiza entrega, retirada e suporte durante a locacao?",
+    title: "A Accesslift realiza entrega, retirada e suporte durante a locação?",
     content:
-      "A operacao conta com entrega e retirada, assistencia tecnica, manutencao preventiva, atendimento emergencial e treinamento de operadores conforme a necessidade.",
+      "A operação conta com entrega e retirada, assistência técnica, manutenção preventiva, atendimento emergencial e treinamento de operadores conforme a necessidade.",
   },
   {
     id: "faq-atendimento",
-    title: "Qual e a area de atendimento da Accesslift?",
-    content: "Sao Paulo e regioes em um raio de ate 150 km da base.",
+    title: "Qual e a área de atendimento da Accesslift?",
+    content: "São Paulo e regiões em um raio de até 150 km da base.",
   },
 ];

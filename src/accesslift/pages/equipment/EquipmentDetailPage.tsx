@@ -20,6 +20,7 @@ import { Button } from "../../components/buttons/Button";
 import { Accordion } from "../../components/ui/Accordion";
 import { Badge } from "../../components/ui/Badge";
 import type { Equipment } from "../../types/equipment";
+import { formatPublicSpecValue } from "../../utils/publicText";
 
 type EquipmentDetailPageProps = {
   equipment: Equipment;
@@ -32,23 +33,23 @@ const specLabels: Array<{
   { key: "alturaTrabalho", label: "Altura de trabalho" },
   { key: "alturaPlataforma", label: "Altura da plataforma" },
   { key: "capacidade", label: "Capacidade" },
-  { key: "alimentacao", label: "Alimentacao" },
+  { key: "alimentacao", label: "Alimentação" },
   { key: "peso", label: "Peso" },
   { key: "largura", label: "Largura" },
   { key: "comprimento", label: "Comprimento" },
   { key: "alturaRecolhida", label: "Altura recolhida" },
-  { key: "dimensaoPlataforma", label: "Dimensoes da plataforma" },
-  { key: "extensaoDeck", label: "Extensao do deck" },
-  { key: "distanciaEntreEixos", label: "Distancia entre eixos" },
-  { key: "distanciaSolo", label: "Distancia do solo" },
+  { key: "dimensaoPlataforma", label: "Dimensões da plataforma" },
+  { key: "extensaoDeck", label: "Extensão do deck" },
+  { key: "distanciaEntreEixos", label: "Distância entre eixos" },
+  { key: "distanciaSolo", label: "Distância do solo" },
   { key: "raioGiro", label: "Raio de giro" },
   { key: "raioGiroInterno", label: "Raio de giro interno" },
   { key: "raioGiroExterno", label: "Raio de giro externo" },
-  { key: "sistemaEletrico", label: "Sistema eletrico" },
+  { key: "sistemaEletrico", label: "Sistema elétrico" },
   { key: "pneus", label: "Pneus" },
   { key: "bateria", label: "Bateria" },
   { key: "alcanceHorizontal", label: "Alcance horizontal" },
-  { key: "alturaSobreObstaculo", label: "Altura sobre obstaculo" },
+  { key: "alturaSobreObstaculo", label: "Altura sobre obstáculo" },
 ];
 
 const categoryName = (equipment: Equipment) =>
@@ -75,7 +76,7 @@ function ImagePanel({ equipment }: EquipmentDetailPageProps) {
         <div className="flex aspect-[4/3] w-full flex-col items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 px-6 text-center premium-shadow">
           <ImageIcon className="h-12 w-12 text-slate-400" aria-hidden />
           <p className="mt-4 text-sm font-extrabold text-slate-600">
-            Foto especifica deste modelo ainda nao cadastrada.
+            Foto específica deste modelo ainda não cadastrada.
           </p>
         </div>
       )}
@@ -105,7 +106,7 @@ function ImagePanel({ equipment }: EquipmentDetailPageProps) {
 
 const getAvailableSpecs = (equipment: Equipment) =>
   specLabels
-    .map((item) => ({ ...item, value: equipment.specs[item.key] }))
+    .map((item) => ({ ...item, value: formatPublicSpecValue(equipment.specs[item.key]) }))
     .filter((item) => Boolean(item.value));
 
 function HeroSpecs({ equipment }: EquipmentDetailPageProps) {
@@ -117,7 +118,7 @@ function HeroSpecs({ equipment }: EquipmentDetailPageProps) {
   ];
   const specs = specLabels
     .filter((item) => highlightKeys.includes(item.key))
-    .map((item) => ({ ...item, value: equipment.specs[item.key] }))
+    .map((item) => ({ ...item, value: formatPublicSpecValue(equipment.specs[item.key]) }))
     .filter((item) => Boolean(item.value));
 
   if (specs.length === 0) {
@@ -143,9 +144,9 @@ function SpecsTable({ equipment }: EquipmentDetailPageProps) {
     return (
       <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5">
         <Ruler className="h-7 w-7 text-slate-500" aria-hidden />
-        <h2 className="mt-3 text-xl font-black text-slate-950">Especificacoes a cadastrar</h2>
+        <h2 className="mt-3 text-xl font-black text-slate-950">Específicações a cadastrar</h2>
         <p className="mt-2 text-sm text-slate-600">
-          Nenhum dado tecnico oficial foi preenchido para este equipamento.
+          Nenhum dado técnico oficial foi preenchido para este equipamento.
         </p>
       </div>
     );
@@ -171,16 +172,16 @@ function SpecsTable({ equipment }: EquipmentDetailPageProps) {
 
 function SpecsGrid({ equipment }: EquipmentDetailPageProps) {
   const specs = specLabels
-    .map((item) => ({ ...item, value: equipment.specs[item.key] }))
+    .map((item) => ({ ...item, value: formatPublicSpecValue(equipment.specs[item.key]) }))
     .filter((item) => Boolean(item.value));
 
   if (specs.length === 0) {
     return (
       <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5">
         <Ruler className="h-7 w-7 text-slate-500" aria-hidden />
-        <h2 className="mt-3 text-xl font-black text-slate-950">Especificacoes a cadastrar</h2>
+        <h2 className="mt-3 text-xl font-black text-slate-950">Específicações a cadastrar</h2>
         <p className="mt-2 text-sm text-slate-600">
-          Nenhum dado tecnico oficial foi preenchido para este equipamento.
+          Nenhum dado técnico oficial foi preenchido para este equipamento.
         </p>
       </div>
     );
@@ -246,9 +247,6 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
               <Badge tone="lime">{equipment.brand}</Badge>
               <Badge tone="outline">{equipment.model}</Badge>
               <Badge tone="steel">{categoryName(equipment)}</Badge>
-              {equipment.validationStatus === "validate-before-publish" && (
-                <Badge tone="amber">Validar antes de publicar</Badge>
-              )}
             </div>
             <h1 className="mt-5 text-slate-950">{equipment.seo.h1}</h1>
             <p className="mt-4 max-w-2xl text-lg text-slate-600">{equipment.summary}</p>
@@ -267,7 +265,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           <section>
             <div className="mb-5 flex items-center gap-2">
               <PackageCheck className="h-6 w-6 text-lime-700" aria-hidden />
-              <h2 className="text-2xl font-black text-slate-950">Conheca a {equipment.brand} {equipment.model}</h2>
+              <h2 className="text-2xl font-black text-slate-950">Conheça a {equipment.brand} {equipment.model}</h2>
             </div>
             <p className="max-w-3xl text-base leading-7 text-slate-600">{equipment.overview}</p>
           </section>
@@ -275,7 +273,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           <section>
             <div className="mb-5 flex items-center gap-2">
               <PackageCheck className="h-6 w-6 text-lime-700" aria-hidden />
-              <h2 className="text-2xl font-black text-slate-950">Principais caracteristicas</h2>
+              <h2 className="text-2xl font-black text-slate-950">Principais características</h2>
             </div>
             <SpecsGrid equipment={equipment} />
           </section>
@@ -283,14 +281,14 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           <section>
             <div className="mb-5 flex items-center gap-2">
               <Ruler className="h-6 w-6 text-lime-700" aria-hidden />
-              <h2 className="text-2xl font-black text-slate-950">Especificacoes tecnicas</h2>
+              <h2 className="text-2xl font-black text-slate-950">Específicações técnicas</h2>
             </div>
             <SpecsTable equipment={equipment} />
           </section>
 
           <div className="grid gap-5 md:grid-cols-2">
-            <ListSection title="Caracteristicas" items={equipment.characteristics} icon={BadgeCheck} />
-            <ListSection title="Aplicacoes possiveis" items={equipment.applications} icon={Wrench} />
+            <ListSection title="Características" items={equipment.characteristics} icon={BadgeCheck} />
+            <ListSection title="Aplicações possíveis" items={equipment.applications} icon={Wrench} />
           </div>
 
           <section className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
@@ -316,7 +314,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
                   </p>
                 </div>
                 <Button href="/equipamentos/" variant="secondary">
-                  Ver catalogo
+                  Ver catálogo
                 </Button>
               </div>
               <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -328,12 +326,12 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           )}
 
           <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-            <h2 className="text-xl font-black text-slate-950">Locacao da {equipment.brand} {equipment.model}</h2>
+            <h2 className="text-xl font-black text-slate-950">Locação da {equipment.brand} {equipment.model}</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.rentalText}</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <CheckAvailabilityButton equipmentSlug={equipment.slug} />
               <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary">
-                Conhecer locacao
+                Conhecer locação
               </Button>
             </div>
           </section>
@@ -341,7 +339,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
 
         <aside className="h-fit rounded-lg border border-slate-200 bg-white p-5 premium-shadow lg:sticky lg:top-28">
           <FileText className="h-8 w-8 text-lime-700" aria-hidden />
-          <h2 className="mt-4 text-xl font-black text-slate-950">Ficha tecnica</h2>
+          <h2 className="mt-4 text-xl font-black text-slate-950">Ficha técnica</h2>
           {equipment.technicalSheetPdf ? (
             <a
               href={equipment.technicalSheetPdf}
@@ -355,11 +353,11 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
               }
             >
               <Download className="h-4 w-4" aria-hidden />
-              Baixar ficha tecnica
+              Baixar ficha técnica
             </a>
           ) : (
             <p className="mt-3 rounded-md border border-dashed border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-600">
-              PDF ainda nao cadastrado para este equipamento.
+              PDF ainda não cadastrado para este equipamento.
             </p>
           )}
           {equipment.manualPdf && (
@@ -395,7 +393,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
         <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
           <h2>Consulte a disponibilidade da {equipment.brand} {equipment.model}</h2>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">
-            Informe local, periodo e caracteristicas da operacao para validar se esta plataforma {categorySingularName(equipment).toLowerCase()} atende ao trabalho.
+            Informe local, período e características da operação para validar se esta plataforma {categorySingularName(equipment).toLowerCase()} atende ao trabalho.
           </p>
           <RequestQuoteButton className="mt-5" equipmentSlug={equipment.slug} />
         </div>

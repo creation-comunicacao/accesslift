@@ -5,11 +5,11 @@ import { WhatsAppButton } from "../buttons/CtaButtons";
 
 const footerGroups = [
   {
-    title: "Navegacao",
+    title: "Navegação",
     links: [
       { label: "Plataformas", href: "/plataformas-elevatorias/" },
-      { label: "Locacao", href: "/locacao-de-plataformas-elevatorias/" },
-      { label: "Servicos", href: "/servicos/" },
+      { label: "Locação", href: "/locacao-de-plataformas-elevatorias/" },
+      { label: "Serviços", href: "/servicos/" },
     ],
   },
   {
@@ -21,18 +21,18 @@ const footerGroups = [
     ],
   },
   {
-    title: "Servicos",
+    title: "Serviços",
     links: [
-      { label: "Assistencia tecnica", href: "/servicos/assistencia-tecnica/" },
-      { label: "Manutencao preventiva", href: "/servicos/manutencao-preventiva/" },
+      { label: "Assistência técnica", href: "/servicos/assistencia-tecnica/" },
+      { label: "Manutenção preventiva", href: "/servicos/manutencao-preventiva/" },
       { label: "Treinamento de operadores", href: "/servicos/treinamento-de-operadores/" },
     ],
   },
   {
-    title: "Aplicacoes",
+    title: "Aplicações",
     links: [
-      { label: "Construcao civil", href: "/segmentos/construcao-civil/" },
-      { label: "Industria", href: "/segmentos/industria/" },
+      { label: "Construção civil", href: "/segmentos/construcao-civil/" },
+      { label: "Indústria", href: "/segmentos/industria/" },
       { label: "Supermercados e Hipermercados", href: "/segmentos/supermercados-e-hipermercados/" },
       { label: "Atacados", href: "/segmentos/atacados/" },
     ],
@@ -41,10 +41,10 @@ const footerGroups = [
     title: "Institucional",
     links: [
       { label: "Empresa", href: "/empresa/" },
-      { label: "Area de atendimento", href: "/area-de-atendimento/" },
-      { label: "Seguranca e NR35", href: "/seguranca-e-nr35/" },
+      { label: "Área de atendimento", href: "/area-de-atendimento/" },
+      { label: "Segurança e NR35", href: "/seguranca-e-nr35/" },
       { label: "Trabalhe Conosco", href: "/trabalhe-conosco/" },
-      { label: "Politica de privacidade", href: "/politica-de-privacidade/" },
+      { label: "Política de privacidade", href: "/politica-de-privacidade/" },
     ],
   },
 ];
@@ -61,7 +61,7 @@ export function Footer() {
             <span className="text-lg font-black">Accesslift</span>
           </div>
           <p className="max-w-sm text-sm leading-6 text-slate-300">
-            Locacao e suporte para plataformas elevatorias em Sao Paulo e regioes em raio de ate 150 km da base.
+            Locação e suporte para plataformas elevatórias em São Paulo e regiões em raio de até 150 km da base.
           </p>
           <div className="grid gap-2 text-sm text-slate-300">
             <span>{contactConfig.address}</span>
@@ -83,7 +83,7 @@ export function Footer() {
           </div>
         </div>
 
-        <nav className="grid gap-8 sm:grid-cols-2 xl:grid-cols-5" aria-label="Rodape">
+        <nav className="grid gap-8 sm:grid-cols-2 xl:grid-cols-5" aria-label="Rodapé">
           {footerGroups.map((group) => (
             <section key={group.title}>
               <h2 className="text-sm font-black uppercase tracking-wider text-lime-300">
@@ -110,7 +110,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto grid max-w-7xl gap-4 border-t border-slate-800 px-4 py-5 text-xs text-slate-400 md:grid-cols-[1fr_auto] md:px-6">
-        <span>Accesslift Plataformas Elevatorias</span>
+        <span>Accesslift Plataformas Elevatórias</span>
         <div className="flex flex-wrap gap-3">
           {contactConfig.socialLinks.map((social) => (
             social.href ? (
@@ -120,7 +120,7 @@ export function Footer() {
               </a>
             ) : null
           ))}
-          <a href="/politica-de-privacidade/" className="transition hover:text-white">Politica de Privacidade</a>
+          <a href="/politica-de-privacidade/" className="transition hover:text-white">Política de Privacidade</a>
         </div>
       </div>
     </footer>

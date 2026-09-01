@@ -1,5 +1,6 @@
 import { BadgeCheck, ImageIcon, Ruler, Wrench } from "lucide-react";
 import type { Equipment } from "../../types/equipment";
+import { formatPublicSpecValue } from "../../utils/publicText";
 import { RequestQuoteButton } from "../buttons/CtaButtons";
 import { Button } from "../buttons/Button";
 import { Badge } from "../ui/Badge";
@@ -15,6 +16,9 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
       ? "Plataforma Tesoura"
       : "Plataforma Articulada";
   const isElectric = equipment.specs.alimentacao?.toLowerCase().includes("eletric") ?? false;
+  const alturaTrabalho = formatPublicSpecValue(equipment.specs.alturaTrabalho);
+  const capacidade = formatPublicSpecValue(equipment.specs.capacidade);
+  const alcanceHorizontal = formatPublicSpecValue(equipment.specs.alcanceHorizontal);
 
   return (
     <article className="group rounded-lg border border-slate-200 bg-white p-4 soft-shadow transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_18px_45px_rgba(15,23,42,0.14)]">
@@ -33,7 +37,7 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
         <div className="mb-4 flex aspect-[4/3] flex-col items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-50 px-5 text-center">
           <ImageIcon className="h-9 w-9 text-slate-400" aria-hidden />
           <p className="mt-3 text-xs font-extrabold text-slate-600">
-            Foto especifica do modelo ainda nao cadastrada.
+            Foto específica do modelo ainda não cadastrada.
           </p>
         </div>
       )}
@@ -41,9 +45,6 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
         <Badge tone="lime">{equipment.brand}</Badge>
         <Badge tone="outline">{categoryLabel}</Badge>
         {isElectric && <Badge tone="steel">Elétrica</Badge>}
-        {equipment.validationStatus === "validate-before-publish" && (
-          <Badge tone="amber">Validar antes de publicar</Badge>
-        )}
       </div>
       <h3 className="text-lg font-bold text-slate-950">{equipment.title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.summary}</p>
@@ -55,27 +56,31 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
           </dt>
           <dd className="font-medium text-slate-800">{equipment.model}</dd>
         </div>
-        <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
-          <dt className="flex items-center gap-2 text-slate-500">
-            <Ruler className="h-4 w-4" aria-hidden />
-            Altura de trabalho
-          </dt>
-          <dd className="text-right font-medium text-slate-800">{equipment.specs.alturaTrabalho || "A confirmar"}</dd>
-        </div>
-        <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
-          <dt className="flex items-center gap-2 text-slate-500">
-            <Ruler className="h-4 w-4" aria-hidden />
-            Capacidade
-          </dt>
-          <dd className="text-right font-medium text-slate-800">{equipment.specs.capacidade || "A confirmar"}</dd>
-        </div>
-        {equipment.specs.alcanceHorizontal && (
+        {alturaTrabalho && (
+          <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
+            <dt className="flex items-center gap-2 text-slate-500">
+              <Ruler className="h-4 w-4" aria-hidden />
+              Altura de trabalho
+            </dt>
+            <dd className="text-right font-medium text-slate-800">{alturaTrabalho}</dd>
+          </div>
+        )}
+        {capacidade && (
+          <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
+            <dt className="flex items-center gap-2 text-slate-500">
+              <Ruler className="h-4 w-4" aria-hidden />
+              Capacidade
+            </dt>
+            <dd className="text-right font-medium text-slate-800">{capacidade}</dd>
+          </div>
+        )}
+        {alcanceHorizontal && (
           <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
             <dt className="flex items-center gap-2 text-slate-500">
               <Ruler className="h-4 w-4" aria-hidden />
               Alcance horizontal
             </dt>
-            <dd className="text-right font-medium text-slate-800">{equipment.specs.alcanceHorizontal}</dd>
+            <dd className="text-right font-medium text-slate-800">{alcanceHorizontal}</dd>
           </div>
         )}
       </dl>

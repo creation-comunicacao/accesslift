@@ -55,8 +55,8 @@ export function EquipmentIndexPage() {
     <>
       <PageIntro
         eyebrow="Equipamentos"
-        title="Plataformas Elevatorias para Locacao"
-        description="Compare plataformas tesoura e articuladas de diferentes marcas, alturas de trabalho e capacidades para encontrar equipamentos adequados a sua operacao."
+        title="Plataformas Elevatórias para Locação"
+        description="Compare plataformas tesoura e articuladas de diferentes marcas, alturas de trabalho e capacidades para encontrar equipamentos adequados a sua operação."
       />
 
       <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6">
@@ -67,7 +67,7 @@ export function EquipmentIndexPage() {
                 {results.length} resultado{results.length === 1 ? "" : "s"}
               </Badge>
               <p className="mt-2 text-sm font-semibold text-slate-600">
-                Filtre por tipo, marca e faixas de altura disponiveis na frota cadastrada.
+                Filtre por tipo, marca e faixas de altura disponíveis na frota cadastrada.
               </p>
             </div>
             <button
@@ -119,7 +119,7 @@ export function EquipmentIndexPage() {
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs font-black uppercase tracking-wider text-lime-700">
-                  Catalogo
+                  Catálogo
                 </p>
                 <h2 className="text-2xl font-black text-slate-950">Filtros</h2>
               </div>
@@ -156,20 +156,20 @@ export function EquipmentIndexPage() {
         <div className="mx-auto grid max-w-7xl gap-5 px-4 md:grid-cols-2 md:px-6">
           <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
             <Badge tone="lime">Escolha</Badge>
-            <h2 className="mt-4 text-slate-950">Nao sabe qual plataforma escolher?</h2>
+            <h2 className="mt-4 text-slate-950">Não sabe qual plataforma escolher?</h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Nao e necessario conhecer previamente o modelo. Informe altura aproximada, cidade, espaco disponivel, existencia de obstaculos e periodo de utilizacao para que a equipe Accesslift auxilie na avaliacao das opcoes.
+              Não e necessário conhecer previamente o modelo. Informe altura aproximada, cidade, espaço disponível, existencia de obstáculos e período de utilização para que a equipe Accesslift auxilie na avaliação das opções.
             </p>
             <RequestQuoteButton className="mt-5" />
           </article>
           <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-            <Badge tone="steel">Locacao</Badge>
+            <Badge tone="steel">Locação</Badge>
             <h2 className="mt-4 text-slate-950">Equipamento com suporte Accesslift</h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              A locacao pode ser diaria, semanal ou mensal, com entrega e retirada proprias, assistencia tecnica, manutencao preventiva e suporte durante a operacao.
+              A locação pode ser diária, semanal ou mensal, com entrega e retirada próprias, assistência técnica, manutenção preventiva e suporte durante a operação.
             </p>
             <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="mt-5">
-              Conhecer locacao
+              Conhecer locação
             </Button>
           </article>
         </div>
@@ -182,7 +182,7 @@ export function EquipmentIndexPage() {
           <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
             <h3 className="text-slate-950">Plataforma Tesoura</h3>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Para trabalhos predominantemente verticais, quando e possivel posicionar o equipamento abaixo ou proximo da area de execucao.
+              Para trabalhos predominantemente verticais, quando e possível posicionar o equipamento abaixo ou proximo da área de execução.
             </p>
             <Button href="/plataformas-tesoura/" variant="secondary" className="mt-5">
               Ver plataformas tesoura
@@ -191,7 +191,7 @@ export function EquipmentIndexPage() {
           <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
             <h3 className="text-slate-950">Plataforma Articulada</h3>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Para operacoes que combinam altura e alcance horizontal, especialmente quando existem obstaculos ou acesso lateral ao ponto de trabalho.
+              Para operações que combinam altura e alcance horizontal, especialmente quando existem obstáculos ou acesso lateral ao ponto de trabalho.
             </p>
             <Button href="/plataformas-articuladas/" variant="secondary" className="mt-5">
               Ver plataformas articuladas
@@ -203,29 +203,29 @@ export function EquipmentIndexPage() {
       <section className="bg-slate-50 py-12">
         <div className="mx-auto max-w-4xl px-4 md:px-6">
           <Badge tone="lime">FAQ</Badge>
-          <h2 className="mt-4 text-slate-950">Duvidas sobre equipamentos</h2>
+          <h2 className="mt-4 text-slate-950">Dúvidas sobre equipamentos</h2>
           <div className="mt-6">
             <Accordion
               items={[
                 {
                   id: "equipamentos-tipos",
                   title: "Quais tipos de plataformas a Accesslift possui?",
-                  content: "A frota atual reune plataformas das categorias tesoura e articulada.",
+                  content: "A frota atual reúne plataformas das categorias tesoura e articulada.",
                 },
                 {
                   id: "equipamentos-marcas",
-                  title: "Quais marcas estao disponiveis?",
-                  content: "O catalogo trabalha com equipamentos JLG, Genie, Skyjack e Zoomlion.",
+                  title: "Quais marcas estão disponíveis?",
+                  content: "O catálogo trabalha com equipamentos JLG, Genie, Skyjack e Zoomlion.",
                 },
                 {
                   id: "equipamentos-comparar",
                   title: "Como comparar os modelos?",
-                  content: "Compare altura de trabalho, capacidade, dimensoes e, no caso das articuladas, alcance horizontal quando esse dado estiver cadastrado.",
+                  content: "Compare altura de trabalho, capacidade, dimensões e, no caso das articuladas, alcance horizontal quando esse dado estiver cadastrado.",
                 },
                 {
                   id: "equipamentos-sem-modelo",
-                  title: "Posso solicitar orcamento sem escolher modelo?",
-                  content: "Sim. Informe as caracteristicas do trabalho para que a equipe Accesslift auxilie na escolha.",
+                  title: "Posso solicitar orçamento sem escolher modelo?",
+                  content: "Sim. Informe as características do trabalho para que a equipe Accesslift auxilie na escolha.",
                 },
               ]}
             />
@@ -237,7 +237,7 @@ export function EquipmentIndexPage() {
         <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
           <h2>Encontrou o equipamento ou ainda precisa de ajuda?</h2>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">
-            Fale com a Accesslift e informe as caracteristicas da sua operacao.
+            Fale com a Accesslift e informe as características da sua operação.
           </p>
           <RequestQuoteButton className="mt-5" />
         </div>

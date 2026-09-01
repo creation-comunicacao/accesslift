@@ -7,38 +7,38 @@ export type CommercialService = {
 export const commercialServices: CommercialService[] = [
   {
     slug: "locacao-diaria",
-    title: "Locacao diaria",
+    title: "Locação diária",
     summary: "Modelo comercial preparado para demandas pontuais.",
   },
   {
     slug: "locacao-semanal",
-    title: "Locacao semanal",
-    summary: "Modelo comercial preparado para operacoes de curta duracao.",
+    title: "Locação semanal",
+    summary: "Modelo comercial preparado para operações de curta duracao.",
   },
   {
     slug: "locacao-mensal",
-    title: "Locacao mensal",
+    title: "Locação mensal",
     summary: "Modelo comercial preparado para contratos recorrentes.",
   },
   {
     slug: "venda",
     title: "Venda",
-    summary: "Atendimento comercial para aquisicao de plataformas elevatorias.",
+    summary: "Atendimento comercial para aquisicao de plataformas elevatórias.",
   },
   {
     slug: "entrega-e-retirada",
     title: "Entrega e retirada",
-    summary: "Servico logistico previsto na arquitetura comercial.",
+    summary: "Serviço logístico previsto na arquitetura comercial.",
   },
   {
     slug: "assistencia-tecnica",
-    title: "Assistencia tecnica",
-    summary: "Suporte tecnico previsto para a jornada de atendimento.",
+    title: "Assistência técnica",
+    summary: "Suporte técnico previsto para a jornada de atendimento.",
   },
   {
     slug: "manutencao-preventiva",
-    title: "Manutencao preventiva",
-    summary: "Servico preparado para conteudo e processos futuros.",
+    title: "Manutenção preventiva",
+    summary: "Serviço preparado para conteúdo e processos futuros.",
   },
   {
     slug: "atendimento-emergencial",

@@ -7,17 +7,17 @@ type CatalogStateProps = {
 
 const copy = {
   loading: {
-    title: "Carregando catalogo",
-    description: "Preparando equipamentos e filtros disponiveis.",
+    title: "Carregando catálogo",
+    description: "Preparando equipamentos e filtros disponíveis.",
   },
   empty: {
-    title: "Catalogo em preparacao",
+    title: "Catálogo em preparação",
     description: "Nenhum equipamento cadastrado nesta base de desenvolvimento.",
   },
   "no-results": {
     title: "Nenhum equipamento encontrado",
     description:
-      "Os filtros tecnicos dependem de dados oficiais cadastrados. Limpe os filtros ou ajuste a combinacao.",
+      "Os filtros técnicos dependem de dados oficiais cadastrados. Limpe os filtros ou ajuste a combinacao.",
   },
 };
 

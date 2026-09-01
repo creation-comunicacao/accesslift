@@ -43,8 +43,8 @@ const validate = (values: QuoteRequestPayload) => {
   if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
     errors.email = "Informe um e-mail valido.";
   }
-  if (!values.aceite) errors.aceite = "Aceite o contato para enviar a solicitacao.";
-  if (values.antispam) errors.antispam = "Falha na validacao antispam.";
+  if (!values.aceite) errors.aceite = "Aceite o contato para enviar a solicitação.";
+  if (values.antispam) errors.antispam = "Falha na validação antispam.";
   return errors;
 };
 
@@ -81,7 +81,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           await submitQuoteRequest(values);
           setStatus("success");
           setMessage(
-            "Solicitacao enviada. A equipe Accesslift avaliara a necessidade e entrara em contato para alinhar equipamento, periodo, local e condicoes comerciais.",
+            "Solicitação enviada. A equipe Accesslift avaliará a necessidade e entrará em contato para alinhar equipamento, período, local e condições comerciais.",
           );
           trackEvent({
             name: "form_submit",
@@ -95,7 +95,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           setValues(createInitialValues(equipment));
         } catch (error) {
           setStatus("error");
-          setMessage(error instanceof Error ? error.message : "Nao foi possivel enviar.");
+          setMessage(error instanceof Error ? error.message : "Não foi possível enviar.");
         }
       }}
     >
@@ -169,7 +169,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
       </label>
 
       <label className={labelClasses}>
-        Cidade da operacao *
+        Cidade da operação *
         <input
           className={inputClasses}
           autoComplete="address-level2"
@@ -181,14 +181,14 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
       </label>
 
       <label className={labelClasses}>
-        Periodo desejado
+        Período desejado
         <select
           className={inputClasses}
           value={values.periodo}
           onChange={(event) => updateValue("periodo", event.target.value)}
         >
-          <option value="">Ainda nao sei</option>
-          <option value="diaria">Diaria</option>
+          <option value="">Ainda não sei</option>
+          <option value="diaria">Diária</option>
           <option value="semanal">Semanal</option>
           <option value="mensal">Mensal</option>
         </select>
@@ -201,8 +201,8 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           value={values.altura}
           onChange={(event) => updateValue("altura", event.target.value)}
         >
-          <option value="nao-sei">Nao sei</option>
-          <option value="ate-8m">Ate 8 m</option>
+          <option value="nao-sei">Não sei</option>
+          <option value="ate-8m">Até 8 m</option>
           <option value="10-a-14m">10 a 14 m</option>
         </select>
       </label>
@@ -214,7 +214,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           value={values.tipo}
           onChange={(event) => updateValue("tipo", event.target.value)}
         >
-          <option value="nao-sei">Nao sei qual preciso</option>
+          <option value="nao-sei">Não sei qual preciso</option>
           <option value="tesoura">Tesoura</option>
           <option value="articulada">Articulada</option>
         </select>
@@ -232,12 +232,12 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           className={`${inputClasses} min-h-32 py-3`}
           value={values.mensagem}
           onChange={(event) => updateValue("mensagem", event.target.value)}
-          placeholder="Conte sobre o trabalho, local, acesso, obstaculos ou qualquer informacao que possa ajudar na escolha do equipamento."
+          placeholder="Conte sobre o trabalho, local, acesso, obstáculos ou qualquer informação que possa ajudar na escolha do equipamento."
         />
       </label>
 
       <p className="text-xs leading-5 text-slate-500 md:col-span-2">
-        Ao enviar seus dados, voce concorda com o uso das informacoes para atendimento da sua solicitacao, conforme nossa Politica de Privacidade.
+        Ao enviar seus dados, você concorda com o uso das informações para atendimento da sua solicitação, conforme nossa Política de Privacidade.
       </p>
 
       <label className="flex gap-3 rounded-md bg-slate-50 p-3 text-sm font-semibold text-slate-700 md:col-span-2">
@@ -247,7 +247,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           onChange={(event) => updateValue("aceite", event.target.checked)}
           className="mt-1 h-4 w-4 accent-lime-500"
         />
-        Aceito ser contatado pela Accesslift para retorno sobre esta solicitacao.
+        Aceito ser contatado pela Accesslift para retorno sobre esta solicitação.
       </label>
       {errors.aceite && <span className="text-xs font-bold text-red-600 md:col-span-2">{errors.aceite}</span>}
 
@@ -267,7 +267,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
         disabled={status === "loading"}
       >
         <Send className="h-4 w-4" aria-hidden />
-        {status === "loading" ? "Enviando..." : "Solicitar orcamento"}
+        {status === "loading" ? "Enviando..." : "Solicitar orçamento"}
       </button>
     </form>
   );

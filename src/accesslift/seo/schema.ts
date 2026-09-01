@@ -12,7 +12,7 @@ export const buildOrganizationSchema = (): JsonLd => ({
   "@type": ["Organization", "LocalBusiness"],
   name: "Accesslift",
   url: SITE_ORIGIN,
-  areaServed: "Sao Paulo e regioes em raio de ate 150 km da base",
+  areaServed: "São Paulo e regiões em raio de até 150 km da base",
 });
 
 export const buildBreadcrumbSchema = (items: BreadcrumbItem[]): JsonLd | null => {

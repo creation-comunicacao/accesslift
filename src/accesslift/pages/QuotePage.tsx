@@ -24,24 +24,24 @@ export function QuotePage() {
   return (
     <>
       <ConversionHero
-        eyebrow="Orcamento"
-        title="Solicite um Orcamento de Plataforma Elevatoria"
-        description="Conte para a Accesslift as principais caracteristicas do trabalho. Mesmo que voce ainda nao saiba qual modelo precisa, nossa equipe pode auxiliar na identificacao das opcoes adequadas."
+        eyebrow="Orçamento"
+        title="Solicite um Orçamento de Plataforma Elevatória"
+        description="Conte para a Accesslift as principais características do trabalho. Mesmo que você ainda não saiba qual modelo precisa, nossa equipe pode auxiliar na identificação das opções adequadas."
       />
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.65fr]">
         <QuoteRequestForm equipment={equipment} />
         <aside className="h-fit rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-xl font-black text-slate-950">Nao sabe qual plataforma precisa?</h2>
+          <h2 className="text-xl font-black text-slate-950">Não sabe qual plataforma precisa?</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Altura aproximada, espaco disponivel, tipo de acesso e existencia de obstaculos ja ajudam a equipe a compreender a necessidade.
+            Altura aproximada, espaço disponível, tipo de acesso e existencia de obstáculos já ajudam a equipe a compreender a necessidade.
           </p>
           <div className="mt-5 rounded-md border border-slate-200 bg-white p-3 text-sm font-semibold text-slate-600">
-            Depois do envio, a equipe Accesslift avalia equipamento, periodo, local e condicoes comerciais. Nao ha promessa de prazo fixo de retorno.
+            Depois do envio, a equipe Accesslift avalia equipamento, período, local e condições comerciais. Não ha promessa de prazo fixo de retorno.
           </div>
           <div className="mt-5 grid gap-2">
             <Button href="/plataformas-elevatorias/" variant="secondary">Entender os tipos de plataforma</Button>
-            <Button href="/locacao-de-plataformas-elevatorias/" variant="ghost">Conhecer locacao</Button>
-            <Button href="/area-de-atendimento/" variant="ghost">Consultar area de atendimento</Button>
+            <Button href="/locacao-de-plataformas-elevatorias/" variant="ghost">Conhecer locação</Button>
+            <Button href="/area-de-atendimento/" variant="ghost">Consultar área de atendimento</Button>
           </div>
         </aside>
       </section>

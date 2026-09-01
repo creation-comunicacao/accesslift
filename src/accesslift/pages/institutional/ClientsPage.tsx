@@ -16,7 +16,7 @@ export function ClientsPage() {
           <Badge tone="amber">Logos pendentes de autorizacao</Badge>
           <h2 className="mt-4 text-slate-950">Prova social estruturada</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
-            Os nomes citados no blueprint aparecem como placeholders. Logos, depoimentos, cases e links devem ser cadastrados somente apos confirmacao.
+            Os nomes citados no blueprint aparecem como placeholders. Logos, depoimentos, cases e links devem ser cadastrados somente apos confirmação.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -27,7 +27,7 @@ export function ClientsPage() {
               </div>
               <h3 className="mt-4 text-lg font-black text-slate-950">{client.name}</h3>
               <p className="mt-2 text-xs font-bold uppercase tracking-wider text-slate-500">
-                Logo nao publicado
+                Logo não publicado
               </p>
               <div className="mt-4 rounded-md bg-white p-3 text-left text-xs text-slate-600">
                 <Quote className="mb-2 h-4 w-4 text-slate-400" aria-hidden />

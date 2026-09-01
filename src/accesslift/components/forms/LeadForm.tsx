@@ -39,7 +39,7 @@ export function LeadForm() {
           nextErrors.email = "Informe um e-mail valido.";
         }
         if (!values.interesse) nextErrors.interesse = "Selecione um interesse.";
-        if (values.antispam) nextErrors.antispam = "Falha na validacao antispam.";
+        if (values.antispam) nextErrors.antispam = "Falha na validação antispam.";
 
         setErrors(nextErrors);
 
@@ -53,7 +53,7 @@ export function LeadForm() {
         setMessage("");
         await new Promise((resolve) => window.setTimeout(resolve, 400));
         setStatus("success");
-        setMessage("Mensagem enviada. A equipe Accesslift recebera as informacoes para retorno.");
+        setMessage("Mensagem enviada. A equipe Accesslift recebera as informações para retorno.");
         trackEvent({ name: "form_submit", payload: { form: "contact" } });
         setValues({
           nome: "",
@@ -97,10 +97,10 @@ export function LeadForm() {
         Assunto
         <select className={inputClasses} name="interesse" value={values.interesse} onChange={(event) => updateValue("interesse", event.target.value)}>
           <option value="" disabled>
-            Selecione uma opcao
+            Selecione uma opção
           </option>
-          <option value="locacao-comercial">Locacao / Comercial</option>
-          <option value="assistencia-tecnica">Assistencia Tecnica</option>
+          <option value="locacao-comercial">Locação / Comercial</option>
+          <option value="assistencia-tecnica">Assistência Técnica</option>
           <option value="treinamento">Treinamento</option>
           <option value="administrativo">Administrativo</option>
           <option value="outros">Outros</option>
@@ -112,7 +112,7 @@ export function LeadForm() {
         <textarea
           className={`${inputClasses} min-h-32 py-3`}
           name="mensagem"
-          placeholder="Conte rapidamente o que voce precisa"
+          placeholder="Conte rapidamente o que você precisa"
           value={values.mensagem}
           onChange={(event) => updateValue("mensagem", event.target.value)}
         />
