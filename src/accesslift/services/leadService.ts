@@ -8,6 +8,16 @@ export type QuoteRequestPayload = {
   altura: string;
   tipo: string;
   equipmentId: string | null;
+  brand: string | null;
+  model: string | null;
+  category: string | null;
+  power: string | null;
+  pageOrigin: string;
+  utmSource: string | null;
+  utmMedium: string | null;
+  utmCampaign: string | null;
+  utmContent: string | null;
+  utmTerm: string | null;
   mensagem: string;
   aceite: boolean;
   antispam: string;

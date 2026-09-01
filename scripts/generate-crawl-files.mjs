@@ -25,21 +25,25 @@ const productionPaths = [
   "/empresa/",
   "/solicite-orcamento/",
   "/contato/",
-];
-
-const auditOnlyPaths = [
   "/equipamentos/jlg-1930es/",
-  "/equipamentos/jlg-2630/",
+  "/equipamentos/jlg-2630es/",
   "/equipamentos/jlg-2632es/",
   "/equipamentos/jlg-3246es/",
   "/equipamentos/jlg-e450aj/",
   "/equipamentos/genie-gs1930/",
-  "/equipamentos/genie-gs-2632/",
+  "/equipamentos/genie-gs2632/",
   "/equipamentos/genie-z34/",
   "/equipamentos/genie-z45/",
   "/equipamentos/skyjack-sj3219/",
   "/equipamentos/skyjack-sj3226/",
   "/equipamentos/skyjack-sj4732/",
+  "/equipamentos/zoomlion-zs1212ac/",
+  "/equipamentos/zoomlion-za14je-li/",
+];
+
+const auditOnlyPaths = [
+  "/equipamentos/jlg-2630/",
+  "/equipamentos/genie-gs-2632/",
   "/equipamentos/skyjack-sj4740e/",
   "/equipamentos/zoomlion-zs1212/",
   "/equipamentos/zoomlion-za14/",

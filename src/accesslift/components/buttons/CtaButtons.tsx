@@ -3,13 +3,28 @@ import { trackEvent } from "../../analytics/analytics";
 import { contactConfig } from "../../data/contact";
 import { Button } from "./Button";
 
-export function RequestQuoteButton({ className = "" }: { className?: string }) {
+export function RequestQuoteButton({
+  className = "",
+  equipmentSlug,
+}: {
+  className?: string;
+  equipmentSlug?: string;
+}) {
+  const href = equipmentSlug
+    ? `/solicite-orcamento/?equipamento=${encodeURIComponent(equipmentSlug)}`
+    : "/solicite-orcamento/";
+
   return (
     <Button
-      href="/solicite-orcamento/"
+      href={href}
       className={className}
       icon={<Send className="h-4 w-4" aria-hidden />}
-      onClick={() => trackEvent({ name: "quote_request", payload: { source: "cta" } })}
+      onClick={() =>
+        trackEvent({
+          name: "quote_request",
+          payload: { source: "cta", equipment_slug: equipmentSlug || null },
+        })
+      }
     >
       Solicitar orcamento
     </Button>
@@ -25,7 +40,7 @@ export function CheckAvailabilityButton({
 }) {
   return (
     <Button
-      href={equipmentSlug ? `/solicite-orcamento/?equipment=${encodeURIComponent(equipmentSlug)}` : "/solicite-orcamento/"}
+      href={equipmentSlug ? `/solicite-orcamento/?equipamento=${encodeURIComponent(equipmentSlug)}` : "/solicite-orcamento/"}
       variant="secondary"
       className={className}
       icon={<PackageCheck className="h-4 w-4" aria-hidden />}

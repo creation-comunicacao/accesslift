@@ -18,13 +18,49 @@ export function SegmentPageTemplate({ page }: SegmentPageTemplateProps) {
 
   return (
     <>
-      <ConversionHero eyebrow={page.eyebrow} title={page.seo.h1} description={page.description} />
-      <ValueSection title="Contexto do segmento" description={page.context} />
-      <SectionList eyebrow="Necessidades" title="Principais necessidades" items={page.needs} />
-      <SectionList eyebrow="Solucoes" title="Solucoes previstas" items={page.solutions} />
+      <ConversionHero
+        eyebrow={page.eyebrow}
+        title={page.seo.h1}
+        description={page.description}
+        primaryCta={page.primaryCta}
+        secondaryCta={page.secondaryCta}
+        supportItems={page.supportItems}
+      />
+      {page.contentSections ? (
+        page.contentSections.map((section) =>
+          section.items ? (
+            <SectionList
+              key={section.title}
+              eyebrow={section.eyebrow || "Aplicacao"}
+              title={section.title}
+              description={section.description}
+              items={section.items}
+              cta={section.cta}
+            />
+          ) : (
+            <ValueSection
+              key={section.title}
+              eyebrow={section.eyebrow || "Aplicacao"}
+              title={section.title}
+              description={section.description || ""}
+              cta={section.cta}
+            />
+          ),
+        )
+      ) : (
+        <>
+          <ValueSection title="Contexto do segmento" description={page.context} />
+          <SectionList eyebrow="Necessidades" title="Principais necessidades" items={page.needs} />
+          <SectionList eyebrow="Solucoes" title="Solucoes previstas" items={page.solutions} />
+        </>
+      )}
       <RelatedEquipmentSection categories={page.relatedCategories} />
-      <SectionList eyebrow="Aplicacoes" title="Aplicacoes" items={page.applications} />
-      <SectionList eyebrow="Diferenciais" title="Diferenciais para o segmento" items={page.differentials} />
+      {!page.contentSections && (
+        <>
+          <SectionList eyebrow="Aplicacoes" title="Aplicacoes" items={page.applications} />
+          <SectionList eyebrow="Diferenciais" title="Diferenciais para o segmento" items={page.differentials} />
+        </>
+      )}
       {isSegmentHub && (
         <section className="mx-auto max-w-7xl px-4 pb-12 md:px-6">
           <div className="flex flex-wrap gap-3">
@@ -37,7 +73,12 @@ export function SegmentPageTemplate({ page }: SegmentPageTemplateProps) {
         </section>
       )}
       <FaqSection items={page.faq} />
-      <FinalConversionSection />
+      <FinalConversionSection
+        title={page.finalCta?.title}
+        description={page.finalCta?.description}
+        primary={page.finalCta?.primary}
+        secondary={page.finalCta?.secondary}
+      />
     </>
   );
 }

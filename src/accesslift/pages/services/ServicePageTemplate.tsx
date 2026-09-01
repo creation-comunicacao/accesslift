@@ -43,7 +43,14 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
 
   return (
     <>
-      <ConversionHero eyebrow={page.eyebrow} title={page.seo.h1} description={page.description} />
+      <ConversionHero
+        eyebrow={page.eyebrow}
+        title={page.seo.h1}
+        description={page.description}
+        primaryCta={page.primaryCta}
+        secondaryCta={page.secondaryCta}
+        supportItems={page.supportItems}
+      />
       {serviceImage && (
         <section className="mx-auto max-w-7xl px-4 pt-12 md:px-6">
           <img
@@ -72,11 +79,36 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
           images={trainingGallery}
         />
       )}
-      <ValueSection title="Problema ou oportunidade" description={page.problem} />
-      <ValueSection title="Proposta do servico" description={page.proposal} />
-      <SectionList eyebrow="Beneficios" title="Beneficios do servico" items={page.benefits} />
-      <ProcessSection title="Como funciona" steps={page.process} />
-      <SectionList eyebrow="Aplicacoes" title="Aplicacoes previstas" items={page.applications} />
+      {page.contentSections ? (
+        page.contentSections.map((section) =>
+          section.items ? (
+            <SectionList
+              key={section.title}
+              eyebrow={section.eyebrow || "Servico"}
+              title={section.title}
+              description={section.description}
+              items={section.items}
+              cta={section.cta}
+            />
+          ) : (
+            <ValueSection
+              key={section.title}
+              eyebrow={section.eyebrow || "Servico"}
+              title={section.title}
+              description={section.description || ""}
+              cta={section.cta}
+            />
+          ),
+        )
+      ) : (
+        <>
+          <ValueSection title="Problema ou oportunidade" description={page.problem} />
+          <ValueSection title="Proposta do servico" description={page.proposal} />
+          <SectionList eyebrow="Beneficios" title="Beneficios do servico" items={page.benefits} />
+          <ProcessSection title="Como funciona" steps={page.process} />
+          <SectionList eyebrow="Aplicacoes" title="Aplicacoes previstas" items={page.applications} />
+        </>
+      )}
       <RelatedEquipmentSection categories={page.relatedCategories} />
       {isServicesHub && (
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
@@ -95,9 +127,9 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
         <section className="bg-slate-50 py-12">
           <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="text-xs font-black uppercase tracking-wider text-lime-700">Solicitar assistencia</p>
-              <h2 className="mt-3 text-slate-950">Conte o que esta acontecendo</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">O atendimento emergencial depende das condicoes do servico. Esta pagina nao promete prazo ou atendimento a terceiros.</p>
+              <p className="text-xs font-black uppercase tracking-wider text-lime-700">Solicite assistencia tecnica</p>
+              <h2 className="mt-3 text-slate-950">Envie as informacoes da ocorrencia</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">Informe modelo, local e descricao da situacao. As solicitacoes sao avaliadas conforme equipamento, localidade e relacao com a operacao Accesslift.</p>
             </div>
             <SupportRequestForm />
           </div>
@@ -124,7 +156,12 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
         </section>
       )}
       <FaqSection items={page.faq} />
-      <FinalConversionSection />
+      <FinalConversionSection
+        title={page.finalCta?.title}
+        description={page.finalCta?.description}
+        primary={page.finalCta?.primary}
+        secondary={page.finalCta?.secondary}
+      />
     </>
   );
 }

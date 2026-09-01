@@ -1,11 +1,14 @@
 import { SlidersHorizontal, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { defaultCatalogFilters, filterEquipment, hasActiveCatalogFilters, sortEquipment } from "../../catalog/catalog";
+import { defaultCatalogFilters, filterEquipment, getAvailableHeightRangeFilters, hasActiveCatalogFilters, sortEquipment } from "../../catalog/catalog";
+import { RequestQuoteButton } from "../../components/buttons/CtaButtons";
+import { Button } from "../../components/buttons/Button";
 import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { CatalogFiltersPanel } from "../../components/catalog/CatalogFiltersPanel";
 import { CatalogState } from "../../components/catalog/CatalogState";
 import { PageIntro } from "../../components/layout/PageIntro";
 import { Badge } from "../../components/ui/Badge";
+import { Accordion } from "../../components/ui/Accordion";
 import { mockEquipments } from "../../data/equipment";
 import type { CatalogFilters, CatalogSort } from "../../types/equipment";
 
@@ -29,6 +32,7 @@ export function EquipmentIndexPage() {
   const [sort, setSort] = useState<CatalogSort>("featured");
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const heightRanges = useMemo(() => getAvailableHeightRangeFilters(mockEquipments), []);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsLoading(false), 180);
@@ -52,7 +56,7 @@ export function EquipmentIndexPage() {
       <PageIntro
         eyebrow="Equipamentos"
         title="Plataformas Elevatorias para Locacao"
-        description="Consulte os modelos disponiveis por tipo, marca e faixa de altura. Os filtros funcionam em estado local e nao geram paginas indexaveis."
+        description="Compare plataformas tesoura e articuladas de diferentes marcas, alturas de trabalho e capacidades para encontrar equipamentos adequados a sua operacao."
       />
 
       <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6">
@@ -63,7 +67,7 @@ export function EquipmentIndexPage() {
                 {results.length} resultado{results.length === 1 ? "" : "s"}
               </Badge>
               <p className="mt-2 text-sm font-semibold text-slate-600">
-                Canonical controlado em /equipamentos/. Filtros funcionam em estado local.
+                Filtre por tipo, marca e faixas de altura disponiveis na frota cadastrada.
               </p>
             </div>
             <button
@@ -83,6 +87,7 @@ export function EquipmentIndexPage() {
               onFiltersChange={setFilters}
               onSortChange={setSort}
               onClear={clearFilters}
+              heightRanges={heightRanges}
             />
           </div>
         </div>
@@ -133,6 +138,7 @@ export function EquipmentIndexPage() {
               onFiltersChange={setFilters}
               onSortChange={setSort}
               onClear={clearFilters}
+              heightRanges={heightRanges}
               compact
             />
             <button
@@ -145,6 +151,97 @@ export function EquipmentIndexPage() {
           </aside>
         </div>
       )}
+
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 md:grid-cols-2 md:px-6">
+          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
+            <Badge tone="lime">Escolha</Badge>
+            <h2 className="mt-4 text-slate-950">Nao sabe qual plataforma escolher?</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              Nao e necessario conhecer previamente o modelo. Informe altura aproximada, cidade, espaco disponivel, existencia de obstaculos e periodo de utilizacao para que a equipe Accesslift auxilie na avaliacao das opcoes.
+            </p>
+            <RequestQuoteButton className="mt-5" />
+          </article>
+          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
+            <Badge tone="steel">Locacao</Badge>
+            <h2 className="mt-4 text-slate-950">Equipamento com suporte Accesslift</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              A locacao pode ser diaria, semanal ou mensal, com entrega e retirada proprias, assistencia tecnica, manutencao preventiva e suporte durante a operacao.
+            </p>
+            <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="mt-5">
+              Conhecer locacao
+            </Button>
+          </article>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+        <Badge tone="lime">Categorias</Badge>
+        <h2 className="mt-4 text-slate-950">Tesoura ou articulada?</h2>
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
+            <h3 className="text-slate-950">Plataforma Tesoura</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              Para trabalhos predominantemente verticais, quando e possivel posicionar o equipamento abaixo ou proximo da area de execucao.
+            </p>
+            <Button href="/plataformas-tesoura/" variant="secondary" className="mt-5">
+              Ver plataformas tesoura
+            </Button>
+          </article>
+          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
+            <h3 className="text-slate-950">Plataforma Articulada</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              Para operacoes que combinam altura e alcance horizontal, especialmente quando existem obstaculos ou acesso lateral ao ponto de trabalho.
+            </p>
+            <Button href="/plataformas-articuladas/" variant="secondary" className="mt-5">
+              Ver plataformas articuladas
+            </Button>
+          </article>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-4xl px-4 md:px-6">
+          <Badge tone="lime">FAQ</Badge>
+          <h2 className="mt-4 text-slate-950">Duvidas sobre equipamentos</h2>
+          <div className="mt-6">
+            <Accordion
+              items={[
+                {
+                  id: "equipamentos-tipos",
+                  title: "Quais tipos de plataformas a Accesslift possui?",
+                  content: "A frota atual reune plataformas das categorias tesoura e articulada.",
+                },
+                {
+                  id: "equipamentos-marcas",
+                  title: "Quais marcas estao disponiveis?",
+                  content: "O catalogo trabalha com equipamentos JLG, Genie, Skyjack e Zoomlion.",
+                },
+                {
+                  id: "equipamentos-comparar",
+                  title: "Como comparar os modelos?",
+                  content: "Compare altura de trabalho, capacidade, dimensoes e, no caso das articuladas, alcance horizontal quando esse dado estiver cadastrado.",
+                },
+                {
+                  id: "equipamentos-sem-modelo",
+                  title: "Posso solicitar orcamento sem escolher modelo?",
+                  content: "Sim. Informe as caracteristicas do trabalho para que a equipe Accesslift auxilie na escolha.",
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+        <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
+          <h2>Encontrou o equipamento ou ainda precisa de ajuda?</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">
+            Fale com a Accesslift e informe as caracteristicas da sua operacao.
+          </p>
+          <RequestQuoteButton className="mt-5" />
+        </div>
+      </section>
     </>
   );
 }

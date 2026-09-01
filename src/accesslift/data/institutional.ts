@@ -37,40 +37,48 @@ export const institutionalPages: InstitutionalPageConfig[] = [
   {
     path: "/empresa/",
     eyebrow: "Institucional",
-    title: "Accesslift: especialistas em plataformas elevatorias",
+    title: "Accesslift: Plataforma Certa, Atendimento Proximo e Suporte para a Operacao",
     description:
-      "Conheca a Accesslift, sua atuacao em Sao Paulo e a estrutura de atendimento para operacoes em altura.",
+      "Ha 12 anos, a Accesslift atua com locacao de plataformas elevatorias para empresas que precisam realizar trabalhos em altura com equipamentos adequados as caracteristicas de cada operacao.",
     sections: [
       {
-        title: "Historia",
+        title: "Quem somos",
         description:
-          "Espaco reservado para historia oficial da Accesslift quando o conteudo institucional for validado.",
+          "A Accesslift atua no mercado de plataformas elevatorias atendendo operacoes em Sao Paulo e regiao. A locacao e o principal eixo da empresa, com frota composta por plataformas tesoura e articuladas de diferentes alturas, dimensoes e capacidades.",
       },
       {
-        title: "Proposta",
+        title: "12 anos",
         description:
-          "Locacao de plataformas elevatorias com frota eletrica, atendimento comercial e suporte para a operacao.",
+          "Ao longo de sua trajetoria, a Accesslift passou a atender empresas de diferentes portes e segmentos, desenvolvendo uma operacao voltada a disponibilizacao do equipamento e ao suporte durante a locacao.",
       },
       {
-        title: "Experiencia",
-        description: "12 anos de experiencia no setor, conforme informacao aprovada no documento mestre.",
+        title: "Estrutura",
+        description:
+          "A estrutura Accesslift integra logistica, assistencia tecnica, manutencao preventiva, suporte emergencial e treinamento de operadores.",
+        items: ["Locacao", "Entrega e retirada proprias", "Assistencia tecnica propria", "Manutencao preventiva", "Atendimento emergencial", "Treinamento de operadores"],
+      },
+      {
+        title: "Frota",
+        description:
+          "A frota Accesslift reune equipamentos eletricos de marcas reconhecidas, com diferentes caracteristicas de altura, dimensoes, capacidade e alcance.",
+        items: ["JLG", "Genie", "Skyjack", "Zoomlion"],
+      },
+      {
+        title: "Segmentos",
+        description:
+          "A Accesslift atende empresas e projetos em industria, construcao civil, supermercados, hipermercados e atacados. Cada ambiente apresenta necessidades diferentes de acesso em altura.",
+        items: ["Industria", "Construcao civil", "Supermercados e hipermercados", "Atacados"],
       },
       {
         title: "Atuacao",
         description:
-          "Sao Paulo e regioes em raio de ate 150 km da base, conforme escopo definido no blueprint.",
-      },
-      {
-        title: "Servicos e equipamentos",
-        description:
-          "Estrutura conectada ao catalogo dinamico e aos servicos previstos na V2.",
-        items: ["Locacao", "Entrega e retirada", "Assistencia", "Manutencao", "Treinamento"],
+          "Atendimento em Sao Paulo e municipios dentro de um raio de ate 150 km da base, conforme disponibilidade e condicoes da operacao.",
       },
     ],
     seo: {
-      h1: "Accesslift: Especialistas em Plataformas Elevatorias",
+      h1: "Accesslift: Plataforma Certa, Atendimento Proximo e Suporte para a Operacao",
       title: "Accesslift | Locacao de Plataformas Elevatorias em SP",
-      description: "Conheca a Accesslift, empresa com 12 anos de experiencia em locacao de plataformas elevatorias, assistencia tecnica e suporte em Sao Paulo.",
+      description: "Conheca a Accesslift, empresa com 12 anos de atuacao em locacao de plataformas elevatorias, suporte tecnico, manutencao e atendimento em Sao Paulo e regiao.",
       canonicalPath: "/empresa/",
     },
   },
@@ -79,7 +87,7 @@ export const institutionalPages: InstitutionalPageConfig[] = [
     eyebrow: "Area de atendimento",
     title: "Locacao de Plataformas Elevatorias em Sao Paulo e Regiao",
     description:
-      "Pagina estrutural para comunicar atendimento em Sao Paulo e regioes em raio de ate 150 km da base.",
+      "Atendimento a operacoes em Sao Paulo e municipios dentro de um raio de ate 150 km da base Accesslift, conforme disponibilidade e condicoes da operacao.",
     sections: [
       {
         title: "Cobertura comunicada",
@@ -101,30 +109,40 @@ export const institutionalPages: InstitutionalPageConfig[] = [
   {
     path: "/seguranca-e-nr35/",
     eyebrow: "Seguranca",
-    title: "Seguranca e NR-35",
+    title: "NR-35 e Plataformas Elevatorias no Trabalho em Altura",
     description:
-      "Pagina preparada para conteudos de seguranca, orientacao, treinamento e NR-35 sem declarar certificacoes nao fornecidas.",
+      "A utilizacao de plataformas elevatorias faz parte de operacoes que exigem planejamento, capacitacao e avaliacao dos requisitos aplicaveis ao trabalho em altura.",
     sections: [
       {
-        title: "Seguranca",
+        title: "Contexto",
         description:
-          "Espaco para conteudo validado sobre boas praticas, orientacoes e uso correto de plataformas elevatorias.",
+          "A NR-35 estabelece requisitos relacionados ao trabalho em altura dentro de seu campo de aplicacao. A escolha de uma plataforma elevatoria e uma parte desse planejamento, mas nao substitui as demais responsabilidades relacionadas a execucao segura da atividade.",
       },
       {
-        title: "Treinamento e orientacao",
+        title: "Equipamento nao e a norma",
         description:
-          "Estrutura preparada para explicar treinamentos e orientacoes quando as informacoes oficiais forem fornecidas.",
+          "A locacao de um equipamento adequado a altura e ao acesso necessarios nao significa, por si so, que todos os requisitos aplicaveis ao trabalho em altura estejam atendidos.",
       },
       {
-        title: "NR-35",
+        title: "Treinamento",
         description:
-          "Base editorial para conteudo sobre NR-35, sem inventar conformidades, certificacoes ou escopos.",
+          "Treinamento de operador e NR-35 possuem objetivos e escopos diferentes. A orientacao relacionada a plataforma nao deve ser apresentada automaticamente como substituto de requisitos da atividade.",
+      },
+      {
+        title: "Documentacao tecnica",
+        description:
+          "As paginas individuais dos equipamentos apresentam especificacoes e podem disponibilizar ficha tecnica e manual quando a documentacao correspondente estiver validada.",
+      },
+      {
+        title: "Escolha do equipamento",
+        description:
+          "A escolha deve considerar altura de trabalho, alcance horizontal quando necessario, capacidade, dimensoes, acessos, obstaculos, piso e caracteristicas da atividade.",
       },
     ],
     seo: {
-      h1: "Plataformas Elevatorias e NR-35",
+      h1: "NR-35 e Plataformas Elevatorias no Trabalho em Altura",
       title: "NR-35 e Plataformas Elevatorias para Trabalho em Altura | Accesslift",
-      description: "Entenda a relacao entre NR-35, trabalho em altura e plataformas elevatorias. Conheca equipamentos disponiveis para locacao.",
+      description: "Entenda a relacao entre NR-35, trabalho em altura e utilizacao de plataformas elevatorias. Consulte equipamentos, documentacao e suporte Accesslift.",
       canonicalPath: "/seguranca-e-nr35/",
     },
     referenceLink: {

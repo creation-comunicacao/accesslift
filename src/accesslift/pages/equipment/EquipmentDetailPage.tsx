@@ -38,14 +38,24 @@ const specLabels: Array<{
   { key: "comprimento", label: "Comprimento" },
   { key: "alturaRecolhida", label: "Altura recolhida" },
   { key: "dimensaoPlataforma", label: "Dimensoes da plataforma" },
+  { key: "extensaoDeck", label: "Extensao do deck" },
+  { key: "distanciaEntreEixos", label: "Distancia entre eixos" },
+  { key: "distanciaSolo", label: "Distancia do solo" },
   { key: "raioGiro", label: "Raio de giro" },
+  { key: "raioGiroInterno", label: "Raio de giro interno" },
+  { key: "raioGiroExterno", label: "Raio de giro externo" },
+  { key: "sistemaEletrico", label: "Sistema eletrico" },
   { key: "pneus", label: "Pneus" },
   { key: "bateria", label: "Bateria" },
   { key: "alcanceHorizontal", label: "Alcance horizontal" },
+  { key: "alturaSobreObstaculo", label: "Altura sobre obstaculo" },
 ];
 
 const categoryName = (equipment: Equipment) =>
   getCategoryBySlug(equipment.category)?.name || "Equipamento";
+
+const categorySingularName = (equipment: Equipment) =>
+  equipment.category === "plataformas-tesoura" ? "Tesoura" : "Articulada";
 
 function ImagePanel({ equipment }: EquipmentDetailPageProps) {
   return (
@@ -89,6 +99,72 @@ function ImagePanel({ equipment }: EquipmentDetailPageProps) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+const getAvailableSpecs = (equipment: Equipment) =>
+  specLabels
+    .map((item) => ({ ...item, value: equipment.specs[item.key] }))
+    .filter((item) => Boolean(item.value));
+
+function HeroSpecs({ equipment }: EquipmentDetailPageProps) {
+  const highlightKeys: Array<keyof Equipment["specs"]> = [
+    "alturaTrabalho",
+    "capacidade",
+    "alcanceHorizontal",
+    "alimentacao",
+  ];
+  const specs = specLabels
+    .filter((item) => highlightKeys.includes(item.key))
+    .map((item) => ({ ...item, value: equipment.specs[item.key] }))
+    .filter((item) => Boolean(item.value));
+
+  if (specs.length === 0) {
+    return null;
+  }
+
+  return (
+    <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+      {specs.map((spec) => (
+        <div key={spec.key} className="rounded-md border border-slate-200 bg-white px-3 py-2">
+          <dt className="text-[11px] font-black uppercase tracking-wider text-slate-500">{spec.label}</dt>
+          <dd className="mt-1 text-base font-black text-slate-950">{spec.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function SpecsTable({ equipment }: EquipmentDetailPageProps) {
+  const specs = getAvailableSpecs(equipment);
+
+  if (specs.length === 0) {
+    return (
+      <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5">
+        <Ruler className="h-7 w-7 text-slate-500" aria-hidden />
+        <h2 className="mt-3 text-xl font-black text-slate-950">Especificacoes a cadastrar</h2>
+        <p className="mt-2 text-sm text-slate-600">
+          Nenhum dado tecnico oficial foi preenchido para este equipamento.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white soft-shadow">
+      <table className="w-full text-left text-sm">
+        <tbody>
+          {specs.map((spec) => (
+            <tr key={spec.key} className="border-b border-slate-100 last:border-b-0">
+              <th className="w-1/2 bg-slate-50 px-4 py-3 font-black uppercase tracking-wider text-slate-500">
+                {spec.label}
+              </th>
+              <td className="px-4 py-3 font-bold text-slate-900">{spec.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -176,9 +252,10 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
             </div>
             <h1 className="mt-5 text-slate-950">{equipment.seo.h1}</h1>
             <p className="mt-4 max-w-2xl text-lg text-slate-600">{equipment.summary}</p>
+            <HeroSpecs equipment={equipment} />
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <CheckAvailabilityButton equipmentSlug={equipment.slug} />
-              <RequestQuoteButton />
+              <RequestQuoteButton equipmentSlug={equipment.slug} />
               <TalkToSpecialistButton className="sm:col-span-2" />
             </div>
           </div>
@@ -190,16 +267,37 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           <section>
             <div className="mb-5 flex items-center gap-2">
               <PackageCheck className="h-6 w-6 text-lime-700" aria-hidden />
-              <h2 className="text-2xl font-black text-slate-950">Dados tecnicos</h2>
+              <h2 className="text-2xl font-black text-slate-950">Conheca a {equipment.brand} {equipment.model}</h2>
+            </div>
+            <p className="max-w-3xl text-base leading-7 text-slate-600">{equipment.overview}</p>
+          </section>
+
+          <section>
+            <div className="mb-5 flex items-center gap-2">
+              <PackageCheck className="h-6 w-6 text-lime-700" aria-hidden />
+              <h2 className="text-2xl font-black text-slate-950">Principais caracteristicas</h2>
             </div>
             <SpecsGrid equipment={equipment} />
           </section>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <section>
+            <div className="mb-5 flex items-center gap-2">
+              <Ruler className="h-6 w-6 text-lime-700" aria-hidden />
+              <h2 className="text-2xl font-black text-slate-950">Especificacoes tecnicas</h2>
+            </div>
+            <SpecsTable equipment={equipment} />
+          </section>
+
+          <div className="grid gap-5 md:grid-cols-2">
             <ListSection title="Caracteristicas" items={equipment.characteristics} icon={BadgeCheck} />
-            <ListSection title="Diferenciais tecnicos" items={equipment.differentials} icon={ShieldCheck} />
-            <ListSection title="Aplicacoes recomendadas" items={equipment.applications} icon={Wrench} />
+            <ListSection title="Aplicacoes possiveis" items={equipment.applications} icon={Wrench} />
           </div>
+
+          <section className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+            <ShieldCheck className="h-7 w-7 text-lime-700" aria-hidden />
+            <h2 className="mt-3 text-xl font-black text-slate-950">Quando considerar esta plataforma?</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">{equipment.considerationText}</p>
+          </section>
 
           {faqItems.length > 0 && (
             <section>
@@ -230,13 +328,14 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           )}
 
           <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-            <h2 className="text-xl font-black text-slate-950">Precisa de locacao?</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              Consulte as modalidades de locacao e fale com a equipe para validar a disponibilidade do equipamento.
-            </p>
-            <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="mt-4">
-              Conhecer locacao
-            </Button>
+            <h2 className="text-xl font-black text-slate-950">Locacao da {equipment.brand} {equipment.model}</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.rentalText}</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <CheckAvailabilityButton equipmentSlug={equipment.slug} />
+              <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary">
+                Conhecer locacao
+              </Button>
+            </div>
           </section>
         </div>
 
@@ -287,9 +386,19 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           )}
           <div className="mt-5 grid gap-2">
             <CheckAvailabilityButton className="w-full" equipmentSlug={equipment.slug} />
-            <RequestQuoteButton className="w-full" />
+            <RequestQuoteButton className="w-full" equipmentSlug={equipment.slug} />
           </div>
         </aside>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-12 md:px-6">
+        <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
+          <h2>Consulte a disponibilidade da {equipment.brand} {equipment.model}</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">
+            Informe local, periodo e caracteristicas da operacao para validar se esta plataforma {categorySingularName(equipment).toLowerCase()} atende ao trabalho.
+          </p>
+          <RequestQuoteButton className="mt-5" equipmentSlug={equipment.slug} />
+        </div>
       </section>
     </>
   );

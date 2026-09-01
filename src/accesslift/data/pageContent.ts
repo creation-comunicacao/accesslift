@@ -17,6 +17,21 @@ export type ContentItem = {
   cta?: CtaLink;
 };
 
+export type ContentSection = {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  items?: Array<string | ContentItem>;
+  cta?: CtaLink;
+};
+
+export type FinalCtaConfig = {
+  title: string;
+  description: string;
+  primary: CtaLink;
+  secondary?: CtaLink;
+};
+
 export type CommercialPageConfig = {
   path: string;
   eyebrow: string;
@@ -29,21 +44,10 @@ export type CommercialPageConfig = {
   benefits: string[];
   process: string[];
   relatedCategories: EquipmentCategorySlug[];
-  contentSections?: Array<{
-    title: string;
-    description?: string;
-    eyebrow?: string;
-    items?: Array<string | ContentItem>;
-    cta?: CtaLink;
-  }>;
+  contentSections?: ContentSection[];
   faq: FaqItem[];
   faqSchemaEligible?: boolean;
-  finalCta?: {
-    title: string;
-    description: string;
-    primary: CtaLink;
-    secondary?: CtaLink;
-  };
+  finalCta?: FinalCtaConfig;
   seo: PageSeo & { h1: string };
 };
 
@@ -52,14 +56,19 @@ export type ServicePageConfig = {
   eyebrow: string;
   title: string;
   description: string;
+  primaryCta?: CtaLink;
+  secondaryCta?: CtaLink;
+  supportItems?: string[];
   problem: string;
   proposal: string;
   benefits: string[];
   process: string[];
   applications: string[];
   relatedCategories: EquipmentCategorySlug[];
+  contentSections?: ContentSection[];
   faq: FaqItem[];
   faqSchemaEligible?: boolean;
+  finalCta?: FinalCtaConfig;
   seo: PageSeo & { h1: string };
 };
 
@@ -68,14 +77,19 @@ export type SegmentPageConfig = {
   eyebrow: string;
   title: string;
   description: string;
+  primaryCta?: CtaLink;
+  secondaryCta?: CtaLink;
+  supportItems?: string[];
   context: string;
   needs: string[];
   solutions: string[];
   applications: string[];
   differentials: string[];
   relatedCategories: EquipmentCategorySlug[];
+  contentSections?: ContentSection[];
   faq: FaqItem[];
   faqSchemaEligible?: boolean;
+  finalCta?: FinalCtaConfig;
   seo: PageSeo & { h1: string };
 };
 
@@ -315,19 +329,87 @@ export const servicePages: ServicePageConfig[] = [
   {
     path: "/servicos/",
     eyebrow: "Servicos",
-    title: "Servicos Accesslift",
-    description: "Entrega e retirada, assistencia tecnica, manutencao e treinamento para plataformas elevatorias.",
-    problem: "Operacoes em altura precisam de atendimento claro antes, durante e depois da escolha do equipamento.",
-    proposal: "Centralizar entrega e retirada, assistencia, manutencao e treinamento em uma jornada de suporte clara.",
-    benefits: ["Estrutura modular", "Links internos para servicos", "CTAs de atendimento"],
-    process: ["Identificar demanda", "Selecionar servico", "Falar com especialista", "Registrar solicitacao"],
-    applications: ["Locacao", "Suporte operacional", "Operacoes em altura"],
+    title: "Servicos e Suporte para Plataformas Elevatorias",
+    description: "Estrutura para apoiar a operacao antes, durante e apos a entrega dos equipamentos.",
+    primaryCta: { label: "Falar com a Accesslift", href: "/contato/" },
+    secondaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    problem: "A locacao nao termina quando a plataforma e entregue. A operacao precisa de suporte para manter disponibilidade, orientacao e atendimento quando surgem necessidades tecnicas.",
+    proposal: "A Accesslift integra entrega, retirada, assistencia tecnica, manutencao preventiva, atendimento a ocorrencias e treinamento de operadores na mesma estrutura de locacao.",
+    benefits: ["Entrega e retirada proprias", "Assistencia tecnica propria", "Manutencao preventiva", "Treinamento de operadores"],
+    process: ["Entender a operacao", "Selecionar equipamento", "Programar entrega", "Acompanhar a locacao", "Retirar ao final"],
+    applications: ["Locacao de plataformas", "Suporte durante operacao", "Treinamento e orientacao"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Suporte",
+        title: "Suporte que acompanha a operacao",
+        description: "A locacao nao termina quando a plataforma e entregue. Durante o periodo de uso, a Accesslift mantem uma estrutura de suporte para acompanhar necessidades relacionadas ao equipamento e a operacao.",
+      },
+      {
+        eyebrow: "Estrutura",
+        title: "Servicos integrados a locacao",
+        items: [
+          {
+            title: "Entrega e retirada proprias",
+            description: "Movimentacao dos equipamentos dentro da area de atendimento, conforme as condicoes definidas para a locacao.",
+            cta: { label: "Consultar area de atendimento", href: "/area-de-atendimento/" },
+          },
+          {
+            title: "Assistencia tecnica propria",
+            description: "Suporte tecnico para avaliacao e intervencao quando surgirem necessidades durante a locacao.",
+            cta: { label: "Conhecer assistencia tecnica", href: "/servicos/assistencia-tecnica/" },
+          },
+          {
+            title: "Atendimento emergencial",
+            description: "Recebimento e avaliacao de ocorrencias que podem impactar a continuidade da operacao.",
+            cta: { label: "Solicitar suporte", href: "/servicos/assistencia-tecnica/" },
+          },
+          {
+            title: "Manutencao preventiva",
+            description: "Cuidados tecnicos voltados a preparar os equipamentos e reduzir a possibilidade de problemas durante o uso.",
+            cta: { label: "Ver manutencao preventiva", href: "/servicos/manutencao-preventiva/" },
+          },
+          {
+            title: "Treinamento de operadores",
+            description: "Orientacao sobre equipamento, comandos, limites e cuidados relacionados a utilizacao da plataforma.",
+            cta: { label: "Ver treinamento", href: "/servicos/treinamento-de-operadores/" },
+          },
+          {
+            title: "Seguranca e NR-35",
+            description: "Conteudo de apoio sobre planejamento, capacitacao e requisitos aplicaveis ao trabalho em altura.",
+            cta: { label: "Entender seguranca", href: "/seguranca-e-nr35/" },
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "A Accesslift oferece suporte durante a locacao?",
+        answer: "Sim. A estrutura de suporte acompanha os equipamentos da operacao Accesslift durante a locacao.",
+      },
+      {
+        question: "A entrega e retirada sao proprias?",
+        answer: "A Accesslift possui estrutura propria para entrega e retirada dentro da area de atendimento, conforme condicoes da locacao.",
+      },
+      {
+        question: "Ha atendimento emergencial?",
+        answer: "A Accesslift recebe e avalia ocorrencias durante a locacao. O atendimento depende da situacao, equipamento e localidade.",
+      },
+      {
+        question: "O treinamento substitui NR-35?",
+        answer: "Nao. Treinamento de operador e NR-35 possuem objetivos e escopos diferentes.",
+      },
+    ],
+    finalCta: {
+      title: "Precisa de locacao ou suporte tecnico?",
+      description: "Fale com a equipe Accesslift para informar sua necessidade.",
+      primary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+      secondary: { label: "Entrar em contato", href: "/contato/" },
+    },
     seo: {
       h1: "Servicos e Suporte para Plataformas Elevatorias",
       title: "Servicos para Plataformas Elevatorias | Accesslift",
-      description: "Servicos e suporte para plataformas elevatorias.",
+      description: "Conheca a estrutura de suporte Accesslift: assistencia tecnica propria, manutencao preventiva, atendimento emergencial e treinamento de operadores.",
       canonicalPath: "/servicos/",
     },
   },
@@ -354,38 +436,157 @@ export const servicePages: ServicePageConfig[] = [
   {
     path: "/servicos/assistencia-tecnica/",
     eyebrow: "Servico",
-    title: "Assistencia tecnica",
-    description: "Template preparado para suporte tecnico e operacional.",
-    problem: "A operacao pode precisar de suporte para manter continuidade e seguranca.",
-    proposal: "Pagina pronta para detalhar canais, escopo e condicoes de assistencia, incluindo o fluxo de atendimento emergencial quando aplicavel.",
-    benefits: ["Suporte operacional", "Atendimento especializado", "Fluxo de atendimento claro"],
-    process: ["Contato", "Triagem", "Orientacao", "Acompanhamento"],
-    applications: ["Locacao", "Operacao em campo", "Manutencao"],
+    title: "Assistencia Tecnica para Plataformas Elevatorias",
+    description: "Suporte tecnico proprio para acompanhar os equipamentos da operacao Accesslift e atender necessidades durante a locacao.",
+    primaryCta: { label: "Solicitar suporte tecnico", href: "/servicos/assistencia-tecnica/" },
+    secondaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    problem: "Durante uma locacao, situacoes tecnicas precisam ser avaliadas com clareza para reduzir impacto na operacao.",
+    proposal: "A assistencia tecnica propria da Accesslift atua integrada aos equipamentos em locacao, com avaliacao caso a caso.",
+    benefits: ["Avaliacao de ocorrencias", "Orientacao relacionada ao equipamento", "Intervencao tecnica quando necessaria", "Suporte durante locacao"],
+    process: ["Receber solicitacao", "Identificar equipamento", "Avaliar ocorrencia", "Direcionar suporte"],
+    applications: ["Equipamentos Accesslift em locacao", "Ocorrencias tecnicas", "Orientacao operacional"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Suporte",
+        title: "Suporte tecnico integrado a locacao",
+        description: "A assistencia tecnica propria acompanha necessidades relacionadas aos equipamentos da operacao Accesslift durante a locacao. Cada solicitacao e avaliada conforme o equipamento, a situacao informada e as condicoes da operacao.",
+      },
+      {
+        eyebrow: "Atendimento",
+        title: "Atendimento para diferentes necessidades",
+        items: [
+          "Avaliacao de ocorrencias tecnicas",
+          "Orientacao relacionada ao equipamento",
+          "Intervencao tecnica quando necessaria",
+          "Suporte durante a locacao",
+          "Manutencao dos equipamentos da operacao Accesslift",
+          "Recebimento e avaliacao de solicitacoes emergenciais",
+        ],
+      },
+      {
+        eyebrow: "Emergencial",
+        title: "Precisa de suporte durante uma locacao?",
+        description: "Em caso de ocorrencia, informe o modelo da plataforma, local da operacao e descricao da situacao. As solicitacoes emergenciais sao recebidas e avaliadas de acordo com o caso.",
+      },
+      {
+        eyebrow: "Marcas",
+        title: "Marcas atendidas na operacao Accesslift",
+        description: "O escopo deve ser confirmado conforme o equipamento e sua relacao com a operacao Accesslift.",
+        items: ["JLG", "Genie", "Skyjack", "Zoomlion"],
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Locacao com suporte tecnico",
+        description: "Equipamento e suporte fazem parte da mesma estrutura operacional da Accesslift.",
+        cta: { label: "Conhecer locacao", href: "/locacao-de-plataformas-elevatorias/" },
+      },
+    ],
+    faq: [
+      {
+        question: "A Accesslift possui assistencia tecnica propria?",
+        answer: "Sim. A Accesslift possui equipe tecnica integrada a operacao dos equipamentos em locacao.",
+      },
+      {
+        question: "Ha suporte durante a locacao?",
+        answer: "Sim. O suporte acompanha a locacao de equipamentos Accesslift conforme a necessidade informada.",
+      },
+      {
+        question: "A Accesslift oferece atendimento emergencial?",
+        answer: "A Accesslift recebe e avalia solicitacoes emergenciais conforme situacao, localidade e equipamento.",
+      },
+      {
+        question: "A assistencia atende equipamentos de terceiros?",
+        answer: "O escopo deve ser consultado com a equipe Accesslift, pois depende do equipamento e da relacao com a operacao.",
+      },
+    ],
+    finalCta: {
+      title: "Precisa de assistencia?",
+      description: "Envie as informacoes do equipamento e da ocorrencia para avaliacao da equipe Accesslift.",
+      primary: { label: "Solicitar suporte tecnico", href: "/servicos/assistencia-tecnica/" },
+      secondary: { label: "Entrar em contato", href: "/contato/" },
+    },
     seo: {
       h1: "Assistencia Tecnica para Plataformas Elevatorias",
       title: "Assistencia Tecnica de Plataformas Elevatorias | Accesslift",
-      description: "Assistencia tecnica para operacao com plataformas elevatorias.",
+      description: "Assistencia tecnica propria para plataformas elevatorias da operacao Accesslift, com suporte durante a locacao e atendimento a ocorrencias tecnicas.",
       canonicalPath: "/servicos/assistencia-tecnica/",
     },
   },
   {
     path: "/servicos/manutencao-preventiva/",
     eyebrow: "Servico",
-    title: "Manutencao preventiva",
-    description: "Template para conteudo de manutencao preventiva.",
-    problem: "Equipamentos dependem de processos de manutencao definidos por dados e procedimentos oficiais.",
-    proposal: "Estrutura preparada para receber escopo, periodicidade e orientacoes reais.",
-    benefits: ["Prevencao operacional", "Documentacao futura", "Conteudo tecnico administravel"],
-    process: ["Planejamento", "Inspecao", "Registro", "Orientacao"],
-    applications: ["Frota", "Operacoes recorrentes", "Suporte tecnico"],
+    title: "Manutencao Preventiva de Plataformas Elevatorias",
+    description: "Cuidados tecnicos fazem parte da preparacao e acompanhamento dos equipamentos utilizados nas operacoes Accesslift.",
+    primaryCta: { label: "Falar com a Accesslift", href: "/contato/" },
+    secondaryCta: { label: "Ver equipamentos", href: "/equipamentos/" },
+    problem: "Plataformas elevatorias possuem sistemas e componentes que dependem de cuidados tecnicos para manter disponibilidade e reduzir problemas durante a operacao.",
+    proposal: "A manutencao preventiva faz parte da estrutura Accesslift para preparar e acompanhar os equipamentos da frota.",
+    benefits: ["Identificacao de necessidades de intervencao", "Cuidados antes da operacao", "Acompanhamento da frota", "Suporte integrado a locacao"],
+    process: ["Preparar equipamento", "Realizar verificacoes", "Registrar necessidades", "Acompanhar a locacao"],
+    applications: ["Frota Accesslift", "Locacao", "Suporte tecnico"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Importancia",
+        title: "Por que manutencao preventiva e importante?",
+        description: "A manutencao preventiva ajuda a identificar necessidades de intervencao e cuidados antes que uma ocorrencia afete a operacao. Os procedimentos devem respeitar as especificacoes tecnicas de cada equipamento.",
+      },
+      {
+        eyebrow: "Escopo",
+        title: "O que envolve a manutencao?",
+        description: "As verificacoes e intervencoes seguem orientacao tecnica, e a periodicidade nao deve ser tratada como igual para todos os modelos sem validacao especifica.",
+      },
+      {
+        eyebrow: "Diferencas",
+        title: "Preventiva, corretiva e assistencia",
+        items: [
+          "Preventiva: cuidados planejados para preparacao e acompanhamento do equipamento.",
+          "Corretiva: intervencao quando uma necessidade tecnica e identificada.",
+          "Assistencia tecnica: suporte durante a locacao, conforme a solicitacao e as condicoes da operacao.",
+        ],
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Manutencao integrada a locacao",
+        description: "A estrutura de manutencao faz parte do cuidado com os equipamentos utilizados nas operacoes Accesslift.",
+        cta: { label: "Conhecer locacao", href: "/locacao-de-plataformas-elevatorias/" },
+      },
+      {
+        eyebrow: "Equipamentos",
+        title: "Frota acompanhada",
+        description: "A frota Accesslift reune plataformas JLG, Genie, Skyjack e Zoomlion, com diferentes alturas, dimensoes e capacidades.",
+        cta: { label: "Ver equipamentos", href: "/equipamentos/" },
+      },
+    ],
+    faq: [
+      {
+        question: "O que e manutencao preventiva?",
+        answer: "E o conjunto de cuidados tecnicos voltados a preparar e acompanhar o equipamento, identificando necessidades antes que afetem a operacao.",
+      },
+      {
+        question: "Preventiva e corretiva sao a mesma coisa?",
+        answer: "Nao. A preventiva busca antecipar cuidados, enquanto a corretiva trata uma necessidade tecnica ja identificada.",
+      },
+      {
+        question: "Todos os equipamentos seguem o mesmo intervalo?",
+        answer: "Nao. Periodicidade e procedimentos dependem das especificacoes e condicoes de cada equipamento.",
+      },
+      {
+        question: "A manutencao faz parte da estrutura Accesslift?",
+        answer: "Sim. A Accesslift possui suporte e manutencao propria para sua operacao.",
+      },
+    ],
+    finalCta: {
+      title: "Precisa falar sobre manutencao ou suporte?",
+      description: "Entre em contato para informar sua necessidade.",
+      primary: { label: "Entrar em contato", href: "/contato/" },
+      secondary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
       h1: "Manutencao Preventiva de Plataformas Elevatorias",
       title: "Manutencao de Plataformas Elevatorias | Accesslift",
-      description: "Manutencao preventiva para apoiar disponibilidade operacional.",
+      description: "Conheca a estrutura de manutencao preventiva da Accesslift para plataformas elevatorias e sua integracao com a operacao de locacao.",
       canonicalPath: "/servicos/manutencao-preventiva/",
     },
   },
@@ -412,19 +613,83 @@ export const servicePages: ServicePageConfig[] = [
   {
     path: "/servicos/treinamento-de-operadores/",
     eyebrow: "Servico",
-    title: "Treinamento de operadores",
-    description: "Template para orientacoes e treinamento de operadores.",
-    problem: "Operadores precisam de orientacao adequada para uso seguro e correto.",
-    proposal: "Estrutura pronta para receber conteudo aprovado sobre treinamento e operacao.",
-    benefits: ["Orientacao operacional", "Conteudo preparado para NR35", "CTA para especialista"],
-    process: ["Necessidade", "Orientacao", "Treinamento", "Operacao"],
-    applications: ["Industria", "Construcao civil", "Operacoes comerciais"],
+    title: "Treinamento para Operadores de Plataformas Elevatorias",
+    description: "Orientacao voltada ao conhecimento do equipamento, seus comandos, limites e cuidados relacionados a utilizacao da plataforma.",
+    primaryCta: { label: "Solicitar informacoes", href: "/contato/" },
+    secondaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    problem: "Operadores precisam conhecer o equipamento, seus controles, limites e cuidados antes da utilizacao.",
+    proposal: "O treinamento de operadores da Accesslift orienta sobre caracteristicas e uso da plataforma, sem ser apresentado como substituto automatico de requisitos da NR-35.",
+    benefits: ["Identificacao do equipamento", "Comandos e controles", "Limites e cuidados", "Diferencas entre tesoura e articulada"],
+    process: ["Entender necessidade", "Identificar equipamento", "Orientar operador", "Acompanhar a operacao"],
+    applications: ["Plataformas tesoura", "Plataformas articuladas", "Locacao Accesslift"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Operacao",
+        title: "Conhecer o equipamento faz parte da operacao",
+        description: "Cada plataforma possui caracteristicas, comandos e limites proprios. A orientacao ao operador ajuda a alinhar uso do equipamento, cuidados e condicoes da atividade.",
+      },
+      {
+        eyebrow: "Conteudo",
+        title: "O que e abordado no treinamento?",
+        description: "O conteudo deve ser alinhado a necessidade e ao equipamento utilizado.",
+        items: [
+          "Identificacao e caracteristicas do equipamento",
+          "Comandos e controles",
+          "Limites de utilizacao",
+          "Verificacoes e cuidados antes do uso",
+          "Cuidados durante a operacao",
+          "Caracteristicas de plataformas tesoura e articuladas",
+          "Orientacoes aplicaveis a operacao",
+        ],
+      },
+      {
+        eyebrow: "Equipamentos",
+        title: "Treinamento para tesoura e articuladas",
+        description: "As diferencas entre os tipos de plataforma influenciam a orientacao de operacao.",
+        cta: { label: "Conhecer plataformas elevatorias", href: "/plataformas-elevatorias/" },
+      },
+      {
+        eyebrow: "NR-35",
+        title: "Treinamento de operador e NR-35 nao sao a mesma coisa",
+        description: "O treinamento relacionado a plataforma elevatoria tem foco no conhecimento e utilizacao do equipamento. A NR-35 possui escopo proprio relacionado ao trabalho em altura, e a empresa responsavel pela atividade deve avaliar os requisitos aplicaveis.",
+        cta: { label: "Entender seguranca e NR-35", href: "/seguranca-e-nr35/" },
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Orientacao integrada a locacao",
+        description: "A Accesslift combina equipamento, orientacao e suporte para acompanhar a utilizacao das plataformas em suas locacoes.",
+        cta: { label: "Solicitar informacoes", href: "/contato/" },
+      },
+    ],
+    faq: [
+      {
+        question: "A Accesslift oferece treinamento de operadores?",
+        answer: "Sim. A Accesslift pode orientar operadores quanto ao equipamento, comandos, limites e cuidados de utilizacao.",
+      },
+      {
+        question: "O treinamento aborda plataformas tesoura e articuladas?",
+        answer: "Sim. O conteudo considera as caracteristicas do equipamento utilizado na operacao.",
+      },
+      {
+        question: "Treinamento de operador substitui NR-35?",
+        answer: "Nao. Treinamento de operador e NR-35 possuem objetivos e escopos diferentes.",
+      },
+      {
+        question: "Como solicitar informacoes?",
+        answer: "Entre em contato com a Accesslift e informe o equipamento ou a necessidade da operacao.",
+      },
+    ],
+    finalCta: {
+      title: "Precisa de informacoes sobre treinamento?",
+      description: "Fale com a Accesslift e informe o equipamento ou a necessidade da operacao.",
+      primary: { label: "Entrar em contato", href: "/contato/" },
+      secondary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
       h1: "Treinamento para Operadores de Plataformas Elevatorias",
       title: "Treinamento para Operadores de Plataformas | Accesslift",
-      description: "Treinamento de operadores para uso correto de plataformas elevatorias.",
+      description: "Treinamento para operadores de plataformas elevatorias com orientacao sobre equipamentos, comandos, limites e cuidados durante a operacao.",
       canonicalPath: "/servicos/treinamento-de-operadores/",
     },
   },
@@ -434,95 +699,384 @@ export const segmentPages: SegmentPageConfig[] = [
   {
     path: "/segmentos-e-aplicacoes/",
     eyebrow: "Aplicacoes",
-    title: "Segmentos e aplicacoes",
-    description: "Hub de segmentos previsto no blueprint Accesslift.",
-    context: "Cada segmento tera conteudo administravel sem criar paginas automaticas por cidade, bairro ou filtros.",
-    needs: ["Acesso em altura", "Escolha correta de categoria", "Atendimento comercial"],
-    solutions: ["Catalogo dinamico", "Categorias SEO reais", "CTAs de conversao"],
+    title: "Plataformas Elevatorias para Diferentes Segmentos e Aplicacoes",
+    description: "Solucoes para trabalhos em altura em ambientes industriais, obras, instalacoes comerciais e outras operacoes que exigem acesso elevado.",
+    primaryCta: { label: "Encontrar uma plataforma", href: "/equipamentos/" },
+    secondaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    context: "Altura e apenas um dos fatores envolvidos na escolha de uma plataforma elevatoria.",
+    needs: ["Altura aproximada", "Tipo de acesso", "Espaco disponivel", "Obstaculos", "Capacidade", "Condicoes do local"],
+    solutions: ["Plataformas tesoura", "Plataformas articuladas", "Orcamento orientado pela operacao"],
     applications: ["Industria", "Construcao civil", "Supermercados", "Atacados"],
-    differentials: ["Entrega", "Retirada", "Assistencia", "Treinamento"],
+    differentials: ["Entrega propria", "Retirada propria", "Assistencia tecnica", "Treinamento"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Escolha",
+        title: "O equipamento deve acompanhar as caracteristicas do trabalho",
+        description: "Altura e apenas um dos fatores envolvidos na escolha de uma plataforma elevatoria. Tipo de acesso, espaco disponivel, obstaculos, necessidade de alcance horizontal, capacidade da plataforma e condicoes do local tambem influenciam a definicao do equipamento.",
+      },
+      {
+        eyebrow: "Segmentos",
+        title: "Aplicacoes por ambiente",
+        items: [
+          {
+            title: "Plataformas elevatorias para industria",
+            description: "Ambientes industriais podem exigir acesso elevado para manutencao, instalacoes, inspecoes, montagens e intervencoes em estruturas e equipamentos.",
+            cta: { label: "Plataformas para industria", href: "/segmentos/industria/" },
+          },
+          {
+            title: "Plataformas elevatorias para construcao civil",
+            description: "Em obras, plataformas podem apoiar instalacao, montagem, acabamento, manutencao e acesso a pontos elevados.",
+            cta: { label: "Plataformas para construcao civil", href: "/segmentos/construcao-civil/" },
+          },
+          {
+            title: "Plataformas para supermercados e hipermercados",
+            description: "Grandes instalacoes comerciais podem demandar trabalhos em altura para manutencao, iluminacao, infraestrutura e comunicacao visual.",
+            cta: { label: "Plataformas para supermercados", href: "/segmentos/supermercados-e-hipermercados/" },
+          },
+          {
+            title: "Plataformas elevatorias para atacados",
+            description: "Operacoes atacadistas possuem grandes areas, instalacoes elevadas e necessidades de manutencao e infraestrutura.",
+            cta: { label: "Plataformas para atacados", href: "/segmentos/atacados/" },
+          },
+        ],
+      },
+      {
+        eyebrow: "Tipo",
+        title: "O tipo de trabalho ajuda a definir a plataforma",
+        items: [
+          {
+            title: "Plataforma Tesoura",
+            description: "Pode ser considerada quando o trabalho exige principalmente elevacao vertical e existe possibilidade de posicionar o equipamento abaixo da area de execucao.",
+            cta: { label: "Ver plataformas tesoura", href: "/plataformas-tesoura/" },
+          },
+          {
+            title: "Plataforma Articulada",
+            description: "Pode ser considerada quando existem obstaculos ou quando o ponto de trabalho exige alcance horizontal alem da elevacao.",
+            cta: { label: "Ver plataformas articuladas", href: "/plataformas-articuladas/" },
+          },
+        ],
+      },
+      {
+        eyebrow: "Planejamento",
+        title: "Nao escolha apenas pela altura",
+        description: "Para identificar uma plataforma, considere altura aproximada, acesso ao local, largura e altura de passagens, espaco para posicionamento, obstaculos, alcance horizontal, operadores, ferramentas, piso, ambiente e periodo de utilizacao.",
+        cta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+      },
+    ],
+    faq: [
+      {
+        question: "Segmentos sao filtros tecnicos de equipamentos?",
+        answer: "Nao. As paginas de segmento sao editoriais e ajudam a explicar aplicacoes por tipo de ambiente.",
+      },
+      {
+        question: "Um equipamento pode atender mais de um segmento?",
+        answer: "Sim, desde que a aplicacao faca sentido para a altura, acesso, capacidade e condicoes do local.",
+      },
+      {
+        question: "Altura basta para escolher a plataforma?",
+        answer: "Nao. Acesso, obstaculos, espaco, capacidade e alcance horizontal tambem devem ser avaliados.",
+      },
+    ],
+    finalCta: {
+      title: "Conte para a Accesslift como sera sua operacao",
+      description: "Informe local, altura aproximada, periodo e caracteristicas do trabalho para consultar as opcoes disponiveis.",
+      primary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+      secondary: { label: "Ver equipamentos", href: "/equipamentos/" },
+    },
     seo: {
-      h1: "Plataformas Elevatorias para Diferentes Operacoes",
-      title: "Aplicacoes de Plataformas Elevatorias | Accesslift",
-      description: "Aplicacoes de plataformas elevatorias por segmento de mercado.",
+      h1: "Plataformas Elevatorias para Diferentes Segmentos e Aplicacoes",
+      title: "Plataformas Elevatorias para Diferentes Aplicacoes | Accesslift",
+      description: "Plataformas elevatorias para industria, construcao civil, supermercados, hipermercados e atacados. Conheca aplicacoes e encontre o equipamento adequado.",
       canonicalPath: "/segmentos-e-aplicacoes/",
     },
   },
   {
     path: "/segmentos/construcao-civil/",
     eyebrow: "Segmento",
-    title: "Construcao civil",
-    description: "Template para aplicacoes em construcao civil.",
-    context: "Pagina preparada para demandas de obra e acesso em altura, com conteudo real a validar.",
-    needs: ["Acesso vertical", "Planejamento de locacao", "Suporte em campo"],
-    solutions: ["Plataformas tesoura", "Plataformas articuladas", "Atendimento comercial"],
-    applications: ["Obras", "Instalacoes", "Manutencao predial"],
-    differentials: ["Entrega", "Assistencia", "Atendimento emergencial"],
+    title: "Plataformas Elevatorias para Construcao Civil",
+    description: "Equipamentos para apoiar trabalhos em altura em diferentes etapas de obras, instalacoes, montagens e acabamentos.",
+    primaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    context: "As necessidades de acesso em altura podem mudar ao longo de uma obra.",
+    needs: ["Altura necessaria", "Espaco de acesso", "Obstaculos", "Condicoes do piso", "Capacidade necessaria"],
+    solutions: ["Plataformas tesoura para acesso vertical", "Plataformas articuladas para alcance horizontal", "Locacao diaria, semanal ou mensal"],
+    applications: ["Instalacoes eletricas", "Instalacoes hidraulicas e infraestrutura", "Montagens", "Acabamentos", "Intervencoes em estruturas"],
+    differentials: ["Entrega e retirada proprias", "Suporte tecnico", "Orcamento orientado por etapa da obra"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Obra",
+        title: "Acesso elevado em diferentes etapas da construcao",
+        description: "Instalacoes, montagens, infraestrutura, acabamentos e outras atividades podem exigir equipamentos com diferentes alturas, dimensoes e formas de alcance. A escolha deve acompanhar a etapa e o ambiente onde a plataforma sera utilizada.",
+      },
+      {
+        eyebrow: "Aplicacoes",
+        title: "Aplicacoes na construcao civil",
+        items: ["Instalacoes eletricas", "Instalacoes hidraulicas e infraestrutura", "Montagens", "Acabamentos", "Instalacao de sistemas", "Intervencoes em estruturas", "Trabalhos em fachadas quando compativeis", "Manutencao e ajustes durante a obra"],
+      },
+      {
+        eyebrow: "Categorias",
+        title: "Tesoura ou articulada na construcao",
+        items: [
+          {
+            title: "Plataformas tesoura na construcao",
+            description: "Quando existe acesso direto ao ponto de trabalho e a movimentacao e predominantemente vertical, plataformas tesoura podem atender atividades de instalacao, montagem e acabamento.",
+            cta: { label: "Ver plataformas tesoura", href: "/plataformas-tesoura/" },
+          },
+          {
+            title: "Plataformas articuladas na construcao",
+            description: "Quando o trabalho exige alcancar pontos que nao estao diretamente acima da maquina, a articulacao e o alcance horizontal podem facilitar o acesso sobre ou ao redor de obstaculos.",
+            cta: { label: "Ver plataformas articuladas", href: "/plataformas-articuladas/" },
+          },
+        ],
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Locacao para diferentes periodos da obra",
+        description: "A Accesslift disponibiliza locacoes diarias, semanais e mensais, com entrega e retirada proprias e suporte tecnico durante a locacao.",
+        cta: { label: "Conhecer locacao", href: "/locacao-de-plataformas-elevatorias/" },
+      },
+    ],
+    faq: [
+      {
+        question: "Qual plataforma usar em uma obra?",
+        answer: "Depende da etapa, altura, acesso, obstaculos, piso e capacidade necessaria.",
+      },
+      {
+        question: "Plataforma tesoura atende construcao civil?",
+        answer: "Pode atender trabalhos predominantemente verticais quando o acesso e o espaco sao compativeis.",
+      },
+      {
+        question: "Quando considerar articulada na obra?",
+        answer: "Quando o ponto de trabalho exige alcance horizontal ou acesso sobre obstaculos.",
+      },
+    ],
+    finalCta: {
+      title: "Sua obra precisa de acesso em altura?",
+      description: "Informe cidade, periodo, altura aproximada e caracteristicas do trabalho.",
+      primary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
-      h1: "Plataformas para construcao civil",
-      title: "Plataformas para construcao civil | Accesslift",
-      description: "Estrutura de pagina para aplicacoes em construcao civil.",
+      h1: "Plataformas Elevatorias para Construcao Civil",
+      title: "Plataformas Elevatorias para Construcao Civil | Accesslift",
+      description: "Plataformas elevatorias para construcao civil, instalacoes, montagens e trabalhos em altura. Consulte modelos tesoura e articulados para locacao.",
       canonicalPath: "/segmentos/construcao-civil/",
     },
   },
   {
     path: "/segmentos/industria/",
     eyebrow: "Segmento",
-    title: "Industria",
-    description: "Template para aplicacoes industriais.",
-    context: "Pagina pronta para conteudos de manutencao, instalacao e operacoes industriais.",
-    needs: ["Continuidade operacional", "Seguranca", "Acesso planejado"],
-    solutions: ["Catalogo por categoria", "Assistencia tecnica", "Manutencao preventiva"],
-    applications: ["Manutencao", "Instalacao", "Operacao industrial"],
-    differentials: ["Assistencia", "Manutencao", "Treinamento"],
+    title: "Plataformas Elevatorias para Industria",
+    description: "Equipamentos para trabalhos em altura em operacoes industriais, com opcoes para elevacao vertical e acesso a pontos que exigem alcance horizontal.",
+    primaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    context: "Instalacoes industriais podem reunir estruturas, maquinas, tubulacoes, sistemas eletricos, iluminacao e outros elementos que demandam acesso elevado.",
+    needs: ["Caracteristicas do acesso", "Obstaculos existentes", "Espaco disponivel", "Alcance horizontal", "Periodo de utilizacao"],
+    solutions: ["Plataformas tesoura", "Plataformas articuladas", "Locacao com suporte"],
+    applications: ["Manutencao de instalacoes", "Inspecoes em altura", "Instalacoes eletricas", "Manutencao de iluminacao", "Montagens", "Intervencoes em estruturas"],
+    differentials: ["Assistencia tecnica propria", "Manutencao preventiva", "Entrega e retirada proprias"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Industria",
+        title: "Acesso em altura para diferentes necessidades da industria",
+        description: "Instalacoes industriais podem reunir estruturas, maquinas, tubulacoes, sistemas eletricos, iluminacao e outros elementos que demandam acesso elevado para inspecoes, manutencoes e intervencoes.",
+      },
+      {
+        eyebrow: "Aplicacoes",
+        title: "Aplicacoes em ambientes industriais",
+        description: "A aplicacao deve sempre considerar as caracteristicas e limitacoes do equipamento selecionado.",
+        items: ["Manutencao de instalacoes", "Inspecoes em altura", "Instalacoes eletricas e infraestrutura", "Manutencao de iluminacao", "Montagens", "Intervencoes em estruturas", "Instalacao e manutencao de sistemas", "Trabalhos em areas produtivas e de apoio"],
+      },
+      {
+        eyebrow: "Categorias",
+        title: "Tesoura ou articulada na industria",
+        items: [
+          {
+            title: "Quando considerar uma plataforma tesoura?",
+            description: "Quando o ponto de trabalho pode ser acessado predominantemente na vertical, uma plataforma tesoura pode oferecer area elevada para operador, ferramentas e materiais.",
+            cta: { label: "Ver plataformas tesoura", href: "/plataformas-tesoura/" },
+          },
+          {
+            title: "Quando considerar uma plataforma articulada?",
+            description: "Quando estruturas, equipamentos ou instalacoes criam obstaculos, uma plataforma articulada pode proporcionar o alcance horizontal necessario para acessar o local de trabalho.",
+            cta: { label: "Ver plataformas articuladas", href: "/plataformas-articuladas/" },
+          },
+        ],
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Locacao com estrutura de suporte",
+        description: "A Accesslift trabalha com locacoes diarias, semanais e mensais, entrega e retirada proprias, assistencia tecnica propria e suporte durante a locacao.",
+        cta: { label: "Conhecer locacao", href: "/locacao-de-plataformas-elevatorias/" },
+      },
+    ],
+    faq: [
+      {
+        question: "Qual plataforma pode ser usada na industria?",
+        answer: "A escolha depende da altura, acesso, obstaculos, espaco disponivel e necessidade de alcance horizontal.",
+      },
+      {
+        question: "Plataforma articulada e sempre necessaria?",
+        answer: "Nao. Ela pode ser considerada quando ha obstaculos ou necessidade de alcance horizontal.",
+      },
+      {
+        question: "A locacao inclui suporte?",
+        answer: "A Accesslift possui entrega, retirada e assistencia tecnica propria integradas a locacao.",
+      },
+    ],
+    finalCta: {
+      title: "Precisa de uma plataforma para uma operacao industrial?",
+      description: "Conte onde sera realizado o trabalho, a altura aproximada e as caracteristicas do acesso.",
+      primary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
-      h1: "Plataformas para industria",
-      title: "Plataformas para industria | Accesslift",
-      description: "Estrutura de pagina para aplicacoes industriais.",
+      h1: "Plataformas Elevatorias para Industria",
+      title: "Plataformas Elevatorias para Industria | Accesslift",
+      description: "Plataformas elevatorias para trabalhos industriais em altura, manutencao, instalacoes e montagens. Consulte equipamentos para locacao.",
       canonicalPath: "/segmentos/industria/",
     },
   },
   {
     path: "/segmentos/supermercados-e-hipermercados/",
     eyebrow: "Segmento",
-    title: "Supermercados e Hipermercados",
-    description: "Template para aplicacoes em supermercados.",
-    context: "Estrutura pronta para demandas comerciais, manutencao e acesso em areas operacionais.",
-    needs: ["Leitura facil", "Operacao organizada", "Suporte comercial"],
-    solutions: ["Plataformas tesoura", "Consulta de disponibilidade", "Atendimento especializado"],
-    applications: ["Manutencao", "Instalacoes", "Operacoes internas"],
-    differentials: ["Entrega", "Retirada", "Treinamento"],
-    relatedCategories: ["plataformas-tesoura"],
-    faq: placeholderFaq,
+    title: "Plataformas Elevatorias para Supermercados e Hipermercados",
+    description: "Equipamentos para manutencao, instalacoes e intervencoes em altura em grandes ambientes comerciais.",
+    primaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    context: "Supermercados e hipermercados possuem estruturas que podem demandar acesso elevado para manutencao e instalacao.",
+    needs: ["Altura do trabalho", "Largura e altura dos acessos", "Espaco para movimentacao", "Obstaculos", "Caracteristicas do local"],
+    solutions: ["Plataformas tesoura para trabalhos verticais", "Plataformas articuladas para alcance horizontal", "Locacao com entrega e suporte"],
+    applications: ["Manutencao de iluminacao", "Instalacoes eletricas", "Manutencao de infraestrutura", "Comunicacao visual", "Inspecoes em pontos elevados"],
+    differentials: ["Entrega propria", "Retirada propria", "Assistencia tecnica"],
+    relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
+    contentSections: [
+      {
+        eyebrow: "Ambiente",
+        title: "Trabalhos em altura em grandes areas comerciais",
+        description: "Iluminacao, sistemas eletricos, comunicacao visual, infraestrutura e outros elementos podem estar em pontos elevados. Corredores, acessos, estruturas existentes e circulacao precisam ser considerados na escolha do equipamento.",
+      },
+      {
+        eyebrow: "Aplicacoes",
+        title: "Aplicacoes em supermercados e hipermercados",
+        items: ["Manutencao de iluminacao", "Instalacoes eletricas", "Manutencao de infraestrutura", "Instalacao e manutencao de comunicacao visual", "Intervencoes em estruturas", "Instalacoes e montagens", "Inspecoes e manutencoes em pontos elevados"],
+      },
+      {
+        eyebrow: "Categorias",
+        title: "Tesoura ou articulada em grandes lojas",
+        items: [
+          {
+            title: "Plataforma tesoura para trabalhos verticais",
+            description: "Quando o equipamento pode ser posicionado abaixo da area de execucao, uma plataforma tesoura pode atender atividades que exigem acesso predominantemente vertical.",
+            cta: { label: "Ver plataformas tesoura", href: "/plataformas-tesoura/" },
+          },
+          {
+            title: "Quando e necessario alcance horizontal",
+            description: "Estruturas, equipamentos ou limitacoes podem impedir o posicionamento diretamente abaixo do ponto de trabalho. Nesses casos, uma articulada pode ser considerada.",
+            cta: { label: "Ver plataformas articuladas", href: "/plataformas-articuladas/" },
+          },
+        ],
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Equipamento e suporte para a operacao",
+        description: "A Accesslift disponibiliza locacoes diarias, semanais e mensais, com entrega e retirada proprias dentro da area de atendimento e suporte durante a locacao.",
+        cta: { label: "Conhecer locacao", href: "/locacao-de-plataformas-elevatorias/" },
+      },
+    ],
+    faq: [
+      {
+        question: "O acesso ao local importa na escolha?",
+        answer: "Sim. Largura, altura de passagens, corredores e espaco de movimentacao podem limitar os modelos compativeis.",
+      },
+      {
+        question: "Plataformas podem apoiar manutencao de iluminacao?",
+        answer: "Podem ser consideradas conforme altura, acesso, capacidade e condicoes do ambiente.",
+      },
+      {
+        question: "Posso solicitar avaliacao sem saber o modelo?",
+        answer: "Sim. Informe cidade, altura aproximada, periodo e caracteristicas do local.",
+      },
+    ],
+    finalCta: {
+      title: "Precisa realizar um trabalho em altura em sua unidade?",
+      description: "Informe cidade, altura aproximada, periodo e caracteristicas do local.",
+      primary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
       h1: "Plataformas Elevatorias para Supermercados e Hipermercados",
-      title: "Plataformas para Supermercados e Hipermercados | Accesslift",
-      description: "Plataformas elevatorias para aplicacoes em supermercados e hipermercados.",
+      title: "Plataformas Elevatorias para Supermercados | Accesslift",
+      description: "Plataformas elevatorias para manutencao, instalacoes e trabalhos em altura em supermercados e hipermercados. Consulte opcoes para locacao.",
       canonicalPath: "/segmentos/supermercados-e-hipermercados/",
     },
   },
   {
     path: "/segmentos/atacados/",
     eyebrow: "Segmento",
-    title: "Atacados",
-    description: "Template para aplicacoes em atacados.",
-    context: "Pagina preparada para operacoes de grande area e necessidades de acesso em altura.",
-    needs: ["Acesso em areas amplas", "Planejamento operacional", "Atendimento comercial"],
-    solutions: ["Plataformas tesoura", "Plataformas articuladas", "Suporte tecnico"],
-    applications: ["Manutencao", "Estoque", "Instalacoes"],
-    differentials: ["Entrega", "Assistencia", "Atendimento emergencial"],
+    title: "Plataformas Elevatorias para Atacados",
+    description: "Equipamentos para trabalhos em altura em grandes instalacoes atacadistas, operacoes de manutencao, infraestrutura e montagem.",
+    primaryCta: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    context: "Ambientes atacadistas podem reunir grandes areas de operacao, estruturas elevadas, iluminacao, instalacoes eletricas e comunicacao visual.",
+    needs: ["Altura aproximada", "Local da atividade", "Acessos disponiveis", "Obstaculos", "Periodo de utilizacao", "Alcance horizontal"],
+    solutions: ["Plataformas tesoura", "Plataformas articuladas", "Locacao diaria, semanal ou mensal"],
+    applications: ["Manutencao de iluminacao", "Instalacoes eletricas", "Manutencao de infraestrutura", "Comunicacao visual", "Inspecoes", "Montagens"],
+    differentials: ["Entrega e retirada proprias", "Suporte tecnico durante a locacao", "Auxilio na escolha"],
     relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    faq: placeholderFaq,
+    contentSections: [
+      {
+        eyebrow: "Operacao",
+        title: "Acesso elevado em instalacoes de grande porte",
+        description: "Trabalhos em pontos elevados exigem que altura, circulacao, obstaculos e posicionamento sejam considerados na escolha da plataforma.",
+      },
+      {
+        eyebrow: "Aplicacoes",
+        title: "Aplicacoes em ambientes atacadistas",
+        items: ["Manutencao de iluminacao", "Instalacoes eletricas", "Manutencao de infraestrutura", "Comunicacao visual", "Inspecoes", "Montagens", "Manutencao de estruturas e instalacoes elevadas"],
+      },
+      {
+        eyebrow: "Categorias",
+        title: "Tesoura ou articulada em atacados",
+        items: [
+          {
+            title: "Quando considerar uma plataforma tesoura?",
+            description: "Para pontos de trabalho acessiveis verticalmente, plataformas tesoura podem oferecer area elevada para operador, ferramentas e materiais.",
+            cta: { label: "Ver plataformas tesoura", href: "/plataformas-tesoura/" },
+          },
+          {
+            title: "Quando considerar uma plataforma articulada?",
+            description: "Quando existem obstaculos ou o ponto de execucao exige alcance lateral, plataformas articuladas permitem combinar elevacao e alcance horizontal.",
+            cta: { label: "Ver plataformas articuladas", href: "/plataformas-articuladas/" },
+          },
+        ],
+      },
+      {
+        eyebrow: "Locacao",
+        title: "Locacao diaria, semanal ou mensal",
+        description: "O periodo pode ser definido de acordo com a duracao da atividade, com entrega e retirada proprias e suporte tecnico durante a locacao.",
+        cta: { label: "Conhecer locacao", href: "/locacao-de-plataformas-elevatorias/" },
+      },
+    ],
+    faq: [
+      {
+        question: "Atacados precisam sempre de plataformas maiores?",
+        answer: "Nao necessariamente. A escolha depende da altura, acessos, obstaculos, espaco e atividade.",
+      },
+      {
+        question: "Como informar a necessidade?",
+        answer: "Informe altura aproximada, local da atividade, acessos disponiveis, obstaculos, periodo e necessidade de alcance horizontal.",
+      },
+      {
+        question: "A Accesslift ajuda na avaliacao?",
+        answer: "Sim. A equipe pode auxiliar na identificacao das opcoes quando as informacoes da operacao sao enviadas.",
+      },
+    ],
+    finalCta: {
+      title: "Precisa de uma plataforma elevatoria para sua operacao?",
+      description: "Conte para a Accesslift onde sera realizado o trabalho e quais sao as principais caracteristicas da necessidade.",
+      primary: { label: "Solicitar orcamento", href: "/solicite-orcamento/" },
+    },
     seo: {
-      h1: "Plataformas para atacados",
-      title: "Plataformas para atacados | Accesslift",
-      description: "Estrutura de pagina para aplicacoes em atacados.",
+      h1: "Plataformas Elevatorias para Atacados",
+      title: "Plataformas Elevatorias para Atacados | Accesslift",
+      description: "Plataformas elevatorias para manutencao, instalacoes e trabalhos em altura em atacados. Conheca opcoes tesoura e articuladas para locacao.",
       canonicalPath: "/segmentos/atacados/",
     },
   },

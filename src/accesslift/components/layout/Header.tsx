@@ -1,5 +1,6 @@
 import { Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useState } from "react";
+import { contactConfig } from "../../data/contact";
 import { navigateTo } from "../../utils/navigation";
 import { RequestQuoteButton, WhatsAppButton } from "../buttons/CtaButtons";
 import { Dropdown } from "../ui/Dropdown";
@@ -106,15 +107,14 @@ export function Header({ currentPath }: HeaderProps) {
           <div className="hidden sm:block">
             <RequestQuoteButton />
           </div>
-          <button
-            type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-emerald-500 text-white shadow-[0_10px_25px_rgba(16,185,129,0.25)] disabled:pointer-events-none disabled:opacity-50 sm:hidden"
-            disabled
-            title="WhatsApp a configurar"
-            aria-label="WhatsApp a configurar"
+          <a
+            href={contactConfig.whatsappUrl || "/contato/"}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-emerald-500 text-white shadow-[0_10px_25px_rgba(16,185,129,0.25)] sm:hidden"
+            title="Falar pelo WhatsApp"
+            aria-label="Falar pelo WhatsApp"
           >
             <MessageCircle className="h-5 w-5" aria-hidden />
-          </button>
+          </a>
           <button
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-300 text-slate-800 transition hover:bg-slate-100"

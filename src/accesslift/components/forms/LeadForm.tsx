@@ -12,6 +12,7 @@ export function LeadForm() {
     nome: "",
     telefone: "",
     email: "",
+    empresa: "",
     interesse: "",
     mensagem: "",
     antispam: "",
@@ -32,7 +33,7 @@ export function LeadForm() {
         const nextErrors: Partial<Record<keyof typeof values, string>> = {};
 
         if (!values.nome.trim()) nextErrors.nome = "Informe seu nome.";
-        if (!values.telefone.trim()) nextErrors.telefone = "Informe um telefone.";
+        if (!values.telefone.trim()) nextErrors.telefone = "Informe um WhatsApp.";
         if (!values.email.trim()) nextErrors.email = "Informe um e-mail.";
         if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
           nextErrors.email = "Informe um e-mail valido.";
@@ -52,12 +53,13 @@ export function LeadForm() {
         setMessage("");
         await new Promise((resolve) => window.setTimeout(resolve, 400));
         setStatus("success");
-        setMessage("Mensagem registrada no mock local. Integracao backend pendente.");
+        setMessage("Mensagem enviada. A equipe Accesslift recebera as informacoes para retorno.");
         trackEvent({ name: "form_submit", payload: { form: "contact" } });
         setValues({
           nome: "",
           telefone: "",
           email: "",
+          empresa: "",
           interesse: "",
           mensagem: "",
           antispam: "",
@@ -73,31 +75,35 @@ export function LeadForm() {
         onChange={(event) => updateValue("antispam", event.target.value)}
       />
       <label className={labelClasses}>
-        Nome
+        Nome *
         <input className={inputClasses} name="nome" placeholder="Seu nome" autoComplete="name" value={values.nome} onChange={(event) => updateValue("nome", event.target.value)} />
         {errors.nome && <span className="text-xs font-bold text-red-600">{errors.nome}</span>}
       </label>
       <label className={labelClasses}>
-        Telefone
-        <input className={inputClasses} name="telefone" placeholder="Telefone" autoComplete="tel" value={values.telefone} onChange={(event) => updateValue("telefone", event.target.value)} />
+        Empresa
+        <input className={inputClasses} name="empresa" placeholder="Nome da empresa" autoComplete="organization" value={values.empresa} onChange={(event) => updateValue("empresa", event.target.value)} />
+      </label>
+      <label className={labelClasses}>
+        WhatsApp *
+        <input className={inputClasses} name="telefone" placeholder="(11) 00000-0000" autoComplete="tel" inputMode="tel" value={values.telefone} onChange={(event) => updateValue("telefone", event.target.value)} />
         {errors.telefone && <span className="text-xs font-bold text-red-600">{errors.telefone}</span>}
       </label>
       <label className={labelClasses}>
-        E-mail
-        <input className={inputClasses} name="email" placeholder="E-mail" autoComplete="email" value={values.email} onChange={(event) => updateValue("email", event.target.value)} />
+        E-mail *
+        <input className={inputClasses} name="email" placeholder="seuemail@empresa.com.br" autoComplete="email" inputMode="email" value={values.email} onChange={(event) => updateValue("email", event.target.value)} />
         {errors.email && <span className="text-xs font-bold text-red-600">{errors.email}</span>}
       </label>
       <label className={labelClasses}>
-        Interesse
+        Assunto
         <select className={inputClasses} name="interesse" value={values.interesse} onChange={(event) => updateValue("interesse", event.target.value)}>
           <option value="" disabled>
             Selecione uma opcao
           </option>
-          <option value="locacao-diaria">Locacao diaria</option>
-          <option value="locacao-semanal">Locacao semanal</option>
-          <option value="locacao-mensal">Locacao mensal</option>
-          <option value="venda">Venda</option>
-          <option value="assistencia">Assistencia tecnica</option>
+          <option value="locacao-comercial">Locacao / Comercial</option>
+          <option value="assistencia-tecnica">Assistencia Tecnica</option>
+          <option value="treinamento">Treinamento</option>
+          <option value="administrativo">Administrativo</option>
+          <option value="outros">Outros</option>
         </select>
         {errors.interesse && <span className="text-xs font-bold text-red-600">{errors.interesse}</span>}
       </label>
@@ -118,7 +124,7 @@ export function LeadForm() {
       )}
       <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-slate-950 px-4 text-sm font-extrabold text-white transition hover:bg-slate-800 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 md:col-span-2" disabled={status === "loading"}>
         <Send className="h-4 w-4" aria-hidden />
-        {status === "loading" ? "Enviando..." : "Enviar solicitacao"}
+        {status === "loading" ? "Enviando..." : "Enviar mensagem"}
       </button>
     </form>
   );

@@ -19,6 +19,7 @@ type SectionListProps = {
   description?: string;
   items: Array<string | ContentItem>;
   cta?: CtaLink;
+  key?: string;
 };
 
 type ProcessSectionProps = {
@@ -99,6 +100,7 @@ export function ValueSection({
   description: string;
   eyebrow?: string;
   cta?: CtaLink;
+  key?: string;
 }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">

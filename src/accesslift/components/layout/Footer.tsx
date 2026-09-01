@@ -110,15 +110,17 @@ export function Footer() {
       </div>
 
       <div className="mx-auto grid max-w-7xl gap-4 border-t border-slate-800 px-4 py-5 text-xs text-slate-400 md:grid-cols-[1fr_auto] md:px-6">
-        <span>Accesslift V2 em desenvolvimento. Ambiente preparado para noindex.</span>
+        <span>Accesslift Plataformas Elevatorias</span>
         <div className="flex flex-wrap gap-3">
           {contactConfig.socialLinks.map((social) => (
-            <span key={social.label} className="inline-flex items-center gap-1">
-              <MessageCircle className="h-3.5 w-3.5" aria-hidden />
-              {social.label}: {social.href ? "configurado" : "a configurar"}
-            </span>
+            social.href ? (
+              <a key={social.label} href={social.href} className="inline-flex items-center gap-1 transition hover:text-white">
+                <MessageCircle className="h-3.5 w-3.5" aria-hidden />
+                {social.label}
+              </a>
+            ) : null
           ))}
-          <span>Informacoes legais a configurar</span>
+          <a href="/politica-de-privacidade/" className="transition hover:text-white">Politica de Privacidade</a>
         </div>
       </div>
     </footer>

@@ -27,10 +27,17 @@ export type EquipmentSpecs = {
   comprimento?: string | null;
   alturaRecolhida?: string | null;
   dimensaoPlataforma?: string | null;
+  extensaoDeck?: string | null;
+  distanciaEntreEixos?: string | null;
+  distanciaSolo?: string | null;
   raioGiro?: string | null;
+  raioGiroInterno?: string | null;
+  raioGiroExterno?: string | null;
+  sistemaEletrico?: string | null;
   pneus?: string | null;
   bateria?: string | null;
   alcanceHorizontal?: string | null;
+  alturaSobreObstaculo?: string | null;
 };
 
 export type EquipmentSeo = {
@@ -75,6 +82,9 @@ export type Equipment = {
   documentUpdatedAt?: string | null;
   oldUrl?: string | null;
   technicalDataSource?: string | null;
+  overview: string;
+  considerationText: string;
+  rentalText: string;
   seo: EquipmentSeo;
 };
 

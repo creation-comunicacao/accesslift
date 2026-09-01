@@ -1,6 +1,6 @@
 import { BadgeCheck, ImageIcon, Ruler, Wrench } from "lucide-react";
 import type { Equipment } from "../../types/equipment";
-import { CheckAvailabilityButton } from "../buttons/CtaButtons";
+import { RequestQuoteButton } from "../buttons/CtaButtons";
 import { Button } from "../buttons/Button";
 import { Badge } from "../ui/Badge";
 
@@ -69,12 +69,21 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
           </dt>
           <dd className="text-right font-medium text-slate-800">{equipment.specs.capacidade || "A confirmar"}</dd>
         </div>
+        {equipment.specs.alcanceHorizontal && (
+          <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
+            <dt className="flex items-center gap-2 text-slate-500">
+              <Ruler className="h-4 w-4" aria-hidden />
+              Alcance horizontal
+            </dt>
+            <dd className="text-right font-medium text-slate-800">{equipment.specs.alcanceHorizontal}</dd>
+          </div>
+        )}
       </dl>
       <div className="mt-5 grid gap-3">
         <Button href={`/equipamentos/${equipment.slug}/`} variant="secondary" className="w-full">
           Ver detalhes
         </Button>
-        <CheckAvailabilityButton className="w-full" equipmentSlug={equipment.slug} />
+        <RequestQuoteButton className="w-full" equipmentSlug={equipment.slug} />
       </div>
       {Object.values(equipment.specs).every((value) => !value) && (
         <div className="mt-3 flex items-center gap-2 text-xs font-bold text-slate-500">

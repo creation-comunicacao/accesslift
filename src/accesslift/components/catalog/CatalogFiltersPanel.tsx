@@ -1,4 +1,4 @@
-import type { CatalogFilters, CatalogSort, EquipmentBrand, EquipmentCategorySlug } from "../../types/equipment";
+import type { CatalogFilters, CatalogSort, EquipmentBrand, EquipmentCategorySlug, HeightRangeFilter } from "../../types/equipment";
 import { equipmentBrands, heightRangeFilters } from "../../data/equipment";
 
 type CatalogFiltersPanelProps = {
@@ -8,6 +8,7 @@ type CatalogFiltersPanelProps = {
   onSortChange: (sort: CatalogSort) => void;
   onClear: () => void;
   compact?: boolean;
+  heightRanges?: HeightRangeFilter[];
 };
 
 const labelClasses = "grid gap-2 text-xs font-black uppercase tracking-wider text-slate-600";
@@ -21,6 +22,7 @@ export function CatalogFiltersPanel({
   onSortChange,
   onClear,
   compact = false,
+  heightRanges = heightRangeFilters,
 }: CatalogFiltersPanelProps) {
   const updateFilter = <Key extends keyof CatalogFilters>(
     key: Key,
@@ -73,7 +75,7 @@ export function CatalogFiltersPanel({
           onChange={(event) => updateFilter("heightRange", event.target.value)}
         >
           <option value="all">Todas</option>
-          {heightRangeFilters.map((range) => (
+          {heightRanges.map((range) => (
             <option key={range.id} value={range.id}>
               {range.label}
             </option>

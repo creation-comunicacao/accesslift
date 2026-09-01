@@ -7,18 +7,19 @@
   <url><loc>http://localhost:3000/plataformas-articuladas/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/jlg-1930es/</loc></url>
+  <url><loc>http://localhost:3000/equipamentos/jlg-2630es/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/jlg-2632es/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/jlg-3246es/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/jlg-e450aj/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/genie-gs1930/</loc></url>
-  <url><loc>http://localhost:3000/equipamentos/genie-gs-2632/</loc></url>
+  <url><loc>http://localhost:3000/equipamentos/genie-gs2632/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/genie-z34/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/genie-z45/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/skyjack-sj3219/</loc></url>
   <url><loc>http://localhost:3000/equipamentos/skyjack-sj3226/</loc></url>
-  <url><loc>http://localhost:3000/equipamentos/skyjack-sj4740e/</loc></url>
-  <url><loc>http://localhost:3000/equipamentos/zoomlion-zs1212/</loc></url>
-  <url><loc>http://localhost:3000/equipamentos/zoomlion-za14/</loc></url>
+  <url><loc>http://localhost:3000/equipamentos/skyjack-sj4732/</loc></url>
+  <url><loc>http://localhost:3000/equipamentos/zoomlion-zs1212ac/</loc></url>
+  <url><loc>http://localhost:3000/equipamentos/zoomlion-za14je-li/</loc></url>
   <url><loc>http://localhost:3000/servicos/</loc></url>
   <url><loc>http://localhost:3000/servicos/assistencia-tecnica/</loc></url>
   <url><loc>http://localhost:3000/servicos/manutencao-preventiva/</loc></url>

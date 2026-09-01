@@ -11,8 +11,16 @@ export const getEquipmentByCategory = (category: EquipmentCategorySlug) =>
 export const getCategoryBySlug = (slug: EquipmentCategorySlug) =>
   equipmentCategories.find((category) => category.slug === slug);
 
+const equipmentSlugAliases: Record<string, string> = {
+  "jlg-2630": "jlg-2630es",
+  "genie-gs-2632": "genie-gs2632",
+  "skyjack-sj4740e": "skyjack-sj4732",
+  "zoomlion-zs1212": "zoomlion-zs1212ac",
+  "zoomlion-za14": "zoomlion-za14je-li",
+};
+
 export const getEquipmentBySlug = (slug: string) =>
-  mockEquipments.find((equipment) => equipment.slug === slug);
+  mockEquipments.find((equipment) => equipment.slug === (equipmentSlugAliases[slug] || slug));
 
 export const getRelatedEquipment = (equipment: Equipment, limit = 3) => {
   const sameCategory = mockEquipments.filter(
@@ -79,6 +87,11 @@ const matchesHeightRange = (equipment: Equipment, rangeId: string) => {
 
   return aboveMin && belowMax;
 };
+
+export const getAvailableHeightRangeFilters = (equipments: Equipment[]) =>
+  heightRangeFilters.filter((range) =>
+    equipments.some((equipment) => matchesHeightRange(equipment, range.id)),
+  );
 
 export const filterEquipment = (equipments: Equipment[], filters: CatalogFilters) =>
   equipments.filter((equipment) => {
