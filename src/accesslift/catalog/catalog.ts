@@ -22,11 +22,31 @@ const equipmentSlugAliases: Record<string, string> = {
 export const getEquipmentBySlug = (slug: string) =>
   mockEquipments.find((equipment) => equipment.slug === (equipmentSlugAliases[slug] || slug));
 
+const relatedPriorityBySlug: Record<string, string[]> = {
+  "jlg-2630es": ["jlg-2632es", "genie-gs2632", "skyjack-sj3226", "jlg-3246es"],
+};
+
 export const getRelatedEquipment = (equipment: Equipment, limit = 3) => {
-  const sameCategory = mockEquipments.filter(
+  const sameCategory = getPublishedEquipment().filter(
     (candidate) =>
       candidate.id !== equipment.id && candidate.category === equipment.category,
   );
+  const priority = relatedPriorityBySlug[equipment.slug];
+
+  if (priority) {
+    const priorityEquipment = priority
+      .map((slug) => sameCategory.find((candidate) => candidate.slug === slug))
+      .filter((candidate): candidate is Equipment => Boolean(candidate));
+
+    if (priorityEquipment.length >= limit) {
+      return priorityEquipment.slice(0, limit);
+    }
+
+    const prioritySlugs = new Set(priorityEquipment.map((candidate) => candidate.slug));
+    const remaining = sameCategory.filter((candidate) => !prioritySlugs.has(candidate.slug));
+
+    return [...priorityEquipment, ...remaining].slice(0, limit);
+  }
 
   const currentHeight = parseMeters(equipment.specs.alturaTrabalho);
 

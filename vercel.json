@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/site/index.php/modelos/plataformas-tesoura-accesslift/jlg-2630es",
+      "destination": "/equipamentos/jlg-2630es/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

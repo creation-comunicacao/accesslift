@@ -34,10 +34,12 @@ const specLabels: Array<{
   { key: "alturaTrabalho", label: "Altura de trabalho" },
   { key: "alturaPlataforma", label: "Altura da plataforma" },
   { key: "capacidade", label: "Capacidade" },
+  { key: "capacidadeExtensao", label: "Capacidade da extensão" },
   { key: "alimentacao", label: "Alimentação" },
   { key: "peso", label: "Peso" },
   { key: "largura", label: "Largura" },
   { key: "comprimento", label: "Comprimento" },
+  { key: "alturaMaquina", label: "Altura da máquina" },
   { key: "alturaRecolhida", label: "Altura recolhida" },
   { key: "dimensaoPlataforma", label: "Dimensões da plataforma" },
   { key: "extensaoDeck", label: "Extensão do deck" },
@@ -49,6 +51,7 @@ const specLabels: Array<{
   { key: "sistemaEletrico", label: "Sistema elétrico" },
   { key: "pneus", label: "Pneus" },
   { key: "bateria", label: "Bateria" },
+  { key: "carregador", label: "Carregador" },
   { key: "alcanceHorizontal", label: "Alcance horizontal" },
   { key: "alturaSobreObstaculo", label: "Altura sobre obstáculo" },
 ];
@@ -105,6 +108,16 @@ function ImagePanel({ equipment }: EquipmentDetailPageProps) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+function TextBlock({ children }: { children: string }) {
+  return (
+    <div className="grid max-w-3xl gap-3 text-base leading-7 text-slate-600">
+      {children.split("\n\n").map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
     </div>
   );
 }
@@ -237,6 +250,12 @@ function ListSection({
 export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
   const accent = getManufacturerAccent(equipment.brand);
   const related = getRelatedEquipment(equipment);
+  const hasTechnicalDocuments = Boolean(
+    equipment.technicalSheetPdf ||
+      equipment.manualPdf ||
+      equipment.documentSource ||
+      equipment.documentUpdatedAt,
+  );
   const faqItems = equipment.faq.map((item, index) => ({
     id: `${equipment.id}-faq-${index}`,
     title: item.question,
@@ -274,7 +293,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
               <PackageCheck className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
               <h2 className="text-2xl font-black text-slate-950">Conheça a {equipment.brand} {equipment.model}</h2>
             </div>
-            <p className="max-w-3xl text-base leading-7 text-slate-600">{equipment.overview}</p>
+            <TextBlock>{equipment.overview}</TextBlock>
           </section>
 
           <section>
@@ -301,7 +320,9 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           <section className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
             <ShieldCheck className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
             <h2 className="mt-3 text-xl font-black text-slate-950">Quando considerar esta plataforma?</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">{equipment.considerationText}</p>
+            <div className="mt-3 text-sm">
+              <TextBlock>{equipment.considerationText}</TextBlock>
+            </div>
           </section>
 
           {faqItems.length > 0 && (
@@ -334,9 +355,12 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
 
           <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
             <h2 className="text-xl font-black text-slate-950">Locação da {equipment.brand} {equipment.model}</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.rentalText}</p>
+            <div className="mt-2 text-sm">
+              <TextBlock>{equipment.rentalText}</TextBlock>
+            </div>
             <div className="mt-4 flex flex-wrap gap-3">
               <CheckAvailabilityButton equipmentSlug={equipment.slug} />
+              <RequestQuoteButton equipmentSlug={equipment.slug} />
               <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary">
                 Conhecer locação
               </Button>
@@ -345,9 +369,15 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
         </div>
 
         <aside className="h-fit rounded-lg border border-slate-200 bg-white p-5 premium-shadow lg:sticky lg:top-28">
-          <FileText className="h-8 w-8 text-[#0b2d4d]" aria-hidden />
-          <h2 className="mt-4 text-xl font-black text-slate-950">Ficha técnica</h2>
-          {equipment.technicalSheetPdf ? (
+          {hasTechnicalDocuments ? (
+            <>
+              <FileText className="h-8 w-8 text-[#0b2d4d]" aria-hidden />
+              <h2 className="mt-4 text-xl font-black text-slate-950">Ficha técnica</h2>
+            </>
+          ) : (
+            <h2 className="text-xl font-black text-slate-950">Atendimento comercial</h2>
+          )}
+          {equipment.technicalSheetPdf && (
             <a
               href={equipment.technicalSheetPdf}
               className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-slate-950 px-4 text-sm font-extrabold text-white transition hover:bg-slate-800"
@@ -362,10 +392,6 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
               <Download className="h-4 w-4" aria-hidden />
               Baixar ficha técnica
             </a>
-          ) : (
-            <p className="mt-3 rounded-md border border-dashed border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-600">
-              PDF ainda não cadastrado para este equipamento.
-            </p>
           )}
           {equipment.manualPdf && (
             <a

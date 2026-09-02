@@ -25,9 +25,11 @@ export type EquipmentSpecs = {
   peso: string | null;
   largura: string | null;
   comprimento?: string | null;
+  alturaMaquina?: string | null;
   alturaRecolhida?: string | null;
   dimensaoPlataforma?: string | null;
   extensaoDeck?: string | null;
+  capacidadeExtensao?: string | null;
   distanciaEntreEixos?: string | null;
   distanciaSolo?: string | null;
   raioGiro?: string | null;
@@ -36,6 +38,7 @@ export type EquipmentSpecs = {
   sistemaEletrico?: string | null;
   pneus?: string | null;
   bateria?: string | null;
+  carregador?: string | null;
   alcanceHorizontal?: string | null;
   alturaSobreObstaculo?: string | null;
 };
@@ -75,6 +78,7 @@ export type Equipment = {
   applications: string[];
   faq: EquipmentFaqItem[];
   technicalSheetPdf: string | null;
+  imageSource?: string | null;
   manualPdf?: string | null;
   manualVersion?: string | null;
   manualLanguage?: string | null;

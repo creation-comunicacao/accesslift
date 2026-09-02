@@ -5,6 +5,7 @@ import type {
   EquipmentCategorySlug,
   EquipmentSpecs,
   HeightRangeFilter,
+  PublishStatus,
 } from "../types/equipment";
 
 export const equipmentCategories: EquipmentCategory[] = [
@@ -27,6 +28,7 @@ type EquipmentSeed = {
   model: string;
   category: EquipmentCategorySlug;
   slug?: string;
+  publicationStatus?: PublishStatus;
   validateBeforePublish?: boolean;
 };
 
@@ -56,7 +58,7 @@ const officialImagesBySlug: Partial<
   "jlg-2630es": {
     mainImage: {
       src: asset("equipamentos/jlg/plataforma-tesoura-jlg-2630es.jpg"),
-      alt: "Plataforma tesoura JLG 2630ES",
+      alt: "Plataforma tesoura elétrica JLG 2630ES",
       width: 286,
       height: 600,
     },
@@ -204,16 +206,16 @@ const officialImagesBySlug: Partial<
 
 const equipmentSeeds: EquipmentSeed[] = [
   { brand: "JLG", model: "1930ES", category: "plataformas-tesoura" },
-  { brand: "JLG", model: "2630ES", category: "plataformas-tesoura", slug: "jlg-2630es", validateBeforePublish: true },
+  { brand: "JLG", model: "2630ES", category: "plataformas-tesoura", slug: "jlg-2630es", publicationStatus: "published" },
   { brand: "JLG", model: "2632ES", category: "plataformas-tesoura", validateBeforePublish: true },
-  { brand: "JLG", model: "3246ES", category: "plataformas-tesoura" },
+  { brand: "JLG", model: "3246ES", category: "plataformas-tesoura", publicationStatus: "published" },
   { brand: "JLG", model: "E450AJ", category: "plataformas-articuladas", validateBeforePublish: true },
   { brand: "Genie", model: "GS-1930", category: "plataformas-tesoura", slug: "genie-gs1930" },
   { brand: "Genie", model: "GS-2632", category: "plataformas-tesoura", slug: "genie-gs2632", validateBeforePublish: true },
   { brand: "Genie", model: "Z-34/22", category: "plataformas-articuladas", slug: "genie-z34", validateBeforePublish: true },
   { brand: "Genie", model: "Z-45/25 DC", category: "plataformas-articuladas", slug: "genie-z45", validateBeforePublish: true },
   { brand: "Skyjack", model: "SJ3219", category: "plataformas-tesoura" },
-  { brand: "Skyjack", model: "SJ3226", category: "plataformas-tesoura" },
+  { brand: "Skyjack", model: "SJ3226", category: "plataformas-tesoura", publicationStatus: "published" },
   { brand: "Skyjack", model: "SJ4732", category: "plataformas-tesoura", validateBeforePublish: true },
   { brand: "Zoomlion", model: "ZS1212AC", category: "plataformas-tesoura", slug: "zoomlion-zs1212ac", validateBeforePublish: true },
   { brand: "Zoomlion", model: "ZA14JE-Li", category: "plataformas-articuladas", slug: "zoomlion-za14je-li", validateBeforePublish: true },
@@ -308,6 +310,7 @@ type EquipmentContentOverride = {
   summary?: string;
   overview?: string;
   considerationText?: string;
+  rentalText?: string;
   characteristics?: string[];
   applications?: string[];
   faq?: Equipment["faq"];
@@ -342,6 +345,20 @@ const equipmentSpecsBySlug: Record<string, Partial<EquipmentSpecs>> = {
   "jlg-1930es": {
     alturaTrabalho: "7,72 m",
     alimentacao: "Elétrica",
+  },
+  "jlg-2630es": {
+    alturaTrabalho: "9,77 m",
+    capacidade: "230 kg",
+    capacidadeExtensao: "120 kg",
+    alimentacao: "Elétrica",
+    largura: "0,81 m",
+    comprimento: "2,30 m",
+    alturaMaquina: "2,33 m",
+    dimensaoPlataforma: "0,76 x 2,30 m",
+    peso: "2.132 kg",
+    pneus: "41 x 12,5 cm",
+    bateria: "4 × 6 V / 220 Ah",
+    carregador: "20 A automático",
   },
   "jlg-2632es": {
     alturaTrabalho: "9,77 m",
@@ -493,32 +510,47 @@ const equipmentSpecsBySlug: Record<string, Partial<EquipmentSpecs>> = {
 
 const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
   "jlg-2630es": {
-    summary: "Plataforma tesoura elétrica para trabalhos de elevação vertical, com configuração mais estreita dentro da faixa de altura correspondente.",
-    overview: "A JLG 2630ES amplia as opções de plataforma tesoura da Accesslift para operações em que altura e largura da máquina precisam ser avaliadas em conjunto. A principal diferença prática informada em relação a 2632ES é a largura: a 2630ES é a configuração mais estreita, enquanto ambas trabalham em faixa semelhante de altura.",
-    considerationText: "Pode ser considerada quando o trabalho exige elevação vertical, quando a largura da máquina é um critério relevante, não existe necessidade de alcance articulado e acesso, piso e condições do local são compatíveis.",
-    characteristics: ["Configuração mais estreita que a JLG 2632ES", "Elevação predominantemente vertical", "Alimentação elétrica", "Dados numéricos dependem da ficha 2630ES validada"],
-    applications: sharedScissorApplications,
+    summary: "Plataforma elevatória tesoura elétrica para trabalhos de elevação vertical, indicada para operações de manutenção, instalações e montagens em diferentes ambientes.",
+    overview: "A JLG 2630ES é uma plataforma tesoura elétrica para trabalhos em que o acesso ao ponto de execução ocorre predominantemente na vertical. Seu formato favorece operações de manutenção, instalações e montagens em ambientes onde circulação e posicionamento do equipamento precisam ser considerados.\n\nA alimentação elétrica contribui para uma operação adequada a diferentes ambientes, sempre respeitando as condições de uso, acesso, piso e capacidade previstas para a máquina.",
+    considerationText: "A JLG 2630ES pode ser considerada quando o trabalho exige elevação predominantemente vertical e uma plataforma tesoura elétrica é compatível com o ambiente da operação.\n\nPara definir o equipamento adequado, devem ser avaliados fatores como altura necessária, acesso ao local, dimensões disponíveis, capacidade requerida, condições do piso e características da atividade.\n\nA equipe da Accesslift pode auxiliar na escolha da plataforma de acordo com as informações da operação.",
+    characteristics: [
+      "Elevação vertical: configuração tesoura para trabalhos em altura com acesso predominantemente vertical.",
+      "Alimentação elétrica: equipamento elétrico indicado para diferentes aplicações de manutenção, instalação e montagem.",
+      "Plataforma com extensão: extensão da plataforma que amplia a área disponível para posicionamento durante a operação.",
+      "Configuração compacta: dimensões que favorecem circulação e posicionamento em diferentes ambientes de trabalho.",
+    ],
+    applications: [
+      "Manutenção industrial: apoio a trabalhos de manutenção e intervenções em altura.",
+      "Instalações: execução de instalações elétricas, hidráulicas e outros serviços técnicos em altura.",
+      "Construção civil: apoio a atividades de montagem, acabamento e instalações.",
+      "Supermercados e atacados: operações de manutenção e instalações em áreas compatíveis com as características da máquina.",
+    ],
     faq: [
-      { question: "A JLG 2630ES é a mesma máquina que a 2632ES?", answer: "Não. O cadastro deve permanecer separado. Uma das principais diferenças práticas informadas é a largura." },
-      { question: "Por que alguns dados técnicos não aparecem?", answer: "Porque a ficha específica da 2630ES ainda precisa ser validada. Dados de uma máquina parecida não devem ser copiados." },
-      { question: "Quando considerar a JLG 2630ES?", answer: "Quando a operação exige elevação vertical e a largura do equipamento é um critério relevante para acesso e circulação." },
+      { question: "Qual é a altura de trabalho da JLG 2630ES?", answer: "A informação histórica da Accesslift indica altura de trabalho de 9,77 m para a JLG 2630ES." },
+      { question: "Qual é a capacidade da JLG 2630ES?", answer: "A informação histórica da Accesslift indica capacidade de plataforma de 230 kg." },
+      { question: "A JLG 2630ES é elétrica?", answer: "Sim. A JLG 2630ES cadastrada pela Accesslift é uma plataforma tesoura elétrica." },
+      { question: "A Accesslift oferece locação da JLG 2630ES?", answer: "Sim. Consulte a disponibilidade do equipamento para o período e local da sua operação." },
+      { question: "Como saber se a JLG 2630ES é adequada para o meu trabalho?", answer: "A escolha deve considerar altura necessária, acesso, dimensões do local, capacidade, piso e características da atividade. A Accesslift pode auxiliar na definição da plataforma adequada." },
     ],
     seo: {
       title: "JLG 2630ES: Plataforma Tesoura para Locação | Accesslift",
-      description: "Conheça a plataforma tesoura elétrica JLG 2630ES para locação, indicada para elevação vertical com configuração estreita. Consulte disponibilidade.",
+      description: "Conheça a plataforma tesoura elétrica JLG 2630ES para locação, suas características e aplicações. Consulte a disponibilidade com a Accesslift.",
       h1: "Plataforma Tesoura JLG 2630ES",
+      indexDirective: "index",
     },
     oldUrl: "/site/index.php/modelos/plataformas-tesoura-accesslift/jlg-2630es",
+    technicalDataSource: "Accesslift legacy website",
+    rentalText: "Consulte a disponibilidade da JLG 2630ES para locação diária, semanal ou mensal.\n\nA Accesslift atende São Paulo e localidades em um raio de até 150 km de sua base, com entrega e retirada próprias, assistência técnica e suporte durante a locação.",
   },
   "jlg-2632es": {
-    summary: "Plataforma tesoura elétrica para trabalhos de elevação vertical, com configuração mais larga que a JLG 2630ES em faixa semelhante de altura.",
-    overview: "A JLG 2632ES é uma plataforma tesoura elétrica para operações em que o acesso ao trabalho ocorre predominantemente na vertical. Dentro da frota Accesslift, ela complementa a JLG 2630ES oferecendo uma configuração mais larga, conforme confirmado pela equipe da empresa.",
-    considerationText: "Considere a JLG 2632ES quando a faixa de altura atende a operação, aproximadamente 81 cm de largura são compatíveis com o acesso e não há necessidade de contornar obstáculos com lança articulada.",
+    summary: "Plataforma tesoura elétrica para trabalhos de elevação vertical, indicada para operações de manutenção, instalações e montagens em ambientes compatíveis.",
+    overview: "A JLG 2632ES é uma plataforma tesoura elétrica para operações em que o acesso ao trabalho ocorre predominantemente na vertical. A escolha do equipamento deve considerar altura, capacidade, dimensões, acesso ao local e condições reais da operação.",
+    considerationText: "Considere a JLG 2632ES quando a faixa de altura atende à operação, as dimensões do equipamento são compatíveis com o acesso e não há necessidade de contornar obstáculos com lança articulada.",
     applications: sharedScissorApplications,
     faq: [
       { question: "Qual a altura de trabalho da JLG 2632ES?", answer: "A documentação histórica JLG consultada registra 9,77 m de altura de trabalho." },
       { question: "Qual a capacidade da JLG 2632ES?", answer: "A capacidade cadastrada a partir da documentação histórica é 230 kg." },
-      { question: "Qual a diferença entre 2630ES e 2632ES?", answer: "Uma das principais diferenças práticas é a largura. A escolha também deve considerar acesso, circulação, plataforma, capacidade e demais características técnicas." },
+      { question: "A JLG 2632ES usa os mesmos dados da JLG 2630ES?", answer: "Não. Os modelos devem permanecer em registros independentes, cada um com sua própria fonte técnica e validação documental." },
     ],
     seo: {
       title: "JLG 2632ES: Plataforma Tesoura para Locação | Accesslift",
@@ -751,7 +783,7 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
     model: seed.model,
     category: seed.category,
     slug,
-    status: "draft",
+    status: seed.publicationStatus || "draft",
     validationStatus: seed.validateBeforePublish ? "validate-before-publish" : "ready",
     mainImage: officialImages?.mainImage || {
       src: null,
@@ -771,6 +803,7 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
     applications: content?.applications || modelApplicationsByCategory[seed.category],
     faq: content?.faq || createEquipmentFaq(seed, specs),
     technicalSheetPdf: null,
+    imageSource: slug === "jlg-2630es" ? "Imagem ilustrativa do modelo. Origem/licença pendente de confirmação interna." : null,
     manualPdf: null,
     manualVersion: null,
     manualLanguage: null,
@@ -780,7 +813,7 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
     technicalDataSource: content?.technicalDataSource || null,
     overview: content?.overview || createEquipmentOverview(seed, categoryLabel),
     considerationText: content?.considerationText || createEquipmentConsideration(seed),
-    rentalText: `Consulte a disponibilidade da ${seed.brand} ${seed.model} para locação diária, semanal ou mensal. A Accesslift realiza entrega e retirada dentro de sua área de atendimento e oferece suporte técnico durante a locação.`,
+    rentalText: content?.rentalText || `Consulte a disponibilidade da ${seed.brand} ${seed.model} para locação diária, semanal ou mensal. A Accesslift realiza entrega e retirada dentro de sua área de atendimento e oferece suporte técnico durante a locação.`,
     seo: {
       title: content?.seo?.title || `${seed.brand} ${seed.model}: ${categoryLabel} para Locação | Accesslift`,
       description: content?.seo?.description || `Conheça a plataforma ${categoryLabel.toLowerCase()} ${seed.brand} ${seed.model}: altura de trabalho, capacidade, especificações e aplicações. Consulte disponibilidade para locação.`,
