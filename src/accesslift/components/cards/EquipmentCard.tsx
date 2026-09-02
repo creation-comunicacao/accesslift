@@ -23,10 +23,10 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
   const alcanceHorizontal = formatPublicSpecValue(equipment.specs.alcanceHorizontal);
 
   return (
-    <article className={`premium-card premium-card-hover group relative overflow-hidden rounded-lg p-4 ${accent.hover}`}>
+    <article className={`premium-card premium-card-hover group relative overflow-hidden rounded-lg p-4 md:p-5 ${accent.hover}`}>
       <span className={`absolute inset-x-0 top-0 h-1 ${accent.bar}`} aria-hidden />
       {equipment.mainImage.src ? (
-        <div className="media-frame mb-5 overflow-hidden rounded-md p-2">
+        <div className="media-frame mb-5 overflow-hidden rounded-md p-2.5">
           <img
             src={equipment.mainImage.src}
             alt={equipment.mainImage.alt}
@@ -51,7 +51,7 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
         <Badge tone="outline">{categoryLabel}</Badge>
         {isElectric && <Badge tone="steel">Elétrica</Badge>}
       </div>
-      <h3 className="text-xl font-black text-[#0b2d4d]">{equipment.title}</h3>
+      <h3 className="text-xl font-black leading-tight text-[#0b2d4d]">{equipment.title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.summary}</p>
       <dl className="mt-4 grid gap-2 text-sm">
         <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
@@ -89,7 +89,7 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
           </div>
         )}
       </dl>
-      <div className="mt-5 grid gap-3">
+      <div className="mt-6 grid gap-3">
         <Button href={`/equipamentos/${equipment.slug}/`} variant="secondary" className="w-full">
           Ver detalhes
         </Button>

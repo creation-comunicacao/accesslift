@@ -20,7 +20,7 @@ export function Dropdown({ label, items, currentPath, onNavigate }: DropdownProp
     <div className="group relative">
       <button
         type="button"
-        className={`inline-flex h-10 items-center gap-1 rounded-md px-3 text-sm font-extrabold transition ${
+        className={`inline-flex h-11 items-center gap-1 rounded-md px-3.5 text-sm font-extrabold transition ${
           active
             ? "bg-[#0b2d4d]/8 text-[#0b2d4d]"
             : "text-slate-700 hover:bg-[#0b2d4d]/6 hover:text-[#0b2d4d]"
@@ -29,7 +29,7 @@ export function Dropdown({ label, items, currentPath, onNavigate }: DropdownProp
         {label}
         <ChevronDown className="h-4 w-4 transition group-hover:rotate-180" aria-hidden />
       </button>
-      <div className="invisible absolute left-0 top-full z-50 w-72 translate-y-2 rounded-lg border border-slate-200 bg-white p-2 opacity-0 premium-shadow transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="invisible absolute left-0 top-full z-50 w-72 translate-y-3 rounded-lg border border-slate-200 bg-white p-2 opacity-0 premium-shadow transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
         {items.map((item) => (
           <a
             key={item.href}

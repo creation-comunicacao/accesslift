@@ -107,9 +107,9 @@ function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) 
 
 function SectionHeader({ eyebrow, title, description, inverted = false }: { eyebrow: string; title: string; description?: string; inverted?: boolean }) {
   return (
-    <div className="mb-8 max-w-3xl">
-      <Badge tone="lime">{eyebrow}</Badge>
-      <h2 className={`mt-4 ${inverted ? "text-white" : "text-slate-950"}`}>{title}</h2>
+    <div className="mb-10 max-w-3xl">
+      <span className={`section-eyebrow ${inverted ? "text-white" : ""}`}>{eyebrow}</span>
+      <h2 className={`mt-5 ${inverted ? "text-white" : "text-slate-950"}`}>{title}</h2>
       {description && <p className={`mt-3 text-base leading-7 ${inverted ? "text-slate-300" : "text-slate-600"}`}>{description}</p>}
     </div>
   );
@@ -118,27 +118,36 @@ function SectionHeader({ eyebrow, title, description, inverted = false }: { eyeb
 export function HomePage() {
   return (
     <>
-      <section className="industrial-grid overflow-hidden bg-slate-50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-16">
-          <div>
-            <Badge tone="lime">Accesslift</Badge>
-            <h1 className="mt-5 max-w-4xl text-slate-950">Locação de Plataformas Elevatórias em São Paulo</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+      <section className="hero-photo overflow-hidden">
+        <img
+          src="/images/accesslift/logistica/transporte-plataformas-elevatorias-frota-03.jpeg"
+          alt="Entrega de plataformas elevatórias pela Accesslift"
+          width={1599}
+          height={899}
+          loading="eager"
+          decoding="async"
+        />
+        <div className="site-container flex min-h-[inherit] items-center py-16 md:py-20">
+          <div className="max-w-3xl">
+            <span className="section-eyebrow text-white">Accesslift</span>
+            <h1 className="mt-6 max-w-4xl text-white">Locação de Plataformas Elevatórias em São Paulo</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 md:text-xl">
               Plataformas tesoura e articuladas para trabalhos em altura, com frota elétrica, entrega própria e suporte técnico da Accesslift.
             </p>
-            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
+            <div className="mt-9 grid gap-3 sm:flex sm:flex-wrap">
               <RequestQuoteButton />
               <Button href="/equipamentos/" variant="secondary">Ver equipamentos</Button>
             </div>
           </div>
-          <EquipmentVisual type="hero" />
         </div>
-        <div className="border-y border-slate-200 bg-white">
-          <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 md:grid-cols-4 md:px-6">
+      </section>
+
+      <section className="border-b border-slate-200 bg-white">
+          <div className="site-container grid gap-3 py-6 sm:grid-cols-2 md:grid-cols-4">
             {homeTrustItems.map((item, index) => {
               const Icon = trustIcons[index];
               return (
-                <div key={item.value} className="flex min-h-20 items-center gap-3 rounded-lg bg-slate-50 p-4">
+                <div key={item.value} className="flex min-h-20 items-center gap-3 rounded-lg bg-slate-50 p-4 ring-1 ring-slate-200/80">
                   <Icon className="h-6 w-6 shrink-0 text-[#0b2d4d]" aria-hidden />
                   <div>
                     <p className="text-base font-black text-slate-950">{item.value}</p>
@@ -148,10 +157,9 @@ export function HomePage() {
               );
             })}
           </div>
-        </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <section className="site-container section-space">
         <SectionHeader
           eyebrow="Locação"
           title="Plataforma elevatória para a necessidade da sua operação"
@@ -168,8 +176,8 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#0b2d4d] py-14 text-white">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <section className="bg-[#0b2d4d] section-space-compact text-white">
+        <div className="site-container">
           <SectionHeader
             eyebrow="Tipos de plataforma"
             title="Encontre a plataforma certa para o seu trabalho"
@@ -192,8 +200,8 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-14">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <section className="bg-slate-50 section-space-compact">
+        <div className="site-container">
           <SectionHeader
             eyebrow="Diferenciais Accesslift"
             title="Mais do que disponibilizar equipamentos"
@@ -203,7 +211,7 @@ export function HomePage() {
             {homeDifferentials.map(({ title, description }, index) => {
               const Icon = differentialIcons[index];
               return (
-                <article key={title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+                <article key={title} className="premium-card premium-card-hover rounded-lg p-5 md:p-6">
                   <Icon className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
                   <h3 className="mt-4 text-slate-950">{title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
@@ -215,7 +223,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <section className="site-container section-space">
         <SectionHeader
           eyebrow="Equipamentos"
           title="Plataformas elevatórias para diferentes alturas e aplicações"
@@ -229,8 +237,8 @@ export function HomePage() {
         </Button>
       </section>
 
-      <section className="border-y border-slate-200 bg-white py-14">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <section className="border-y border-slate-200 bg-white section-space-compact">
+        <div className="site-container">
           <SectionHeader
             eyebrow="Segmentos"
             title="Plataformas elevatórias para diferentes setores"
@@ -250,8 +258,8 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-14">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="bg-slate-50 section-space-compact">
+        <div className="site-container grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <Badge tone="lime">Área de atendimento</Badge>
             <h2 className="mt-4 text-slate-950">Locação de plataformas elevatórias em São Paulo e região</h2>
@@ -276,7 +284,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <section className="site-container section-space">
         <SectionHeader
           eyebrow="Clientes e avaliações"
           title="A confiança de quem trabalha com a Accesslift"
@@ -325,8 +333,8 @@ export function HomePage() {
         )}
       </section>
 
-      <section className="border-y border-slate-200 bg-white py-14">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
+      <section className="border-y border-slate-200 bg-white section-space-compact">
+        <div className="site-container grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <Badge tone="outline">Vamos conversar</Badge>
             <h2 className="mt-4 text-slate-950">Precisa de uma plataforma elevatória?</h2>
