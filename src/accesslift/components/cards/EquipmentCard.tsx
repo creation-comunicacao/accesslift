@@ -23,7 +23,7 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
   const alcanceHorizontal = formatPublicSpecValue(equipment.specs.alcanceHorizontal);
 
   return (
-    <article className={`premium-card premium-card-hover group relative overflow-hidden rounded-lg p-4 md:p-5 ${accent.hover}`}>
+    <article data-reveal="fade-up" className={`premium-card premium-card-hover group relative overflow-hidden rounded-lg p-4 md:p-5 ${accent.hover}`}>
       <span className={`absolute inset-x-0 top-0 h-1 ${accent.bar}`} aria-hidden />
       {equipment.mainImage.src ? (
         <div className="media-frame mb-5 overflow-hidden rounded-md p-2.5">
@@ -33,7 +33,7 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
             width={equipment.mainImage.width}
             height={equipment.mainImage.height}
             sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
-            className="aspect-[4/3] w-full rounded-md object-contain transition duration-300 group-hover:scale-[1.02]"
+            className="aspect-[4/3] w-full rounded-md object-contain transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.04]"
             loading="lazy"
             decoding="async"
           />

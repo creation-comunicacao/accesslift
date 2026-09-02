@@ -233,7 +233,7 @@ function ListSection({
   }
 
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+    <section data-reveal="fade-up" className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
       <Icon className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
       <h2 className="mt-3 text-xl font-black text-slate-950">{title}</h2>
       <ul className="mt-4 grid gap-2 text-sm font-semibold text-slate-600">
@@ -266,8 +266,10 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
     <>
       <section className="industrial-grid border-b border-slate-200 bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:px-6 lg:grid-cols-[0.95fr_1fr] lg:items-center">
-          <ImagePanel equipment={equipment} />
-          <div className="relative overflow-hidden rounded-lg bg-white/70 p-5 shadow-[0_18px_45px_rgba(11,45,77,0.08)] ring-1 ring-slate-200/70 md:p-6">
+          <div data-reveal="fade-right">
+            <ImagePanel equipment={equipment} />
+          </div>
+          <div data-reveal="fade-left" className="relative overflow-hidden rounded-lg bg-white/70 p-5 shadow-[0_18px_45px_rgba(11,45,77,0.08)] ring-1 ring-slate-200/70 md:p-6">
             <span className={`absolute inset-x-0 top-0 h-1 ${accent.bar}`} aria-hidden />
             <div className="flex flex-wrap gap-2">
               <Badge tone="outline" className={accent.badge}>{equipment.brand}</Badge>
@@ -288,7 +290,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
 
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_360px]">
         <div className="grid gap-8">
-          <section>
+          <section data-reveal="fade-up">
             <div className="mb-5 flex items-center gap-2">
               <PackageCheck className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
               <h2 className="text-2xl font-black text-slate-950">Conheça a {equipment.brand} {equipment.model}</h2>
@@ -296,7 +298,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
             <TextBlock>{equipment.overview}</TextBlock>
           </section>
 
-          <section>
+          <section data-reveal="fade-up">
             <div className="mb-5 flex items-center gap-2">
               <PackageCheck className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
               <h2 className="text-2xl font-black text-slate-950">Principais características</h2>
@@ -304,7 +306,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
             <SpecsGrid equipment={equipment} />
           </section>
 
-          <section>
+          <section data-reveal="fade-up">
             <div className="mb-5 flex items-center gap-2">
               <Ruler className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
               <h2 className="text-2xl font-black text-slate-950">Especificações técnicas</h2>
@@ -312,12 +314,12 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
             <SpecsTable equipment={equipment} />
           </section>
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="reveal-stagger grid gap-5 md:grid-cols-2">
             <ListSection title="Características" items={equipment.characteristics} icon={BadgeCheck} />
             <ListSection title="Aplicações possíveis" items={equipment.applications} icon={Wrench} />
           </div>
 
-          <section className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+          <section data-reveal="fade-up" className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
             <ShieldCheck className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
             <h2 className="mt-3 text-xl font-black text-slate-950">Quando considerar esta plataforma?</h2>
             <div className="mt-3 text-sm">
@@ -326,14 +328,14 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           </section>
 
           {faqItems.length > 0 && (
-            <section>
+            <section data-reveal="fade-up">
               <h2 className="mb-5 text-2xl font-black text-slate-950">FAQ do equipamento</h2>
               <Accordion items={faqItems} />
             </section>
           )}
 
           {related.length > 0 && (
-            <section>
+            <section data-reveal="fade-up">
               <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
                 <div>
                   <h2 className="text-2xl font-black text-slate-950">Equipamentos relacionados</h2>
@@ -345,7 +347,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
                   Ver catálogo
                 </Button>
               </div>
-              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              <div className="reveal-stagger grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                 {related.map((item) => (
                   <EquipmentCard key={item.id} equipment={item} />
                 ))}
@@ -353,7 +355,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
             </section>
           )}
 
-          <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+          <section data-reveal="fade-up" className="rounded-lg border border-slate-200 bg-slate-50 p-5">
             <h2 className="text-xl font-black text-slate-950">Locação da {equipment.brand} {equipment.model}</h2>
             <div className="mt-2 text-sm">
               <TextBlock>{equipment.rentalText}</TextBlock>
@@ -368,7 +370,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           </section>
         </div>
 
-        <aside className="h-fit rounded-lg border border-slate-200 bg-white p-5 premium-shadow lg:sticky lg:top-28">
+        <aside data-reveal="fade-left" className="h-fit rounded-lg border border-slate-200 bg-white p-5 premium-shadow lg:sticky lg:top-28">
           {hasTechnicalDocuments ? (
             <>
               <FileText className="h-8 w-8 text-[#0b2d4d]" aria-hidden />
@@ -422,7 +424,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
         </aside>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-12 md:px-6">
+      <section data-reveal="fade-up" className="mx-auto max-w-7xl px-4 pb-12 md:px-6">
         <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
           <h2>Consulte a disponibilidade da {equipment.brand} {equipment.model}</h2>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">

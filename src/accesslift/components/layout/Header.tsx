@@ -1,5 +1,5 @@
 import { Menu, MessageCircle, Phone, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { contactConfig } from "../../data/contact";
 import { navigateTo } from "../../utils/navigation";
 import { RequestQuoteButton, WhatsAppButton } from "../buttons/CtaButtons";
@@ -31,6 +31,15 @@ const mobileLinks = [
 
 export function Header({ currentPath }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const syncScrollState = () => setIsScrolled(window.scrollY > 8);
+
+    syncScrollState();
+    window.addEventListener("scroll", syncScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", syncScrollState);
+  }, []);
 
   const linkClasses = (path: string) =>
     `rounded-md px-3.5 py-2 text-sm font-extrabold transition ${
@@ -45,7 +54,11 @@ export function Header({ currentPath }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/96 backdrop-blur-xl">
+    <header
+      className={`sticky top-0 z-50 border-b bg-white/96 backdrop-blur-xl transition-[box-shadow,border-color] duration-200 ${
+        isScrolled ? "border-slate-200 shadow-[0_10px_30px_rgba(11,45,77,0.10)]" : "border-slate-200/80"
+      }`}
+    >
       <div className="hidden border-b border-white/10 bg-[#0b2d4d] text-white lg:block">
         <div className="site-container flex items-center justify-between py-2 text-xs font-bold text-slate-300">
           <span>Atendimento em São Paulo e regiões em raio de até 150 km da base</span>

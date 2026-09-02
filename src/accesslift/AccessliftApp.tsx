@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "./components/layout/AppShell";
+import { ScrollRevealProvider } from "./components/animation/ScrollReveal";
 import { Seo } from "./seo/Seo";
 import { findRouteByPath, normalizePath } from "./routes/routes";
 import { HomePage } from "./pages/HomePage";
@@ -228,9 +229,11 @@ export function AccessliftApp({ initialPath }: AccessliftAppProps) {
   }, [blogPost, blogPostSlug, equipment, equipmentSlug, route]);
 
   return (
-    <AppShell currentPath={currentPath}>
-      <Seo seo={pageSeo} />
-      {page}
-    </AppShell>
+    <ScrollRevealProvider watchKey={currentPath}>
+      <AppShell currentPath={currentPath}>
+        <Seo seo={pageSeo} />
+        {page}
+      </AppShell>
+    </ScrollRevealProvider>
   );
 }

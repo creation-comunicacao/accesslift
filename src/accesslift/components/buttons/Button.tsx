@@ -30,12 +30,17 @@ export function Button({
   title,
   onClick,
 }: ButtonProps) {
-  const classes = `touch-button inline-flex items-center justify-center gap-2 px-5 text-sm font-extrabold transition duration-200 active:translate-y-px disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className}`;
+  const classes = `touch-button group/button inline-flex items-center justify-center gap-2 px-5 text-sm font-extrabold transition duration-200 active:translate-y-px disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className}`;
+  const iconNode = icon ? (
+    <span className="inline-flex shrink-0 transition-transform duration-200 group-hover/button:translate-x-1">
+      {icon}
+    </span>
+  ) : null;
 
   if (!href || disabled) {
     return (
       <button className={classes} disabled={disabled} title={title} onClick={onClick}>
-        {icon}
+        {iconNode}
         <span>{children}</span>
       </button>
     );
@@ -54,7 +59,7 @@ export function Button({
         }
       }}
     >
-      {icon}
+      {iconNode}
       <span>{children}</span>
     </a>
   );

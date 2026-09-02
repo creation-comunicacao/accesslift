@@ -24,6 +24,7 @@ export function ServiceCard({ title, summary, href }: ServiceCardProps) {
     return (
       <a
         href={href}
+        data-reveal="fade-up"
         className="premium-card premium-card-hover group block rounded-lg p-5 md:p-6"
         onClick={(event: MouseEvent<HTMLAnchorElement>) => {
           if (href.startsWith("/")) {
@@ -38,7 +39,7 @@ export function ServiceCard({ title, summary, href }: ServiceCardProps) {
   }
 
   return (
-    <article className="premium-card premium-card-hover group rounded-lg p-5 md:p-6">
+    <article data-reveal="fade-up" className="premium-card premium-card-hover group rounded-lg p-5 md:p-6">
       {content}
     </article>
   );

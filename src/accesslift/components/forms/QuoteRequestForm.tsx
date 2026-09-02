@@ -62,6 +62,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
 
   return (
     <form
+      data-reveal="fade-up"
       className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();

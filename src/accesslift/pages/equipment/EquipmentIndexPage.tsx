@@ -60,7 +60,7 @@ export function EquipmentIndexPage() {
       />
 
       <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6">
-        <div className="mb-6 rounded-lg border border-slate-200 bg-white p-4 premium-shadow">
+        <div data-reveal="fade-up" className="mb-6 rounded-lg border border-slate-200 bg-white p-4 premium-shadow">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div>
               <Badge tone={activeFilters ? "lime" : "steel"}>
@@ -99,7 +99,7 @@ export function EquipmentIndexPage() {
         ) : results.length === 0 ? (
           <CatalogState type="no-results" onClear={clearFilters} />
         ) : (
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="reveal-stagger grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {results.map((equipment) => (
               <EquipmentCard key={equipment.id} equipment={equipment} />
             ))}

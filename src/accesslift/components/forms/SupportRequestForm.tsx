@@ -30,6 +30,7 @@ export function SupportRequestForm() {
 
   return (
     <form
+      data-reveal="fade-up"
       className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 premium-shadow md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
