@@ -189,7 +189,7 @@ export const MAIN_ROUTES: AppRoute[] = [
     kind: "static",
     seo: {
       title: "Clientes | Accesslift",
-      description: "Estrutura para clientes e provas de confianca Accesslift.",
+      description: "Estrutura para clientes e provas de confiança Accesslift.",
       canonicalPath: "/clientes/",
     },
   },

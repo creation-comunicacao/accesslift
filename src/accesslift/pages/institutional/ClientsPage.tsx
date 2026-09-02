@@ -9,14 +9,14 @@ export function ClientsPage() {
       <ConversionHero
         eyebrow="Clientes"
         title={clientsPageSeo.h1}
-        description="Estrutura de prova social preparada para nomes, logos, depoimentos, cases e referencias quando houver autorizacao."
+        description="Estrutura de prova social preparada para nomes, logos, depoimentos, cases e referências quando houver autorização."
       />
       <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
         <div className="mb-6">
-          <Badge tone="amber">Logos pendentes de autorizacao</Badge>
+          <Badge tone="amber">Logos pendentes de autorização</Badge>
           <h2 className="mt-4 text-slate-950">Prova social estruturada</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
-            Os nomes citados no blueprint aparecem como placeholders. Logos, depoimentos, cases e links devem ser cadastrados somente apos confirmação.
+            Os nomes citados no blueprint aparecem como placeholders. Logos, depoimentos, cases e links devem ser cadastrados somente após confirmação.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -31,7 +31,7 @@ export function ClientsPage() {
               </p>
               <div className="mt-4 rounded-md bg-white p-3 text-left text-xs text-slate-600">
                 <Quote className="mb-2 h-4 w-4 text-slate-400" aria-hidden />
-                Depoimento, case e referencia a cadastrar.
+                Depoimento, case e referência a cadastrar.
               </div>
             </article>
           ))}

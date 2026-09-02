@@ -37,9 +37,9 @@ export const institutionalPages: InstitutionalPageConfig[] = [
   {
     path: "/empresa/",
     eyebrow: "Institucional",
-    title: "Accesslift: Plataforma Certa, Atendimento Proximo e Suporte para a Operação",
+    title: "Accesslift: Plataforma Certa, Atendimento Próximo e Suporte para a Operação",
     description:
-      "Ha 12 anos, a Accesslift atua com locação de plataformas elevatórias para empresas que precisam realizar trabalhos em altura com equipamentos adequados as características de cada operação.",
+      "Há 12 anos, a Accesslift atua com locação de plataformas elevatórias para empresas que precisam realizar trabalhos em altura com equipamentos adequados as características de cada operação.",
     sections: [
       {
         title: "Quem somos",
@@ -76,7 +76,7 @@ export const institutionalPages: InstitutionalPageConfig[] = [
       },
     ],
     seo: {
-      h1: "Accesslift: Plataforma Certa, Atendimento Proximo e Suporte para a Operação",
+      h1: "Accesslift: Plataforma Certa, Atendimento Próximo e Suporte para a Operação",
       title: "Accesslift | Locação de Plataformas Elevatórias em SP",
       description: "Conheça a Accesslift, empresa com 12 anos de atuação em locação de plataformas elevatórias, suporte técnico, manutenção e atendimento em São Paulo e região.",
       canonicalPath: "/empresa/",
@@ -94,9 +94,9 @@ export const institutionalPages: InstitutionalPageConfig[] = [
         description: "São Paulo e regiões em raio de até 150 km da base.",
       },
       {
-        title: "Sem paginas automaticas",
+        title: "Sem páginas automáticas",
         description:
-          "Esta página não cria paginas SEO por cidade, bairro ou combinacoes de filtros.",
+          "Esta página não cria páginas SEO por cidade, bairro ou combinações de filtros.",
       },
     ],
     seo: {
@@ -116,7 +116,7 @@ export const institutionalPages: InstitutionalPageConfig[] = [
       {
         title: "Contexto",
         description:
-          "A NR-35 estabelece requisitos relacionados ao trabalho em altura dentro de seu campo de aplicacao. A escolha de uma plataforma elevatória e uma parte desse planejamento, mas não substitui as demais responsabilidades relacionadas a execução segura da atividade.",
+          "A NR-35 estabelece requisitos relacionados ao trabalho em altura dentro de seu campo de aplicação. A escolha de uma plataforma elevatória é uma parte desse planejamento, mas não substitui as demais responsabilidades relacionadas à execução segura da atividade.",
       },
       {
         title: "Equipamento não e a norma",
@@ -131,7 +131,7 @@ export const institutionalPages: InstitutionalPageConfig[] = [
       {
         title: "Documentação técnica",
         description:
-          "As paginas individuais dos equipamentos apresentam específicações e podem disponibilizar ficha técnica e manual quando a documentação correspondente estiver validada.",
+          "As páginas individuais dos equipamentos apresentam especificações e podem disponibilizar ficha técnica e manual quando a documentação correspondente estiver validada.",
       },
       {
         title: "Escolha do equipamento",

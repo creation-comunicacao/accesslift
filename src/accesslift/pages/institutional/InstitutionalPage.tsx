@@ -44,7 +44,7 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
 
             return (
               <article key={section.title} className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-                <Icon className="h-8 w-8 text-lime-700" aria-hidden />
+                <Icon className="h-8 w-8 text-[#0b2d4d]" aria-hidden />
                 <h2 className="mt-4 text-2xl font-black text-slate-950">{section.title}</h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{section.description}</p>
                 {section.items && (
@@ -123,12 +123,12 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
                   {
                     id: "nr35-aplicacao",
                     title: "A NR-35 se aplica a todo uso de plataforma elevatória?",
-                    content: "A aplicabilidade dos requisitos depende das características da atividade e deve ser avaliada de acordo com a regulamentacao vigente.",
+                    content: "A aplicabilidade dos requisitos depende das características da atividade e deve ser avaliada de acordo com a regulamentação vigente.",
                   },
                   {
                     id: "nr35-locacao",
-                    title: "Alugar uma plataforma significa que a operação esta automaticamente adequada a NR-35?",
-                    content: "Não. O equipamento e apenas um dos elementos envolvidos no planejamento e execução do trabalho.",
+                    title: "Alugar uma plataforma significa que a operação está automaticamente adequada à NR-35?",
+                    content: "Não. O equipamento é apenas um dos elementos envolvidos no planejamento e execução do trabalho.",
                   },
                   {
                     id: "nr35-treinamento",
@@ -138,7 +138,7 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
                   {
                     id: "nr35-documentacao",
                     title: "A Accesslift disponibiliza informações técnicas dos equipamentos?",
-                    content: "Sim. As paginas dos modelos apresentam específicações e podem disponibilizar ficha técnica e manual quando a documentação correspondente estiver validada.",
+                    content: "Sim. As páginas dos modelos apresentam especificações e podem disponibilizar ficha técnica e manual quando a documentação correspondente estiver validada.",
                   },
                 ]}
               />
@@ -149,7 +149,7 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
       {page.path === "/area-de-atendimento/" && (
         <ValueSection
           title="São Paulo + raio de até 150 km"
-          description="Esta página comunica apenas a área estrutural definida no blueprint. Não foram criadas paginas por cidade ou bairro."
+          description="Esta página comunica apenas a área estrutural definida no blueprint. Não foram criadas páginas por cidade ou bairro."
         />
       )}
       {page.referenceLink && (

@@ -33,10 +33,10 @@ export function QuotePage() {
         <aside className="h-fit rounded-lg border border-slate-200 bg-slate-50 p-5">
           <h2 className="text-xl font-black text-slate-950">Não sabe qual plataforma precisa?</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Altura aproximada, espaço disponível, tipo de acesso e existencia de obstáculos já ajudam a equipe a compreender a necessidade.
+            Altura aproximada, espaço disponível, tipo de acesso e existência de obstáculos já ajudam a equipe a compreender a necessidade.
           </p>
           <div className="mt-5 rounded-md border border-slate-200 bg-white p-3 text-sm font-semibold text-slate-600">
-            Depois do envio, a equipe Accesslift avalia equipamento, período, local e condições comerciais. Não ha promessa de prazo fixo de retorno.
+            Depois do envio, a equipe Accesslift avalia equipamento, período, local e condições comerciais. Não há promessa de prazo fixo de retorno.
           </div>
           <div className="mt-5 grid gap-2">
             <Button href="/plataformas-elevatorias/" variant="secondary">Entender os tipos de plataforma</Button>

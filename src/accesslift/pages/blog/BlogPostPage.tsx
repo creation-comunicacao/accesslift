@@ -31,7 +31,7 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               {related.map((item) => (
                 <article key={item.id} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-                  <BookOpen className="h-7 w-7 text-lime-700" aria-hidden />
+                  <BookOpen className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
                   <h3 className="mt-4 text-slate-950">{item.title}</h3>
                   <p className="mt-2 text-sm text-slate-600">{item.summary}</p>
                   <Button href={`/blog/${item.slug}/`} variant="secondary" className="mt-4">

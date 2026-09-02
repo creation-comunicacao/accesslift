@@ -8,16 +8,16 @@ type BadgeProps = {
 };
 
 const tones = {
-  lime: "bg-lime-100 text-slate-950 ring-lime-200",
+  lime: "bg-[#0b2d4d]/8 text-[#0b2d4d] ring-[#0b2d4d]/12",
   steel: "bg-slate-100 text-slate-700 ring-slate-200",
-  amber: "bg-amber-100 text-amber-900 ring-amber-200",
+  amber: "bg-[#d8242f]/10 text-[#a8141d] ring-[#d8242f]/15",
   outline: "bg-white text-slate-700 ring-slate-300",
 };
 
 export function Badge({ children, tone = "steel", className = "" }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wider ring-1 ${tones[tone]} ${className}`}
+      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-wider ring-1 ${tones[tone]} ${className}`}
     >
       {children}
     </span>

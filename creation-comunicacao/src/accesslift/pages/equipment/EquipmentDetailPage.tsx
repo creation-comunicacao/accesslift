@@ -164,9 +164,6 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
               <Badge tone="lime">{equipment.brand}</Badge>
               <Badge tone="outline">{equipment.model}</Badge>
               <Badge tone="steel">{categoryName(equipment)}</Badge>
-              {equipment.validationStatus === "validate-before-publish" && (
-                <Badge tone="amber">Validar antes de publicar</Badge>
-              )}
             </div>
             <h1 className="mt-5 text-slate-950">{equipment.seo.h1}</h1>
             <p className="mt-4 max-w-2xl text-lg text-slate-600">{equipment.summary}</p>

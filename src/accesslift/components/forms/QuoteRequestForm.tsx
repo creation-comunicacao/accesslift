@@ -5,7 +5,7 @@ import { submitQuoteRequest, type QuoteRequestPayload } from "../../services/lea
 import type { Equipment } from "../../types/equipment";
 
 const inputClasses =
-  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-lime-500 focus:ring-2 focus:ring-lime-200 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
+  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
 const labelClasses = "grid gap-1.5 text-xs font-black uppercase tracking-wider text-slate-600";
 
 const getStoredUtm = (key: string) => window.sessionStorage.getItem(`accesslift-${key}`);
@@ -41,7 +41,7 @@ const validate = (values: QuoteRequestPayload) => {
   if (!values.whatsapp.trim()) errors.whatsapp = "Informe seu WhatsApp.";
   if (!values.cidade.trim()) errors.cidade = "Informe sua cidade.";
   if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-    errors.email = "Informe um e-mail valido.";
+    errors.email = "Informe um e-mail válido.";
   }
   if (!values.aceite) errors.aceite = "Aceite o contato para enviar a solicitação.";
   if (values.antispam) errors.antispam = "Falha na validação antispam.";
@@ -62,7 +62,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
 
   return (
     <form
-      className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 premium-shadow md:grid-cols-2 md:p-6"
+      className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
         const nextErrors = validate(values);
@@ -175,7 +175,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           autoComplete="address-level2"
           value={values.cidade}
           onChange={(event) => updateValue("cidade", event.target.value)}
-          placeholder="Cidade onde a plataforma sera utilizada"
+          placeholder="Cidade onde a plataforma será utilizada"
         />
         {errors.cidade && <span className="text-xs font-bold text-red-600">{errors.cidade}</span>}
       </label>
@@ -221,7 +221,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
       </label>
 
       {values.equipmentId && (
-        <p className="rounded-md bg-lime-50 px-3 py-3 text-sm font-semibold text-lime-900 md:col-span-2">
+        <p className="rounded-md bg-[#0b2d4d]/8 px-3 py-3 text-sm font-semibold text-[#0b2d4d] md:col-span-2">
           Equipamento de interesse: {values.brand} {values.model}
         </p>
       )}
@@ -245,7 +245,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           type="checkbox"
           checked={values.aceite}
           onChange={(event) => updateValue("aceite", event.target.checked)}
-          className="mt-1 h-4 w-4 accent-lime-500"
+          className="mt-1 h-4 w-4 accent-[#0b2d4d]"
         />
         Aceito ser contatado pela Accesslift para retorno sobre esta solicitação.
       </label>
@@ -254,7 +254,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
       {message && (
         <div
           className={`flex items-start gap-2 rounded-md p-3 text-sm font-semibold md:col-span-2 ${
-            status === "success" ? "bg-lime-50 text-lime-900" : "bg-red-50 text-red-700"
+            status === "success" ? "bg-[#0b2d4d]/8 text-[#0b2d4d]" : "bg-red-50 text-red-700"
           }`}
         >
           {status === "success" ? <CheckCircle2 className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}

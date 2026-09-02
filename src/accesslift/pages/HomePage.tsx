@@ -139,7 +139,7 @@ export function HomePage() {
               const Icon = trustIcons[index];
               return (
                 <div key={item.value} className="flex min-h-20 items-center gap-3 rounded-lg bg-slate-50 p-4">
-                  <Icon className="h-6 w-6 shrink-0 text-lime-700" aria-hidden />
+                  <Icon className="h-6 w-6 shrink-0 text-[#0b2d4d]" aria-hidden />
                   <div>
                     <p className="text-base font-black text-slate-950">{item.value}</p>
                     <p className="text-xs font-bold uppercase tracking-wider text-slate-500">{item.label}</p>
@@ -168,7 +168,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-950 py-14 text-white">
+      <section className="bg-[#0b2d4d] py-14 text-white">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <SectionHeader
             eyebrow="Tipos de plataforma"
@@ -178,7 +178,7 @@ export function HomePage() {
           />
           <div className="grid gap-5 lg:grid-cols-2">
             {homeCategoryCards.map((category) => (
-              <article key={category.title} className="grid gap-5 rounded-lg border border-slate-800 bg-slate-900 p-4 md:grid-cols-[0.9fr_1fr] md:p-5">
+              <article key={category.title} className="grid gap-5 rounded-lg border border-white/10 bg-white/6 p-4 shadow-[0_18px_45px_rgba(0,0,0,0.14)] md:grid-cols-[0.9fr_1fr] md:p-5">
                 <EquipmentVisual type={category.visual} />
                 <div className="flex flex-col justify-center">
                   <Badge tone="amber">{category.title}</Badge>
@@ -204,7 +204,7 @@ export function HomePage() {
               const Icon = differentialIcons[index];
               return (
                 <article key={title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-                  <Icon className="h-7 w-7 text-lime-700" aria-hidden />
+                  <Icon className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
                   <h3 className="mt-4 text-slate-950">{title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
                 </article>
@@ -238,11 +238,11 @@ export function HomePage() {
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {segments.map(({ title, description, href, label, icon: Icon }) => (
-              <a key={href} href={href} className="group rounded-lg border border-slate-200 bg-white p-5 soft-shadow transition hover:-translate-y-0.5 hover:border-slate-300">
-                <Icon className="h-8 w-8 text-slate-950" aria-hidden />
+              <a key={href} href={href} className="premium-card premium-card-hover group rounded-lg p-5">
+                <Icon className="h-8 w-8 text-[#0b2d4d]" aria-hidden />
                 <h3 className="mt-5 text-slate-950">{title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-lime-700">{label} <ArrowRight className="h-4 w-4" aria-hidden /></span>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-[#0b2d4d]">{label} <ArrowRight className="h-4 w-4" aria-hidden /></span>
               </a>
             ))}
           </div>
@@ -266,7 +266,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="industrial-grid min-h-72 rounded-lg border border-slate-200 bg-white p-6 premium-shadow">
-            <div className="flex h-full min-h-60 items-center justify-center rounded-full border-2 border-dashed border-lime-500 bg-lime-50 text-center">
+            <div className="flex h-full min-h-60 items-center justify-center rounded-full border-2 border-dashed border-[#d8242f]/35 bg-[#0b2d4d]/5 text-center">
               <div>
                 <p className="text-4xl font-black text-slate-950">150 km</p>
                 <p className="mt-2 text-sm font-bold text-slate-600">raio de atendimento</p>
@@ -317,7 +317,7 @@ export function HomePage() {
               </p>
             )}
             {googleReviewsProfileUrl && (
-              <a href={googleReviewsProfileUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-lime-700 hover:text-lime-800">
+              <a href={googleReviewsProfileUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-[#0b2d4d] hover:text-[#d8242f]">
                 Ver avaliações da Accesslift no Google <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
             )}
@@ -325,7 +325,7 @@ export function HomePage() {
         )}
       </section>
 
-      <section className="bg-lime-300 py-14">
+      <section className="border-y border-slate-200 bg-white py-14">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
           <div>
             <Badge tone="outline">Vamos conversar</Badge>

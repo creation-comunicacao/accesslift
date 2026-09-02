@@ -14,7 +14,7 @@ export function AppShell({ children, currentPath }: AppShellProps) {
   const breadcrumbs = getBreadcrumbItems(currentPath);
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-950 antialiased">
+    <div className="min-h-screen bg-[#f6f8fb] font-sans text-slate-950 antialiased">
       <Header currentPath={currentPath} />
       <main>
         <div className="mx-auto max-w-7xl px-4 pt-5 md:px-6">
@@ -23,7 +23,7 @@ export function AppShell({ children, currentPath }: AppShellProps) {
         {children}
       </main>
       <Footer />
-      <div className="fixed bottom-4 right-4 z-40 lg:hidden">
+      <div className="fixed bottom-4 right-4 z-40 hidden sm:block lg:hidden">
         <WhatsAppButton compact className="soft-shadow" />
       </div>
     </div>

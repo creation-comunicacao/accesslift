@@ -127,9 +127,9 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
         <section className="bg-slate-50 py-12">
           <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="text-xs font-black uppercase tracking-wider text-lime-700">Solicite assistência técnica</p>
+              <p className="text-xs font-black uppercase tracking-wider text-[#0b2d4d]">Solicite assistência técnica</p>
               <h2 className="mt-3 text-slate-950">Envie as informações da ocorrência</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">Informe modelo, local e descrição da situação. As solicitações sao avaliadas conforme equipamento, localidade e relação com a operação Accesslift.</p>
+              <p className="mt-3 text-sm leading-6 text-slate-600">Informe modelo, local e descrição da situação. As solicitações são avaliadas conforme equipamento, localidade e relação com a operação Accesslift.</p>
             </div>
             <SupportRequestForm />
           </div>
@@ -141,7 +141,7 @@ export function ServicePageTemplate({ page }: ServicePageTemplateProps) {
           title="Preventiva, corretiva e assistência"
           items={[
             "Preventiva: acompanhamento das condições de funcionamento e identificação de necessidades de intervenção.",
-            "Corretiva: intervenção aplicável quando uma necessidade técnica e identificada.",
+            "Corretiva: intervenção aplicável quando uma necessidade técnica é identificada.",
             "Assistência: suporte técnico e orientação conforme a solicitação e as condições do serviço.",
           ]}
         />

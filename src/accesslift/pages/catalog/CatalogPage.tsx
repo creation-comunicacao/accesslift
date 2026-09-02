@@ -10,7 +10,7 @@ export function CatalogPage() {
       <PageIntro
         eyebrow="Catálogo"
         title="Plataformas elevatórias"
-        description="Estrutura preparada para receber equipamentos administraveis por categoria, marca, modelo, imagens, ficha técnica e SEO."
+        description="Estrutura preparada para receber equipamentos administráveis por categoria, marca, modelo, imagens, ficha técnica e SEO."
       />
       <section className="mx-auto max-w-7xl px-4 pb-12 md:px-6">
         <div className="grid gap-4 md:grid-cols-2">

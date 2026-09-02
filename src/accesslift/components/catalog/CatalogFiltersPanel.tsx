@@ -13,7 +13,7 @@ type CatalogFiltersPanelProps = {
 
 const labelClasses = "grid gap-2 text-xs font-black uppercase tracking-wider text-slate-600";
 const selectClasses =
-  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-bold text-slate-800 outline-none transition hover:border-slate-400 focus:border-lime-500 focus:ring-2 focus:ring-lime-200 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
+  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-bold text-slate-800 outline-none transition hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
 
 export function CatalogFiltersPanel({
   filters,
@@ -84,7 +84,7 @@ export function CatalogFiltersPanel({
       </label>
 
       <label className={labelClasses}>
-        Ordenacao
+        Ordenação
         <select
           className={selectClasses}
           aria-label="Ordenar equipamentos"

@@ -13,7 +13,7 @@ export const commercialServices: CommercialService[] = [
   {
     slug: "locacao-semanal",
     title: "Locação semanal",
-    summary: "Modelo comercial preparado para operações de curta duracao.",
+    summary: "Modelo comercial preparado para operações de curta duração.",
   },
   {
     slug: "locacao-mensal",
@@ -48,6 +48,6 @@ export const commercialServices: CommercialService[] = [
   {
     slug: "treinamento-de-operadores",
     title: "Treinamento de operadores",
-    summary: "Estrutura preparada para orientacoes e treinamento.",
+    summary: "Estrutura preparada para orientações e treinamento.",
   },
 ];

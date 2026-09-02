@@ -31,7 +31,7 @@ export function ContactPage() {
           <div className="mt-5 grid gap-3">
             {contactItems.map(({ label, value, icon: Icon }) => (
               <article key={label} className="rounded-lg border border-slate-200 bg-white p-4 soft-shadow">
-                <Icon className="h-6 w-6 text-lime-700" aria-hidden />
+                <Icon className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
                 <h3 className="mt-3 text-base text-slate-950">{label}</h3>
                 {label === "Telefone" && contactConfig.phone ? (
                   <a
@@ -62,7 +62,7 @@ export function ContactPage() {
             <h3 className="text-slate-950">Onde estamos</h3>
             <p className="mt-2 text-sm leading-6 text-slate-600">Accesslift Plataformas Elevatórias</p>
             <p className="mt-1 text-sm font-semibold text-slate-800">{contactConfig.address}</p>
-            <p className="mt-3 text-xs leading-5 text-slate-500">Mapa e horario de atendimento devem ser exibidos somente apos validação final do cliente.</p>
+            <p className="mt-3 text-xs leading-5 text-slate-500">Mapa e horário de atendimento devem ser exibidos somente após validação final do cliente.</p>
           </div>
         </div>
         <div>

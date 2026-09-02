@@ -35,8 +35,8 @@ export function Header({ currentPath }: HeaderProps) {
   const linkClasses = (path: string) =>
     `rounded-md px-3 py-2 text-sm font-extrabold transition ${
       currentPath === path
-        ? "bg-lime-100 text-slate-950"
-        : "text-slate-700 hover:bg-slate-100 hover:text-slate-950"
+        ? "bg-[#0b2d4d]/8 text-[#0b2d4d]"
+        : "text-slate-700 hover:bg-[#0b2d4d]/6 hover:text-[#0b2d4d]"
     }`;
 
   const handleNavigate = (path: string) => {
@@ -45,8 +45,8 @@ export function Header({ currentPath }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
-      <div className="hidden border-b border-slate-100 bg-slate-950 text-white lg:block">
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/94 backdrop-blur-xl">
+      <div className="hidden border-b border-white/10 bg-[#0b2d4d] text-white lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs font-bold text-slate-300">
           <span>Atendimento em São Paulo e regiões em raio de até 150 km da base</span>
           <span>Locação diária, semanal, mensal e suporte técnico</span>
@@ -62,7 +62,7 @@ export function Header({ currentPath }: HeaderProps) {
             handleNavigate("/");
           }}
         >
-          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-slate-950 text-sm font-black text-lime-300 shadow-[inset_0_-3px_0_rgba(216,255,62,0.35)]">
+          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-[#0b2d4d] text-sm font-black text-white shadow-[inset_0_-3px_0_rgba(216,36,47,0.85)]">
             AL
           </span>
           <span className="grid leading-none">
@@ -117,7 +117,7 @@ export function Header({ currentPath }: HeaderProps) {
           </a>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-300 text-slate-800 transition hover:bg-slate-100"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-300 text-[#0b2d4d] transition hover:bg-[#0b2d4d]/6"
             onClick={() => setIsOpen((value) => !value)}
             aria-label="Abrir menu"
             aria-expanded={isOpen}

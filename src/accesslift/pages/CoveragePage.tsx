@@ -20,25 +20,25 @@ export function CoveragePage() {
         secondaryCta={{ label: "Solicitar orçamento", href: "/solicite-orcamento/" }}
       />
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-12 md:px-6 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-          <MapPin className="h-9 w-9 text-lime-700" aria-hidden />
+        <div className="premium-card rounded-lg p-6">
+          <MapPin className="h-9 w-9 text-[#0b2d4d]" aria-hidden />
           <h2 className="mt-4 text-slate-950">Atendimento em um raio de até 150 km</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">A disponibilidade para determinada localidade pode variar de acordo com equipamento, período, logística e condições da operação. Mesmo dentro da região atendida, confirme disponibilidade para a data e equipamento necessários.</p>
           <RequestQuoteButton className="mt-5" />
         </div>
         <form
           id="consulta-cidade"
-          className="rounded-lg border border-slate-200 bg-white p-6 premium-shadow"
+          className="premium-card rounded-lg p-6"
           onSubmit={(event) => {
             event.preventDefault();
-            setMessage(city.trim() ? "Atendemos operações nesta região ou podemos confirmar o atendimento para sua localizacao. Envie os dados do trabalho para verificarmos disponibilidade de equipamento, período e logística." : "Informe a cidade da operação para consultar o atendimento.");
+            setMessage(city.trim() ? "Atendemos operações nesta região ou podemos confirmar o atendimento para sua localização. Envie os dados do trabalho para verificarmos disponibilidade de equipamento, período e logística." : "Informe a cidade da operação para consultar o atendimento.");
           }}
         >
-          <p className="text-xs font-black uppercase tracking-wider text-lime-700">Consultar atendimento</p>
+          <p className="text-xs font-black uppercase tracking-wider text-[#0b2d4d]">Consultar atendimento</p>
           <h2 className="mt-3 text-slate-950">Sua operação fica em qual cidade?</h2>
           <label className="mt-5 grid gap-2 text-xs font-black uppercase tracking-wider text-slate-600">
             Cidade da operação
-            <input className="min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition hover:border-slate-400 focus:border-lime-500 focus:ring-2 focus:ring-lime-200" value={city} onChange={(event) => setCity(event.target.value)} placeholder="Digite a cidade" autoComplete="address-level2" />
+            <input className="min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15" value={city} onChange={(event) => setCity(event.target.value)} placeholder="Digite a cidade" autoComplete="address-level2" />
           </label>
           {message && <p className="mt-3 rounded-md bg-slate-50 p-3 text-sm font-semibold text-slate-700" role="status">{message}</p>}
           <Button className="mt-5" icon={<Search className="h-4 w-4" aria-hidden />}>Consultar atendimento</Button>
@@ -52,8 +52,8 @@ export function CoveragePage() {
           <div className="mt-6 grid gap-4 md:grid-cols-4">
             {[
               ["Entrega própria", "Logística dos equipamentos conforme condições definidas para a locação."],
-              ["Retirada própria", "Retirada ao termino do período conforme programacao acordada."],
-              ["Assistência técnica própria", "Suporte técnico integrado a operação dos equipamentos Accesslift."],
+              ["Retirada própria", "Retirada ao término do período conforme programação acordada."],
+              ["Assistência técnica própria", "Suporte técnico integrado à operação dos equipamentos Accesslift."],
               ["Atendimento emergencial", "Recebimento e avaliação de ocorrências durante a locação."],
             ].map(([title, description]) => (
               <article key={title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
@@ -80,7 +80,7 @@ export function CoveragePage() {
         <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
           <Badge tone="steel">Como solicitar</Badge>
           <h2 className="mt-4 text-slate-950">O que informar para consultar uma locação?</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-600">Informe cidade e local da operação, altura aproximada, período desejado, tipo de acesso, existencia de obstáculos e plataforma desejada, caso já saiba o modelo.</p>
+          <p className="mt-3 text-sm leading-6 text-slate-600">Informe cidade e local da operação, altura aproximada, período desejado, tipo de acesso, existência de obstáculos e plataforma desejada, caso já saiba o modelo.</p>
           <RequestQuoteButton className="mt-5" />
         </article>
       </section>
@@ -99,7 +99,7 @@ export function CoveragePage() {
                 },
                 {
                   id: "coverage-city",
-                  title: "Como saber se minha cidade e atendida?",
+                  title: "Como saber se minha cidade é atendida?",
                   content: "Informe a cidade ou endereço da operação para que a equipe confirme a disponibilidade e as condições de atendimento.",
                 },
                 {
@@ -109,8 +109,8 @@ export function CoveragePage() {
                 },
                 {
                   id: "coverage-support",
-                  title: "Ha suporte técnico fora da cidade de São Paulo?",
-                  content: "O suporte esta integrado a operação de locação e deve ser avaliado conforme localidade e situação do equipamento.",
+                  title: "Há suporte técnico fora da cidade de São Paulo?",
+                  content: "O suporte está integrado à operação de locação e deve ser avaliado conforme localidade e situação do equipamento.",
                 },
                 {
                   id: "coverage-quote",
@@ -124,9 +124,9 @@ export function CoveragePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
+        <div className="rounded-lg bg-[#0b2d4d] p-6 text-white md:p-8">
           <h2>Consulte a disponibilidade para sua região</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">Informe onde sera realizado o trabalho e as características da operação.</p>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">Informe onde será realizado o trabalho e as características da operação.</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Button href="#consulta-cidade">Consultar minha cidade</Button>
             <RequestQuoteButton />

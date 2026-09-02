@@ -22,8 +22,8 @@ export function Dropdown({ label, items, currentPath, onNavigate }: DropdownProp
         type="button"
         className={`inline-flex h-10 items-center gap-1 rounded-md px-3 text-sm font-extrabold transition ${
           active
-            ? "bg-lime-100 text-slate-950"
-            : "text-slate-700 hover:bg-slate-100 hover:text-slate-950"
+            ? "bg-[#0b2d4d]/8 text-[#0b2d4d]"
+            : "text-slate-700 hover:bg-[#0b2d4d]/6 hover:text-[#0b2d4d]"
         }`}
       >
         {label}
@@ -36,8 +36,8 @@ export function Dropdown({ label, items, currentPath, onNavigate }: DropdownProp
             href={item.href}
             className={`block rounded-md px-3 py-3 text-sm font-bold transition ${
               currentPath === item.href
-                ? "bg-slate-950 text-white"
-                : "text-slate-700 hover:bg-slate-100 hover:text-slate-950"
+                ? "bg-[#0b2d4d] text-white"
+                : "text-slate-700 hover:bg-[#0b2d4d]/6 hover:text-[#0b2d4d]"
             }`}
             onClick={(event) => {
               event.preventDefault();

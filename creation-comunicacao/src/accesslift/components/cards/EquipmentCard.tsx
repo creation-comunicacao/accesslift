@@ -41,9 +41,6 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <Badge tone="lime">{equipment.brand}</Badge>
         <Badge tone="outline">{categoryLabel}</Badge>
-        {equipment.validationStatus === "validate-before-publish" && (
-          <Badge tone="amber">Validar antes de publicar</Badge>
-        )}
       </div>
       <h3 className="text-lg font-bold text-slate-950">{equipment.title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.summary}</p>

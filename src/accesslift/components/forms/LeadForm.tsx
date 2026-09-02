@@ -3,7 +3,7 @@ import { useState } from "react";
 import { trackEvent } from "../../analytics/analytics";
 
 const inputClasses =
-  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-lime-500 focus:ring-2 focus:ring-lime-200 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
+  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
 
 const labelClasses = "grid gap-1.5 text-xs font-black uppercase tracking-wider text-slate-600";
 
@@ -27,7 +27,7 @@ export function LeadForm() {
 
   return (
     <form
-      className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 premium-shadow md:grid-cols-2 md:p-6"
+      className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
         const nextErrors: Partial<Record<keyof typeof values, string>> = {};
@@ -36,7 +36,7 @@ export function LeadForm() {
         if (!values.telefone.trim()) nextErrors.telefone = "Informe um WhatsApp.";
         if (!values.email.trim()) nextErrors.email = "Informe um e-mail.";
         if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-          nextErrors.email = "Informe um e-mail valido.";
+          nextErrors.email = "Informe um e-mail válido.";
         }
         if (!values.interesse) nextErrors.interesse = "Selecione um interesse.";
         if (values.antispam) nextErrors.antispam = "Falha na validação antispam.";
@@ -53,7 +53,7 @@ export function LeadForm() {
         setMessage("");
         await new Promise((resolve) => window.setTimeout(resolve, 400));
         setStatus("success");
-        setMessage("Mensagem enviada. A equipe Accesslift recebera as informações para retorno.");
+        setMessage("Mensagem enviada. A equipe Accesslift receberá as informações para retorno.");
         trackEvent({ name: "form_submit", payload: { form: "contact" } });
         setValues({
           nome: "",
@@ -118,11 +118,11 @@ export function LeadForm() {
         />
       </label>
       {message && (
-        <div className={`rounded-md p-3 text-sm font-semibold md:col-span-2 ${status === "success" ? "bg-lime-50 text-lime-900" : "bg-red-50 text-red-700"}`}>
+        <div className={`rounded-md p-3 text-sm font-semibold md:col-span-2 ${status === "success" ? "bg-[#0b2d4d]/8 text-[#0b2d4d]" : "bg-red-50 text-red-700"}`}>
           {message}
         </div>
       )}
-      <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-slate-950 px-4 text-sm font-extrabold text-white transition hover:bg-slate-800 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 md:col-span-2" disabled={status === "loading"}>
+      <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-lime-300 px-5 text-sm font-extrabold text-[#0b1726] shadow-[0_14px_30px_rgba(132,204,22,0.24)] transition hover:bg-lime-200 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 md:col-span-2" disabled={status === "loading"}>
         <Send className="h-4 w-4" aria-hidden />
         {status === "loading" ? "Enviando..." : "Enviar mensagem"}
       </button>

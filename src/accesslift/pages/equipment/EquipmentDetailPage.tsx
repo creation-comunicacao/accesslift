@@ -19,6 +19,7 @@ import {
 import { Button } from "../../components/buttons/Button";
 import { Accordion } from "../../components/ui/Accordion";
 import { Badge } from "../../components/ui/Badge";
+import { getManufacturerAccent } from "../../design/manufacturerAccents";
 import type { Equipment } from "../../types/equipment";
 import { formatPublicSpecValue } from "../../utils/publicText";
 
@@ -59,21 +60,25 @@ const categorySingularName = (equipment: Equipment) =>
   equipment.category === "plataformas-tesoura" ? "Tesoura" : "Articulada";
 
 function ImagePanel({ equipment }: EquipmentDetailPageProps) {
+  const accent = getManufacturerAccent(equipment.brand);
+
   return (
     <div className="grid gap-4">
       {equipment.mainImage.src ? (
-        <img
-          src={equipment.mainImage.src}
-          alt={equipment.mainImage.alt}
-          width={equipment.mainImage.width}
-          height={equipment.mainImage.height}
-          sizes="(min-width: 1024px) 48vw, 100vw"
-          className="aspect-[4/3] w-full rounded-lg border border-slate-200 bg-slate-50 object-contain premium-shadow"
-          loading="eager"
-          decoding="async"
-        />
+        <div className={`media-frame overflow-hidden rounded-lg p-3 premium-shadow ring-4 ${accent.ring}`}>
+          <img
+            src={equipment.mainImage.src}
+            alt={equipment.mainImage.alt}
+            width={equipment.mainImage.width}
+            height={equipment.mainImage.height}
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            className="aspect-[4/3] w-full rounded-md object-contain"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
       ) : (
-        <div className="flex aspect-[4/3] w-full flex-col items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 px-6 text-center premium-shadow">
+        <div className={`media-frame flex aspect-[4/3] w-full flex-col items-center justify-center rounded-lg border-dashed px-6 text-center premium-shadow ring-4 ${accent.ring}`}>
           <ImageIcon className="h-12 w-12 text-slate-400" aria-hidden />
           <p className="mt-4 text-sm font-extrabold text-slate-600">
             Foto específica deste modelo ainda não cadastrada.
@@ -144,7 +149,7 @@ function SpecsTable({ equipment }: EquipmentDetailPageProps) {
     return (
       <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5">
         <Ruler className="h-7 w-7 text-slate-500" aria-hidden />
-        <h2 className="mt-3 text-xl font-black text-slate-950">Específicações a cadastrar</h2>
+        <h2 className="mt-3 text-xl font-black text-slate-950">Especificações a cadastrar</h2>
         <p className="mt-2 text-sm text-slate-600">
           Nenhum dado técnico oficial foi preenchido para este equipamento.
         </p>
@@ -179,7 +184,7 @@ function SpecsGrid({ equipment }: EquipmentDetailPageProps) {
     return (
       <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5">
         <Ruler className="h-7 w-7 text-slate-500" aria-hidden />
-        <h2 className="mt-3 text-xl font-black text-slate-950">Específicações a cadastrar</h2>
+        <h2 className="mt-3 text-xl font-black text-slate-950">Especificações a cadastrar</h2>
         <p className="mt-2 text-sm text-slate-600">
           Nenhum dado técnico oficial foi preenchido para este equipamento.
         </p>
@@ -216,7 +221,7 @@ function ListSection({
 
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-      <Icon className="h-7 w-7 text-lime-700" aria-hidden />
+      <Icon className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
       <h2 className="mt-3 text-xl font-black text-slate-950">{title}</h2>
       <ul className="mt-4 grid gap-2 text-sm font-semibold text-slate-600">
         {items.map((item) => (
@@ -230,6 +235,7 @@ function ListSection({
 }
 
 export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
+  const accent = getManufacturerAccent(equipment.brand);
   const related = getRelatedEquipment(equipment);
   const faqItems = equipment.faq.map((item, index) => ({
     id: `${equipment.id}-faq-${index}`,
@@ -242,9 +248,10 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
       <section className="industrial-grid border-b border-slate-200 bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:px-6 lg:grid-cols-[0.95fr_1fr] lg:items-center">
           <ImagePanel equipment={equipment} />
-          <div>
+          <div className="relative overflow-hidden rounded-lg bg-white/70 p-5 shadow-[0_18px_45px_rgba(11,45,77,0.08)] ring-1 ring-slate-200/70 md:p-6">
+            <span className={`absolute inset-x-0 top-0 h-1 ${accent.bar}`} aria-hidden />
             <div className="flex flex-wrap gap-2">
-              <Badge tone="lime">{equipment.brand}</Badge>
+              <Badge tone="outline" className={accent.badge}>{equipment.brand}</Badge>
               <Badge tone="outline">{equipment.model}</Badge>
               <Badge tone="steel">{categoryName(equipment)}</Badge>
             </div>
@@ -264,7 +271,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
         <div className="grid gap-8">
           <section>
             <div className="mb-5 flex items-center gap-2">
-              <PackageCheck className="h-6 w-6 text-lime-700" aria-hidden />
+              <PackageCheck className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
               <h2 className="text-2xl font-black text-slate-950">Conheça a {equipment.brand} {equipment.model}</h2>
             </div>
             <p className="max-w-3xl text-base leading-7 text-slate-600">{equipment.overview}</p>
@@ -272,7 +279,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
 
           <section>
             <div className="mb-5 flex items-center gap-2">
-              <PackageCheck className="h-6 w-6 text-lime-700" aria-hidden />
+              <PackageCheck className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
               <h2 className="text-2xl font-black text-slate-950">Principais características</h2>
             </div>
             <SpecsGrid equipment={equipment} />
@@ -280,8 +287,8 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
 
           <section>
             <div className="mb-5 flex items-center gap-2">
-              <Ruler className="h-6 w-6 text-lime-700" aria-hidden />
-              <h2 className="text-2xl font-black text-slate-950">Específicações técnicas</h2>
+              <Ruler className="h-6 w-6 text-[#0b2d4d]" aria-hidden />
+              <h2 className="text-2xl font-black text-slate-950">Especificações técnicas</h2>
             </div>
             <SpecsTable equipment={equipment} />
           </section>
@@ -292,7 +299,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           </div>
 
           <section className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-            <ShieldCheck className="h-7 w-7 text-lime-700" aria-hidden />
+            <ShieldCheck className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
             <h2 className="mt-3 text-xl font-black text-slate-950">Quando considerar esta plataforma?</h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">{equipment.considerationText}</p>
           </section>
@@ -310,7 +317,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
                 <div>
                   <h2 className="text-2xl font-black text-slate-950">Equipamentos relacionados</h2>
                   <p className="mt-2 text-sm font-semibold text-slate-600">
-                    Relacionados pela mesma categoria. Faixa de altura sera considerada quando houver dados oficiais.
+                    Relacionados pela mesma categoria. Faixa de altura será considerada quando houver dados oficiais.
                   </p>
                 </div>
                 <Button href="/equipamentos/" variant="secondary">
@@ -338,7 +345,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
         </div>
 
         <aside className="h-fit rounded-lg border border-slate-200 bg-white p-5 premium-shadow lg:sticky lg:top-28">
-          <FileText className="h-8 w-8 text-lime-700" aria-hidden />
+          <FileText className="h-8 w-8 text-[#0b2d4d]" aria-hidden />
           <h2 className="mt-4 text-xl font-black text-slate-950">Ficha técnica</h2>
           {equipment.technicalSheetPdf ? (
             <a

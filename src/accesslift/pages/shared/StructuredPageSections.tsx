@@ -69,7 +69,7 @@ export function ConversionHero({
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-5 premium-shadow">
           <p className="text-xs font-black uppercase tracking-wider text-slate-500">
-            Conversao
+            Conversão
           </p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
             {primaryCta ? (
@@ -134,7 +134,7 @@ export function SectionList({ eyebrow, title, description, items, cta }: Section
 
           return (
           <article key={normalized.title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-            <BadgeCheck className="h-7 w-7 text-lime-700" aria-hidden />
+            <BadgeCheck className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
             <h3 className="mt-4 text-slate-950">{normalized.title}</h3>
             {normalized.description && <p className="mt-2 text-sm leading-6 text-slate-600">{normalized.description}</p>}
             {normalized.cta && (
@@ -168,7 +168,7 @@ export function ProcessSection({ title, steps }: ProcessSectionProps) {
         <div className="mt-6 grid gap-3 md:grid-cols-4 lg:grid-cols-5">
           {steps.map((step, index) => (
             <article key={`${step}-${index}`} className="relative rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-lime-300 text-sm font-black text-slate-950">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0b2d4d] text-sm font-black text-white">
                 {index + 1}
               </span>
               <h3 className="mt-4 text-base text-slate-950">{step}</h3>
@@ -193,7 +193,7 @@ export function DifferentialsSection() {
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <article key={item} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-            <ClipboardCheck className="h-7 w-7 text-lime-700" aria-hidden />
+            <ClipboardCheck className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
             <h3 className="mt-4 text-slate-950">{item}</h3>
             <p className="mt-2 text-sm text-slate-600">
               Estrutura pronta para detalhamento real do serviço.
@@ -264,7 +264,7 @@ export function FaqSection({ items }: FaqSectionProps) {
 
 export function FinalConversionSection({
   title = "Precisa consultar disponibilidade ou orçamento?",
-  description = "Use os canais de conversao preparados para atendimento comercial, sem número de WhatsApp ficticio.",
+  description = "Use os canais de conversão preparados para atendimento comercial, sem número de WhatsApp fictício.",
   primary,
   secondary,
 }: {
@@ -274,10 +274,10 @@ export function FinalConversionSection({
   secondary?: CtaLink;
 }) {
   return (
-    <section className="bg-slate-950 py-12 text-white">
+    <section className="bg-[#0b2d4d] py-12 text-white">
       <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
         <div>
-          <PackageCheck className="h-9 w-9 text-lime-300" aria-hidden />
+          <PackageCheck className="h-9 w-9 text-white" aria-hidden />
           <h2 className="mt-4 text-white">{title}</h2>
           <p className="mt-3 max-w-2xl text-slate-300">
             {description}

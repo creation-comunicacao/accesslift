@@ -134,9 +134,9 @@ export const googleReviewsProfileUrl =
 
 export const homeRentalSteps = [
   { title: "Conte o que você precisa", description: "Altura, local, período e características da operação." },
-  { title: "Escolha do equipamento", description: "Nossa equipe auxilia na escolha de uma opção compativel." },
+  { title: "Escolha do equipamento", description: "Nossa equipe auxilia na escolha de uma opção compatível." },
   { title: "Suporte", description: "Alinhamos as necessidades e o atendimento da operação." },
-  { title: "Entrega", description: "Organizamos a entrega conforme a programacao definida." },
+  { title: "Entrega", description: "Organizamos a entrega conforme a programação definida." },
   { title: "Operação", description: "Durante o período contratado, você conta com nosso suporte." },
 ];
 
@@ -155,7 +155,7 @@ export const homeFaqItems = [
   },
   {
     id: "faq-locacao",
-    title: "E possível alugar por diária, semana ou mês?",
+    title: "É possível alugar por diária, semana ou mês?",
     content: "Sim. A Accesslift trabalha com locação diária, semanal ou mensal.",
   },
   {

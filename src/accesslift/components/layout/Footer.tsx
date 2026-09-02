@@ -51,11 +51,11 @@ const footerGroups = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-slate-950 text-white">
+    <footer className="border-t border-[#0b2d4d] bg-[#0b2d4d] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:px-6 lg:grid-cols-[1.1fr_2fr]">
         <div className="space-y-6">
           <div className="mb-3 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-lime-300 text-sm font-black text-slate-950">
+            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-white text-sm font-black text-[#0b2d4d] shadow-[inset_0_-3px_0_rgba(216,36,47,0.90)]">
               AL
             </span>
             <span className="text-lg font-black">Accesslift</span>
@@ -86,7 +86,7 @@ export function Footer() {
         <nav className="grid gap-8 sm:grid-cols-2 xl:grid-cols-5" aria-label="Rodapé">
           {footerGroups.map((group) => (
             <section key={group.title}>
-              <h2 className="text-sm font-black uppercase tracking-wider text-lime-300">
+              <h2 className="text-sm font-black uppercase tracking-wider text-white">
                 {group.title}
               </h2>
               <div className="mt-3 grid gap-2">

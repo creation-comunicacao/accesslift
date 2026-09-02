@@ -24,7 +24,7 @@ const initialValues: CareerValues = {
 };
 
 const inputClasses =
-  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-lime-500 focus:ring-2 focus:ring-lime-200";
+  "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15";
 
 export function CareerPage() {
   const [values, setValues] = useState<CareerValues>(initialValues);
@@ -58,7 +58,7 @@ export function CareerPage() {
         <div>
           <h2 className="text-slate-950">Cadastre seu currículo</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            A Accesslift atua no segmento de plataformas elevatórias e reúne profissionais em áreas relacionadas a operação, atendimento, logística, manutenção e administração. O envio não representa garantia de contratação ou participação imediata em processo seletivo.
+            A Accesslift atua no segmento de plataformas elevatórias e reúne profissionais em áreas relacionadas à operação, atendimento, logística, manutenção e administração. O envio não representa garantia de contratação ou participação imediata em processo seletivo.
           </p>
         </div>
         <form className="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 premium-shadow" onSubmit={submit}>
@@ -105,16 +105,16 @@ export function CareerPage() {
             </span>
           </label>
           <p className="text-xs leading-5 text-slate-500">
-            Os dados enviados serao utilizados para analise de oportunidades profissionais e tratamento do contato relacionado ao processo de recrutamento, conforme a Política de Privacidade da Accesslift.
+            Os dados enviados serão utilizados para análise de oportunidades profissionais e tratamento do contato relacionado ao processo de recrutamento, conforme a Política de Privacidade da Accesslift.
           </p>
           {status === "error" && (
             <p className="flex items-center gap-2 rounded-md bg-red-50 p-3 text-sm font-semibold text-red-700" role="alert">
               <AlertCircle className="h-5 w-5" aria-hidden />
-              Informe nome, e-mail valido, telefone e currículo para continuar.
+              Informe nome, e-mail válido, telefone e currículo para continuar.
             </p>
           )}
           {status === "success" && (
-            <p className="flex items-center gap-2 rounded-md bg-lime-50 p-3 text-sm font-semibold text-lime-900" role="status">
+            <p className="flex items-center gap-2 rounded-md bg-[#0b2d4d]/8 p-3 text-sm font-semibold text-[#0b2d4d]" role="status">
               <CheckCircle2 className="h-5 w-5" aria-hidden />
               Currículo registrado localmente para validação do fluxo. A transmissão definitiva depende da integração backend.
             </p>

@@ -7,7 +7,7 @@ export function CTASection() {
         <div>
           <h2 className="text-2xl font-black text-white">Precisa de plataforma elevatória?</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-            Pontos de conversao preparados para orçamento, disponibilidade, especialista e WhatsApp sem depender de dados fictícios.
+            Pontos de conversão preparados para orçamento, disponibilidade, especialista e WhatsApp sem depender de dados fictícios.
           </p>
         </div>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">

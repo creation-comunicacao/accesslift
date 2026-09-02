@@ -12,10 +12,10 @@ type ServiceCardProps = {
 export function ServiceCard({ title, summary, href }: ServiceCardProps) {
   const content = (
     <>
-      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-slate-950 text-lime-300 transition group-hover:bg-lime-300 group-hover:text-slate-950">
+      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-[#0b2d4d] text-white shadow-[0_10px_24px_rgba(11,45,77,0.16)] transition group-hover:bg-[#d8242f]">
         <ArrowUpRight className="h-5 w-5" aria-hidden />
       </div>
-      <h3 className="text-base font-bold text-slate-950">{title}</h3>
+      <h3 className="text-base font-black text-[#0b2d4d]">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-600">{summary}</p>
     </>
   );
@@ -24,7 +24,7 @@ export function ServiceCard({ title, summary, href }: ServiceCardProps) {
     return (
       <a
         href={href}
-        className="group block rounded-lg border border-slate-200 bg-white p-5 soft-shadow transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_18px_45px_rgba(15,23,42,0.14)]"
+        className="premium-card premium-card-hover group block rounded-lg p-5"
         onClick={(event: MouseEvent<HTMLAnchorElement>) => {
           if (href.startsWith("/")) {
             event.preventDefault();
@@ -38,7 +38,7 @@ export function ServiceCard({ title, summary, href }: ServiceCardProps) {
   }
 
   return (
-    <article className="group rounded-lg border border-slate-200 bg-white p-5 soft-shadow transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_18px_45px_rgba(15,23,42,0.14)]">
+    <article className="premium-card premium-card-hover group rounded-lg p-5">
       {content}
     </article>
   );

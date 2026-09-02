@@ -31,7 +31,7 @@ export function SegmentPageTemplate({ page }: SegmentPageTemplateProps) {
           section.items ? (
             <SectionList
               key={section.title}
-              eyebrow={section.eyebrow || "Aplicacao"}
+              eyebrow={section.eyebrow || "Aplicação"}
               title={section.title}
               description={section.description}
               items={section.items}
@@ -40,7 +40,7 @@ export function SegmentPageTemplate({ page }: SegmentPageTemplateProps) {
           ) : (
             <ValueSection
               key={section.title}
-              eyebrow={section.eyebrow || "Aplicacao"}
+              eyebrow={section.eyebrow || "Aplicação"}
               title={section.title}
               description={section.description || ""}
               cta={section.cta}

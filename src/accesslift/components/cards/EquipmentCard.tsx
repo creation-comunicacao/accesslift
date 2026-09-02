@@ -4,6 +4,7 @@ import { formatPublicSpecValue } from "../../utils/publicText";
 import { RequestQuoteButton } from "../buttons/CtaButtons";
 import { Button } from "../buttons/Button";
 import { Badge } from "../ui/Badge";
+import { getManufacturerAccent } from "../../design/manufacturerAccents";
 
 type EquipmentCardProps = {
   equipment: Equipment;
@@ -11,6 +12,7 @@ type EquipmentCardProps = {
 };
 
 export function EquipmentCard({ equipment }: EquipmentCardProps) {
+  const accent = getManufacturerAccent(equipment.brand);
   const categoryLabel =
     equipment.category === "plataformas-tesoura"
       ? "Plataforma Tesoura"
@@ -21,20 +23,23 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
   const alcanceHorizontal = formatPublicSpecValue(equipment.specs.alcanceHorizontal);
 
   return (
-    <article className="group rounded-lg border border-slate-200 bg-white p-4 soft-shadow transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_18px_45px_rgba(15,23,42,0.14)]">
+    <article className={`premium-card premium-card-hover group relative overflow-hidden rounded-lg p-4 ${accent.hover}`}>
+      <span className={`absolute inset-x-0 top-0 h-1 ${accent.bar}`} aria-hidden />
       {equipment.mainImage.src ? (
-        <img
-          src={equipment.mainImage.src}
-          alt={equipment.mainImage.alt}
-          width={equipment.mainImage.width}
-          height={equipment.mainImage.height}
-          sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
-          className="mb-4 aspect-[4/3] w-full rounded-md border border-slate-200 bg-slate-50 object-contain"
-          loading="lazy"
-          decoding="async"
-        />
+        <div className="media-frame mb-5 overflow-hidden rounded-md p-2">
+          <img
+            src={equipment.mainImage.src}
+            alt={equipment.mainImage.alt}
+            width={equipment.mainImage.width}
+            height={equipment.mainImage.height}
+            sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
+            className="aspect-[4/3] w-full rounded-md object-contain transition duration-300 group-hover:scale-[1.02]"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       ) : (
-        <div className="mb-4 flex aspect-[4/3] flex-col items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-50 px-5 text-center">
+        <div className="media-frame mb-5 flex aspect-[4/3] flex-col items-center justify-center rounded-md border-dashed px-5 text-center">
           <ImageIcon className="h-9 w-9 text-slate-400" aria-hidden />
           <p className="mt-3 text-xs font-extrabold text-slate-600">
             Foto específica do modelo ainda não cadastrada.
@@ -42,11 +47,11 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
         </div>
       )}
       <div className="mb-3 flex flex-wrap items-center gap-2">
-        <Badge tone="lime">{equipment.brand}</Badge>
+        <Badge tone="outline" className={accent.badge}>{equipment.brand}</Badge>
         <Badge tone="outline">{categoryLabel}</Badge>
         {isElectric && <Badge tone="steel">Elétrica</Badge>}
       </div>
-      <h3 className="text-lg font-bold text-slate-950">{equipment.title}</h3>
+      <h3 className="text-xl font-black text-[#0b2d4d]">{equipment.title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.summary}</p>
       <dl className="mt-4 grid gap-2 text-sm">
         <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">

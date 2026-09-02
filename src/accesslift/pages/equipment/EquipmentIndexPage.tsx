@@ -118,7 +118,7 @@ export function EquipmentIndexPage() {
           <aside className="absolute bottom-0 left-0 right-0 max-h-[88vh] overflow-auto rounded-t-lg bg-white p-4 premium-shadow">
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-wider text-lime-700">
+                <p className="text-xs font-black uppercase tracking-wider text-[#0b2d4d]">
                   Catálogo
                 </p>
                 <h2 className="text-2xl font-black text-slate-950">Filtros</h2>
@@ -143,7 +143,7 @@ export function EquipmentIndexPage() {
             />
             <button
               type="button"
-              className="mt-4 min-h-12 w-full rounded-md bg-lime-300 px-4 text-sm font-extrabold text-slate-950 transition hover:bg-lime-200"
+              className="mt-4 min-h-12 w-full rounded-md bg-[#0b2d4d] px-4 text-sm font-extrabold text-white transition hover:bg-[#09243d]"
               onClick={() => setIsFilterDrawerOpen(false)}
             >
               Ver resultados
@@ -158,7 +158,7 @@ export function EquipmentIndexPage() {
             <Badge tone="lime">Escolha</Badge>
             <h2 className="mt-4 text-slate-950">Não sabe qual plataforma escolher?</h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Não e necessário conhecer previamente o modelo. Informe altura aproximada, cidade, espaço disponível, existencia de obstáculos e período de utilização para que a equipe Accesslift auxilie na avaliação das opções.
+              Não é necessário conhecer previamente o modelo. Informe altura aproximada, cidade, espaço disponível, existência de obstáculos e período de utilização para que a equipe Accesslift auxilie na avaliação das opções.
             </p>
             <RequestQuoteButton className="mt-5" />
           </article>
@@ -182,7 +182,7 @@ export function EquipmentIndexPage() {
           <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
             <h3 className="text-slate-950">Plataforma Tesoura</h3>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Para trabalhos predominantemente verticais, quando e possível posicionar o equipamento abaixo ou proximo da área de execução.
+              Para trabalhos predominantemente verticais, quando e possível posicionar o equipamento abaixo ou próximo da área de execução.
             </p>
             <Button href="/plataformas-tesoura/" variant="secondary" className="mt-5">
               Ver plataformas tesoura
