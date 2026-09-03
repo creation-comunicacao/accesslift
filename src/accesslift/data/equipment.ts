@@ -828,10 +828,8 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
 
 export const homeFeaturedEquipmentSlugs = [
   "jlg-1930es",
-  "genie-z34",
   "jlg-3246es",
-  "skyjack-sj4732",
-  "zoomlion-zs1212ac",
+  "genie-z34",
   "zoomlion-za14je-li",
 ] as const;
 

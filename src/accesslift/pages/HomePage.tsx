@@ -14,6 +14,7 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
+import { trackEvent } from "../analytics/analytics";
 import { getEquipmentBySlug } from "../catalog/catalog";
 import { RequestQuoteButton } from "../components/buttons/CtaButtons";
 import { Button } from "../components/buttons/Button";
@@ -121,59 +122,66 @@ function HomeEquipmentCard({ equipment }: { equipment: Equipment; key?: string }
     equipment.category === "plataformas-tesoura"
       ? "Plataforma Tesoura"
       : "Plataforma Articulada";
-  const isElectric = equipment.specs.alimentacao?.toLowerCase().includes("eletric") ?? false;
   const specs = [
-    ["Altura", formatPublicSpecValue(equipment.specs.alturaTrabalho)],
-    ["Capacidade", formatPublicSpecValue(equipment.specs.capacidade)],
-    ["Alcance", formatPublicSpecValue(equipment.specs.alcanceHorizontal)],
     ["Alimentação", formatPublicSpecValue(equipment.specs.alimentacao)],
-  ].filter((item): item is [string, string] => Boolean(item[1])).slice(0, 3);
+    ["Capacidade", formatPublicSpecValue(equipment.specs.capacidade)],
+  ].filter((item): item is [string, string] => Boolean(item[1]));
+  const primarySpecs = [["Altura de trabalho", formatPublicSpecValue(equipment.specs.alturaTrabalho)]]
+    .filter((item): item is [string, string] => Boolean(item[1]))
+    .concat(specs)
+    .slice(0, 2);
 
   return (
-    <article data-reveal="fade-up" className="home-panel-light home-card-hover group overflow-hidden rounded-lg">
+    <article data-reveal="fade-up" className="home-panel-light home-card-hover group flex h-full flex-col overflow-hidden rounded-lg">
       {equipment.mainImage.src && (
-        <div className="bg-slate-50 px-5 pt-5">
+        <div className="bg-slate-50">
           <img
             src={equipment.mainImage.src}
             alt={equipment.mainImage.alt}
             width={equipment.mainImage.width}
             height={equipment.mainImage.height}
-            sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
-            className="aspect-[4/3] w-full rounded-md object-contain transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.025]"
+            sizes="(min-width: 1280px) 288px, (min-width: 768px) 50vw, 100vw"
+            className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.025]"
             loading="lazy"
             decoding="async"
           />
         </div>
       )}
-      <div className="p-5 md:p-6">
-        <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
+      <div className="flex flex-1 flex-col p-5">
+        <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-[0.08em] text-zinc-500">
           <span>{equipment.brand}</span>
-          <span aria-hidden>/</span>
+          <span aria-hidden>·</span>
           <span>{categoryLabel}</span>
-          {isElectric && (
-            <>
-              <span aria-hidden>/</span>
-              <span>Elétrica</span>
-            </>
-          )}
         </div>
-        <h3 className="text-xl text-neutral-950">{equipment.title}</h3>
-        <p className="mt-3 text-sm leading-6 text-zinc-600">{equipment.summary}</p>
-        {specs.length > 0 && (
-          <dl className="mt-5 grid gap-2 text-sm text-zinc-600">
-            {specs.map(([label, value]) => (
-              <div key={label} className="flex justify-between gap-4 border-t border-slate-100 pt-2.5">
-                <dt>{label}</dt>
-                <dd className="text-right font-medium text-zinc-900">{value}</dd>
+        <h3 className="text-xl text-neutral-950">{equipment.brand} {equipment.model}</h3>
+        <p className="home-equipment-summary mt-3 text-sm leading-6 text-zinc-600">{equipment.summary}</p>
+        {primarySpecs.length > 0 && (
+          <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
+            {primarySpecs.map(([label, value]) => (
+              <div key={label}>
+                <dd className="text-lg font-semibold text-neutral-950">{value}</dd>
+                <dt className="mt-1 text-xs font-medium uppercase tracking-[0.08em] text-zinc-500">{label}</dt>
               </div>
             ))}
           </dl>
         )}
-        <div className="mt-6 flex flex-col gap-3">
-          <RequestQuoteButton className="w-full !font-semibold" equipmentSlug={equipment.slug} />
+        <div className="mt-auto flex flex-col gap-3 pt-6">
           <a href={`/equipamentos/${equipment.slug}/`} className="inline-flex min-h-10 items-center justify-center gap-2 text-sm font-medium text-zinc-700 transition hover:text-[#0b2d4d]">
             Ver detalhes <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
+          <Button
+            href={`/solicite-orcamento/?equipamento=${encodeURIComponent(equipment.slug)}`}
+            className="w-full !font-semibold"
+            icon={<ClipboardCheck className="h-4 w-4" aria-hidden />}
+            onClick={() =>
+              trackEvent({
+                name: "equipment_availability_click",
+                payload: { equipment_slug: equipment.slug },
+              })
+            }
+          >
+            Consultar disponibilidade
+          </Button>
         </div>
       </div>
     </article>
@@ -295,7 +303,7 @@ export function HomePage() {
           title="Plataformas elevatórias para diferentes alturas e aplicações"
           description="A frota Accesslift reúne plataformas elevatórias das categorias tesoura e articulada, com modelos de fabricantes reconhecidos como JLG, Genie, Skyjack e Zoomlion. Compare os equipamentos por categoria, marca, altura de trabalho e capacidade para encontrar as opções mais adequadas à sua necessidade."
         />
-        <div className="reveal-stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="reveal-stagger grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {featuredEquipment.map((equipment) => <HomeEquipmentCard key={equipment.id} equipment={equipment} />)}
         </div>
         <Button href="/equipamentos/" variant="secondary" className="mt-12 !font-semibold" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
