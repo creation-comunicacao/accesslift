@@ -54,12 +54,25 @@ export function Footer() {
     <footer className="border-t border-[#0b2d4d] bg-[#0b2d4d] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:px-6 lg:grid-cols-[1.1fr_2fr]">
         <div data-reveal="fade-right" className="space-y-6">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-white text-sm font-black text-[#0b2d4d] shadow-[inset_0_-3px_0_rgba(216,36,47,0.90)]">
-              AL
-            </span>
-            <span className="text-lg font-black">Accesslift</span>
-          </div>
+          <a
+            href="/"
+            className="mb-3 inline-flex rounded-md bg-white px-4 py-3"
+            aria-label="Accesslift Plataformas"
+            onClick={(event) => {
+              event.preventDefault();
+              navigateTo("/");
+            }}
+          >
+            <img
+              src="/images/accesslift/marca/logo-accesslift-plataformas.jpg"
+              alt="Accesslift Plataformas"
+              width={1082}
+              height={319}
+              className="h-11 w-auto max-w-[15rem] object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
           <p className="max-w-sm text-sm leading-6 text-slate-300">
             Locação e suporte para plataformas elevatórias em São Paulo e regiões em raio de até 150 km da base.
           </p>
