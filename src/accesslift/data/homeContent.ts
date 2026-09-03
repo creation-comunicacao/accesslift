@@ -101,11 +101,11 @@ export type HomeGoogleReview = {
 };
 
 export const homeClients: HomeClient[] = [
-  { name: "Lorenzetti", logoSrc: null, logoAlt: "Logo Lorenzetti" },
-  { name: "Assaí Atacadista", logoSrc: null, logoAlt: "Logo Assaí Atacadista" },
-  { name: "Atacadão", logoSrc: null, logoAlt: "Logo Atacadão" },
-  { name: "Claro", logoSrc: null, logoAlt: "Logo Claro" },
-  { name: "EZTEC", logoSrc: null, logoAlt: "Logo EZTEC" },
+  { name: "Lorenzetti", logoSrc: "/images/accesslift/clientes/logo-lorenzetti.jpeg", logoAlt: "Logo Lorenzetti" },
+  { name: "Assaí Atacadista", logoSrc: "/images/accesslift/clientes/logo-assai-atacadista.jpeg", logoAlt: "Logo Assaí Atacadista" },
+  { name: "Atacadão", logoSrc: "/images/accesslift/clientes/logo-atacadao.jpeg", logoAlt: "Logo Atacadão" },
+  { name: "Claro", logoSrc: "/images/accesslift/clientes/logo-claro.jpeg", logoAlt: "Logo Claro" },
+  { name: "EZTEC", logoSrc: "/images/accesslift/clientes/logo-eztec.jpeg", logoAlt: "Logo EZTEC" },
 ];
 
 // Text, author and rating verified on the public Google profile supplied by the client.
