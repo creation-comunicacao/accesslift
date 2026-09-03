@@ -188,6 +188,54 @@ function HomeEquipmentCard({ equipment }: { equipment: Equipment; key?: string }
   );
 }
 
+function ServiceAreaMap() {
+  return (
+    <figure
+      data-reveal="fade-left"
+      className="relative overflow-hidden rounded-lg border border-slate-200/70 bg-slate-50 p-5"
+      aria-label="Mapa ilustrativo da base da Accesslift em São Paulo com raio aproximado de 150 km"
+    >
+      <div className="absolute right-5 top-5 z-10 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-zinc-600">
+        raio aproximado
+      </div>
+      <div className="relative min-h-72 overflow-hidden rounded-md bg-white">
+        <svg viewBox="0 0 560 360" role="img" aria-labelledby="service-area-title service-area-desc" className="h-full min-h-72 w-full">
+          <title id="service-area-title">Área de atendimento da Accesslift</title>
+          <desc id="service-area-desc">Representação visual da base em São Paulo e do raio aproximado de atendimento de até 150 quilômetros.</desc>
+          <defs>
+            <linearGradient id="mapFade" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="100%" stopColor="#f4f6f8" />
+            </linearGradient>
+          </defs>
+          <rect width="560" height="360" fill="url(#mapFade)" />
+          <path d="M45 108 C126 91 177 125 240 107 C309 87 367 58 512 87" fill="none" stroke="#d7dde4" strokeWidth="2" />
+          <path d="M64 249 C143 217 206 232 281 211 C359 190 424 205 515 165" fill="none" stroke="#d7dde4" strokeWidth="2" />
+          <path d="M98 55 L155 315" stroke="#e8edf2" strokeWidth="2" />
+          <path d="M236 38 L256 326" stroke="#e8edf2" strokeWidth="2" />
+          <path d="M384 48 L349 321" stroke="#e8edf2" strokeWidth="2" />
+          <circle cx="280" cy="184" r="116" fill="#0b2d4d" opacity="0.055" />
+          <circle cx="280" cy="184" r="116" fill="none" stroke="#0b2d4d" strokeDasharray="6 7" strokeOpacity="0.32" strokeWidth="2" />
+          <circle cx="280" cy="184" r="9" fill="#d8242f" />
+          <circle cx="280" cy="184" r="17" fill="none" stroke="#d8242f" strokeOpacity="0.22" strokeWidth="8" />
+          <text x="302" y="181" fill="#171717" fontSize="16" fontWeight="600">Base Accesslift</text>
+          <text x="302" y="203" fill="#71717a" fontSize="13">São Paulo/SP</text>
+          <path d="M280 184 L396 184" stroke="#0b2d4d" strokeOpacity="0.38" strokeWidth="2" />
+          <text x="360" y="248" fill="#171717" fontSize="24" fontWeight="600">150 km</text>
+          <text x="360" y="273" fill="#71717a" fontSize="13">até a região atendida</text>
+        </svg>
+      </div>
+      <figcaption className="mt-4 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
+        <span className="inline-flex items-center gap-2 font-medium text-neutral-950">
+          <MapPin className="h-4 w-4 text-[#d8242f]" aria-hidden />
+          Base em São Paulo
+        </span>
+        <span>Atendimento em raio de até 150 km, conforme disponibilidade e condições da operação.</span>
+      </figcaption>
+    </figure>
+  );
+}
+
 export function HomePage() {
   return (
     <main className="home-refined">
@@ -347,14 +395,7 @@ export function HomePage() {
               <Button href="/area-de-atendimento/" variant="secondary" className="!font-semibold">Consultar atendimento</Button>
             </div>
           </div>
-          <div data-reveal="fade-left" className="min-h-72 rounded-lg border border-slate-200/70 bg-slate-50 p-6">
-            <div className="flex h-full min-h-60 items-center justify-center rounded-full border border-slate-200 bg-white text-center">
-              <div>
-                <p className="text-4xl font-semibold text-neutral-950">150 km</p>
-                <p className="mt-2 text-sm font-medium text-zinc-600">raio de atendimento</p>
-              </div>
-            </div>
-          </div>
+          <ServiceAreaMap />
         </div>
       </section>
 

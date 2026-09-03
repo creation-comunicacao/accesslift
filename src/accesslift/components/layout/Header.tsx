@@ -32,6 +32,8 @@ const mobileLinks = [
 export function Header({ currentPath }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isHome = currentPath === "/";
+  const phoneHref = "tel:+551123895259";
 
   useEffect(() => {
     const syncScrollState = () => setIsScrolled(window.scrollY > 8);
@@ -59,10 +61,28 @@ export function Header({ currentPath }: HeaderProps) {
         isScrolled ? "border-slate-200 shadow-[0_10px_30px_rgba(11,45,77,0.10)]" : "border-slate-200/80"
       }`}
     >
-      <div className="hidden border-b border-white/10 bg-[#0b2d4d] text-white lg:block">
-        <div className="site-container flex items-center justify-between py-2 text-xs font-bold text-slate-300">
-          <span>Atendimento em São Paulo e regiões em raio de até 150 km da base</span>
+      <div className={`${isHome ? "block" : "hidden lg:block"} border-b border-white/10 bg-[#0b2d4d] text-white`}>
+        <div className="site-container flex flex-wrap items-center justify-center gap-x-4 gap-y-1 py-2 text-center text-xs font-semibold text-slate-300 lg:justify-end">
           <span>Locação diária, semanal, mensal e suporte técnico</span>
+          <span className="inline-flex items-center gap-2">
+            <a
+              href={phoneHref}
+              className="inline-flex items-center gap-1.5 text-white transition hover:text-slate-200"
+              aria-label={`Ligar para ${contactConfig.whatsappNumber}`}
+            >
+              <Phone className="h-3.5 w-3.5" aria-hidden />
+              Fone/WhatsApp: {contactConfig.whatsappNumber}
+            </a>
+            {contactConfig.whatsappUrl && (
+              <a
+                href={contactConfig.whatsappUrl}
+                className="inline-flex items-center text-white transition hover:text-slate-200"
+                aria-label={`Abrir WhatsApp da Accesslift ${contactConfig.whatsappNumber}`}
+              >
+                <MessageCircle className="h-3.5 w-3.5" aria-hidden />
+              </a>
+            )}
+          </span>
         </div>
       </div>
 
