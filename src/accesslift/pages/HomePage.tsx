@@ -241,10 +241,10 @@ export function HomePage() {
     <main className="home-refined">
       <section className="hero-photo overflow-hidden">
         <img
-          src="/images/accesslift/logistica/transporte-plataformas-elevatorias-frota-03.jpeg"
-          alt="Entrega de plataformas elevatórias pela Accesslift"
-          width={1599}
-          height={899}
+          src="/images/accesslift/marca/hero-home-plataformas-accesslift.jpg"
+          alt="Plataformas elevatórias Accesslift em operações e eventos"
+          width={1600}
+          height={853}
           loading="eager"
           decoding="async"
         />

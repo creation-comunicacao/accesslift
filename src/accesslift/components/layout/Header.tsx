@@ -89,21 +89,20 @@ export function Header({ currentPath }: HeaderProps) {
       <div className="site-container flex min-h-[4.75rem] items-center justify-between gap-3 py-3">
         <a
           href="/"
-          className="flex shrink-0 items-center gap-3"
+          className="flex shrink-0 items-center"
           onClick={(event) => {
             event.preventDefault();
             handleNavigate("/");
           }}
         >
-          <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#0b2d4d] text-sm font-black text-white shadow-[inset_0_-3px_0_rgba(216,36,47,0.85)]">
-            AL
-          </span>
-          <span className="grid leading-none">
-            <span className="text-lg font-black tracking-normal text-slate-950">Accesslift</span>
-            <span className="hidden text-[10px] font-extrabold uppercase tracking-wider text-slate-500 sm:block">
-              Plataformas elevatórias
-            </span>
-          </span>
+          <img
+            src="/images/accesslift/marca/logo-accesslift-plataformas.jpg"
+            alt="Accesslift Plataformas"
+            width={1082}
+            height={319}
+            className="h-11 w-auto max-w-[11.5rem] object-contain sm:h-12 sm:max-w-[13.5rem]"
+            decoding="async"
+          />
         </a>
 
         <nav className="hidden items-center gap-2 lg:flex" aria-label="Principal">
