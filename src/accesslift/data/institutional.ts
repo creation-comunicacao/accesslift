@@ -26,11 +26,11 @@ export type ClientProof = {
 };
 
 export const clientProofs: ClientProof[] = [
-  { name: "Lorenzetti", logoUrl: "/images/accesslift/clientes/logo-lorenzetti.jpeg", testimonial: null, caseSummary: null, referenceUrl: null },
-  { name: "Assai", logoUrl: "/images/accesslift/clientes/logo-assai-atacadista.jpeg", testimonial: null, caseSummary: null, referenceUrl: null },
-  { name: "Atacadao", logoUrl: "/images/accesslift/clientes/logo-atacadao.jpeg", testimonial: null, caseSummary: null, referenceUrl: null },
-  { name: "Claro", logoUrl: "/images/accesslift/clientes/logo-claro.jpeg", testimonial: null, caseSummary: null, referenceUrl: null },
-  { name: "EZTEC", logoUrl: "/images/accesslift/clientes/logo-eztec.jpeg", testimonial: null, caseSummary: null, referenceUrl: null },
+  { name: "Lorenzetti", logoUrl: "/images/accesslift/clientes/logo-lorenzetti.png", testimonial: null, caseSummary: null, referenceUrl: null },
+  { name: "Assai", logoUrl: "/images/accesslift/clientes/logo-assai-atacadista.png", testimonial: null, caseSummary: null, referenceUrl: null },
+  { name: "Atacadao", logoUrl: "/images/accesslift/clientes/logo-atacadao.png", testimonial: null, caseSummary: null, referenceUrl: null },
+  { name: "Claro", logoUrl: "/images/accesslift/clientes/logo-claro.png", testimonial: null, caseSummary: null, referenceUrl: null },
+  { name: "EZTEC", logoUrl: "/images/accesslift/clientes/logo-eztec.png", testimonial: null, caseSummary: null, referenceUrl: null },
 ];
 
 export const institutionalPages: InstitutionalPageConfig[] = [

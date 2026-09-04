@@ -75,7 +75,7 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
               {clientProofs.map((client) => (
                 <article key={client.name} className="flex min-h-24 items-center justify-center rounded-lg border border-slate-200 bg-white p-4 text-center soft-shadow">
                   {client.logoUrl ? (
-                    <img src={client.logoUrl} alt={client.name} className="max-h-12 w-auto object-contain" loading="lazy" decoding="async" />
+                    <img src={client.logoUrl} alt={client.name} className="max-h-20 w-auto max-w-full object-contain" loading="lazy" decoding="async" />
                   ) : (
                     <span className="text-base font-black text-slate-800">{client.name}</span>
                   )}

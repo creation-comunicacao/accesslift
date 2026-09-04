@@ -44,20 +44,20 @@ const officialImagesBySlug: Partial<
 > = {
   "jlg-1930es": {
     mainImage: {
-      src: asset("equipamentos/jlg/plataforma-tesoura-jlg-1930es-vista-lateral.jpeg"),
+      src: asset("equipamentos/jlg/jlg-1930ES.jpeg"),
       alt: "Plataforma tesoura JLG 1930ES da Access Lift",
       width: 957,
       height: 1280,
     },
     gallery: [
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-1930es-vista-frontal.jpeg"), alt: "Vista frontal da plataforma tesoura JLG 1930ES", width: 957, height: 1280 },
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-1930es-em-transporte.jpeg"), alt: "Transporte da plataforma JLG 1930ES pela Access Lift", width: 957, height: 1280 },
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-1930es-catalogo.jpg"), alt: "Imagem de catálogo da plataforma tesoura JLG 1930ES", width: 286, height: 600 },
+      { src: asset("equipamentos/jlg/jlg-1930ES-01.jpeg"), alt: "Vista da plataforma tesoura JLG 1930ES", width: 957, height: 1280 },
+      { src: asset("equipamentos/jlg/jlg-1930ES-02.jpeg"), alt: "Detalhe da plataforma tesoura JLG 1930ES", width: 957, height: 1280 },
+      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-1930.jpg"), alt: "Imagem de catálogo da plataforma tesoura JLG 1930ES", width: 286, height: 600 },
     ],
   },
   "jlg-2630es": {
     mainImage: {
-      src: asset("equipamentos/jlg/plataforma-tesoura-jlg-2630es.jpg"),
+      src: asset("equipamentos/jlg/plataforma-tesoura-jlg-2630.jpg"),
       alt: "Plataforma tesoura elétrica JLG 2630ES",
       width: 286,
       height: 600,
@@ -66,7 +66,7 @@ const officialImagesBySlug: Partial<
   },
   "jlg-2632es": {
     mainImage: {
-      src: asset("operacoes/plataforma-elevatoria-operacao-em-galpao.jpeg"),
+      src: asset("operacoes/plataformas-04.jpeg"),
       alt: "Imagem representativa de plataforma elevatória em operação interna",
       width: 1200,
       height: 1600,
@@ -75,22 +75,22 @@ const officialImagesBySlug: Partial<
   },
   "jlg-3246es": {
     mainImage: {
-      src: asset("equipamentos/jlg/plataforma-tesoura-jlg-3246es-access-lift.jpeg"),
+      src: asset("equipamentos/jlg/jlg-3246ES.jpeg"),
       alt: "Plataforma tesoura JLG 3246ES da Access Lift",
       width: 957,
       height: 1280,
     },
     gallery: [
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-3246es-vista-frontal.jpeg"), alt: "Vista frontal da plataforma tesoura JLG 3246ES", width: 957, height: 1280 },
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-3246es-vista-lateral.jpeg"), alt: "Vista lateral da plataforma tesoura JLG 3246ES", width: 957, height: 1280 },
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-3246es-em-operacao-interna.jpeg"), alt: "Plataforma tesoura JLG 3246ES em operação interna", width: 957, height: 1280 },
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-3246es-detalhe-frota.jpeg"), alt: "Detalhe da plataforma tesoura JLG 3246ES da frota", width: 957, height: 1280 },
-      { src: asset("equipamentos/jlg/plataforma-tesoura-jlg-3246-render.png"), alt: "Imagem de catálogo da plataforma tesoura JLG 3246", width: 317, height: 600 },
+      { src: asset("equipamentos/jlg/jlg-3246ES-01.jpeg"), alt: "Vista da plataforma tesoura JLG 3246ES", width: 957, height: 1280 },
+      { src: asset("equipamentos/jlg/jlg-3246ES-02.jpeg"), alt: "Vista lateral da plataforma tesoura JLG 3246ES", width: 957, height: 1280 },
+      { src: asset("equipamentos/jlg/jlg-3246ES-03.jpeg"), alt: "Plataforma tesoura JLG 3246ES em operação interna", width: 957, height: 1280 },
+      { src: asset("equipamentos/jlg/jlg-3246ES-04.jpeg"), alt: "Detalhe da plataforma tesoura JLG 3246ES da frota", width: 957, height: 1280 },
+      { src: asset("equipamentos/jlg/jlg-3246.png"), alt: "Imagem de catálogo da plataforma tesoura JLG 3246", width: 317, height: 600 },
     ],
   },
   "jlg-e450aj": {
     mainImage: {
-      src: asset("operacoes/plataforma-articulada-manutencao-em-estrutura.jpeg"),
+      src: asset("operacoes/plataformas-03.jpeg"),
       alt: "Imagem representativa de plataforma articulada em manutenção de estrutura",
       width: 1600,
       height: 1200,
@@ -99,16 +99,19 @@ const officialImagesBySlug: Partial<
   },
   "genie-gs1930": {
     mainImage: {
-      src: asset("operacoes/plataforma-elevatoria-manutencao-industrial.jpeg"),
+      src: asset("equipamentos/genie/genie.jpeg"),
       alt: "Imagem representativa de plataforma elevatória em manutenção industrial",
-      width: 960,
+      width: 957,
       height: 1280,
     },
-    gallery: [],
+    gallery: [
+      { src: asset("equipamentos/genie/genie-01.jpeg"), alt: "Vista da plataforma Genie GS-1930", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/genie-0.jpeg"), alt: "Detalhe da plataforma Genie GS-1930", width: 957, height: 1280 },
+    ],
   },
   "genie-gs2632": {
     mainImage: {
-      src: asset("operacoes/plataforma-articulada-trabalho-proximo-ao-teto.jpeg"),
+      src: asset("operacoes/plataformas-02.jpeg"),
       alt: "Imagem representativa de plataforma elevatória em trabalho próximo ao teto",
       width: 1200,
       height: 1600,
@@ -117,89 +120,85 @@ const officialImagesBySlug: Partial<
   },
   "genie-z34": {
     mainImage: {
-      src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-principal.jpeg"),
+      src: asset("equipamentos/genie/genie-z34-22.jpeg"),
       alt: "Plataforma articulada Genie Z-34/22 da Access Lift",
       width: 868,
       height: 1160,
     },
     gallery: [
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-vista-lateral.jpeg"), alt: "Vista lateral da plataforma Genie Z-34/22", width: 957, height: 1280 },
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-vista-frontal.jpeg"), alt: "Vista frontal da plataforma Genie Z-34/22", width: 957, height: 1280 },
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-em-operacao.jpeg"), alt: "Plataforma Genie Z-34/22 em operação", width: 957, height: 1280 },
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-detalhe-cesto.jpeg"), alt: "Cesto da plataforma articulada Genie Z-34/22", width: 957, height: 1280 },
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-evento-lubrax.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento Lubrax", width: 1197, height: 1600 },
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-22-evento-byd-ford.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento BYD e Ford", width: 1197, height: 1600 },
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z34-render.jpg"), alt: "Imagem de catálogo da plataforma articulada Genie Z-34", width: 313, height: 599 },
-      { src: asset("logistica/transporte-plataforma-genie-z34-22-frota-propria.jpeg"), alt: "Transporte da plataforma Genie Z-34/22 pela frota própria", width: 868, height: 1160 },
+      { src: asset("equipamentos/genie/genie-z34-22-01.jpeg"), alt: "Vista lateral da plataforma Genie Z-34/22", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/genie-z34-22-02.jpeg"), alt: "Vista frontal da plataforma Genie Z-34/22", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/genie-z34-22-03.jpeg"), alt: "Plataforma Genie Z-34/22 em operação", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/genie-z34-22-04.jpeg"), alt: "Cesto da plataforma articulada Genie Z-34/22", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/plataforma-articulada-z34-genie.jpg"), alt: "Imagem de catálogo da plataforma articulada Genie Z-34", width: 313, height: 599 },
     ],
   },
   "genie-z45": {
     mainImage: {
-      src: asset("equipamentos/genie/plataforma-articulada-genie-z45-25-principal.jpeg"),
+      src: asset("equipamentos/genie/genie-z45-25.jpeg"),
       alt: "Plataforma articulada Genie Z-45 da Access Lift",
       width: 957,
       height: 1280,
     },
     gallery: [
-      { src: asset("equipamentos/genie/plataforma-articulada-genie-z45.jpg"), alt: "Imagem de catálogo da plataforma articulada Genie Z-45", width: 286, height: 600 },
+      { src: asset("equipamentos/genie/plataforma-articulada-z45-genie.jpg"), alt: "Imagem de catálogo da plataforma articulada Genie Z-45", width: 286, height: 600 },
     ],
   },
   "skyjack-sj3219": {
     mainImage: {
-      src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj3219-principal.jpeg"),
+      src: asset("equipamentos/skyjack/skyjet-sj3219.jpeg"),
       alt: "Plataforma tesoura Skyjack SJ3219 da Access Lift",
       width: 957,
       height: 1280,
     },
     gallery: [
-      { src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj3219-vista-frontal.jpeg"), alt: "Vista frontal da plataforma Skyjack SJ3219", width: 957, height: 1280 },
-      { src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj3219-vista-lateral.jpeg"), alt: "Vista lateral da plataforma Skyjack SJ3219", width: 957, height: 1280 },
-      { src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj3219-em-operacao.jpeg"), alt: "Plataforma tesoura Skyjack SJ3219 em operação", width: 957, height: 1280 },
+      { src: asset("equipamentos/skyjack/skyjet-sj3219-01.jpeg"), alt: "Vista frontal da plataforma Skyjack SJ3219", width: 957, height: 1280 },
+      { src: asset("equipamentos/skyjack/skyjet-sj3219-02.jpeg"), alt: "Vista lateral da plataforma Skyjack SJ3219", width: 957, height: 1280 },
+      { src: asset("equipamentos/skyjack/skyjet-sj3219-03.jpeg"), alt: "Plataforma tesoura Skyjack SJ3219 em operação", width: 957, height: 1280 },
     ],
   },
   "skyjack-sj3226": {
     mainImage: {
-      src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj3226-principal.jpeg"),
+      src: asset("equipamentos/skyjack/skyjet-sj3226.jpeg"),
       alt: "Plataforma tesoura Skyjack SJ3226 da Access Lift",
       width: 957,
       height: 1280,
     },
-    gallery: [{ src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj3226-vista-lateral.jpeg"), alt: "Vista lateral da plataforma Skyjack SJ3226", width: 957, height: 1280 }],
+    gallery: [{ src: asset("equipamentos/skyjack/skyjet-sj3226-01.jpeg"), alt: "Vista lateral da plataforma Skyjack SJ3226", width: 957, height: 1280 }],
   },
   "skyjack-sj4732": {
     mainImage: {
-      src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj4732-principal.jpeg"),
+      src: asset("equipamentos/skyjack/skyjet-sj4732.jpeg"),
       alt: "Plataforma tesoura Skyjack SJ4732 da Access Lift",
       width: 957,
       height: 1280,
     },
     gallery: [
-      { src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj4732-vista-lateral.jpeg"), alt: "Vista lateral da plataforma Skyjack SJ4732", width: 957, height: 1280 },
-      { src: asset("equipamentos/skyjack/plataforma-tesoura-skyjack-sj4732-vista-frontal.jpeg"), alt: "Vista frontal da plataforma Skyjack SJ4732", width: 957, height: 1280 },
+      { src: asset("equipamentos/skyjack/skyjet-sj4732-02.jpeg"), alt: "Vista lateral da plataforma Skyjack SJ4732", width: 957, height: 1280 },
+      { src: asset("equipamentos/skyjack/skyjet-sj4732-03.jpeg"), alt: "Vista frontal da plataforma Skyjack SJ4732", width: 957, height: 1280 },
     ],
   },
   "zoomlion-zs1212ac": {
     mainImage: {
-      src: asset("equipamentos/zoomlion/plataforma-tesoura-zoomlion-zs1212ac-principal.jpeg"),
+      src: asset("equipamentos/zoomlion/Zoomlion-ZS1212AC.jpeg"),
       alt: "Plataforma tesoura Zoomlion ZS1212AC da Access Lift",
       width: 957,
       height: 1280,
     },
     gallery: [
-      { src: asset("equipamentos/zoomlion/plataforma-tesoura-zoomlion-zs1212ac-vista-frontal.jpeg"), alt: "Vista frontal da plataforma Zoomlion ZS1212AC", width: 957, height: 1280 },
+      { src: asset("equipamentos/zoomlion/Zoomlion-ZS1212AC-01.jpeg"), alt: "Vista frontal da plataforma Zoomlion ZS1212AC", width: 957, height: 1280 },
     ],
   },
   "zoomlion-za14je-li": {
     mainImage: {
-      src: asset("equipamentos/zoomlion/plataforma-articulada-zoomlion-za14je-li-vista-lateral.jpeg"),
+      src: asset("equipamentos/zoomlion/Zoomlion-ZA14JE-LI.jpeg"),
       alt: "Plataforma articulada Zoomlion ZA14JE-Li da Access Lift",
-      width: 957,
-      height: 1280,
+      width: 1170,
+      height: 1273,
     },
     gallery: [
-      { src: asset("equipamentos/zoomlion/plataforma-articulada-zoomlion-za14je-li-vista-traseira.jpeg"), alt: "Vista traseira da plataforma Zoomlion ZA14JE-Li", width: 957, height: 1280 },
-      { src: asset("equipamentos/zoomlion/plataforma-articulada-zoomlion-za14je-li-em-transporte.jpeg"), alt: "Plataforma Zoomlion ZA14JE-Li em transporte", width: 1170, height: 1273 },
-      { src: asset("logistica/entrega-plataforma-zoomlion-za14je-li-frota-propria.jpeg"), alt: "Entrega da plataforma Zoomlion ZA14JE-Li pela frota própria", width: 957, height: 1280 },
+      { src: asset("equipamentos/zoomlion/Zoomlion-ZA14JE.jpeg"), alt: "Vista da plataforma Zoomlion ZA14JE-Li", width: 957, height: 1280 },
+      { src: asset("equipamentos/zoomlion/Zoomlion-ZA14JE-01.jpeg"), alt: "Vista traseira da plataforma Zoomlion ZA14JE-Li", width: 957, height: 1280 },
     ],
   },
 };

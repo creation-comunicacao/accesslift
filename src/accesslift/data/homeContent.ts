@@ -30,10 +30,10 @@ export const homeFinderFields: HomeFinderField[] = [
 ];
 
 export const homeTrustItems = [
-  { value: "Tesoura e Articuladas", label: "Plataformas" },
   { value: "Entrega e retirada", label: "próprias" },
+  { value: "Equipamentos", label: "revisados" },
   { value: "Assistência técnica", label: "própria" },
-  { value: "São Paulo e região", label: "Atendimento" },
+  { value: "Locação diária, semanal", label: "ou mensal" },
 ];
 
 export const homeCategoryCards = [
@@ -101,11 +101,11 @@ export type HomeGoogleReview = {
 };
 
 export const homeClients: HomeClient[] = [
-  { name: "Lorenzetti", logoSrc: "/images/accesslift/clientes/logo-lorenzetti.jpeg", logoAlt: "Logo Lorenzetti" },
-  { name: "Assaí Atacadista", logoSrc: "/images/accesslift/clientes/logo-assai-atacadista.jpeg", logoAlt: "Logo Assaí Atacadista" },
-  { name: "Atacadão", logoSrc: "/images/accesslift/clientes/logo-atacadao.jpeg", logoAlt: "Logo Atacadão" },
-  { name: "Claro", logoSrc: "/images/accesslift/clientes/logo-claro.jpeg", logoAlt: "Logo Claro" },
-  { name: "EZTEC", logoSrc: "/images/accesslift/clientes/logo-eztec.jpeg", logoAlt: "Logo EZTEC" },
+  { name: "Lorenzetti", logoSrc: "/images/accesslift/clientes/logo-lorenzetti.png", logoAlt: "Logo Lorenzetti" },
+  { name: "Assaí Atacadista", logoSrc: "/images/accesslift/clientes/logo-assai-atacadista.png", logoAlt: "Logo Assaí Atacadista" },
+  { name: "Atacadão", logoSrc: "/images/accesslift/clientes/logo-atacadao.png", logoAlt: "Logo Atacadão" },
+  { name: "Claro", logoSrc: "/images/accesslift/clientes/logo-claro.png", logoAlt: "Logo Claro" },
+  { name: "EZTEC", logoSrc: "/images/accesslift/clientes/logo-eztec.png", logoAlt: "Logo EZTEC" },
 ];
 
 // Text, author and rating verified on the public Google profile supplied by the client.
