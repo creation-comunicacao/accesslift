@@ -38,6 +38,8 @@ const featuredEquipment = homeFeaturedEquipmentSlugs
 
 const differentialIcons = [Award, Truck, Headphones, Wrench, Zap, ClipboardCheck];
 const trustIcons = [Truck, ShieldCheck, Headphones, ClipboardCheck];
+const homeSecondaryButtonClass =
+  "!border-[#0b2d4d] !bg-[#0b2d4d] !font-semibold !text-white !shadow-[0_12px_28px_rgba(11,45,77,0.18)] hover:!border-[#09243d] hover:!bg-[#09243d] hover:!text-white";
 
 const segments = [
   {
@@ -297,7 +299,7 @@ export function HomePage() {
                 <p>Disponibilizamos locações diárias, semanais e mensais, com plataformas para diferentes demandas de manutenção, instalação, construção, montagem e operações industriais e comerciais.</p>
                 <p>Nossa equipe auxilia na escolha do equipamento considerando as características do trabalho, como altura necessária, acesso ao local, espaço disponível e necessidade de alcance vertical ou horizontal.</p>
               </div>
-              <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="mt-8 !font-semibold" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
+              <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className={`mt-8 ${homeSecondaryButtonClass}`} icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
                 Conhecer a locação
               </Button>
             </div>
@@ -323,7 +325,7 @@ export function HomePage() {
                   <Badge tone="outline" className="!font-medium !tracking-[0.1em]">{category.title}</Badge>
                   <h3 className="mt-5 text-2xl text-neutral-950">{category.heading}</h3>
                   <p className="mt-4 text-sm leading-6 text-zinc-600">{category.description}</p>
-                  <Button href={category.href} className="mt-6 w-fit !font-semibold">{category.label}</Button>
+                  <Button href={category.href} variant="secondary" className={`mt-6 w-fit ${homeSecondaryButtonClass}`}>{category.label}</Button>
                 </div>
               </article>
             ))}
@@ -350,7 +352,7 @@ export function HomePage() {
               );
             })}
           </div>
-          <Button href="/servicos/" variant="secondary" className="mt-12 !font-semibold">Conheça nossos serviços</Button>
+          <Button href="/servicos/" variant="secondary" className={`mt-12 ${homeSecondaryButtonClass}`}>Conheça nossos serviços</Button>
         </div>
       </section>
 
@@ -364,7 +366,7 @@ export function HomePage() {
           <div className="reveal-stagger grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {featuredEquipment.map((equipment) => <HomeEquipmentCard key={equipment.id} equipment={equipment} />)}
           </div>
-          <Button href="/equipamentos/" variant="secondary" className="mt-12 !font-semibold" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
+          <Button href="/equipamentos/" variant="secondary" className={`mt-12 ${homeSecondaryButtonClass}`} icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
             Ver todos os equipamentos
           </Button>
         </div>
@@ -387,7 +389,7 @@ export function HomePage() {
               </a>
             ))}
           </div>
-          <Button href="/segmentos-e-aplicacoes/" variant="secondary" className="mt-12 !font-semibold">Conhecer todas as aplicações</Button>
+          <Button href="/segmentos-e-aplicacoes/" variant="secondary" className={`mt-12 ${homeSecondaryButtonClass}`}>Conhecer todas as aplicações</Button>
         </div>
       </section>
 
@@ -405,7 +407,7 @@ export function HomePage() {
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <RequestQuoteButton className="!font-semibold" />
-              <Button href="/area-de-atendimento/" variant="secondary" className="!font-semibold">Consultar atendimento</Button>
+              <Button href="/area-de-atendimento/" variant="secondary" className={homeSecondaryButtonClass}>Consultar atendimento</Button>
             </div>
           </div>
           <ServiceAreaMap />
