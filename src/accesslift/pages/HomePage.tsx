@@ -93,7 +93,7 @@ function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) 
   }[type];
 
   return (
-    <figure className={`relative overflow-hidden rounded-lg bg-slate-100 text-white ${type === "hero" ? "mx-auto w-full max-w-sm lg:max-w-[17rem] xl:max-w-[18rem]" : "min-h-72"}`}>
+    <figure className={`relative overflow-hidden rounded-lg bg-slate-100 text-white ${type === "hero" ? "mx-auto w-full max-w-sm lg:max-w-[20rem] xl:max-w-[22rem]" : "min-h-72"}`}>
       <img
         src={visual.src}
         alt={visual.alt}
@@ -108,9 +108,21 @@ function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) 
   );
 }
 
-function SectionHeader({ eyebrow, title, description, inverted = false }: { eyebrow: string; title: string; description?: string; inverted?: boolean }) {
+function SectionHeader({
+  eyebrow,
+  title,
+  description,
+  inverted = false,
+  className = "mb-14",
+}: {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  inverted?: boolean;
+  className?: string;
+}) {
   return (
-    <div data-reveal="fade-up" className="mb-14 max-w-3xl">
+    <div data-reveal="fade-up" className={`${className} max-w-3xl`}>
       <span className={`section-eyebrow ${inverted ? "text-white" : ""}`}>{eyebrow}</span>
       <h2 className={`mt-5 ${inverted ? "text-white" : "text-slate-950"}`}>{title}</h2>
       {description && <p className={`mt-5 max-w-2xl text-base leading-7 ${inverted ? "text-slate-300" : "text-zinc-600"}`}>{description}</p>}
@@ -273,13 +285,14 @@ export function HomePage() {
 
       <section className="surface-primary home-section">
         <div className="site-container">
-          <SectionHeader
-            eyebrow="Locação"
-            title="Plataforma elevatória para a necessidade da sua operação"
-            description="A Accesslift atua na locação de plataformas elevatórias para empresas que precisam realizar trabalhos em altura com equipamentos adequados à aplicação, ao ambiente e à altura de trabalho."
-          />
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div data-reveal="fade-right" className="max-w-3xl">
+              <SectionHeader
+                eyebrow="Locação"
+                title="Plataforma elevatória para a necessidade da sua operação"
+                description="A Accesslift atua na locação de plataformas elevatórias para empresas que precisam realizar trabalhos em altura com equipamentos adequados à aplicação, ao ambiente e à altura de trabalho."
+                className="mb-20 md:mb-24"
+              />
               <div className="space-y-5 text-base leading-7 text-zinc-600">
                 <p>Disponibilizamos locações diárias, semanais e mensais, com plataformas para diferentes demandas de manutenção, instalação, construção, montagem e operações industriais e comerciais.</p>
                 <p>Nossa equipe auxilia na escolha do equipamento considerando as características do trabalho, como altura necessária, acesso ao local, espaço disponível e necessidade de alcance vertical ou horizontal.</p>
@@ -288,7 +301,7 @@ export function HomePage() {
                 Conhecer a locação
               </Button>
             </div>
-            <div data-reveal="fade-left" className="group">
+            <div data-reveal="fade-left" className="group lg:pt-14 xl:pt-16">
               <EquipmentVisual type="hero" />
             </div>
           </div>
