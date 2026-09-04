@@ -466,7 +466,7 @@ export function HomePage() {
       <section className="home-dark-section surface-dark home-section-compact text-white">
         <div className="site-container grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div data-reveal="fade-right">
-            <Badge tone="outline" className="!font-medium !tracking-[0.1em]">Vamos conversar</Badge>
+            <span className="section-eyebrow text-white">Vamos conversar</span>
             <h2 className="mt-4">Precisa de uma plataforma elevatória?</h2>
             <p className="mt-5 max-w-3xl text-base leading-7 text-slate-200">Conte para a Accesslift onde será realizado o trabalho, a altura aproximada e o período de utilização. Nossa equipe pode ajudar a identificar a plataforma mais adequada para sua necessidade.</p>
           </div>
