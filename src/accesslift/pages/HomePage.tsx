@@ -270,11 +270,11 @@ export function HomePage() {
             {homeTrustItems.map((item, index) => {
               const Icon = trustIcons[index];
               return (
-                <div key={item.value} data-reveal="fade-up" className="flex min-h-20 items-center gap-3">
+                <div key={item.title} data-reveal="fade-up" className="flex min-h-20 items-start gap-3 md:items-center">
                   <Icon className="h-5 w-5 shrink-0 text-slate-300" aria-hidden />
-                  <div>
-                    <p className="text-base font-semibold text-white">{item.value}</p>
-                    {item.label && <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-300">{item.label}</p>}
+                  <div className="min-w-0">
+                    <p className="text-base font-semibold leading-tight text-white md:whitespace-nowrap">{item.title}</p>
+                    <p className="mt-1 text-sm font-medium leading-snug text-slate-300 md:whitespace-nowrap">{item.description}</p>
                   </div>
                 </div>
               );
@@ -291,7 +291,7 @@ export function HomePage() {
                 eyebrow="Locação"
                 title="Plataforma elevatória para a necessidade da sua operação"
                 description="A Accesslift atua na locação de plataformas elevatórias para empresas que precisam realizar trabalhos em altura com equipamentos adequados à aplicação, ao ambiente e à altura de trabalho."
-                className="mb-20 md:mb-24"
+                className="mb-5"
               />
               <div className="space-y-5 text-base leading-7 text-zinc-600">
                 <p>Disponibilizamos locações diárias, semanais e mensais, com plataformas para diferentes demandas de manutenção, instalação, construção, montagem e operações industriais e comerciais.</p>

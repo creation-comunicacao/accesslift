@@ -30,10 +30,10 @@ export const homeFinderFields: HomeFinderField[] = [
 ];
 
 export const homeTrustItems = [
-  { value: "Entrega e retirada própria e ágil", label: "" },
-  { value: "Equipamentos revisados e seguros", label: "" },
-  { value: "Assistência técnica própria e especializada", label: "" },
-  { value: "Locação flexível diária, semanal e mensal", label: "" },
+  { title: "Entrega e Retirada", description: "própria e ágil" },
+  { title: "Equipamentos", description: "revisados e seguros" },
+  { title: "Assistência técnica", description: "própria e especializada" },
+  { title: "Locação flexível", description: "diária, semanal e mensal" },
 ];
 
 export const homeCategoryCards = [
