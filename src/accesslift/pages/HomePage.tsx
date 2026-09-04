@@ -19,6 +19,7 @@ import { getEquipmentBySlug } from "../catalog/catalog";
 import { RequestQuoteButton } from "../components/buttons/CtaButtons";
 import { Button } from "../components/buttons/Button";
 import { Badge } from "../components/ui/Badge";
+import { contactConfig } from "../data/contact";
 import { homeFeaturedEquipmentSlugs } from "../data/equipment";
 import {
   googleReviewsProfileUrl,
@@ -72,10 +73,10 @@ const segments = [
 function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) {
   const visual = {
     hero: {
-      src: "/images/accesslift/operacoes/plataformas-07.jpeg",
-      alt: "Entrega de plataformas elevatórias pela Accesslift",
-      width: 1599,
-      height: 899,
+      src: "/images/accesslift/operacoes/plataformas-locacao-accesslift-galpao.jpg",
+      alt: "Plataformas elevatórias Accesslift em galpão operacional",
+      width: 1086,
+      height: 1448,
     },
     tesoura: {
       src: "/images/accesslift/equipamentos/jlg/jlg-3246ES.jpeg",
@@ -92,14 +93,14 @@ function EquipmentVisual({ type }: { type: "hero" | "tesoura" | "articulada" }) 
   }[type];
 
   return (
-    <figure className="relative min-h-72 overflow-hidden rounded-lg bg-slate-100 text-white">
+    <figure className={`relative overflow-hidden rounded-lg bg-slate-100 text-white ${type === "hero" ? "mx-auto w-full max-w-sm lg:max-w-[17rem] xl:max-w-[18rem]" : "min-h-72"}`}>
       <img
         src={visual.src}
         alt={visual.alt}
         width={visual.width}
         height={visual.height}
         sizes={type === "hero" ? "(min-width: 1024px) 45vw, 100vw" : "(min-width: 1024px) 25vw, 100vw"}
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.04]"
+        className={`${type === "hero" ? "h-auto w-full object-contain" : "absolute inset-0 h-full w-full object-cover"} transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.04]`}
         loading={type === "hero" ? "eager" : "lazy"}
         decoding="async"
       />
@@ -240,6 +241,15 @@ export function HomePage() {
             <div className="mt-9 grid gap-3 sm:flex sm:flex-wrap">
               <RequestQuoteButton className="!font-semibold" />
               <Button href="/equipamentos/" variant="secondary" className="!font-semibold">Ver equipamentos</Button>
+              <Button
+                href={contactConfig.whatsappUrl || "/contato/"}
+                variant="ghost"
+                className="border border-white/35 text-white hover:bg-white/10 hover:text-white !font-semibold"
+                icon={<img src="/images/accesslift/icones/whatsapp.png" alt="" className="h-4 w-4" loading="eager" decoding="async" />}
+                onClick={() => trackEvent({ name: "whatsapp_click", payload: { source: "home_hero", configured: Boolean(contactConfig.whatsappUrl) } })}
+              >
+                Falar pelo WhatsApp
+              </Button>
             </div>
           </div>
         </div>
@@ -252,7 +262,7 @@ export function HomePage() {
                   <Icon className="h-5 w-5 shrink-0 text-slate-300" aria-hidden />
                   <div>
                     <p className="text-base font-semibold text-white">{item.value}</p>
-                    <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-300">{item.label}</p>
+                    {item.label && <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-300">{item.label}</p>}
                   </div>
                 </div>
               );
@@ -268,15 +278,18 @@ export function HomePage() {
             title="Plataforma elevatória para a necessidade da sua operação"
             description="A Accesslift atua na locação de plataformas elevatórias para empresas que precisam realizar trabalhos em altura com equipamentos adequados à aplicação, ao ambiente e à altura de trabalho."
           />
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div data-reveal="fade-right" className="max-w-3xl space-y-5 text-base leading-7 text-zinc-600">
-              <p>Disponibilizamos locações diárias, semanais e mensais, com plataformas para diferentes demandas de manutenção, instalação, construção, montagem e operações industriais e comerciais.</p>
-              <p>Nossa equipe auxilia na escolha do equipamento considerando as características do trabalho, como altura necessária, acesso ao local, espaço disponível e necessidade de alcance vertical ou horizontal.</p>
-            </div>
-            <div data-reveal="fade-left">
-              <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="!font-semibold" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div data-reveal="fade-right" className="max-w-3xl">
+              <div className="space-y-5 text-base leading-7 text-zinc-600">
+                <p>Disponibilizamos locações diárias, semanais e mensais, com plataformas para diferentes demandas de manutenção, instalação, construção, montagem e operações industriais e comerciais.</p>
+                <p>Nossa equipe auxilia na escolha do equipamento considerando as características do trabalho, como altura necessária, acesso ao local, espaço disponível e necessidade de alcance vertical ou horizontal.</p>
+              </div>
+              <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="mt-8 !font-semibold" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>
                 Conhecer a locação
               </Button>
+            </div>
+            <div data-reveal="fade-left" className="group">
+              <EquipmentVisual type="hero" />
             </div>
           </div>
         </div>
@@ -317,7 +330,7 @@ export function HomePage() {
               const Icon = differentialIcons[index];
               return (
                 <article key={title} data-reveal="fade-up">
-                  <Icon className="h-5 w-5 text-zinc-400" aria-hidden />
+                  <Icon className="h-5 w-5 text-[#0b2d4d]" aria-hidden />
                   <h3 className="mt-4 text-base text-neutral-950">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-zinc-600">{description}</p>
                 </article>
@@ -368,10 +381,12 @@ export function HomePage() {
       <section className="surface-secondary home-section-compact">
         <div className="site-container grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div data-reveal="fade-right">
-            <Badge tone="outline" className="!font-medium !tracking-[0.1em]">Área de atendimento</Badge>
-            <h2 className="mt-4 text-slate-950">Locação de plataformas elevatórias em São Paulo e região</h2>
-            <div className="mt-5 max-w-2xl space-y-5 text-base leading-7 text-zinc-600">
-              <p>A Accesslift atende empresas em São Paulo e municípios dentro de um raio de até 150 km de nossa base, conforme disponibilidade e condições da operação.</p>
+            <SectionHeader
+              eyebrow="Área de atendimento"
+              title="Locação de plataformas elevatórias em São Paulo e região"
+              description="A Accesslift atende empresas em São Paulo e municípios dentro de um raio de até 150 km de nossa base, conforme disponibilidade e condições da operação."
+            />
+            <div className="max-w-2xl space-y-5 text-base leading-7 text-zinc-600">
               <p>Nossa estrutura de atendimento integra locação, entrega e retirada dos equipamentos e suporte técnico durante a operação.</p>
               <p className="font-medium text-neutral-950">Precisa saber se atendemos sua cidade?</p>
             </div>

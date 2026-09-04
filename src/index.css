@@ -20,7 +20,7 @@
 
 :root {
   --surface-primary: #ffffff;
-  --surface-secondary: #f8f9fa;
+  --surface-secondary: #94a3b82b;
   --surface-dark: #0b2d4d;
 }
 
@@ -413,6 +413,53 @@ body {
       --reveal-delay: 120ms;
     }
   }
+}
+
+.accesslift-typography {
+  color: #3f3f46;
+}
+
+.accesslift-typography h1,
+.accesslift-typography h2,
+.accesslift-typography h3 {
+  color: #171717;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.accesslift-typography h1 {
+  line-height: 1.08;
+}
+
+.accesslift-typography h2 {
+  line-height: 1.16;
+}
+
+.accesslift-typography h3 {
+  line-height: 1.35;
+}
+
+.accesslift-typography p {
+  font-weight: 400;
+}
+
+.accesslift-typography .section-eyebrow {
+  color: #52525b;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+.accesslift-typography .section-eyebrow::before {
+  height: 0.125rem;
+  background: #d8242f;
+  opacity: 0.72;
+}
+
+.accesslift-typography :is(.text-white, .text-white h1, .text-white h2, .text-white h3),
+.accesslift-typography :is(.surface-dark h1, .surface-dark h2, .surface-dark h3),
+.accesslift-typography :is(.bg-slate-950 h1, .bg-slate-950 h2, .bg-slate-950 h3),
+.accesslift-typography :is(.bg-\[\#0b2d4d\] h1, .bg-\[\#0b2d4d\] h2, .bg-\[\#0b2d4d\] h3) {
+  color: #ffffff;
 }
 
 /* Custom subtle scrollbar to match the clean aesthetic */

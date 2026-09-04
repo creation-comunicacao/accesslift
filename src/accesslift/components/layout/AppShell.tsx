@@ -14,7 +14,7 @@ export function AppShell({ children, currentPath }: AppShellProps) {
   const breadcrumbs = getBreadcrumbItems(currentPath);
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] font-sans text-slate-950 antialiased">
+    <div className="accesslift-typography min-h-screen bg-[#f6f8fb] font-sans text-slate-950 antialiased">
       <Header currentPath={currentPath} />
       <main>
         <div className="mx-auto max-w-7xl px-4 pt-5 md:px-6">
