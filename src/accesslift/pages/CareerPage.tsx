@@ -81,8 +81,9 @@ export function CareerPage() {
         <div>
           <h2 className="text-slate-950">Cadastre seu currículo</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            A Accesslift atua no segmento de plataformas elevatórias e reúne profissionais em áreas relacionadas à operação, atendimento, logística, manutenção e administração. O envio não representa garantia de contratação ou participação imediata em processo seletivo.
+            A AccessLift reúne profissionais em áreas relacionadas à operação, atendimento, logística, manutenção e administração. Envie seus dados para nosso banco de profissionais para futuras oportunidades.
           </p>
+          <p className="mt-3 text-sm leading-6 text-slate-600">O envio do currículo não representa garantia de contratação ou participação imediata em processo seletivo.</p>
         </div>
         <form className="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 premium-shadow" onSubmit={submit} onFocus={() => { if (!started.current) { started.current = true; trackEvent({ name: "career_form_start" }); } }}>
           <input

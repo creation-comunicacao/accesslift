@@ -28,7 +28,7 @@ const sections = [
     title: "5. Cookies e tecnologias semelhantes",
     paragraphs: ["O site poderá utilizar cookies e tecnologias semelhantes necessários ao seu funcionamento e, conforme as preferências do usuário, recursos adicionais destinados à análise de desempenho e publicidade.", "Cookies podem ser utilizados para diferentes finalidades, incluindo:"],
     items: ["Cookies necessários: relacionados ao funcionamento, segurança e recursos essenciais do site.", "Cookies de análise: podem ajudar a compreender como os visitantes utilizam o site e quais páginas ou recursos apresentam maior interação.", "Cookies de publicidade: podem ser utilizados para mensuração de campanhas e funcionalidades relacionadas à publicidade digital."],
-    closing: "Quando implementadas, ferramentas como Google Analytics 4 e Google Ads poderão utilizar cookies ou tecnologias semelhantes de acordo com as configurações adotadas no site. Cookies e tecnologias não essenciais deverão respeitar as escolhas disponibilizadas ao usuário por meio do mecanismo de gerenciamento de cookies adotado no site.",
+    closing: "Quando implementadas, ferramentas como Google Analytics 4 e Google Ads poderão utilizar cookies ou tecnologias semelhantes de acordo com as configurações adotadas no site. A ANPD recomenda que informações sobre cookies sejam apresentadas de maneira transparente e que existam mecanismos adequados para gerenciamento das preferências do usuário. Cookies e tecnologias não essenciais deverão respeitar as escolhas disponibilizadas ao usuário por meio do mecanismo de gerenciamento de cookies adotado no site.",
   },
   {
     title: "6. Compartilhamento de dados pessoais",

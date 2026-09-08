@@ -75,7 +75,7 @@ export function Footer() {
             />
           </a>
           <p className="max-w-sm text-sm leading-6 text-slate-300">
-            Locação e suporte para plataformas elevatórias em São Paulo e regiões em raio de até 150 km da base.
+            Locação e suporte para plataformas elevatórias em São Paulo e região, com outras localidades sob avaliação comercial.
           </p>
           <div className="grid gap-2 text-sm text-slate-300">
             <span>{contactConfig.address}</span>

@@ -4,6 +4,7 @@ import { contactConfig } from "./contact";
 export type ClientSection = ContentSection & {
   paragraphs?: string[];
   closing?: string;
+  secondaryCta?: CtaLink;
   media?: "services" | "assistance" | "training" | "company" | "company-gallery";
   form?: "assistance";
 };

@@ -63,7 +63,7 @@ export const clientInstitutionalPages: ClientPage[] = [
         { title: "Dimensões e acessos", description: "Verificar espaço disponível, entradas, passagens e condições de posicionamento." },
         { title: "Obstáculos", description: "Estruturas, instalações e outros elementos podem influenciar o tipo de plataforma necessário." },
         { title: "Condições do ambiente e do piso", description: "As características do local onde o equipamento será utilizado devem ser consideradas na escolha." },
-      ], closing: "A definição do equipamento deve considerar as características reais da atividade e do local onde será utilizado.", cta: equipment },
+      ], closing: "A definição do equipamento deve considerar as características reais da atividade e do local onde será utilizado.", cta: equipment, secondaryCta: specialist },
     ],
     faqTitle: "Dúvidas sobre NR-35 e plataformas elevatórias",
     faq: [

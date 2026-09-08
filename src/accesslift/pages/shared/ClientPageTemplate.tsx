@@ -38,7 +38,7 @@ export function ClientPageTemplate({ page }: { page: ClientPage }) {
       {section.media !== "company-gallery" && (section.items ? <SectionList {...section} items={section.items} eyebrow={section.eyebrow || page.eyebrow} cta={undefined} /> : <ValueSection {...section} description={section.description || ""} />)}
       {section.items && (section.paragraphs || section.closing || section.cta) && <div className="site-container pb-8">
         <div className="max-w-3xl space-y-5 text-slate-600">{section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.closing && <p>{section.closing}</p>}</div>
-        {section.cta && <ContentCta cta={section.cta} className="mt-5" />}
+        {section.cta && <div className="mt-5 flex flex-wrap gap-3"><ContentCta cta={section.cta} />{section.secondaryCta && <ContentCta cta={section.secondaryCta} />}</div>}
       </div>}
       <SectionMedia section={section} />
       {section.form && <div className="site-container pb-12"><SupportRequestForm /></div>}
