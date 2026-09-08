@@ -111,4 +111,5 @@ export type CatalogFilters = {
   category: EquipmentCategorySlug | "all";
   brand: EquipmentBrand | "all";
   heightRange: string;
+  power: string;
 };

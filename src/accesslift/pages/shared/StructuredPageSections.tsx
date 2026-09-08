@@ -33,6 +33,7 @@ type RelatedEquipmentSectionProps = {
 
 type FaqSectionProps = {
   items: FaqItem[];
+  title?: string;
 };
 
 export function ConversionHero({
@@ -246,7 +247,7 @@ export function RelatedEquipmentSection({ categories }: RelatedEquipmentSectionP
   );
 }
 
-export function FaqSection({ items }: FaqSectionProps) {
+export function FaqSection({ items, title = "Perguntas frequentes" }: FaqSectionProps) {
   if (items.length === 0) {
     return null;
   }
@@ -256,7 +257,7 @@ export function FaqSection({ items }: FaqSectionProps) {
       <div className="mx-auto w-[min(100%-2rem,56rem)]">
         <div data-reveal="fade-up">
           <span className="section-eyebrow">FAQ</span>
-          <h2 className="mt-4 text-slate-950">Perguntas frequentes</h2>
+          <h2 className="mt-4 text-slate-950">{title}</h2>
         </div>
         <div data-reveal="fade-up" className="mt-6">
           <Accordion

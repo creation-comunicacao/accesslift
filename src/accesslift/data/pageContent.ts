@@ -190,9 +190,9 @@ export const commercialPages: CommercialPageConfig[] = [
     eyebrow: "Locação",
     title: "Locação de Plataformas Elevatórias",
     description:
-      "Equipamentos para trabalhos em altura com opções de locação diária, semanal ou mensal, entrega e retirada próprias e suporte técnico da Accesslift em São Paulo e região.",
-    primaryCta: { label: "Solicitar orçamento", href: "/solicite-orcamento/" },
-    secondaryCta: { label: "Ver equipamentos", href: "/equipamentos/" },
+      "Plataformas tesoura e articuladas para locação, com períodos flexíveis, entrega e retirada próprias e suporte técnico durante a operação.",
+    primaryCta: { label: "Solicite seu orçamento", href: "/solicite-orcamento/" },
+    secondaryCta: { label: "Falar pelo WhatsApp", href: "https://wa.me/551123895259" },
     supportItems: [
       "Plataformas Tesoura e Articuladas",
       "Locação diária, semanal e mensal",
@@ -262,28 +262,24 @@ export const commercialPages: CommercialPageConfig[] = [
     ],
     faq: [
       {
-        question: "Qual plataforma elevatória devo alugar?",
-        answer: "A escolha depende da altura, do tipo de acesso, do espaço disponível, dos obstáculos existentes e das características da operação. A equipe Accesslift pode auxiliar na identificação das opções adequadas.",
+        question: "Por quanto tempo posso alugar uma plataforma elevatória?",
+        answer: "Existem opções diárias, semanais e mensais, de acordo com a necessidade da operação.",
       },
       {
-        question: "A Accesslift trabalha com locação diária?",
-        answer: "Sim. Há opções de locação diária, semanal e mensal, conforme a necessidade da operação.",
+        question: "Como saber qual plataforma preciso?",
+        answer: "A escolha depende de fatores como altura, tipo de acesso, alcance horizontal, ambiente e espaço disponível. A equipe Accesslift pode auxiliar nessa definição.",
       },
       {
-        question: "Qual a diferença entre plataforma tesoura e articulada?",
-        answer: "A plataforma tesoura e voltada principalmente a elevação vertical. A articulada também oferece alcance horizontal, facilitando o acesso a pontos sobre ou ao redor de obstáculos.",
+        question: "A Accesslift entrega o equipamento?",
+        answer: "Sim. A Accesslift realiza entrega e retirada próprias dentro da área de atendimento, conforme as condições acordadas para a locação.",
       },
       {
-        question: "A Accesslift realiza a entrega do equipamento?",
-        answer: "Sim. A Accesslift possui estrutura própria para entrega e retirada dentro de sua área de atendimento, conforme as condições da locação.",
+        question: "Existe suporte durante a locação?",
+        answer: "Sim. A Accesslift oferece suporte técnico durante o período contratado, conforme a necessidade da operação.",
       },
       {
-        question: "Há suporte técnico durante a locação?",
-        answer: "Sim. A assistência técnica própria faz parte da estrutura de suporte da Accesslift.",
-      },
-      {
-        question: "Não sei qual equipamento preciso. Posso solicitar orçamento mesmo assim?",
-        answer: "Sim. No formulário de orçamento, o cliente pode informar a necessidade da operação mesmo sem definir previamente o modelo da plataforma.",
+        question: "Vocês atendem minha região?",
+        answer: "A Accesslift atende São Paulo e municípios em um raio aproximado de até 150 km da base. Consulte a equipe para validar sua localização.",
       },
     ],
     faqSchemaEligible: true,
@@ -293,7 +289,7 @@ export const commercialPages: CommercialPageConfig[] = [
       primary: { label: "Solicitar orçamento", href: "/solicite-orcamento/" },
     },
     seo: {
-      h1: "Locação de Plataformas Elevatórias",
+      h1: "Locação de Plataformas Elevatórias em São Paulo",
       title: "Locação de Plataformas Elevatórias | Accesslift",
       description: "Locação de plataformas elevatórias tesoura e articuladas em São Paulo. Diárias, semanais ou mensais, com entrega própria e suporte técnico.",
       canonicalPath: "/locacao-de-plataformas-elevatorias/",

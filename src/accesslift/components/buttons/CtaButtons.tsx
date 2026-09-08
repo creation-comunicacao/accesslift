@@ -6,13 +6,20 @@ import { Button } from "./Button";
 export function RequestQuoteButton({
   className = "",
   equipmentSlug,
+  label = "Solicitar orçamento",
+  whatsappMessage,
 }: {
   className?: string;
   equipmentSlug?: string;
+  label?: string;
+  whatsappMessage?: string;
 }) {
-  const href = equipmentSlug
+  const quoteHref = equipmentSlug
     ? `/solicite-orcamento/?equipamento=${encodeURIComponent(equipmentSlug)}`
     : "/solicite-orcamento/";
+  const href = contactConfig.whatsappUrl && whatsappMessage
+    ? `${contactConfig.whatsappUrl}?text=${encodeURIComponent(whatsappMessage)}`
+    : quoteHref;
 
   return (
     <Button
@@ -26,7 +33,7 @@ export function RequestQuoteButton({
         })
       }
     >
-      Solicitar orçamento
+      {label}
     </Button>
   );
 }
@@ -56,10 +63,10 @@ export function CheckAvailabilityButton({
   );
 }
 
-export function TalkToSpecialistButton({ className = "" }: { className?: string }) {
+export function TalkToSpecialistButton({ className = "", label = "Falar com especialista" }: { className?: string; label?: string }) {
   return (
     <Button href="/contato/" variant="secondary" className={className} icon={<Headphones className="h-4 w-4" aria-hidden />}>
-      Falar com especialista
+      {label}
     </Button>
   );
 }
@@ -67,23 +74,30 @@ export function TalkToSpecialistButton({ className = "" }: { className?: string 
 export function WhatsAppButton({
   className = "",
   compact = false,
+  label,
+  message,
 }: {
   className?: string;
   compact?: boolean;
+  label?: string;
+  message?: string;
 }) {
-  const label = compact ? "WhatsApp" : "Falar no WhatsApp";
+  const buttonLabel = label ?? (compact ? "WhatsApp" : "Falar no WhatsApp");
+  const href = contactConfig.whatsappUrl && message
+    ? `${contactConfig.whatsappUrl}?text=${encodeURIComponent(message)}`
+    : contactConfig.whatsappUrl || undefined;
 
   return (
     <Button
-      href={contactConfig.whatsappUrl || undefined}
+      href={href}
       variant="whatsapp"
       className={className}
       disabled={!contactConfig.whatsappUrl}
       icon={<MessageCircle className="h-4 w-4" aria-hidden />}
-      title={!contactConfig.whatsappUrl ? "WhatsApp a configurar" : label}
+      title={!contactConfig.whatsappUrl ? "WhatsApp a configurar" : buttonLabel}
       onClick={() => trackEvent({ name: "whatsapp_click", payload: { configured: Boolean(contactConfig.whatsappUrl) } })}
     >
-      {label}
+      {buttonLabel}
     </Button>
   );
 }

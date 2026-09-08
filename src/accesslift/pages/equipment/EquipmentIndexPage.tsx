@@ -1,12 +1,19 @@
 import { SlidersHorizontal, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
-import { defaultCatalogFilters, filterEquipment, getAvailableHeightRangeFilters, hasActiveCatalogFilters, sortEquipment } from "../../catalog/catalog";
-import { RequestQuoteButton } from "../../components/buttons/CtaButtons";
+import { useMemo, useState } from "react";
+import {
+  defaultCatalogFilters,
+  filterEquipment,
+  getAvailableBrands,
+  getAvailableHeightRangeFilters,
+  getAvailablePowerOptions,
+  hasActiveCatalogFilters,
+  sortEquipment,
+} from "../../catalog/catalog";
+import { RequestQuoteButton, TalkToSpecialistButton, WhatsAppButton } from "../../components/buttons/CtaButtons";
 import { Button } from "../../components/buttons/Button";
 import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { CatalogFiltersPanel } from "../../components/catalog/CatalogFiltersPanel";
 import { CatalogState } from "../../components/catalog/CatalogState";
-import { PageIntro } from "../../components/layout/PageIntro";
 import { Badge } from "../../components/ui/Badge";
 import { Accordion } from "../../components/ui/Accordion";
 import { mockEquipments } from "../../data/equipment";
@@ -31,13 +38,11 @@ export function EquipmentIndexPage() {
   const [filters, setFilters] = useState<CatalogFilters>(getFinderFilters);
   const [sort, setSort] = useState<CatalogSort>("featured");
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const brands = useMemo(() => getAvailableBrands(mockEquipments), []);
   const heightRanges = useMemo(() => getAvailableHeightRangeFilters(mockEquipments), []);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setIsLoading(false), 180);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const powerOptions = useMemo(() => getAvailablePowerOptions(mockEquipments), []);
+  const equipmentWhatsAppMessage =
+    "Olá! Estou consultando os equipamentos no site da AccessLift e gostaria de ajuda para escolher uma plataforma para minha operação.";
 
   const results = useMemo(
     () => sortEquipment(filterEquipment(mockEquipments, filters), sort),
@@ -53,13 +58,21 @@ export function EquipmentIndexPage() {
 
   return (
     <>
-      <PageIntro
-        eyebrow="Equipamentos"
-        title="Plataformas Elevatórias para Locação"
-        description="Compare plataformas tesoura e articuladas de diferentes marcas, alturas de trabalho e capacidades para encontrar equipamentos adequados a sua operação."
-      />
+      <section className="industrial-grid border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12">
+          <Badge tone="lime">Equipamentos</Badge>
+          <h1 className="mt-5 max-w-4xl text-slate-950">Plataformas Elevatórias para Locação</h1>
+          <p className="mt-4 max-w-3xl text-lg text-slate-600">
+            Compare os modelos disponíveis de plataformas tesoura e articuladas e encontre o equipamento adequado às características da sua operação.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <RequestQuoteButton label="Solicite seu orçamento" />
+            <WhatsAppButton label="Falar pelo WhatsApp" message={equipmentWhatsAppMessage} />
+          </div>
+        </div>
+      </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
         <div data-reveal="fade-up" className="mb-6 rounded-lg border border-slate-200 bg-white p-4 premium-shadow">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -67,7 +80,7 @@ export function EquipmentIndexPage() {
                 {results.length} resultado{results.length === 1 ? "" : "s"}
               </Badge>
               <p className="mt-2 text-sm font-semibold text-slate-600">
-                Filtre por tipo, marca e faixas de altura disponíveis na frota cadastrada.
+                Filtre por tipo, marca, altura de trabalho e alimentação disponíveis na frota cadastrada.
               </p>
             </div>
             <button
@@ -76,7 +89,7 @@ export function EquipmentIndexPage() {
               onClick={() => setIsFilterDrawerOpen(true)}
             >
               <SlidersHorizontal className="h-4 w-4" aria-hidden />
-              Filtros
+              {activeFilters ? "Filtros ativos" : "Filtros"}
             </button>
           </div>
 
@@ -87,21 +100,35 @@ export function EquipmentIndexPage() {
               onFiltersChange={setFilters}
               onSortChange={setSort}
               onClear={clearFilters}
+              brands={brands}
               heightRanges={heightRanges}
+              powerOptions={powerOptions}
             />
           </div>
         </div>
 
-        {isLoading ? (
-          <CatalogState type="loading" />
-        ) : mockEquipments.length === 0 ? (
+        <div className="mb-6 flex flex-wrap gap-3 text-sm font-bold">
+          <Button href="/plataformas-tesoura/" variant="ghost">
+            Ver todas as plataformas tesoura
+          </Button>
+          <Button href="/plataformas-articuladas/" variant="ghost">
+            Ver todas as plataformas articuladas
+          </Button>
+        </div>
+
+        {mockEquipments.length === 0 ? (
           <CatalogState type="empty" />
         ) : results.length === 0 ? (
           <CatalogState type="no-results" onClear={clearFilters} />
         ) : (
           <div className="reveal-stagger grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {results.map((equipment) => (
-              <EquipmentCard key={equipment.id} equipment={equipment} />
+              <EquipmentCard
+                key={equipment.id}
+                equipment={equipment}
+                quoteLabel="Solicitar cotação"
+                quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da AccessLift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
+              />
             ))}
           </div>
         )}
@@ -138,7 +165,9 @@ export function EquipmentIndexPage() {
               onFiltersChange={setFilters}
               onSortChange={setSort}
               onClear={clearFilters}
+              brands={brands}
               heightRanges={heightRanges}
+              powerOptions={powerOptions}
               compact
             />
             <button
@@ -153,49 +182,18 @@ export function EquipmentIndexPage() {
       )}
 
       <section className="bg-slate-50 py-12">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 md:grid-cols-2 md:px-6">
-          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
+        <div className="mx-auto max-w-7xl px-4 md:px-6">
+          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow md:p-8">
             <Badge tone="lime">Escolha</Badge>
-            <h2 className="mt-4 text-slate-950">Não sabe qual plataforma escolher?</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Não é necessário conhecer previamente o modelo. Informe altura aproximada, cidade, espaço disponível, existência de obstáculos e período de utilização para que a equipe Accesslift auxilie na avaliação das opções.
-            </p>
-            <RequestQuoteButton className="mt-5" />
-          </article>
-          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-            <Badge tone="steel">Locação</Badge>
-            <h2 className="mt-4 text-slate-950">Equipamento com suporte Accesslift</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              A locação pode ser diária, semanal ou mensal, com entrega e retirada próprias, assistência técnica, manutenção preventiva e suporte durante a operação.
-            </p>
-            <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary" className="mt-5">
-              Conhecer locação
-            </Button>
-          </article>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <Badge tone="lime">Categorias</Badge>
-        <h2 className="mt-4 text-slate-950">Tesoura ou articulada?</h2>
-        <div className="mt-6 grid gap-5 md:grid-cols-2">
-          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-            <h3 className="text-slate-950">Plataforma Tesoura</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Para trabalhos predominantemente verticais, quando e possível posicionar o equipamento abaixo ou próximo da área de execução.
-            </p>
-            <Button href="/plataformas-tesoura/" variant="secondary" className="mt-5">
-              Ver plataformas tesoura
-            </Button>
-          </article>
-          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-            <h3 className="text-slate-950">Plataforma Articulada</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Para operações que combinam altura e alcance horizontal, especialmente quando existem obstáculos ou acesso lateral ao ponto de trabalho.
-            </p>
-            <Button href="/plataformas-articuladas/" variant="secondary" className="mt-5">
-              Ver plataformas articuladas
-            </Button>
+            <div className="mt-4 grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <h2 className="text-slate-950">Não sabe qual plataforma escolher?</h2>
+                <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
+                  Informe a altura aproximada, o tipo de acesso e as características do local. Nossa equipe pode ajudar a identificar o equipamento mais adequado para o seu trabalho.
+                </p>
+              </div>
+              <TalkToSpecialistButton label="Fale com um especialista" />
+            </div>
           </article>
         </div>
       </section>
@@ -208,24 +206,28 @@ export function EquipmentIndexPage() {
             <Accordion
               items={[
                 {
-                  id: "equipamentos-tipos",
-                  title: "Quais tipos de plataformas a Accesslift possui?",
-                  content: "A frota atual reúne plataformas das categorias tesoura e articulada.",
+                  id: "equipamentos-escolha",
+                  title: "Como saber qual plataforma é adequada para o meu trabalho?",
+                  content:
+                    "Considere altura, acesso, obstáculos e características do local. Se ainda tiver dúvida, fale com a equipe AccessLift para orientar a escolha.",
                 },
                 {
-                  id: "equipamentos-marcas",
-                  title: "Quais marcas estão disponíveis?",
-                  content: "O catálogo trabalha com equipamentos JLG, Genie, Skyjack e Zoomlion.",
+                  id: "equipamentos-diferenca-categorias",
+                  title: "Qual a diferença entre plataforma tesoura e articulada?",
+                  content:
+                    "A tesoura é indicada principalmente para elevação vertical. A articulada é indicada quando também há necessidade de alcance horizontal ou acesso sobre obstáculos.",
                 },
                 {
-                  id: "equipamentos-comparar",
-                  title: "Como comparar os modelos?",
-                  content: "Compare altura de trabalho, capacidade, dimensões e, no caso das articuladas, alcance horizontal quando esse dado estiver cadastrado.",
+                  id: "equipamentos-disponibilidade",
+                  title: "Como consultar a disponibilidade de um equipamento?",
+                  content:
+                    "Use a cotação do modelo desejado ou entre em contato com a equipe AccessLift informando qual plataforma você quer consultar.",
                 },
                 {
-                  id: "equipamentos-sem-modelo",
-                  title: "Posso solicitar orçamento sem escolher modelo?",
-                  content: "Sim. Informe as características do trabalho para que a equipe Accesslift auxilie na escolha.",
+                  id: "equipamentos-cotacao",
+                  title: "Como solicitar uma cotação?",
+                  content:
+                    "Você pode solicitar a cotação pelo próprio equipamento, pelo formulário de orçamento ou pelo contato direto com a equipe.",
                 },
               ]}
             />
@@ -233,13 +235,19 @@ export function EquipmentIndexPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
-          <h2>Encontrou o equipamento ou ainda precisa de ajuda?</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">
-            Fale com a Accesslift e informe as características da sua operação.
-          </p>
-          <RequestQuoteButton className="mt-5" />
+      <section className="bg-slate-950 py-12 text-white">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
+          <div>
+            <Badge tone="lime">Orçamento</Badge>
+            <h2 className="mt-4 text-white">Ainda não encontrou o equipamento ideal?</h2>
+            <p className="mt-3 max-w-2xl text-slate-300">
+              Conte para nossa equipe as características do seu trabalho e ajudamos a identificar a plataforma adequada para sua operação.
+            </p>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <RequestQuoteButton label="Solicite seu orçamento" />
+            <WhatsAppButton label="Falar pelo WhatsApp" message={equipmentWhatsAppMessage} />
+          </div>
         </div>
       </section>
     </>

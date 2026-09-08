@@ -76,6 +76,7 @@ export const defaultCatalogFilters: CatalogFilters = {
   category: "all",
   brand: "all",
   heightRange: "all",
+  power: "all",
 };
 
 export const hasActiveCatalogFilters = (filters: CatalogFilters) =>
@@ -113,13 +114,21 @@ export const getAvailableHeightRangeFilters = (equipments: Equipment[]) =>
     equipments.some((equipment) => matchesHeightRange(equipment, range.id)),
   );
 
+export const getAvailableBrands = (equipments: Equipment[]) =>
+  [...new Set(equipments.map((equipment) => equipment.brand))].sort((a, b) => a.localeCompare(b));
+
+export const getAvailablePowerOptions = (equipments: Equipment[]) =>
+  [...new Set(equipments.map((equipment) => equipment.specs.alimentacao).filter((value): value is string => Boolean(value)))]
+    .sort((a, b) => a.localeCompare(b));
+
 export const filterEquipment = (equipments: Equipment[], filters: CatalogFilters) =>
   equipments.filter((equipment) => {
     const categoryMatch =
       filters.category === "all" || equipment.category === filters.category;
     const brandMatch = filters.brand === "all" || equipment.brand === filters.brand;
     const heightMatch = matchesHeightRange(equipment, filters.heightRange);
-    return categoryMatch && brandMatch && heightMatch;
+    const powerMatch = filters.power === "all" || equipment.specs.alimentacao === filters.power;
+    return categoryMatch && brandMatch && heightMatch && powerMatch;
   });
 
 export const sortEquipment = (equipments: Equipment[], sort: CatalogSort) => {

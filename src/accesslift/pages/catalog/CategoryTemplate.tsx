@@ -1,9 +1,8 @@
 import { getCategoryBySlug, getEquipmentByCategory, sortEquipment } from "../../catalog/catalog";
 import { EquipmentCard } from "../../components/cards/EquipmentCard";
-import { CheckAvailabilityButton, RequestQuoteButton, TalkToSpecialistButton } from "../../components/buttons/CtaButtons";
+import { RequestQuoteButton, TalkToSpecialistButton, WhatsAppButton } from "../../components/buttons/CtaButtons";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/buttons/Button";
-import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
 import { Accordion } from "../../components/ui/Accordion";
 import { categoryGalleryBySlug } from "../../data/officialMedia";
 import type { EquipmentCategorySlug } from "../../types/equipment";
@@ -12,322 +11,448 @@ type CategoryTemplateProps = {
   slug: EquipmentCategorySlug;
 };
 
-type CategoryContent = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  primaryCta: { label: string; href: string };
-  introTitle: string;
-  intro: string;
-  introComplement: string;
-  modelsTitle: string;
-  bestFor: string[];
-  choiceTitle: string;
-  choiceItems: Array<{ title: string; description: string }>;
-  applications?: string[];
-  counterpartTitle: string;
-  counterpartDescription: string;
-  counterpartHref: string;
-  counterpartLabel: string;
-  rentalTitle: string;
-  rentalDescription: string;
-  faq: Array<{ question: string; answer: string }>;
-  finalTitle: string;
-  finalDescription: string;
-};
-
-const categoryContent: Record<EquipmentCategorySlug, CategoryContent> = {
-  "plataformas-tesoura": {
-    eyebrow: "Categoria SEO",
-    title: "Plataformas Elevatórias Tesoura",
-    description:
-      "Soluções para trabalhos que exigem elevação predominantemente vertical, com diferentes opções de altura, dimensões e capacidade.",
-    primaryCta: { label: "Ver modelos disponíveis", href: "#modelos" },
-    introTitle: "Quando utilizar uma plataforma tesoura?",
-    intro:
-      "A plataforma tesoura realiza a elevação da área de trabalho predominantemente na vertical. Essa característica torna o equipamento adequado para atividades em que o ponto de execução está acima da posição da máquina e não exige grande alcance horizontal.",
-    introComplement:
-      "Pode ser utilizada em diferentes atividades de manutenção, instalações, montagens, construção e operações industriais e comerciais, sempre considerando as características do equipamento e do local.",
-    modelsTitle: "Modelos de plataformas tesoura disponíveis",
-    bestFor: ["Trabalhos verticais", "Espaço adequado para posicionamento", "Manutenção, instalação, montagem e construção"],
-    choiceTitle: "Como escolher uma plataforma tesoura?",
-    choiceItems: [
-      { title: "Altura de trabalho", description: "O equipamento deve atender a altura necessária para execução da atividade." },
-      { title: "Dimensões", description: "Largura, comprimento e altura recolhida são relevantes quando existem corredores, portas ou acessos limitados." },
-      { title: "Capacidade", description: "Considere o número de operadores e os materiais e ferramentas necessários para a atividade." },
-      { title: "Área da plataforma", description: "As dimensões da plataforma podem ser importantes quando a atividade exige movimentação do operador ou transporte de materiais." },
-      { title: "Condições da operação", description: "O ambiente e as características do piso e dos acessos devem ser avaliados antes da escolha." },
-    ],
-    counterpartTitle: "Quando considerar uma plataforma articulada?",
-    counterpartDescription:
-      "Se o ponto de trabalho não estiver diretamente acima da posição do equipamento ou houver obstáculos que precisem ser contornados, uma plataforma articulada pode ser mais adequada. A principal diferença está no tipo de movimentação: a tesoura prioriza elevação vertical, enquanto a articulada acrescenta alcance horizontal.",
-    counterpartHref: "/plataformas-articuladas/",
-    counterpartLabel: "Ver plataformas articuladas",
-    rentalTitle: "Locação de plataforma tesoura",
-    rentalDescription:
-      "A Accesslift disponibiliza plataformas tesoura para locações diárias, semanais e mensais, com entrega e retirada próprias e suporte técnico durante a operação. Não sabe qual modelo escolher? Informe a altura aproximada, cidade e características do trabalho para que nossa equipe possa auxiliar.",
-    faq: [
-      {
-        question: "Para que serve uma plataforma tesoura?",
-        answer: "É utilizada para trabalhos em altura que exigem principalmente elevação vertical, em atividades como manutenção, instalações, montagens e diferentes operações industriais, comerciais e de construção.",
-      },
-      {
-        question: "Qual a diferença entre plataforma tesoura e articulada?",
-        answer: "A tesoura realiza movimentação predominantemente vertical. A articulada acrescenta alcance horizontal e permite acessar pontos sobre ou ao redor de obstáculos.",
-      },
-      {
-        question: "Como saber a altura da plataforma que preciso?",
-        answer: "É necessário considerar a altura do ponto onde o trabalho será executado e as especificações de altura de trabalho de cada modelo.",
-      },
-      {
-        question: "Posso alugar uma plataforma tesoura por apenas um dia?",
-        answer: "A Accesslift trabalha com locações diárias, semanais e mensais, conforme disponibilidade e condições da operação.",
-      },
-      {
-        question: "A Accesslift entrega a plataforma?",
-        answer: "Sim. A empresa possui entrega e retirada próprias dentro da sua área de atendimento.",
-      },
-    ],
-    finalTitle: "Encontre a plataforma tesoura para sua operação",
-    finalDescription: "Compare os modelos disponíveis ou fale com nossa equipe.",
-  },
-  "plataformas-articuladas": {
-    eyebrow: "Categoria SEO",
-    title: "Plataformas Elevatórias Articuladas",
-    description:
-      "Equipamentos para trabalhos em altura que exigem alcance vertical e horizontal, oferecendo maior flexibilidade para acessar pontos sobre ou ao redor de obstáculos.",
-    primaryCta: { label: "Ver modelos disponíveis", href: "#modelos" },
-    introTitle: "Altura e alcance para acessar pontos de trabalho",
-    intro:
-      "Nem todo trabalho em altura pode ser alcançado posicionando o equipamento diretamente abaixo do ponto de execução. A plataforma articulada utiliza seções articuladas para combinar elevação e alcance horizontal, permitindo posicionar o operador em locais que exigem maior flexibilidade de acesso.",
-    introComplement:
-      "Essa característica torna a categoria especialmente útil quando existem estruturas, equipamentos, instalações ou outros obstáculos entre a base da plataforma e o ponto de trabalho.",
-    modelsTitle: "Modelos de plataformas articuladas disponíveis",
-    bestFor: ["Altura com alcance horizontal", "Acesso sobre ou ao redor de obstáculos", "Trabalhos industriais, comerciais e de infraestrutura"],
-    choiceTitle: "O que considerar ao escolher uma plataforma articulada?",
-    choiceItems: [
-      { title: "Altura de trabalho", description: "Determine a altura necessária para chegar ao ponto onde a atividade será executada." },
-      { title: "Alcance horizontal", description: "É uma das especificações mais importantes nessa categoria e indica até onde o equipamento pode alcançar lateralmente." },
-      { title: "Obstáculos", description: "Estruturas, instalações e equipamentos existentes no caminho influenciam a escolha e o posicionamento da plataforma." },
-      { title: "Espaço para posicionamento e manobra", description: "Dimensões do equipamento e características do local devem ser consideradas." },
-      { title: "Capacidade", description: "Considere operadores, ferramentas e materiais necessários para realizar a atividade." },
-    ],
-    applications: [
-      "manutenção de instalações e estruturas",
-      "trabalhos industriais",
-      "instalações elétricas e infraestrutura",
-      "montagens",
-      "intervenções em fachadas e estruturas",
-      "trabalhos em áreas comerciais e logisticas",
-      "atividades de construção",
-    ],
-    counterpartTitle: "Quando uma plataforma tesoura pode ser suficiente?",
-    counterpartDescription:
-      "Se o trabalho exige principalmente elevação vertical e o equipamento pode ser posicionado diretamente abaixo da área de execução, uma plataforma tesoura pode atender melhor a necessidade. Quando há necessidade de alcance horizontal ou de superar obstáculos, a plataforma articulada ganha vantagem.",
-    counterpartHref: "/plataformas-tesoura/",
-    counterpartLabel: "Ver plataformas tesoura",
-    rentalTitle: "Locação de plataforma articulada",
-    rentalDescription:
-      "A Accesslift disponibiliza plataformas articuladas para locações diárias, semanais e mensais, com entrega e retirada próprias e suporte técnico durante a operação. Caso ainda não saiba qual modelo utilizar, informe a altura aproximada e as características do acesso ao ponto de trabalho.",
-    faq: [
-      {
-        question: "Para que serve uma plataforma articulada?",
-        answer: "É utilizada em trabalhos em altura que, além da elevação, exigem alcance horizontal ou acesso sobre e ao redor de obstáculos.",
-      },
-      {
-        question: "Qual a diferença entre plataforma articulada e tesoura?",
-        answer: "A plataforma tesoura prioriza movimentação vertical. A articulada combina altura e alcance horizontal.",
-      },
-      {
-        question: "O que significa alcance horizontal?",
-        answer: "É a capacidade de a plataforma alcançar lateralmente um ponto de trabalho em relação à posição do equipamento, dentro das especificações e condições definidas pelo fabricante.",
-      },
-      {
-        question: "Como escolher o modelo adequado?",
-        answer: "Altura, alcance horizontal, capacidade, espaço para posicionamento e características do local estão entre os fatores que precisam ser considerados.",
-      },
-      {
-        question: "A Accesslift trabalha com locação diária?",
-        answer: "Sim. A empresa disponibiliza locações diárias, semanais e mensais, conforme disponibilidade e condições da operação.",
-      },
-    ],
-    finalTitle: "Precisa alcançar um ponto de difícil acesso?",
-    finalDescription: "Compare as plataformas articuladas disponíveis ou fale com a Accesslift para identificar as opções adequadas a sua operação.",
-  },
-};
-
 export function CategoryTemplate({ slug }: CategoryTemplateProps) {
   const category = getCategoryBySlug(slug);
-  const content = categoryContent[slug];
   const equipments = sortEquipment(getEquipmentByCategory(slug), "brand-asc");
 
   if (!category) {
     return null;
   }
 
-  return (
-    <>
-      <section className="industrial-grid border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.75fr] lg:items-end">
-          <div>
-            <Badge tone="lime">{content.eyebrow}</Badge>
-            <h1 className="mt-5 text-slate-950">{content.title}</h1>
-            <p className="mt-4 max-w-2xl text-lg text-slate-600">{content.description}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button href={content.primaryCta.href}>{content.primaryCta.label}</Button>
-              <Button href="/solicite-orcamento/" variant="secondary">
-                Solicitar orçamento
-              </Button>
+  if (slug === "plataformas-tesoura") {
+    const heroEquipment =
+      equipments.find((equipment) => equipment.slug === "skyjack-sj3219") ??
+      equipments.find((equipment) => Boolean(equipment.mainImage.src));
+    const heroImage = heroEquipment?.mainImage ?? categoryGalleryBySlug["plataformas-tesoura"][0];
+    const useCases = [
+      "Elevação vertical",
+      "Estabilidade durante a operação",
+      "Boa área de trabalho",
+      "Espaço para operador, ferramentas e materiais",
+    ];
+    const choiceItems = [
+      {
+        title: "Altura de trabalho",
+        description: "Verificar a altura necessária para alcançar o ponto onde o serviço será executado.",
+      },
+      {
+        title: "Capacidade da plataforma",
+        description: "Considerar operador, ferramentas e materiais que serão elevados.",
+      },
+      {
+        title: "Dimensões da plataforma",
+        description: "Avaliar o espaço necessário para a execução do trabalho.",
+      },
+      {
+        title: "Espaço e acesso disponíveis",
+        description: "Considerar portas, corredores, áreas de circulação e espaço para posicionamento do equipamento.",
+      },
+      {
+        title: "Condição do piso",
+        description: "Verificar as características da superfície onde a plataforma será utilizada.",
+      },
+    ];
+    const faq = [
+      {
+        question: "O que é uma plataforma tesoura?",
+        answer:
+          "É uma plataforma de trabalho aéreo destinada principalmente à elevação vertical de pessoas, ferramentas e materiais.",
+      },
+      {
+        question: "Quando utilizar uma plataforma tesoura?",
+        answer:
+          "Ela é indicada quando o ponto de trabalho está predominantemente acima da base do equipamento e a operação exige estabilidade e área de trabalho.",
+      },
+      {
+        question: "Qual altura uma plataforma tesoura pode alcançar?",
+        answer:
+          "A altura varia de acordo com o modelo. Consulte as especificações dos equipamentos disponíveis para comparar a opção adequada.",
+      },
+      {
+        question: "Existem plataformas tesoura elétricas?",
+        answer:
+          "Sim. A frota cadastrada da AccessLift inclui modelos de plataforma tesoura com alimentação elétrica.",
+      },
+      {
+        question: "Como solicitar a locação de uma plataforma tesoura?",
+        answer:
+          "Solicite um orçamento ou fale pelo WhatsApp para que a equipe AccessLift avalie período, local e características da operação.",
+      },
+    ];
+    const scissorWhatsAppMessage =
+      "Olá! Estou no site da AccessLift e gostaria de informações sobre locação de plataformas tesoura.";
+
+    return (
+      <>
+        <section className="industrial-grid border-b border-slate-200 bg-slate-50">
+          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+            <div>
+              <Badge tone="lime">Plataforma Tesoura</Badge>
+              <h1 className="mt-5 text-slate-950">Plataformas Elevatórias Tesoura</h1>
+              <p className="mt-4 max-w-2xl text-lg text-slate-600">
+                Plataformas tesoura para trabalhos que exigem elevação predominantemente vertical, estabilidade e área de trabalho para operador, ferramentas e materiais.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <RequestQuoteButton label="Solicite seu orçamento" />
+                <WhatsAppButton label="Falar pelo WhatsApp" message={scissorWhatsAppMessage} />
+              </div>
             </div>
+            {heroImage?.src && (
+              <div className="media-frame overflow-hidden rounded-lg p-3 premium-shadow">
+                <img
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  width={heroImage.width}
+                  height={heroImage.height}
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="aspect-[4/3] w-full rounded-md object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            )}
           </div>
-          <div className="rounded-lg border border-slate-200 bg-white p-5 premium-shadow">
-            <h2 className="text-xl font-black text-slate-950">Aplicações comuns</h2>
-            <ul className="mt-4 grid gap-3 text-sm font-semibold text-slate-600">
-              {content.bestFor.map((item) => (
-                <li key={item} className="rounded-md bg-slate-50 px-3 py-2">
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
-              <RequestQuoteButton />
-              <TalkToSpecialistButton />
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+          <Badge tone="steel">Quando utilizar</Badge>
+          <h2 className="mt-4 text-slate-950">Quando utilizar uma plataforma tesoura?</h2>
+          <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_0.85fr]">
+            <div className="max-w-3xl space-y-4 text-slate-600">
+              <p>
+                A plataforma tesoura é indicada principalmente para trabalhos que exigem elevação vertical, oferecendo estabilidade e uma área de trabalho adequada para o operador, ferramentas e materiais.
+              </p>
+              <p>
+                É uma solução utilizada em diferentes atividades de manutenção, instalações, obras e operações industriais, especialmente quando o ponto de trabalho está localizado predominantemente acima da base do equipamento.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <Badge tone="steel">Contexto</Badge>
-        <h2 className="mt-4 text-slate-950">{content.introTitle}</h2>
-        <div className="mt-4 grid gap-4 text-slate-600 lg:grid-cols-2">
-          <p>{content.intro}</p>
-          <p>{content.introComplement}</p>
-        </div>
-      </section>
-
-      <section id="modelos" className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <Badge tone="steel">
-              {equipments.length} equipamento{equipments.length === 1 ? "" : "s"}
-            </Badge>
-            <h2 className="mt-4 text-slate-950">{content.modelsTitle}</h2>
-            <p className="mt-2 text-sm font-semibold text-slate-600">
-              Grade dinâmica alimentada pelo cadastro central de equipamentos, sem transformar filtros de altura, marca ou elétrica em páginas indexáveis.
-            </p>
-          </div>
-          <CheckAvailabilityButton />
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {equipments.map((equipment) => (
-            <EquipmentCard key={equipment.id} equipment={equipment} />
-          ))}
-        </div>
-
-        <div className="mt-8 flex flex-wrap gap-3 border-t border-slate-200 pt-6">
-          <Button href="/locacao-de-plataformas-elevatorias/" variant="secondary">
-            Ver opções de locação
-          </Button>
-          <Button href="/segmentos-e-aplicacoes/" variant="ghost">
-            Ver aplicações
-          </Button>
-          <Button href="/equipamentos/" variant="ghost">
-            Ver todos os equipamentos
-          </Button>
-          <Button href={content.counterpartHref} variant="ghost">
-            {content.counterpartLabel}
-          </Button>
-        </div>
-
-        <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-xl font-black text-slate-950">{content.choiceTitle}</h2>
-          <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {content.choiceItems.map((item) => (
-              <article key={item.title} className="rounded-md bg-white p-4">
-                <h3 className="text-base text-slate-950">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {content.applications && (
-        <section className="bg-slate-50 py-12">
-          <div className="mx-auto max-w-7xl px-4 md:px-6">
-            <Badge tone="lime">Aplicações</Badge>
-            <h2 className="mt-4 text-slate-950">Onde uma plataforma articulada pode ser utilizada?</h2>
-            <p className="mt-3 max-w-3xl text-slate-600">
-              Dependendo do modelo e das condições do local, plataformas articuladas podem atender atividades como:
-            </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {content.applications.map((item) => (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {useCases.map((item) => (
                 <span key={item} className="rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700">
                   {item}
                 </span>
               ))}
             </div>
-            <p className="mt-4 max-w-3xl text-sm text-slate-600">
-              A indicação final do equipamento deve considerar as características específicas da operação.
-            </p>
           </div>
         </section>
-      )}
 
-      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <div className="grid gap-5 lg:grid-cols-2">
-          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-            <Badge tone="steel">Comparacao</Badge>
-            <h2 className="mt-4 text-slate-950">{content.counterpartTitle}</h2>
-            <p className="mt-3 text-slate-600">{content.counterpartDescription}</p>
-            <Button href={content.counterpartHref} variant="secondary" className="mt-5">
-              {content.counterpartLabel}
+        <section id="modelos" className="bg-slate-50 py-12">
+          <div className="mx-auto max-w-7xl px-4 md:px-6">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <Badge tone="steel">
+                  {equipments.length} equipamento{equipments.length === 1 ? "" : "s"}
+                </Badge>
+                <h2 className="mt-4 text-slate-950">Modelos de plataformas tesoura disponíveis</h2>
+                <p className="mt-2 max-w-3xl text-slate-600">
+                  Equipamentos da categoria Plataforma Tesoura disponíveis na frota AccessLift, com as principais informações para comparação.
+                </p>
+              </div>
+              <Button href="/equipamentos/" variant="secondary">
+                Ver todos os equipamentos
+              </Button>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {equipments.map((equipment) => (
+                <EquipmentCard
+                  key={equipment.id}
+                  equipment={equipment}
+                  quoteLabel="Solicitar cotação"
+                  quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da AccessLift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+          <Badge tone="steel">Escolha do equipamento</Badge>
+          <h2 className="mt-4 text-slate-950">Como escolher uma plataforma tesoura?</h2>
+          <p className="mt-3 max-w-3xl text-slate-600">
+            A escolha do equipamento deve considerar as características do trabalho e do ambiente onde a plataforma será utilizada.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {choiceItems.map((item) => (
+              <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+                <h3 className="text-base text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-5 md:p-6">
+            <h3 className="text-xl text-slate-950">Precisa de ajuda para escolher?</h3>
+            <p className="mt-2 max-w-3xl text-slate-600">
+              A equipe AccessLift pode auxiliar na identificação do modelo mais adequado às características da sua operação.
+            </p>
+            <TalkToSpecialistButton className="mt-5" label="Fale com um especialista" />
+          </div>
+        </section>
+
+        <section className="bg-slate-50 py-12">
+          <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <Badge tone="steel">Comparativo</Badge>
+              <h2 className="mt-4 text-slate-950">Tesoura ou articulada?</h2>
+              <div className="mt-4 max-w-3xl space-y-4 text-slate-600">
+                <p>Se o trabalho exige principalmente elevação vertical, a plataforma tesoura tende a ser a opção mais adequada.</p>
+                <p>
+                  Quando, além da altura, é necessário alcance horizontal ou acesso a pontos com obstáculos, uma plataforma articulada pode ser mais indicada.
+                </p>
+              </div>
+            </div>
+            <Button href="/plataformas-articuladas/" variant="secondary">
+              Conhecer plataformas articuladas
             </Button>
-          </article>
-          <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow">
-            <Badge tone="lime">Locação</Badge>
-            <h2 className="mt-4 text-slate-950">{content.rentalTitle}</h2>
-            <p className="mt-3 text-slate-600">{content.rentalDescription}</p>
-            <RequestQuoteButton className="mt-5" />
-          </article>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <OfficialMediaGallery
-        title={slug === "plataformas-tesoura" ? "Plataformas tesoura da frota" : "Plataformas articuladas da frota"}
-        description="Imagens sem identificação legivel de modelo permanecem na categoria e não são usadas como foto de um equipamento especifico."
-        images={categoryGalleryBySlug[slug]}
-      />
-
-      <section className="bg-slate-50 py-12">
-        <div className="mx-auto max-w-4xl px-4 md:px-6">
+        <section className="mx-auto max-w-4xl px-4 py-12 md:px-6">
           <Badge tone="lime">FAQ</Badge>
-          <h2 className="mt-4 text-slate-950">
-            {slug === "plataformas-tesoura" ? "Dúvidas sobre plataformas tesoura" : "Dúvidas sobre plataformas articuladas"}
-          </h2>
+          <h2 className="mt-4 text-slate-950">Dúvidas sobre plataformas tesoura</h2>
           <div className="mt-6">
             <Accordion
-              items={content.faq.map((item, index) => ({
-                id: `${slug}-faq-${index}`,
+              items={faq.map((item, index) => ({
+                id: `plataformas-tesoura-faq-${index}`,
                 title: item.question,
                 content: item.answer,
               }))}
             />
           </div>
+        </section>
+
+        <section className="bg-slate-950 py-12 text-white">
+          <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
+            <div>
+              <Badge tone="lime">Locação</Badge>
+              <h2 className="mt-4 text-white">Encontre a plataforma tesoura adequada à sua operação</h2>
+              <p className="mt-3 max-w-2xl text-slate-300">
+                Locação diária, semanal ou mensal, com suporte da equipe AccessLift para ajudar na escolha do equipamento adequado ao seu trabalho.
+              </p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <RequestQuoteButton label="Solicite seu orçamento" />
+              <WhatsAppButton label="Falar pelo WhatsApp" message={scissorWhatsAppMessage} />
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  const heroEquipment =
+    equipments.find((equipment) => equipment.slug === "genie-z34") ??
+    equipments.find((equipment) => Boolean(equipment.mainImage.src));
+  const heroImage = heroEquipment?.mainImage ?? categoryGalleryBySlug["plataformas-articuladas"][0];
+  const useCases = [
+    "Elevação em altura",
+    "Alcance horizontal",
+    "Acesso sobre obstáculos",
+    "Flexibilidade de posicionamento",
+  ];
+  const choiceItems = [
+    {
+      title: "Altura de trabalho",
+      description: "Verificar a altura necessária para alcançar o ponto onde o serviço será executado.",
+    },
+    {
+      title: "Alcance horizontal",
+      description: "Considerar a distância horizontal necessária entre o posicionamento do equipamento e o ponto de trabalho.",
+    },
+    {
+      title: "Obstáculos e acesso",
+      description: "Avaliar estruturas, equipamentos ou outros elementos que possam existir entre a plataforma e o local que precisa ser alcançado.",
+    },
+    {
+      title: "Espaço para posicionamento e manobra",
+      description: "Considerar as dimensões disponíveis para posicionamento e movimentação segura do equipamento.",
+    },
+    {
+      title: "Capacidade da plataforma",
+      description: "Considerar operador, ferramentas e materiais necessários durante o trabalho.",
+    },
+  ];
+  const faq = [
+    {
+      question: "O que é uma plataforma articulada?",
+      answer:
+        "É uma plataforma de trabalho aéreo que combina elevação em altura e alcance horizontal por meio de um braço articulado.",
+    },
+    {
+      question: "Quando utilizar uma plataforma articulada?",
+      answer:
+        "Ela é indicada quando o trabalho exige altura, alcance horizontal ou acesso sobre ou ao redor de obstáculos.",
+    },
+    {
+      question: "Qual a diferença entre plataforma articulada e plataforma tesoura?",
+      answer:
+        "A articulada oferece maior flexibilidade de alcance vertical e horizontal. A tesoura é indicada principalmente para elevação vertical.",
+    },
+    {
+      question: "Existem plataformas articuladas elétricas?",
+      answer:
+        "Sim. A frota cadastrada da AccessLift inclui modelos de plataforma articulada com alimentação elétrica.",
+    },
+    {
+      question: "Como solicitar a locação de uma plataforma articulada?",
+      answer:
+        "Solicite um orçamento ou entre em contato com a equipe AccessLift para avaliar modelo, período e condições da operação.",
+    },
+  ];
+  const articulatedWhatsAppMessage =
+    "Olá! Estou no site da AccessLift e gostaria de informações sobre locação de plataformas articuladas.";
+
+  return (
+    <>
+      <section className="industrial-grid border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+          <div>
+            <Badge tone="lime">Plataforma Articulada</Badge>
+            <h1 className="mt-5 text-slate-950">Plataformas Elevatórias Articuladas</h1>
+            <p className="mt-4 max-w-2xl text-lg text-slate-600">
+              Plataformas articuladas para trabalhos em altura que exigem alcance vertical e horizontal, oferecendo maior flexibilidade para acessar pontos sobre ou ao redor de obstáculos.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <RequestQuoteButton label="Solicite seu orçamento" />
+              <WhatsAppButton label="Falar pelo WhatsApp" message={articulatedWhatsAppMessage} />
+            </div>
+          </div>
+          {heroImage?.src && (
+            <div className="media-frame overflow-hidden rounded-lg p-3 premium-shadow">
+              <img
+                src={heroImage.src}
+                alt={heroImage.alt}
+                width={heroImage.width}
+                height={heroImage.height}
+                sizes="(min-width: 1024px) 45vw, 100vw"
+                className="aspect-[4/3] w-full rounded-md object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+        <Badge tone="steel">Altura e alcance para acessar pontos de trabalho</Badge>
+        <h2 className="mt-4 text-slate-950">Quando utilizar uma plataforma articulada?</h2>
+        <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_0.85fr]">
+          <div className="max-w-3xl space-y-4 text-slate-600">
+            <p>
+              A plataforma articulada é indicada para trabalhos em altura que, além da elevação vertical, exigem alcance horizontal ou acesso a pontos localizados sobre ou ao redor de obstáculos.
+            </p>
+            <p>
+              A movimentação do braço articulado proporciona maior flexibilidade de posicionamento, permitindo alcançar áreas onde uma elevação predominantemente vertical pode não ser suficiente.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {useCases.map((item) => (
+              <span key={item} className="rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="modelos" className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-7xl px-4 md:px-6">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <Badge tone="steel">
+                {equipments.length} equipamento{equipments.length === 1 ? "" : "s"}
+              </Badge>
+              <h2 className="mt-4 text-slate-950">Modelos de plataformas articuladas disponíveis</h2>
+              <p className="mt-2 max-w-3xl text-slate-600">
+                Equipamentos da categoria Plataforma Articulada disponíveis na frota AccessLift, com as principais informações para comparação.
+              </p>
+            </div>
+            <Button href="/equipamentos/" variant="secondary">
+              Ver todos os equipamentos
+            </Button>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {equipments.map((equipment) => (
+              <EquipmentCard
+                key={equipment.id}
+                equipment={equipment}
+                quoteLabel="Solicitar cotação"
+                quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da AccessLift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+        <Badge tone="steel">Escolha do equipamento</Badge>
+        <h2 className="mt-4 text-slate-950">Como escolher uma plataforma articulada?</h2>
+        <p className="mt-3 max-w-3xl text-slate-600">
+          A escolha do equipamento deve considerar não apenas a altura necessária, mas também a forma como o ponto de trabalho precisa ser alcançado e as condições do local de operação.
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {choiceItems.map((item) => (
+            <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
+              <h3 className="text-base text-slate-950">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-5 md:p-6">
+          <h3 className="text-xl text-slate-950">Precisa de ajuda para escolher?</h3>
+          <p className="mt-2 max-w-3xl text-slate-600">
+            A equipe AccessLift pode auxiliar na identificação do modelo mais adequado às características da sua operação.
+          </p>
+          <TalkToSpecialistButton className="mt-5" label="Fale com um especialista" />
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <Badge tone="steel">Comparativo</Badge>
+            <h2 className="mt-4 text-slate-950">Articulada ou tesoura?</h2>
+            <div className="mt-4 max-w-3xl space-y-4 text-slate-600">
+              <p>
+                Quando o trabalho exige altura combinada com alcance horizontal ou acesso sobre obstáculos, a plataforma articulada tende a ser a opção mais adequada.
+              </p>
+              <p>Para operações que exigem principalmente elevação vertical, uma plataforma tesoura pode ser suficiente.</p>
+            </div>
+          </div>
+          <Button href="/plataformas-tesoura/" variant="secondary">
+            Conhecer plataformas tesoura
+          </Button>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-4 py-12 md:px-6">
+        <Badge tone="lime">FAQ</Badge>
+        <h2 className="mt-4 text-slate-950">Dúvidas sobre plataformas articuladas</h2>
+        <div className="mt-6">
+          <Accordion
+            items={faq.map((item, index) => ({
+              id: `plataformas-articuladas-faq-${index}`,
+              title: item.question,
+              content: item.answer,
+            }))}
+          />
         </div>
       </section>
 
       <section className="bg-slate-950 py-12 text-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
           <div>
-            <h2 className="text-white">{content.finalTitle}</h2>
-            <p className="mt-3 max-w-2xl text-slate-300">{content.finalDescription}</p>
+            <Badge tone="lime">Locação</Badge>
+            <h2 className="mt-4 text-white">Encontre a plataforma articulada adequada à sua operação</h2>
+            <p className="mt-3 max-w-2xl text-slate-300">
+              Locação diária, semanal ou mensal, com suporte da equipe AccessLift para ajudar na escolha do equipamento adequado ao seu trabalho.
+            </p>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
-            <Button href="/equipamentos/">Ver equipamentos</Button>
-            <RequestQuoteButton />
+            <RequestQuoteButton label="Solicite seu orçamento" />
+            <WhatsAppButton label="Falar pelo WhatsApp" message={articulatedWhatsAppMessage} />
           </div>
         </div>
       </section>

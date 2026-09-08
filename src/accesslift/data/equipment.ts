@@ -790,7 +790,7 @@ const createEquipment = (seed: EquipmentSeed): Equipment => {
     },
     gallery: officialImages?.gallery || [],
     title,
-    summary: content?.summary || `${categoryLabel} ${seed.brand} ${seed.model} para locação, com dados técnicos exibidos somente quando cadastrados e validados na base central.`,
+    summary: content?.summary || `${categoryLabel} ${seed.brand} ${seed.model} para locação em operações que exigem trabalho em altura com equipamento adequado ao ambiente e à aplicação.`,
     specs,
     images: officialImages ? [officialImages.mainImage, ...officialImages.gallery] : [],
     characteristics: content?.characteristics || createEquipmentCharacteristics(specs, seed),

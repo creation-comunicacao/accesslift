@@ -1,4 +1,4 @@
-import { BadgeCheck, ImageIcon, Ruler, Wrench } from "lucide-react";
+import { BadgeCheck, ImageIcon, Ruler } from "lucide-react";
 import type { Equipment } from "../../types/equipment";
 import { formatPublicSpecValue } from "../../utils/publicText";
 import { RequestQuoteButton } from "../buttons/CtaButtons";
@@ -9,9 +9,11 @@ import { getManufacturerAccent } from "../../design/manufacturerAccents";
 type EquipmentCardProps = {
   equipment: Equipment;
   key?: string;
+  quoteLabel?: string;
+  quoteWhatsappMessage?: string;
 };
 
-export function EquipmentCard({ equipment }: EquipmentCardProps) {
+export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage }: EquipmentCardProps) {
   const accent = getManufacturerAccent(equipment.brand);
   const categoryLabel =
     equipment.category === "plataformas-tesoura"
@@ -93,14 +95,13 @@ export function EquipmentCard({ equipment }: EquipmentCardProps) {
         <Button href={`/equipamentos/${equipment.slug}/`} variant="secondary" className="w-full">
           Ver detalhes
         </Button>
-        <RequestQuoteButton className="w-full" equipmentSlug={equipment.slug} />
+        <RequestQuoteButton
+          className="w-full"
+          equipmentSlug={equipment.slug}
+          label={quoteLabel}
+          whatsappMessage={quoteWhatsappMessage}
+        />
       </div>
-      {Object.values(equipment.specs).every((value) => !value) && (
-        <div className="mt-3 flex items-center gap-2 text-xs font-bold text-slate-500">
-          <Wrench className="h-3.5 w-3.5" aria-hidden />
-          Dados técnicos aguardando cadastro oficial.
-        </div>
-      )}
     </article>
   );
 }

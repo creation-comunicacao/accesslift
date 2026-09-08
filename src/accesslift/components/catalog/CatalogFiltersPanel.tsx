@@ -8,7 +8,9 @@ type CatalogFiltersPanelProps = {
   onSortChange: (sort: CatalogSort) => void;
   onClear: () => void;
   compact?: boolean;
+  brands?: readonly EquipmentBrand[];
   heightRanges?: HeightRangeFilter[];
+  powerOptions?: string[];
 };
 
 const labelClasses = "grid gap-2 text-xs font-black uppercase tracking-wider text-slate-600";
@@ -22,7 +24,9 @@ export function CatalogFiltersPanel({
   onSortChange,
   onClear,
   compact = false,
+  brands = equipmentBrands,
   heightRanges = heightRangeFilters,
+  powerOptions = [],
 }: CatalogFiltersPanelProps) {
   const updateFilter = <Key extends keyof CatalogFilters>(
     key: Key,
@@ -32,7 +36,7 @@ export function CatalogFiltersPanel({
   };
 
   return (
-    <div className={`grid gap-4 ${compact ? "" : "lg:grid-cols-3"}`}>
+    <div className={`grid gap-4 ${compact ? "" : "lg:grid-cols-4"}`}>
       <label className={labelClasses}>
         Tipo
         <select
@@ -58,7 +62,7 @@ export function CatalogFiltersPanel({
           onChange={(event) => updateFilter("brand", event.target.value as EquipmentBrand | "all")}
         >
           <option value="all">Todas</option>
-          {equipmentBrands.map((brand) => (
+          {brands.map((brand) => (
             <option key={brand} value={brand}>
               {brand}
             </option>
@@ -83,6 +87,25 @@ export function CatalogFiltersPanel({
         </select>
       </label>
 
+      {powerOptions.length > 0 && (
+        <label className={labelClasses}>
+          Alimentação
+          <select
+            className={selectClasses}
+            aria-label="Filtrar por alimentação"
+            value={filters.power}
+            onChange={(event) => updateFilter("power", event.target.value)}
+          >
+            <option value="all">Todas</option>
+            {powerOptions.map((power) => (
+              <option key={power} value={power}>
+                {power}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+
       <label className={labelClasses}>
         Ordenação
         <select
@@ -100,7 +123,7 @@ export function CatalogFiltersPanel({
 
       <button
         type="button"
-        className="min-h-12 rounded-md border border-slate-300 px-4 text-sm font-extrabold text-slate-700 transition hover:border-slate-500 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 lg:col-span-3"
+        className="min-h-12 rounded-md border border-slate-300 px-4 text-sm font-extrabold text-slate-700 transition hover:border-slate-500 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 lg:col-span-4"
         onClick={onClear}
       >
         Limpar filtros
