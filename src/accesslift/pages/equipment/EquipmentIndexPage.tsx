@@ -60,7 +60,7 @@ export function EquipmentIndexPage() {
     <>
       <section className="industrial-grid border-b border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12">
-          <Badge tone="lime">Equipamentos</Badge>
+          <span className="section-eyebrow">Equipamentos</span>
           <h1 className="mt-5 max-w-4xl text-slate-950">Plataformas Elevatórias para Locação</h1>
           <p className="mt-4 max-w-3xl text-lg text-slate-600">
             Compare os modelos disponíveis de plataformas tesoura e articuladas e encontre o equipamento adequado às características da sua operação.
@@ -184,7 +184,7 @@ export function EquipmentIndexPage() {
       <section className="bg-slate-50 py-12">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <article className="rounded-lg border border-slate-200 bg-white p-6 soft-shadow md:p-8">
-            <Badge tone="lime">Escolha</Badge>
+            <span className="section-eyebrow">Escolha</span>
             <div className="mt-4 grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
               <div>
                 <h2 className="text-slate-950">Não sabe qual plataforma escolher?</h2>
@@ -200,7 +200,7 @@ export function EquipmentIndexPage() {
 
       <section className="bg-slate-50 py-12">
         <div className="mx-auto max-w-4xl px-4 md:px-6">
-          <Badge tone="lime">FAQ</Badge>
+          <span className="section-eyebrow">FAQ</span>
           <h2 className="mt-4 text-slate-950">Dúvidas sobre equipamentos</h2>
           <div className="mt-6">
             <Accordion
@@ -238,7 +238,7 @@ export function EquipmentIndexPage() {
       <section className="bg-slate-950 py-12 text-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
           <div>
-            <Badge tone="lime">Orçamento</Badge>
+            <span className="section-eyebrow text-white">Orçamento</span>
             <h2 className="mt-4 text-white">Ainda não encontrou o equipamento ideal?</h2>
             <p className="mt-3 max-w-2xl text-slate-300">
               Conte para nossa equipe as características do seu trabalho e ajudamos a identificar a plataforma adequada para sua operação.

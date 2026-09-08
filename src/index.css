@@ -105,20 +105,21 @@ body {
   .section-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.625rem;
-    color: #0b2d4d;
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.16em;
+    gap: 1.25rem;
+    color: #52525b;
+    font-size: clamp(0.8125rem, 0.78rem + 0.12vw, 0.95rem);
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
   }
 
   .section-eyebrow::before {
     content: "";
-    width: 2.5rem;
+    width: clamp(3rem, 2.35rem + 1.8vw, 5rem);
     height: 0.1875rem;
     border-radius: 999px;
     background: #d8242f;
+    opacity: 0.72;
   }
 
   .hero-photo {
@@ -236,11 +237,10 @@ body {
   .home-refined .section-eyebrow {
     color: #52525b;
     font-weight: 500;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
   }
 
   .home-refined .section-eyebrow::before {
-    height: 0.125rem;
     background: #d8242f;
     opacity: 0.72;
   }
@@ -446,11 +446,10 @@ body {
 .accesslift-typography .section-eyebrow {
   color: #52525b;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
 }
 
 .accesslift-typography .section-eyebrow::before {
-  height: 0.125rem;
   background: #d8242f;
   opacity: 0.72;
 }

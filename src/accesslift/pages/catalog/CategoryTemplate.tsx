@@ -1,7 +1,6 @@
 import { getCategoryBySlug, getEquipmentByCategory, sortEquipment } from "../../catalog/catalog";
 import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { RequestQuoteButton, TalkToSpecialistButton, WhatsAppButton } from "../../components/buttons/CtaButtons";
-import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/buttons/Button";
 import { Accordion } from "../../components/ui/Accordion";
 import { categoryGalleryBySlug } from "../../data/officialMedia";
@@ -87,7 +86,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         <section className="industrial-grid border-b border-slate-200 bg-slate-50">
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-center">
             <div>
-              <Badge tone="lime">Plataforma Tesoura</Badge>
+              <span className="section-eyebrow">Plataforma Tesoura</span>
               <h1 className="mt-5 text-slate-950">Plataformas Elevatórias Tesoura</h1>
               <p className="mt-4 max-w-2xl text-lg text-slate-600">
                 Plataformas tesoura para trabalhos que exigem elevação predominantemente vertical, estabilidade e área de trabalho para operador, ferramentas e materiais.
@@ -115,7 +114,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-          <Badge tone="steel">Quando utilizar</Badge>
+          <span className="section-eyebrow">Quando utilizar</span>
           <h2 className="mt-4 text-slate-950">Quando utilizar uma plataforma tesoura?</h2>
           <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_0.85fr]">
             <div className="max-w-3xl space-y-4 text-slate-600">
@@ -140,9 +139,9 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
           <div className="mx-auto max-w-7xl px-4 md:px-6">
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>
-                <Badge tone="steel">
+                <span className="section-eyebrow">
                   {equipments.length} equipamento{equipments.length === 1 ? "" : "s"}
-                </Badge>
+                </span>
                 <h2 className="mt-4 text-slate-950">Modelos de plataformas tesoura disponíveis</h2>
                 <p className="mt-2 max-w-3xl text-slate-600">
                   Equipamentos da categoria Plataforma Tesoura disponíveis na frota AccessLift, com as principais informações para comparação.
@@ -167,7 +166,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-          <Badge tone="steel">Escolha do equipamento</Badge>
+          <span className="section-eyebrow">Escolha do equipamento</span>
           <h2 className="mt-4 text-slate-950">Como escolher uma plataforma tesoura?</h2>
           <p className="mt-3 max-w-3xl text-slate-600">
             A escolha do equipamento deve considerar as características do trabalho e do ambiente onde a plataforma será utilizada.
@@ -192,7 +191,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         <section className="bg-slate-50 py-12">
           <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <Badge tone="steel">Comparativo</Badge>
+              <span className="section-eyebrow">Comparativo</span>
               <h2 className="mt-4 text-slate-950">Tesoura ou articulada?</h2>
               <div className="mt-4 max-w-3xl space-y-4 text-slate-600">
                 <p>Se o trabalho exige principalmente elevação vertical, a plataforma tesoura tende a ser a opção mais adequada.</p>
@@ -208,7 +207,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         </section>
 
         <section className="mx-auto max-w-4xl px-4 py-12 md:px-6">
-          <Badge tone="lime">FAQ</Badge>
+          <span className="section-eyebrow">FAQ</span>
           <h2 className="mt-4 text-slate-950">Dúvidas sobre plataformas tesoura</h2>
           <div className="mt-6">
             <Accordion
@@ -224,7 +223,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         <section className="bg-slate-950 py-12 text-white">
           <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
             <div>
-              <Badge tone="lime">Locação</Badge>
+              <span className="section-eyebrow text-white">Locação</span>
               <h2 className="mt-4 text-white">Encontre a plataforma tesoura adequada à sua operação</h2>
               <p className="mt-3 max-w-2xl text-slate-300">
                 Locação diária, semanal ou mensal, com suporte da equipe AccessLift para ajudar na escolha do equipamento adequado ao seu trabalho.
@@ -307,7 +306,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       <section className="industrial-grid border-b border-slate-200 bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-center">
           <div>
-            <Badge tone="lime">Plataforma Articulada</Badge>
+            <span className="section-eyebrow">Plataforma Articulada</span>
             <h1 className="mt-5 text-slate-950">Plataformas Elevatórias Articuladas</h1>
             <p className="mt-4 max-w-2xl text-lg text-slate-600">
               Plataformas articuladas para trabalhos em altura que exigem alcance vertical e horizontal, oferecendo maior flexibilidade para acessar pontos sobre ou ao redor de obstáculos.
@@ -335,7 +334,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <Badge tone="steel">Altura e alcance para acessar pontos de trabalho</Badge>
+        <span className="section-eyebrow">Altura e alcance para acessar pontos de trabalho</span>
         <h2 className="mt-4 text-slate-950">Quando utilizar uma plataforma articulada?</h2>
         <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_0.85fr]">
           <div className="max-w-3xl space-y-4 text-slate-600">
@@ -360,9 +359,9 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <Badge tone="steel">
+              <span className="section-eyebrow">
                 {equipments.length} equipamento{equipments.length === 1 ? "" : "s"}
-              </Badge>
+              </span>
               <h2 className="mt-4 text-slate-950">Modelos de plataformas articuladas disponíveis</h2>
               <p className="mt-2 max-w-3xl text-slate-600">
                 Equipamentos da categoria Plataforma Articulada disponíveis na frota AccessLift, com as principais informações para comparação.
@@ -387,7 +386,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <Badge tone="steel">Escolha do equipamento</Badge>
+        <span className="section-eyebrow">Escolha do equipamento</span>
         <h2 className="mt-4 text-slate-950">Como escolher uma plataforma articulada?</h2>
         <p className="mt-3 max-w-3xl text-slate-600">
           A escolha do equipamento deve considerar não apenas a altura necessária, mas também a forma como o ponto de trabalho precisa ser alcançado e as condições do local de operação.
@@ -412,7 +411,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       <section className="bg-slate-50 py-12">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 md:px-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <Badge tone="steel">Comparativo</Badge>
+            <span className="section-eyebrow">Comparativo</span>
             <h2 className="mt-4 text-slate-950">Articulada ou tesoura?</h2>
             <div className="mt-4 max-w-3xl space-y-4 text-slate-600">
               <p>
@@ -428,7 +427,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       </section>
 
       <section className="mx-auto max-w-4xl px-4 py-12 md:px-6">
-        <Badge tone="lime">FAQ</Badge>
+        <span className="section-eyebrow">FAQ</span>
         <h2 className="mt-4 text-slate-950">Dúvidas sobre plataformas articuladas</h2>
         <div className="mt-6">
           <Accordion
@@ -444,7 +443,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       <section className="bg-slate-950 py-12 text-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-[1fr_auto] md:items-center md:px-6">
           <div>
-            <Badge tone="lime">Locação</Badge>
+            <span className="section-eyebrow text-white">Locação</span>
             <h2 className="mt-4 text-white">Encontre a plataforma articulada adequada à sua operação</h2>
             <p className="mt-3 max-w-2xl text-slate-300">
               Locação diária, semanal ou mensal, com suporte da equipe AccessLift para ajudar na escolha do equipamento adequado ao seu trabalho.
