@@ -120,21 +120,12 @@ export function PlatformsPage() {
       </div>
     </section>
 
-    <section data-platform-block="rental" className="section-space-compact">
-      <div className="site-container">
-        <SectionHeading eyebrow="Locação" title={content.rental.title} />
-        <div data-reveal="fade-up">
-          <p className="mt-5 text-lg font-semibold text-[#0b2d4d]">{content.rental.periods}</p>
-          <p className="mt-3 max-w-3xl text-slate-600">{content.rental.description}</p>
-          <ConversionActions />
-        </div>
-      </div>
-    </section>
-
-    <section data-platform-block="final" className="section-space-compact bg-[#0b2d4d] text-white">
+    <section data-platform-block="rental" className="section-space-compact bg-[#0b2d4d] text-white">
       <div className="site-container" data-reveal="fade-up">
-        <h2 className="text-white">{page.finalCta!.title}</h2>
-        <p className="mt-3 max-w-3xl text-slate-300">{page.finalCta!.description}</p>
+        <span className="section-eyebrow text-white">Locação</span>
+        <h2 className="mt-4 text-white">{content.rental.title}</h2>
+        <p className="mt-5 text-lg font-semibold text-white">{content.rental.periods}</p>
+        <p className="mt-3 max-w-3xl text-slate-300">{content.rental.description}</p>
         <ConversionActions />
       </div>
     </section>

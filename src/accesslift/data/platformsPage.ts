@@ -45,11 +45,6 @@ export const platformsPageConfig: CommercialPageConfig = {
   process: [],
   relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
   faq: [],
-  finalCta: {
-    title: "Precisa de uma plataforma elevatória para sua operação?",
-    description: "Nossa equipe pode ajudar na escolha do equipamento mais adequado para o seu trabalho.",
-    primary: { label: "Solicite seu orçamento", href: "/solicite-orcamento/" },
-  },
   seo: {
     h1: "Plataformas Elevatórias para Trabalhos em Altura",
     title: "Plataformas Elevatórias: Tesoura e Articulada | Accesslift",

@@ -12,8 +12,11 @@ Rota: /plataformas-elevatorias/.
 5. Aplicações: título aprovado; alimentação elétrica tratada como característica.
 6. Quatro equipamentos já apresentados na Home: dois tesoura e dois articulados, sem alterar status ou especificações.
 7. Cinco diferenciais específicos, sem textos provisórios.
-8. Locação flexível com diária/semanal/mensal e dois CTAs.
-9. CTA final azul-marinho com texto aprovado e orçamento/WhatsApp.
+8. Locação flexível com diária/semanal/mensal e dois CTAs na faixa final azul-marinho, imediatamente antes do rodapé.
+
+Revisão solicitada após o PDF: unificar locação e CTA final para evitar duplicação.
+O bloco "Precisa de uma plataforma elevatória para sua operação?" foi removido;
+a página agora possui oito blocos, mantendo apenas a locação como conversão final.
 
 Removidos desta rota: galeria independente, proposta de valor, benefícios, processo e todas
 as descrições internas dos antigos componentes. Não foram acrescentados clientes, avaliações,
