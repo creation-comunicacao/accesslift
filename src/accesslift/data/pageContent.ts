@@ -1,3 +1,4 @@
+import { platformsPageConfig } from "./platformsPage";
 import type { EquipmentCategorySlug } from "../types/equipment";
 import type { PageSeo } from "../types/routes";
 
@@ -109,84 +110,7 @@ const placeholderFaq: FaqItem[] = [
 ];
 
 export const commercialPages: CommercialPageConfig[] = [
-  {
-    path: "/plataformas-elevatorias/",
-    eyebrow: "Plataformas elevatórias",
-    title: "Plataformas Elevatórias para Trabalhos em Altura",
-    description:
-      "Equipamentos desenvolvidos para proporcionar acesso elevado em diferentes atividades de manutenção, instalação, construção e operações industriais e comerciais.",
-    primaryCta: { label: "Ver equipamentos", href: "/equipamentos/" },
-    secondaryCta: { label: "Solicitar orçamento", href: "/solicite-orcamento/" },
-    valueProposition:
-      "Uma plataforma elevatória permite posicionar operadores, ferramentas e materiais em pontos elevados para a execução de diferentes tipos de trabalho.",
-    benefits: [
-      "Plataformas tesoura para acessos predominantemente verticais",
-      "Plataformas articuladas para altura com alcance horizontal",
-      "Frota elétrica com marcas JLG, Genie, Skyjack e Zoomlion",
-    ],
-    process: ["Avaliar altura de trabalho", "Verificar alcance horizontal", "Checar espaço e acessos", "Considerar capacidade", "Solicitar orientação"],
-    relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    contentSections: [
-      {
-        eyebrow: "O que é",
-        title: "O que é uma plataforma elevatória?",
-        description: "Existem equipamentos com características distintas de altura, capacidade, dimensões e movimentação. A escolha deve considerar não apenas a altura que se pretende alcançar, mas também as condições de acesso ao ponto de trabalho. Entre as principais famílias disponibilizadas pela Accesslift estão as plataformas tesoura e as plataformas articuladas.",
-      },
-      {
-        eyebrow: "Tesoura x articulada",
-        title: "Plataforma tesoura ou articulada: qual escolher?",
-        items: [
-          {
-            title: "Plataforma Tesoura",
-            description: "A movimentação é predominantemente vertical. É indicada quando o ponto de trabalho pode ser alcançado diretamente acima da posição do equipamento, existe espaço adequado para posicionamento e é desejável uma área de plataforma para operador, ferramentas e materiais.",
-            cta: { label: "Conhecer plataformas tesoura", href: "/plataformas-tesoura/" },
-          },
-          {
-            title: "Plataforma Articulada",
-            description: "Combina elevação com alcance horizontal. A estrutura articulada permite acessar pontos que não estão diretamente acima da base do equipamento, especialmente quando existem obstáculos ou necessidade de alcance lateral.",
-            cta: { label: "Conhecer plataformas articuladas", href: "/plataformas-articuladas/" },
-          },
-        ],
-      },
-      {
-        eyebrow: "Como escolher",
-        title: "O que considerar na escolha de uma plataforma elevatória?",
-        items: [
-          { title: "Altura de trabalho", description: "A altura necessária para executar a atividade é um dos primeiros critérios para selecionar o equipamento." },
-          { title: "Alcance horizontal", description: "Em algumas operações não basta subir verticalmente. É necessário alcançar o ponto de trabalho lateralmente ou superar obstáculos." },
-          { title: "Espaço disponível", description: "Largura de acessos, corredores, portas e espaço para manobra podem limitar os equipamentos adequados." },
-          { title: "Capacidade da plataforma", description: "É importante considerar operadores, ferramentas e materiais que permanecerão na plataforma durante o trabalho." },
-          { title: "Condições do local", description: "Ambiente, piso, acesso e demais características da operação também devem fazer parte da avaliação." },
-        ],
-        cta: { label: "Preciso de ajuda para escolher", href: "/solicite-orcamento/" },
-      },
-      {
-        eyebrow: "Frota",
-        title: "Frota elétrica para diferentes aplicações",
-        description: "A frota atual da Accesslift reúne plataformas elétricas das categorias tesoura e articulada, com diferentes dimensões, alturas de trabalho e capacidades. A escolha do modelo deve ser realizada de acordo com a aplicação e as condições do local. Marcas da frota: JLG, Genie, Skyjack e Zoomlion.",
-        cta: { label: "Ver todos os equipamentos", href: "/equipamentos/" },
-      },
-      {
-        eyebrow: "Locação",
-        title: "Plataformas elevatórias para locação",
-        description: "A Accesslift disponibiliza equipamentos para locações diárias, semanais e mensais, com entrega e retirada próprias e suporte técnico durante a operação.",
-        cta: { label: "Conhecer a locação", href: "/locacao-de-plataformas-elevatorias/" },
-      },
-    ],
-    faq: [],
-    finalCta: {
-      title: "Encontre a plataforma adequada a sua operação",
-      description: "Compare os modelos disponíveis ou fale com a Accesslift para receber auxílio na escolha.",
-      primary: { label: "Ver equipamentos", href: "/equipamentos/" },
-      secondary: { label: "Solicitar orçamento", href: "/solicite-orcamento/" },
-    },
-    seo: {
-      h1: "Plataformas Elevatórias para Trabalhos em Altura",
-      title: "Plataformas Elevatórias: Tesoura e Articulada | Accesslift",
-      description: "Conheça plataformas elevatórias tesoura e articuladas, entenda suas aplicações e encontre equipamentos para trabalhos em altura.",
-      canonicalPath: "/plataformas-elevatorias/",
-    },
-  },
+  platformsPageConfig,
   {
     path: "/locacao-de-plataformas-elevatorias/",
     eyebrow: "Locação",

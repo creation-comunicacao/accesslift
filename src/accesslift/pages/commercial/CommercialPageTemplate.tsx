@@ -1,4 +1,5 @@
 import type { CommercialPageConfig } from "../../data/pageContent";
+import { PlatformsPage } from "./PlatformsPage";
 import { Fragment } from "react";
 import {
   ArrowRight,
@@ -350,6 +351,9 @@ function RentalPage() {
 }
 
 export function CommercialPageTemplate({ page }: CommercialPageTemplateProps) {
+  if (page.path === "/plataformas-elevatorias/") {
+    return <PlatformsPage />;
+  }
   if (page.path === "/locacao-de-plataformas-elevatorias/") {
     return <RentalPage />;
   }
