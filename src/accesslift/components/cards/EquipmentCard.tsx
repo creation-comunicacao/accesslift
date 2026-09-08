@@ -11,9 +11,12 @@ type EquipmentCardProps = {
   key?: string;
   quoteLabel?: string;
   quoteWhatsappMessage?: string;
+  compact?: boolean;
+  onDetailsClick?: () => void;
+  onQuoteClick?: () => void;
 };
 
-export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage }: EquipmentCardProps) {
+export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage, compact = false, onDetailsClick, onQuoteClick }: EquipmentCardProps) {
   const accent = getManufacturerAccent(equipment.brand);
   const categoryLabel =
     equipment.category === "plataformas-tesoura"
@@ -51,18 +54,18 @@ export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage }: E
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <Badge tone="outline" className={accent.badge}>{equipment.brand}</Badge>
         <Badge tone="outline">{categoryLabel}</Badge>
-        {isElectric && <Badge tone="steel">Elétrica</Badge>}
+        {!compact && isElectric && <Badge tone="steel">Elétrica</Badge>}
       </div>
-      <h3 className="text-xl font-black leading-tight text-[#0b2d4d]">{equipment.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.summary}</p>
+      <h3 className="text-xl font-black leading-tight text-[#0b2d4d]">{compact ? `${equipment.brand} ${equipment.model}` : equipment.title}</h3>
+      {!compact && <p className="mt-2 text-sm leading-6 text-slate-600">{equipment.summary}</p>}
       <dl className="mt-4 grid gap-2 text-sm">
-        <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
+        {!compact && <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
           <dt className="flex items-center gap-2 text-slate-500">
             <BadgeCheck className="h-4 w-4" aria-hidden />
             Modelo
           </dt>
           <dd className="font-medium text-slate-800">{equipment.model}</dd>
-        </div>
+        </div>}
         {alturaTrabalho && (
           <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
             <dt className="flex items-center gap-2 text-slate-500">
@@ -81,7 +84,7 @@ export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage }: E
             <dd className="text-right font-medium text-slate-800">{capacidade}</dd>
           </div>
         )}
-        {alcanceHorizontal && (
+        {!compact && alcanceHorizontal && (
           <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
             <dt className="flex items-center gap-2 text-slate-500">
               <Ruler className="h-4 w-4" aria-hidden />
@@ -92,7 +95,7 @@ export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage }: E
         )}
       </dl>
       <div className="mt-6 grid gap-3">
-        <Button href={`/equipamentos/${equipment.slug}/`} variant="secondary" className="w-full">
+        <Button href={`/equipamentos/${equipment.slug}/`} variant="secondary" className="w-full" onClick={onDetailsClick}>
           Ver detalhes
         </Button>
         <RequestQuoteButton
@@ -100,6 +103,7 @@ export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage }: E
           equipmentSlug={equipment.slug}
           label={quoteLabel}
           whatsappMessage={quoteWhatsappMessage}
+          onClick={onQuoteClick}
         />
       </div>
     </article>

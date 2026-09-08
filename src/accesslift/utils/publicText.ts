@@ -3,7 +3,11 @@ export const formatPublicSpecValue = (value?: string | null) => {
     return null;
   }
 
-  const formatted = value.replace(/\*/g, "").replace(/\s+/g, " ").trim();
+  if (/a confirmar|não informado|nao informado|validar|em atualização|em atualizacao|consultar internamente|pendente|sujeit[oa].*valida/i.test(value)) return null;
+  // Trailing footnote markers in this catalog identify pending technical validation.
+  if (/\S\*+\s*$/.test(value)) return null;
+
+  const formatted = value.replace(/\s+/g, " ").trim();
 
   return formatted || null;
 };

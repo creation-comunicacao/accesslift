@@ -1,5 +1,6 @@
 import { equipmentCategories, mockEquipments } from "../data/equipment";
 import { heightRangeFilters } from "../data/equipment";
+import { formatPublicSpecValue } from "../utils/publicText";
 import type { CatalogFilters, CatalogSort, Equipment, EquipmentCategorySlug } from "../types/equipment";
 
 export const getPublishedEquipment = () =>
@@ -83,11 +84,11 @@ export const hasActiveCatalogFilters = (filters: CatalogFilters) =>
   Object.values(filters).some((value) => value !== "all");
 
 const parseMeters = (value: string | null | undefined) => {
-  if (!value) {
+  if (!formatPublicSpecValue(value)) {
     return null;
   }
 
-  const normalized = value.replace(",", ".").match(/\d+(\.\d+)?/);
+  const normalized = value!.replace(",", ".").match(/\d+(\.\d+)?/);
   return normalized ? Number(normalized[0]) : null;
 };
 

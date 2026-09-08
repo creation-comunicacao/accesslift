@@ -8,11 +8,13 @@ export function RequestQuoteButton({
   equipmentSlug,
   label = "Solicitar orçamento",
   whatsappMessage,
+  onClick,
 }: {
   className?: string;
   equipmentSlug?: string;
   label?: string;
   whatsappMessage?: string;
+  onClick?: () => void;
 }) {
   const quoteHref = equipmentSlug
     ? `/solicite-orcamento/?equipamento=${encodeURIComponent(equipmentSlug)}`
@@ -26,12 +28,12 @@ export function RequestQuoteButton({
       href={href}
       className={className}
       icon={<Send className="h-4 w-4" aria-hidden />}
-      onClick={() =>
+      onClick={onClick || (() =>
         trackEvent({
           name: "quote_request",
           payload: { source: "cta", equipment_slug: equipmentSlug || null },
         })
-      }
+      )}
     >
       {label}
     </Button>

@@ -688,8 +688,8 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
   },
   "skyjack-sj3226": {
     summary: "Plataforma tesoura para operações que exigem maior altura de trabalho mantendo largura total de aproximadamente 81 cm.",
-    overview: "A SJ3226 combina uma faixa próxima de 10 metros de trabalho com largura total em torno de 81 cm. Isso não significa que possa passar por qualquer acesso: portas, corredores, piso, altura recolhida e condições de manobra devem ser avaliados.",
-    considerationText: "Considere a SJ3226 quando o trabalho exige elevação vertical, faixa próxima de 10 m, quando a largura da máquina é um critério importante e não há necessidade de alcance articulado sobre obstáculos.",
+    overview: "A SJ3226 combina elevação vertical com largura total em torno de 81 cm. Isso não significa que possa passar por qualquer acesso: portas, corredores, piso, altura recolhida e condições de manobra devem ser avaliados.",
+    considerationText: "Considere a SJ3226 quando o trabalho exige elevação vertical, quando a largura da máquina é um critério importante e não há necessidade de alcance articulado sobre obstáculos.",
     applications: sharedScissorApplications,
     faq: [
       { question: "Qual a altura de trabalho da Skyjack SJ3226?", answer: "A Skyjack publica 9,79 m para a SJ3226 atual; pequenas variações dependem de geração e serial." },
@@ -706,10 +706,9 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
   "skyjack-sj4732": {
     summary: "Plataforma elevatória tesoura para operações que exigem elevação vertical combinada com maior área de plataforma e capacidade.",
     overview: "Dentro das Skyjack confirmadas na frota, a SJ4732 ocupa uma faixa superior a SJ3219 e SJ3226. Além da altura, sua maior largura e área de plataforma tornam importante avaliar espaço de acesso e circulação antes da escolha.",
-    considerationText: "Pode ser considerada quando a operação exige aproximadamente 12 m de faixa de trabalho, maior área de plataforma, acesso compatível com sua largura e elevação predominantemente vertical.",
+    considerationText: "Pode ser considerada quando a operação exige maior área de plataforma, acesso compatível com sua largura e elevação predominantemente vertical.",
     applications: sharedScissorApplications,
     faq: [
-      { question: "Por que o catálogo não tem Skyjack SJ4740?", answer: "A máquina real fotografada foi identificada como Skyjack SJ4732. O cadastro SJ4740 não deve permanecer sem comprovação do cliente." },
       { question: "Qual a altura de trabalho da SJ4732?", answer: "A referência atual publicada pela Skyjack apresenta 11,65 m, mas a geração/serial da unidade deve ser validada." },
       { question: "Qual a capacidade da SJ4732?", answer: "A referência cadastrada é 318 kg, sujeita a confirmação da geração da unidade." },
     ],
@@ -733,7 +732,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
     ],
     seo: {
       title: "Zoomlion ZS1212AC: Plataforma Tesoura | Accesslift",
-      description: "Conheça a plataforma tesoura elétrica Zoomlion ZS1212AC, com 13,80 m de altura de trabalho e capacidade de 350 kg. Consulte disponibilidade.",
+      description: "Conheça a plataforma tesoura elétrica Zoomlion ZS1212AC, com capacidade de 350 kg e plataforma extensível para elevação vertical. Consulte disponibilidade.",
       h1: "Plataforma Tesoura Zoomlion ZS1212AC",
     },
     technicalDataSource: "Documentação Zoomlion ZS1212AC - condição indoor/outdoor explícita",

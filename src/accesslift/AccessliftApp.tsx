@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "./components/layout/AppShell";
 import { ScrollRevealProvider } from "./components/animation/ScrollReveal";
 import { Seo } from "./seo/Seo";
+import { equipmentFaq } from "./catalog/equipmentPresentation";
 import { findRouteByPath, normalizePath } from "./routes/routes";
 import { HomePage } from "./pages/HomePage";
 import { CategoryPage } from "./pages/catalog/CategoryPage";
@@ -139,11 +140,11 @@ export function AccessliftApp({ initialPath }: AccessliftAppProps) {
       configuredPage && "faq" in configuredPage && configuredPage.faqSchemaEligible
         ? configuredPage.faq
         : undefined;
-    const equipmentFaq =
+    const equipmentFaqItems =
       equipment?.status === "published" && equipment.seo.indexDirective === "index"
-        ? equipment.faq
+        ? equipmentFaq(equipment)
         : undefined;
-    const faqSchema = buildFaqSchema(configuredFaq || equipmentFaq);
+    const faqSchema = buildFaqSchema(configuredFaq || equipmentFaqItems);
     const structuredData = [
       buildOrganizationSchema(),
       breadcrumbSchema,

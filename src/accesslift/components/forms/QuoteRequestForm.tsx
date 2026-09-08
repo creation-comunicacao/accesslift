@@ -1,6 +1,7 @@
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 import { useMemo, useState } from "react";
 import { trackEvent } from "../../analytics/analytics";
+import { equipmentEventPayload } from "../../catalog/equipmentPresentation";
 import { PrivacyNotice } from "./PrivacyNotice";
 import { readPreferences } from "../../analytics/consent";
 import { submitQuoteRequest, type QuoteRequestPayload } from "../../services/leadService";
@@ -106,6 +107,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
             },
           });
           const origin = quoteOrigin();
+          if (equipment) trackEvent({ name: "equipment_quote_submit", payload: equipmentEventPayload(equipment) });
           if (origin) trackEvent({ name: `${origin}_form_submit`, payload: { form: "quote" } });
           setValues(createInitialValues(equipment));
         } catch (error) {
