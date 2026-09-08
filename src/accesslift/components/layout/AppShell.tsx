@@ -4,6 +4,7 @@ import { getBreadcrumbItems } from "../navigation/navigation";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { CookieConsent } from "./CookieConsent";
 
 type AppShellProps = {
   children: ReactNode;
@@ -23,6 +24,7 @@ export function AppShell({ children, currentPath }: AppShellProps) {
         {children}
       </main>
       <Footer />
+      <CookieConsent />
       <div className="fixed bottom-4 right-4 z-40 hidden sm:block lg:hidden">
         <WhatsAppButton compact className="soft-shadow" />
       </div>

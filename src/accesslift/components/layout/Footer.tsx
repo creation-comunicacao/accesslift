@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { openCookiePreferences } from "../../analytics/consent";
 import { contactConfig } from "../../data/contact";
 import { navigateTo } from "../../utils/navigation";
 import { WhatsAppButton } from "../buttons/CtaButtons";
@@ -134,6 +135,7 @@ export function Footer() {
             ) : null
           ))}
           <a href="/politica-de-privacidade/" className="transition hover:text-white">Política de Privacidade</a>
+          <button type="button" onClick={openCookiePreferences} className="transition hover:text-white">Preferências de cookies</button>
         </div>
       </div>
     </footer>

@@ -1,10 +1,6 @@
-export type AnalyticsEventName =
-  | "whatsapp_click"
-  | "phone_click"
-  | "form_submit"
-  | "quote_request"
-  | "equipment_availability_click"
-  | "technical_sheet_download";
+import { googleCommand, readPreferences } from "./consent";
+
+export type AnalyticsEventName = string;
 
 export type AnalyticsEvent = {
   name: AnalyticsEventName;
@@ -19,23 +15,19 @@ declare global {
 }
 
 export const trackEvent = (event: AnalyticsEvent) => {
-  const payload = event.payload || {};
-
+  if (typeof window === "undefined") return;
+  const consent = readPreferences();
+  const career = event.name.startsWith("career_");
+  const destinations: string[] = [];
+  const env = import.meta.env;
+  if (consent?.analytics && /^G-[A-Z0-9]+$/.test(env.VITE_GA4_ID || "")) destinations.push(env.VITE_GA4_ID);
+  if (!career && consent?.advertising && /^AW-\d+$/.test(env.VITE_GOOGLE_ADS_ID || "")) destinations.push(env.VITE_GOOGLE_ADS_ID);
+  if (!consent?.analytics && (!consent?.advertising || career)) return;
   try {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: event.name,
-      ...payload,
-    });
-  } catch {
-    // Analytics must never block navigation or form submission.
-  }
-
-  try {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", event.name, payload);
+    if (destinations.length) googleCommand("event", event.name, { ...event.payload, send_to: destinations });
+    else if (consent?.analytics) {
+      window.dataLayer ||= [];
+      window.dataLayer.push({ event: event.name, ...event.payload, analytics_consent: true, advertising_consent: Boolean(consent.advertising && !career) });
     }
-  } catch {
-    // GA4/GTM adapters are optional until production configuration is defined.
-  }
+  } catch { /* Tracking must not interrupt navigation or submission. */ }
 };

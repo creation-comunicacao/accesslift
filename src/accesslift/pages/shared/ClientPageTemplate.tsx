@@ -1,0 +1,55 @@
+import type { ClientPage, ClientSection } from "../../data/clientPages";
+import { ContentCta } from "../../components/buttons/ContentCta";
+import { SupportRequestForm } from "../../components/forms/SupportRequestForm";
+import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
+import { companyGallery, trainingGallery } from "../../data/officialMedia";
+import { clientProofs } from "../../data/institutional";
+import { ConversionHero, FaqSection, FinalConversionSection, SectionList, ValueSection } from "./StructuredPageSections";
+
+const media = {
+  services: { src: "/images/accesslift/operacoes/plataformas-07.jpeg", alt: "Entrega de plataformas elevatórias da frota Accesslift", width: 1599, height: 899 },
+  assistance: { src: "/images/accesslift/servicos/treinamento-assistencia-03.jpeg", alt: "Equipe Accesslift em atendimento em ambiente industrial", width: 960, height: 1280 },
+  training: { src: "/images/accesslift/servicos/treinamento-assistencia.jpeg", alt: "Equipe Accesslift em atendimento em ambiente industrial", width: 960, height: 1280 },
+  company: { src: "/images/accesslift/empresa/operacao-access-lift-em-ambiente-industrial.jpeg", alt: "Operação da Access Lift em ambiente industrial", width: 1086, height: 1448 },
+};
+
+function SectionMedia({ section }: { section: ClientSection }) {
+  const photo = section.media && section.media !== "company-gallery" ? media[section.media] : null;
+  return <>
+    {photo && <div className="mx-auto max-w-7xl px-4 pt-12 md:px-6"><img {...photo} sizes="(min-width: 1024px) 1184px, 100vw" className="aspect-[16/7] w-full rounded-lg border border-slate-200 object-cover premium-shadow" loading="lazy" decoding="async" /></div>}
+    {section.media === "training" && <OfficialMediaGallery title="Equipe em atendimento" description="Registros da equipe e dos equipamentos em atendimento." images={trainingGallery} />}
+    {section.media === "company-gallery" && <>
+      <OfficialMediaGallery title={section.title} description={section.description} images={companyGallery} />
+      <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+        <span className="section-eyebrow">Clientes</span>
+        <h2 className="mt-4 text-slate-950">Empresas que já confiaram na AccessLift</h2>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{clientProofs.map((client) => <article key={client.name} className="flex min-h-24 items-center justify-center rounded-lg border border-slate-200 bg-white p-4 text-center soft-shadow">
+          {client.logoUrl ? <img src={client.logoUrl} alt={client.name} className="max-h-20 w-auto max-w-full object-contain" loading="lazy" decoding="async" /> : client.name}
+        </article>)}</div>
+      </div>
+    </>}
+  </>;
+}
+
+export function ClientPageTemplate({ page }: { page: ClientPage }) {
+  return <>
+    <ConversionHero compact eyebrow={page.eyebrow} title={page.title} description={page.description} primaryCta={page.actions[0]} secondaryCta={page.actions[1]} />
+    {page.sections.map((section, index) => <div key={section.title} data-client-block={index + 2} id={section.form ? "solicitar-assistencia" : section.eyebrow === "Modalidades" ? "modalidades-treinamento" : undefined} className="scroll-mt-32">
+      {section.media !== "company-gallery" && (section.items ? <SectionList {...section} items={section.items} eyebrow={section.eyebrow || page.eyebrow} cta={undefined} /> : <ValueSection {...section} description={section.description || ""} />)}
+      {section.items && (section.paragraphs || section.closing || section.cta) && <div className="site-container pb-8">
+        <div className="max-w-3xl space-y-5 text-slate-600">{section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.closing && <p>{section.closing}</p>}</div>
+        {section.cta && <ContentCta cta={section.cta} className="mt-5" />}
+      </div>}
+      <SectionMedia section={section} />
+      {section.form && <div className="site-container pb-12"><SupportRequestForm /></div>}
+    </div>)}
+    <div data-client-block="closing">
+      <FaqSection items={page.faq} title={page.faqTitle} />
+      {page.reference && <div className="site-container pb-12">
+        <ContentCta cta={page.reference} />
+        <p className="mt-4 max-w-3xl text-sm text-slate-600">Atenção: normas e requisitos podem ser atualizados. Consulte sempre a versão vigente da NR-35 disponibilizada pelo Ministério do Trabalho e Emprego.</p>
+      </div>}
+      <FinalConversionSection {...page.final} />
+    </div>
+  </>;
+}

@@ -1,6 +1,8 @@
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 import { useMemo, useState } from "react";
 import { trackEvent } from "../../analytics/analytics";
+import { PrivacyNotice } from "./PrivacyNotice";
+import { readPreferences } from "../../analytics/consent";
 import { submitQuoteRequest, type QuoteRequestPayload } from "../../services/leadService";
 import type { Equipment } from "../../types/equipment";
 
@@ -8,7 +10,16 @@ const inputClasses =
   "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
 const labelClasses = "grid gap-1.5 text-xs font-black uppercase tracking-wider text-slate-600";
 
-const getStoredUtm = (key: string) => window.sessionStorage.getItem(`accesslift-${key}`);
+const getStoredUtm = (key: string) => {
+  const consent = readPreferences();
+  if (!consent?.analytics && !consent?.advertising) return null;
+  try { return window.sessionStorage.getItem(`accesslift-${key}`); } catch { return null; }
+};
+
+const quoteOrigin = () => {
+  const origin = new URLSearchParams(window.location.search).get("origem") || "";
+  return ["construction", "industry", "wholesale", "retail", "services", "service_area", "preventiva", "company"].includes(origin) ? origin : null;
+};
 
 const createInitialValues = (equipment: Equipment | null): QuoteRequestPayload => ({
   nome: "",
@@ -24,7 +35,7 @@ const createInitialValues = (equipment: Equipment | null): QuoteRequestPayload =
   model: equipment?.model || null,
   category: equipment?.category === "plataformas-tesoura" ? "tesoura" : equipment?.category === "plataformas-articuladas" ? "articulada" : null,
   power: equipment?.specs.alimentacao?.toLowerCase().includes("eletric") ? "eletrica" : null,
-  pageOrigin: window.location.pathname,
+  pageOrigin: quoteOrigin() || window.location.pathname,
   utmSource: getStoredUtm("utm_source"),
   utmMedium: getStoredUtm("utm_medium"),
   utmCampaign: getStoredUtm("utm_campaign"),
@@ -66,6 +77,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
       className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
+        if (status === "loading") return;
         const nextErrors = validate(values);
         setErrors(nextErrors);
 
@@ -93,6 +105,8 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
               model: values.model,
             },
           });
+          const origin = quoteOrigin();
+          if (origin) trackEvent({ name: `${origin}_form_submit`, payload: { form: "quote" } });
           setValues(createInitialValues(equipment));
         } catch (error) {
           setStatus("error");
@@ -237,9 +251,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
         />
       </label>
 
-      <p className="text-xs leading-5 text-slate-500 md:col-span-2">
-        Ao enviar seus dados, você concorda com o uso das informações para atendimento da sua solicitação, conforme nossa Política de Privacidade.
-      </p>
+      <PrivacyNotice />
 
       <label className="flex gap-3 rounded-md bg-slate-50 p-3 text-sm font-semibold text-slate-700 md:col-span-2">
         <input

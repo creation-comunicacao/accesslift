@@ -1,7 +1,8 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import {defineConfig, loadEnv} from 'vite';
+import inquiries from './api/inquiries';
 
 const utf8ContentTypePlugin = () => ({
   name: "accesslift-utf8-content-type",
@@ -47,9 +48,16 @@ const utf8ContentTypePlugin = () => ({
   },
 });
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), 'INQUIRIES_');
+  for (const [name, value] of Object.entries(env)) process.env[name] = value;
+  const inquiryPlugin = {
+    name: 'accesslift-inquiries',
+    configureServer(server) { server.middlewares.use('/api/inquiries', inquiries); },
+    configurePreviewServer(server) { server.middlewares.use('/api/inquiries', inquiries); },
+  };
   return {
-    plugins: [utf8ContentTypePlugin(), react(), tailwindcss()],
+    plugins: [inquiryPlugin, utf8ContentTypePlugin(), react(), tailwindcss()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

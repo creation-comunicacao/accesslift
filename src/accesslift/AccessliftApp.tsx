@@ -16,6 +16,9 @@ import { ContactPage } from "./pages/ContactPage";
 import { QuotePage } from "./pages/QuotePage";
 import { CareerPage } from "./pages/CareerPage";
 import { CoveragePage } from "./pages/CoveragePage";
+import { findClientPage } from "./data/clientPageRegistry";
+import { ClientPageTemplate } from "./pages/shared/ClientPageTemplate";
+import { PrivacyPage } from "./pages/PrivacyPage";
 import { StandardPage } from "./pages/StandardPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import type { PageSeo } from "./types/routes";
@@ -92,6 +95,7 @@ export function AccessliftApp({ initialPath }: AccessliftAppProps) {
   );
   const configuredPage = useMemo(
     () =>
+      findClientPage(currentPath) ||
       findCommercialPage(currentPath) ||
       findServicePage(currentPath) ||
       findSegmentPage(currentPath) ||
@@ -168,6 +172,9 @@ export function AccessliftApp({ initialPath }: AccessliftAppProps) {
       return <NotFoundPage />;
     }
 
+    const clientPage = findClientPage(route.path);
+    if (clientPage) return <ClientPageTemplate page={clientPage} />;
+
     switch (route.path) {
       case "/":
         return <HomePage />;
@@ -223,6 +230,8 @@ export function AccessliftApp({ initialPath }: AccessliftAppProps) {
         return <QuotePage />;
       case "/trabalhe-conosco/":
         return <CareerPage />;
+      case "/politica-de-privacidade/":
+        return <PrivacyPage />;
       default:
         return <StandardPage route={route} />;
     }

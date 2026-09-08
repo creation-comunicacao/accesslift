@@ -1,6 +1,8 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { trackEvent } from "../../analytics/analytics";
+import { submitInquiry } from "../../services/leadService";
+import { PrivacyNotice } from "./PrivacyNotice";
 
 const inputClasses =
   "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500";
@@ -31,6 +33,7 @@ export function LeadForm() {
       className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
+        if (status === "loading") return;
         const nextErrors: Partial<Record<keyof typeof values, string>> = {};
 
         if (!values.nome.trim()) nextErrors.nome = "Informe seu nome.";
@@ -40,6 +43,7 @@ export function LeadForm() {
           nextErrors.email = "Informe um e-mail válido.";
         }
         if (!values.interesse) nextErrors.interesse = "Selecione um interesse.";
+        if (!values.mensagem.trim()) nextErrors.mensagem = "Informe sua mensagem.";
         if (values.antispam) nextErrors.antispam = "Falha na validação antispam.";
 
         setErrors(nextErrors);
@@ -52,10 +56,11 @@ export function LeadForm() {
 
         setStatus("loading");
         setMessage("");
-        await new Promise((resolve) => window.setTimeout(resolve, 400));
+        try {
+        await submitInquiry("contact", values);
         setStatus("success");
-        setMessage("Mensagem enviada. A equipe Accesslift receberá as informações para retorno.");
-        trackEvent({ name: "form_submit", payload: { form: "contact" } });
+        setMessage("Mensagem enviada com sucesso. Recebemos suas informações. Nossa equipe poderá dar continuidade ao atendimento pelos dados de contato informados.");
+        trackEvent({ name: "contact_form_submit", payload: { form: "contact" } });
         setValues({
           nome: "",
           telefone: "",
@@ -65,6 +70,10 @@ export function LeadForm() {
           mensagem: "",
           antispam: "",
         });
+        } catch {
+          setStatus("error");
+          setMessage("Não foi possível enviar sua mensagem. Tente novamente ou entre em contato com a AccessLift pelos canais disponíveis nesta página.");
+        }
       }}
     >
       <input
@@ -95,21 +104,23 @@ export function LeadForm() {
         {errors.email && <span className="text-xs font-bold text-red-600">{errors.email}</span>}
       </label>
       <label className={labelClasses}>
-        Assunto
+        Assunto *
         <select className={inputClasses} name="interesse" value={values.interesse} onChange={(event) => updateValue("interesse", event.target.value)}>
           <option value="" disabled>
             Selecione uma opção
           </option>
-          <option value="locacao-comercial">Locação / Comercial</option>
+          <option value="locacao-comercial">Locação / Orçamento</option>
           <option value="assistencia-tecnica">Assistência Técnica</option>
-          <option value="treinamento">Treinamento</option>
-          <option value="administrativo">Administrativo</option>
-          <option value="outros">Outros</option>
+          <option value="manutencao">Manutenção</option>
+          <option value="treinamento">Treinamento de Operadores</option>
+          <option value="area-atendimento">Área de Atendimento</option>
+          <option value="administrativo">Financeiro / Administrativo</option>
+          <option value="outros">Outras informações</option>
         </select>
         {errors.interesse && <span className="text-xs font-bold text-red-600">{errors.interesse}</span>}
       </label>
       <label className={`${labelClasses} md:col-span-2`}>
-        Mensagem
+        Mensagem *
         <textarea
           className={`${inputClasses} min-h-32 py-3`}
           name="mensagem"
@@ -119,10 +130,11 @@ export function LeadForm() {
         />
       </label>
       {message && (
-        <div className={`rounded-md p-3 text-sm font-semibold md:col-span-2 ${status === "success" ? "bg-[#0b2d4d]/8 text-[#0b2d4d]" : "bg-red-50 text-red-700"}`}>
+        <div role={status === "success" ? "status" : "alert"} className={`rounded-md p-3 text-sm font-semibold md:col-span-2 ${status === "success" ? "bg-[#0b2d4d]/8 text-[#0b2d4d]" : "bg-red-50 text-red-700"}`}>
           {message}
         </div>
       )}
+      <PrivacyNotice />
       <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-lime-300 px-5 text-sm font-extrabold text-[#0b1726] shadow-[0_14px_30px_rgba(132,204,22,0.24)] transition hover:bg-lime-200 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 md:col-span-2" disabled={status === "loading"}>
         <Send className="h-4 w-4" aria-hidden />
         {status === "loading" ? "Enviando..." : "Enviar mensagem"}

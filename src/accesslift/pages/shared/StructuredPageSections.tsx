@@ -8,6 +8,7 @@ import {
   WhatsAppButton,
 } from "../../components/buttons/CtaButtons";
 import { Button } from "../../components/buttons/Button";
+import { ContentCta } from "../../components/buttons/ContentCta";
 import { Accordion } from "../../components/ui/Accordion";
 import { Badge } from "../../components/ui/Badge";
 import type { EquipmentCategorySlug } from "../../types/equipment";
@@ -43,6 +44,7 @@ export function ConversionHero({
   primaryCta,
   secondaryCta,
   supportItems = [],
+  compact = false,
 }: {
   eyebrow: string;
   title: string;
@@ -50,14 +52,19 @@ export function ConversionHero({
   primaryCta?: CtaLink;
   secondaryCta?: CtaLink;
   supportItems?: string[];
+  compact?: boolean;
 }) {
   return (
     <section className="industrial-grid border-b border-slate-200 bg-slate-50">
-      <div className="site-container grid gap-8 py-12 md:py-16 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+      <div className={`site-container grid gap-8 py-12 md:py-16 ${compact ? "" : "lg:grid-cols-[1fr_0.72fr] lg:items-end"}`}>
         <div data-reveal="fade-right">
           <span className="section-eyebrow">{eyebrow}</span>
           <h1 className="mt-5 text-slate-950">{title}</h1>
           <p className="mt-5 max-w-2xl text-lg text-slate-600">{description}</p>
+          {compact && (primaryCta || secondaryCta) && <div className="mt-6 flex flex-wrap gap-3">
+            {primaryCta && <ContentCta cta={primaryCta} variant="primary" />}
+            {secondaryCta && <ContentCta cta={secondaryCta} />}
+          </div>}
           {supportItems.length > 0 && (
             <div className="reveal-stagger mt-6 grid max-w-3xl gap-3 sm:grid-cols-2">
               {supportItems.map((item) => (
@@ -68,7 +75,7 @@ export function ConversionHero({
             </div>
           )}
         </div>
-        <div data-reveal="fade-left" className="premium-card rounded-lg p-5 md:p-6">
+        {!compact && <div data-reveal="fade-left" className="premium-card rounded-lg p-5 md:p-6">
           <p className="text-xs font-black uppercase tracking-wider text-slate-500">
             Conversão
           </p>
@@ -85,7 +92,7 @@ export function ConversionHero({
             )}
             <WhatsAppButton className="sm:col-span-2 lg:col-span-1" />
           </div>
-        </div>
+        </div>}
       </div>
     </section>
   );
@@ -96,12 +103,14 @@ export function ValueSection({
   description,
   eyebrow = "Proposta de valor",
   cta,
+  paragraphs = [],
 }: {
   title: string;
   description: string;
   eyebrow?: string;
   cta?: CtaLink;
   key?: string;
+  paragraphs?: string[];
 }) {
   return (
     <section className="site-container section-space-compact">
@@ -109,10 +118,9 @@ export function ValueSection({
         <Badge tone="steel">{eyebrow}</Badge>
         <h2 className="mt-4 text-slate-950">{title}</h2>
         <p className="mt-3 max-w-3xl text-slate-600">{description}</p>
+        {paragraphs.map((paragraph) => <p key={paragraph} className="mt-5 max-w-3xl text-slate-600">{paragraph}</p>)}
         {cta && (
-          <Button href={cta.href} variant="secondary" className="mt-5">
-            {cta.label}
-          </Button>
+          <ContentCta cta={cta} className="mt-5" />
         )}
       </div>
     </section>
@@ -141,9 +149,7 @@ export function SectionList({ eyebrow, title, description, items, cta }: Section
             <h3 className="mt-4 text-slate-950">{normalized.title}</h3>
             {normalized.description && <p className="mt-2 text-sm leading-6 text-slate-600">{normalized.description}</p>}
             {normalized.cta && (
-              <Button href={normalized.cta.href} variant="ghost" className="mt-4">
-                {normalized.cta.label}
-              </Button>
+              <ContentCta cta={normalized.cta} variant="ghost" className="mt-4" />
             )}
           </article>
           );
@@ -151,7 +157,7 @@ export function SectionList({ eyebrow, title, description, items, cta }: Section
       </div>
       {cta && (
         <div className="mt-6">
-          <Button href={cta.href} variant="secondary">{cta.label}</Button>
+          <ContentCta cta={cta} />
         </div>
       )}
     </section>
@@ -264,7 +270,7 @@ export function FaqSection({ items, title = "Perguntas frequentes" }: FaqSection
             items={items.map((item, index) => ({
               id: `faq-${index}`,
               title: item.question,
-              content: item.answer,
+              content: <>{item.answer}{item.link && <div className="mt-3"><ContentCta cta={item.link} variant="ghost" /></div>}</>,
             }))}
           />
         </div>
@@ -278,11 +284,13 @@ export function FinalConversionSection({
   description = "Use os canais de conversão preparados para atendimento comercial, sem número de WhatsApp fictício.",
   primary,
   secondary,
+  actions,
 }: {
   title?: string;
   description?: string;
   primary?: CtaLink;
   secondary?: CtaLink;
+  actions?: CtaLink[];
 }) {
   return (
     <section className="bg-[#0b2d4d] section-space-compact text-white">
@@ -295,9 +303,11 @@ export function FinalConversionSection({
           </p>
         </div>
         <div data-reveal="fade-left" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {primary ? <Button href={primary.href}>{primary.label}</Button> : <CheckAvailabilityButton />}
-          {secondary ? <Button href={secondary.href} variant="secondary">{secondary.label}</Button> : <RequestQuoteButton />}
-          <TalkToSpecialistButton />
+          {actions ? actions.map((cta, index) => <ContentCta key={`${cta.href}-${cta.label}`} cta={cta} variant={index === 0 ? "primary" : "secondary"} />) : <>
+            {primary ? <Button href={primary.href}>{primary.label}</Button> : <CheckAvailabilityButton />}
+            {secondary ? <Button href={secondary.href} variant="secondary">{secondary.label}</Button> : <RequestQuoteButton />}
+            <TalkToSpecialistButton />
+          </>}
         </div>
       </div>
     </section>

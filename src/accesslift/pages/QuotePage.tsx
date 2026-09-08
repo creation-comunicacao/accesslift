@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { readPreferences } from "../analytics/consent";
 import { getEquipmentBySlug } from "../catalog/catalog";
 import { QuoteRequestForm } from "../components/forms/QuoteRequestForm";
 import { Button } from "../components/buttons/Button";
@@ -11,12 +12,14 @@ export function QuotePage() {
   const equipment = equipmentSlug ? getEquipmentBySlug(equipmentSlug) || null : null;
 
   useEffect(() => {
+    const consent = readPreferences();
+    if (!consent?.analytics && !consent?.advertising) return;
     const currentParams = new URLSearchParams(search);
     const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
     utmKeys.forEach((key) => {
       const value = currentParams.get(key);
       if (value) {
-        window.sessionStorage.setItem(`accesslift-${key}`, value);
+        try { window.sessionStorage.setItem(`accesslift-${key}`, value); } catch { /* Optional attribution storage. */ }
       }
     });
   }, [search]);

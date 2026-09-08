@@ -4,11 +4,13 @@ import type { PageSeo } from "../types/routes";
 export type FaqItem = {
   question: string;
   answer: string;
+  link?: CtaLink;
 };
 
 export type CtaLink = {
   label: string;
   href: string;
+  event?: string;
 };
 
 export type ContentItem = {
