@@ -1,116 +1,40 @@
-import { useEffect } from "react";
-import type { JsonLd, PageSeo } from "../types/routes";
+import { createContext, useContext, useEffect } from "react";
+import type { PageSeo } from "../types/routes";
+import { getSeoHead } from "./head";
 
-const SITE_ORIGIN = "https://www.accesslift.com.br";
+// Static rendering collects the same resolved SEO used by client navigation.
+export const SeoCollector = createContext<((seo: PageSeo) => void) | null>(null);
 
-const upsertMeta = (selector: string, attrs: Record<string, string>) => {
-  let element = document.head.querySelector<HTMLMetaElement>(selector);
+function upsert(selector: string, tag: string, attributes: Record<string, string>) {
+  const [existing, ...duplicates] = document.head.querySelectorAll(selector);
+  duplicates.forEach(element => element.remove());
+  const element = existing || document.createElement(tag);
+  Object.entries(attributes).forEach(([name, value]) => element.setAttribute(name, value));
+  if (!existing) document.head.appendChild(element);
+  return element;
+}
 
-  if (!element) {
-    element = document.createElement("meta");
-    document.head.appendChild(element);
-  }
-
-  Object.entries(attrs).forEach(([key, value]) => element?.setAttribute(key, value));
-};
-
-const upsertLink = (selector: string, attrs: Record<string, string>) => {
-  let element = document.head.querySelector<HTMLLinkElement>(selector);
-
-  if (!element) {
-    element = document.createElement("link");
-    document.head.appendChild(element);
-  }
-
-  Object.entries(attrs).forEach(([key, value]) => element?.setAttribute(key, value));
-};
-
-type SeoProps = {
-  seo: PageSeo;
-};
-
-const stringifyJsonLd = (schema: JsonLd) => JSON.stringify(schema);
-
-const upsertJsonLd = (id: string, schema: JsonLd) => {
-  let element = document.head.querySelector<HTMLScriptElement>(`script#${id}`);
-
-  if (!element) {
-    element = document.createElement("script");
-    element.id = id;
-    element.type = "application/ld+json";
-    document.head.appendChild(element);
-  }
-
-  element.textContent = stringifyJsonLd(schema);
-};
-
-const removeStaleJsonLd = (activeIds: string[]) => {
-  document.head
-    .querySelectorAll<HTMLScriptElement>('script[data-accesslift-schema="true"]')
-    .forEach((script) => {
-      if (!activeIds.includes(script.id)) {
-        script.remove();
-      }
-    });
-};
-
-export function Seo({ seo }: SeoProps) {
+export function Seo({ seo }: { seo: PageSeo }) {
+  const collect = useContext(SeoCollector);
+  collect?.(seo);
   useEffect(() => {
-    const canonical = `${SITE_ORIGIN}${seo.canonicalPath}`;
-    const isProduction = import.meta.env.VITE_SITE_ENV === "production";
-    const robots =
-      !isProduction || seo.indexDirective === "noindex"
-        ? "noindex,nofollow"
-        : "index,follow";
-
+    const head = getSeoHead(seo, import.meta.env.VITE_SITE_ENV === "production");
     document.documentElement.lang = "pt-BR";
-    document.title = seo.title;
-    upsertMeta('meta[name="description"]', {
-      name: "description",
-      content: seo.description,
-    });
-    upsertMeta('meta[name="robots"]', {
-      name: "robots",
-      content: robots,
-    });
-    upsertMeta('meta[property="og:title"]', {
-      property: "og:title",
-      content: seo.openGraphTitle || seo.title,
-    });
-    upsertMeta('meta[property="og:description"]', {
-      property: "og:description",
-      content: seo.openGraphDescription || seo.description,
-    });
-    upsertMeta('meta[property="og:url"]', {
-      property: "og:url",
-      content: canonical,
-    });
-    upsertMeta('meta[property="og:type"]', {
-      property: "og:type",
-      content: "website",
-    });
-    upsertMeta('meta[property="og:site_name"]', {
-      property: "og:site_name",
-      content: "Accesslift",
-    });
-    upsertMeta('meta[name="twitter:card"]', {
-      name: "twitter:card",
-      content: "summary_large_image",
-    });
-    upsertLink('link[rel="canonical"]', {
-      rel: "canonical",
-      href: canonical,
-    });
-
-    const schemaIds = (seo.structuredData || []).map((schema, index) => {
+    upsert("title", "title", {}).textContent = head.title;
+    for (const meta of head.meta) {
+      const attribute = meta.name ? "name" : "property";
+      const key = meta.name || meta.property!;
+      upsert(`meta[${attribute}="${key}"]`, "meta", { [attribute]: key, content: meta.content });
+    }
+    upsert('link[rel="canonical"]', "link", { rel: "canonical", href: head.canonical });
+    const active = head.schemas.map((schema, index) => {
       const id = `accesslift-schema-${index}`;
-      upsertJsonLd(id, schema);
-      document.getElementById(id)?.setAttribute("data-accesslift-schema", "true");
+      upsert(`script#${id}`, "script", { id, type: "application/ld+json", "data-accesslift-schema": "true" }).textContent = JSON.stringify(schema);
       return id;
     });
-
-    removeStaleJsonLd(schemaIds);
+    document.head.querySelectorAll('script[data-accesslift-schema="true"]').forEach(element => {
+      if (!active.includes(element.id)) element.remove();
+    });
   }, [seo]);
-
   return null;
 }

@@ -3,6 +3,9 @@ const hero = (name: string, alt: string) => ({
 });
 
 export const heroImages = {
+  contato: hero("contato", "Atendimento AccessLift para locação de plataformas elevatórias"),
+  locacao: hero("locacao", "Locação de plataformas elevatórias AccessLift em São Paulo"),
+  orcamento: hero("orcamento", "Solicitação de orçamento de plataformas elevatórias AccessLift"),
   plataformas: hero("plataformas", "Plataformas elevatórias AccessLift para trabalhos em altura"),
   tesoura: hero("tesoura", "Plataformas tesoura da AccessLift"),
   articuladas: hero("articuladas", "Plataformas articuladas da AccessLift"),

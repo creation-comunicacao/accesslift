@@ -1,11 +1,12 @@
 import { useEffect } from "react";
+import { heroImages } from "../data/heroImages";
 import { readPreferences } from "../analytics/consent";
 import { getEquipmentBySlug } from "../catalog/catalog";
 import { QuoteRequestForm } from "../components/forms/QuoteRequestForm";
 import { ConversionHero } from "./shared/StructuredPageSections";
 
 export function QuotePage() {
-  const search = window.location.search;
+  const search = typeof window === "undefined" ? "" : window.location.search;
   const params = new URLSearchParams(search);
   const equipmentSlug = params.get("equipment") || params.get("equipamento");
   const equipment = equipmentSlug ? getEquipmentBySlug(equipmentSlug) || null : null;
@@ -27,6 +28,7 @@ export function QuotePage() {
     <>
       <ConversionHero
         compact
+        image={heroImages.orcamento}
         eyebrow="Orçamento"
         title="Solicite um Orçamento de Plataforma Elevatória"
         description="Conte para a AccessLift as principais características do trabalho. Mesmo que você ainda não saiba qual modelo precisa, nossa equipe pode auxiliar na identificação das opções adequadas."

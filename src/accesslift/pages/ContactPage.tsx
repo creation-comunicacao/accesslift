@@ -1,4 +1,5 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { heroImages } from "../data/heroImages";
 import { trackEvent } from "../analytics/analytics";
 import { LeadForm } from "../components/forms/LeadForm";
 import { contactConfig } from "../data/contact";
@@ -19,6 +20,7 @@ export function ContactPage() {
     <>
       <ConversionHero
         compact
+        image={heroImages.contato}
         eyebrow="Contato"
         title="Fale com a AccessLift"
         description="Entre em contato para locação de plataformas elevatórias, suporte técnico ou outras informações."

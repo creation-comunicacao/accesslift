@@ -12,7 +12,7 @@ export const getEquipmentByCategory = (category: EquipmentCategorySlug) =>
 export const getCategoryBySlug = (slug: EquipmentCategorySlug) =>
   equipmentCategories.find((category) => category.slug === slug);
 
-const equipmentSlugAliases: Record<string, string> = {
+export const equipmentSlugAliases: Record<string, string> = {
   "jlg-2630": "jlg-2630es",
   "genie-gs-2632": "genie-gs2632",
   "skyjack-sj4740e": "skyjack-sj4732",

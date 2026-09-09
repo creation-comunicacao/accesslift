@@ -1,4 +1,5 @@
 import type { CommercialPageConfig } from "../../data/pageContent";
+import { heroImages } from "../../data/heroImages";
 import { PlatformsPage } from "./PlatformsPage";
 import { Fragment } from "react";
 import {
@@ -118,10 +119,7 @@ function RentalPage() {
     <>
       <section className="hero-photo surface-dark overflow-hidden">
         <img
-          src="/images/accesslift/marca/hero-home-plataformas-accesslift.jpg"
-          alt="Plataformas elevatórias AccessLift em operação"
-          width={1600}
-          height={853}
+          {...heroImages.locacao}
           loading="eager"
           decoding="async"
         />

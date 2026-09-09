@@ -21,6 +21,7 @@ import { heroImages } from "../../data/heroImages";
 import type { CatalogFilters, CatalogSort } from "../../types/equipment";
 
 const getFinderFilters = (): CatalogFilters => {
+  if (typeof window === "undefined") return defaultCatalogFilters;
   const stored = window.sessionStorage.getItem("accesslift-catalog-filters");
   window.sessionStorage.removeItem("accesslift-catalog-filters");
 

@@ -20,6 +20,7 @@ const getStoredUtm = (key: string) => {
 };
 
 const quoteOrigin = () => {
+  if (typeof window === "undefined") return null;
   const origin = new URLSearchParams(window.location.search).get("origem") || "";
   return ["construction", "industry", "wholesale", "retail", "services", "service_area", "preventiva", "company", "applications"].includes(origin) ? origin : null;
 };
@@ -46,7 +47,7 @@ const createInitialValues = (equipment: Equipment | null): QuoteRequestPayload =
   model: equipment?.model || null,
   category: equipment?.category === "plataformas-tesoura" ? "tesoura" : equipment?.category === "plataformas-articuladas" ? "articulada" : null,
   power: equipment?.specs.alimentacao?.toLowerCase().includes("eletric") ? "eletrica" : null,
-  pageOrigin: equipment ? `/equipamentos/${equipment.slug}/` : quoteSourcePaths[quoteOrigin() || ""] || window.location.pathname,
+  pageOrigin: equipment ? `/equipamentos/${equipment.slug}/` : quoteSourcePaths[quoteOrigin() || ""] || (typeof window === "undefined" ? "/solicite-orcamento/" : window.location.pathname),
   utmSource: getStoredUtm("utm_source"),
   utmMedium: getStoredUtm("utm_medium"),
   utmCampaign: getStoredUtm("utm_campaign"),

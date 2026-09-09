@@ -5,11 +5,5 @@
       "destination": "/equipamentos/jlg-2630es/",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/((?!api(?:/|$)).*)",
-      "destination": "/index.html"
-    }
   ]
 }

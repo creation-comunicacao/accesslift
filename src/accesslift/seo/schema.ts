@@ -2,7 +2,7 @@ import type { Equipment } from "../types/equipment";
 import type { BreadcrumbItem, JsonLd } from "../types/routes";
 import type { FaqItem } from "../data/pageContent";
 
-const SITE_ORIGIN = "https://www.accesslift.com.br";
+import { SITE_ORIGIN } from "./head";
 
 export const absoluteUrl = (path: string) =>
   path.startsWith("http") ? path : `${SITE_ORIGIN}${path}`;
