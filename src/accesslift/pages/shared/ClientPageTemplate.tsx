@@ -27,6 +27,18 @@ const editorialOpeningPaths = new Set([
   "/segmentos/supermercados-e-hipermercados/", "/segmentos/atacados/", "/area-de-atendimento/",
 ]);
 
+const heroImageByPath: Record<string, (typeof heroImages)[keyof typeof heroImages]> = {
+  "/servicos/": heroImages.servicos,
+  "/empresa/": heroImages.empresa,
+  "/servicos/assistencia-tecnica/": heroImages.assistencia,
+  "/servicos/manutencao-preventiva/": heroImages.manutencao,
+  "/servicos/treinamento-de-operadores/": heroImages.treinamento,
+  "/segmentos/atacados/": heroImages.atacados,
+  "/segmentos/construcao-civil/": heroImages.construcao,
+  "/segmentos/industria/": heroImages.industria,
+  "/segmentos/supermercados-e-hipermercados/": heroImages.supermercados,
+};
+
 function SectionMedia({ section, heroMedia }: { section: ClientSection; heroMedia?: keyof typeof media }) {
   const photo = section.media && section.media !== "company-gallery" ? media[section.media] : null;
   return <>
@@ -48,7 +60,7 @@ function SectionMedia({ section, heroMedia }: { section: ClientSection; heroMedi
 export function ClientPageTemplate({ page }: { page: ClientPage }) {
   const heroMedia = heroMediaByPath[page.path];
   return <>
-    <ConversionHero compact image={heroMedia ? media[heroMedia] : undefined} eyebrow={page.eyebrow} title={page.title} description={page.description} primaryCta={page.actions[0]} secondaryCta={page.actions[1]} />
+    <ConversionHero compact image={heroImageByPath[page.path]} eyebrow={page.eyebrow} title={page.title} description={page.description} primaryCta={page.actions[0]} secondaryCta={page.actions[1]} />
     {page.sections.map((section, index) => <div key={section.title} data-client-block={index + 2} id={section.form ? "solicitar-assistencia" : section.eyebrow === "Modalidades" ? "modalidades-treinamento" : undefined} className="scroll-mt-32">
       {section.media !== "company-gallery" && (section.items ? <SectionList {...section} items={section.items} eyebrow={section.eyebrow || page.eyebrow} cta={undefined} /> : <ValueSection {...section} description={section.description || ""}
         lineEyebrow={page.path === "/servicos/" && index === 0}

@@ -14,11 +14,16 @@ function render(path: string) {
 
 for (const [path, file] of [
   ["/servicos/", "/heroes/servicos.png"],
-  ["/empresa/", "/empresa/operacao-access-lift-em-ambiente-industrial.jpeg"],
-  ["/servicos/treinamento-de-operadores/", "/servicos/treinamento-assistencia.jpeg"],
-  ["/servicos/assistencia-tecnica/", "/servicos/treinamento-assistencia-03.jpeg"],
+  ["/empresa/", "/heroes/empresa.png"],
+  ["/servicos/treinamento-de-operadores/", "/heroes/treinamento.png"],
+  ["/servicos/assistencia-tecnica/", "/heroes/assistencia-tecnica.png"],
+  ["/servicos/manutencao-preventiva/", "/heroes/manutencao-preventiva.png"],
+  ["/segmentos/atacados/", "/heroes/atacados.png"],
+  ["/segmentos/construcao-civil/", "/heroes/construcao-civil.png"],
+  ["/segmentos/industria/", "/heroes/industria.png"],
+  ["/segmentos/supermercados-e-hipermercados/", "/heroes/supermercados.png"],
 ]) {
-  test(`existing photo moves once into hero: ${path}`, () => {
+  test(`assigned photo appears once in hero: ${path}`, () => {
     const html = render(path);
     const src = `/images/accesslift${file}`;
     assert.equal(html.split(`src="${src}"`).length - 1, 1);
