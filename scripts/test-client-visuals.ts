@@ -13,7 +13,7 @@ function render(path: string) {
 }
 
 for (const [path, file] of [
-  ["/servicos/", "/operacoes/plataformas-07.jpeg"],
+  ["/servicos/", "/heroes/servicos.png"],
   ["/empresa/", "/empresa/operacao-access-lift-em-ambiente-industrial.jpeg"],
   ["/servicos/treinamento-de-operadores/", "/servicos/treinamento-assistencia.jpeg"],
   ["/servicos/assistencia-tecnica/", "/servicos/treinamento-assistencia-03.jpeg"],

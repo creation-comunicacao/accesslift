@@ -1,6 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import { applicationsPage as page, applicationsWhatsappMessage } from "../../data/applicationsPage";
 import { contactConfig } from "../../data/contact";
+import { heroImages } from "../../data/heroImages";
 import { trackEvent } from "../../analytics/analytics";
 import { Button } from "../../components/buttons/Button";
 import { ContentCta } from "../../components/buttons/ContentCta";
@@ -8,7 +9,7 @@ import { ConversionHero, SectionList, ValueSection, FaqSection } from "../shared
 
 export function ApplicationsPage() {
   return <>
-    <ConversionHero compact eyebrow={page.eyebrow} title={page.title} description={page.description} />
+    <ConversionHero compact image={heroImages.segmentos} eyebrow={page.eyebrow} title={page.title} description={page.description} />
     {page.contentSections!.map(section => section.items
       ? <SectionList key={section.title} columns={2} eyebrow={section.eyebrow!} title={section.title} items={section.items} />
       : <ValueSection key={section.title} eyebrow={section.eyebrow} title={section.title} description={section.description!} cta={section.cta} />)}

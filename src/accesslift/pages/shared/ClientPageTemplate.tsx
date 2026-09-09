@@ -4,10 +4,11 @@ import { SupportRequestForm } from "../../components/forms/SupportRequestForm";
 import { OfficialMediaGallery } from "../../components/media/OfficialMediaGallery";
 import { companyGallery, trainingGallery } from "../../data/officialMedia";
 import { clientProofs } from "../../data/institutional";
+import { heroImages } from "../../data/heroImages";
 import { ConversionHero, FaqSection, FinalConversionSection, SectionList, ValueSection } from "./StructuredPageSections";
 
 const media = {
-  services: { src: "/images/accesslift/operacoes/plataformas-07.jpeg", alt: "Entrega de plataformas elevatórias da frota Accesslift", width: 1599, height: 899 },
+  services: heroImages.servicos,
   assistance: { src: "/images/accesslift/servicos/treinamento-assistencia-03.jpeg", alt: "Equipe Accesslift em atendimento em ambiente industrial", width: 960, height: 1280 },
   training: { src: "/images/accesslift/servicos/treinamento-assistencia.jpeg", alt: "Equipe Accesslift em atendimento em ambiente industrial", width: 960, height: 1280 },
   company: { src: "/images/accesslift/empresa/operacao-access-lift-em-ambiente-industrial.jpeg", alt: "Operação da Access Lift em ambiente industrial", width: 1086, height: 1448 },

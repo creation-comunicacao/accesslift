@@ -3,7 +3,7 @@ import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { RequestQuoteButton, TalkToSpecialistButton, WhatsAppButton } from "../../components/buttons/CtaButtons";
 import { Button } from "../../components/buttons/Button";
 import { Accordion } from "../../components/ui/Accordion";
-import { categoryGalleryBySlug } from "../../data/officialMedia";
+import { heroImages } from "../../data/heroImages";
 import type { EquipmentCategorySlug } from "../../types/equipment";
 
 type CategoryTemplateProps = {
@@ -19,10 +19,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
   }
 
   if (slug === "plataformas-tesoura") {
-    const heroEquipment =
-      equipments.find((equipment) => equipment.slug === "skyjack-sj3219") ??
-      equipments.find((equipment) => Boolean(equipment.mainImage.src));
-    const heroImage = heroEquipment?.mainImage ?? categoryGalleryBySlug["plataformas-tesoura"][0];
+    const heroImage = heroImages.tesoura;
     const useCases = [
       "Elevação vertical",
       "Estabilidade durante a operação",
@@ -83,12 +80,14 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
 
     return (
       <>
-        <section className="industrial-grid border-b border-slate-200 bg-slate-50">
-          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+        <section className="relative isolate overflow-hidden bg-[#0b2d4d] text-white">
+          <img {...heroImage} className="absolute inset-0 -z-20 h-full w-full object-cover" fetchPriority="high" decoding="async" />
+          <div className="absolute inset-0 -z-10 bg-black/65" aria-hidden />
+          <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">
             <div>
-              <span className="section-eyebrow">Plataforma Tesoura</span>
-              <h1 className="mt-5 text-slate-950">Plataformas Elevatórias Tesoura</h1>
-              <p className="mt-4 max-w-2xl text-lg text-slate-600">
+              <span className="section-eyebrow !text-white">Plataforma Tesoura</span>
+              <h1 className="mt-5 max-w-3xl text-white">Plataformas Elevatórias Tesoura</h1>
+              <p className="mt-4 max-w-2xl text-lg text-white">
                 Plataformas tesoura para trabalhos que exigem elevação predominantemente vertical, estabilidade e área de trabalho para operador, ferramentas e materiais.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -96,20 +95,6 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
                 <WhatsAppButton label="Falar pelo WhatsApp" message={scissorWhatsAppMessage} />
               </div>
             </div>
-            {heroImage?.src && (
-              <div className="media-frame overflow-hidden rounded-lg p-3 premium-shadow">
-                <img
-                  src={heroImage.src}
-                  alt={heroImage.alt}
-                  width={heroImage.width}
-                  height={heroImage.height}
-                  sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="aspect-[4/3] w-full rounded-md object-cover"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-            )}
           </div>
         </section>
 
@@ -239,10 +224,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
     );
   }
 
-  const heroEquipment =
-    equipments.find((equipment) => equipment.slug === "genie-z34") ??
-    equipments.find((equipment) => Boolean(equipment.mainImage.src));
-  const heroImage = heroEquipment?.mainImage ?? categoryGalleryBySlug["plataformas-articuladas"][0];
+  const heroImage = heroImages.articuladas;
   const useCases = [
     "Elevação em altura",
     "Alcance horizontal",
@@ -303,12 +285,14 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
 
   return (
     <>
-      <section className="industrial-grid border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+      <section className="relative isolate overflow-hidden bg-[#0b2d4d] text-white">
+        <img {...heroImage} className="absolute inset-0 -z-20 h-full w-full object-cover" fetchPriority="high" decoding="async" />
+        <div className="absolute inset-0 -z-10 bg-black/65" aria-hidden />
+        <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">
           <div>
-            <span className="section-eyebrow">Plataforma Articulada</span>
-            <h1 className="mt-5 text-slate-950">Plataformas Elevatórias Articuladas</h1>
-            <p className="mt-4 max-w-2xl text-lg text-slate-600">
+            <span className="section-eyebrow !text-white">Plataforma Articulada</span>
+            <h1 className="mt-5 max-w-3xl text-white">Plataformas Elevatórias Articuladas</h1>
+            <p className="mt-4 max-w-2xl text-lg text-white">
               Plataformas articuladas para trabalhos em altura que exigem alcance vertical e horizontal, oferecendo maior flexibilidade para acessar pontos sobre ou ao redor de obstáculos.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -316,20 +300,6 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
               <WhatsAppButton label="Falar pelo WhatsApp" message={articulatedWhatsAppMessage} />
             </div>
           </div>
-          {heroImage?.src && (
-            <div className="media-frame overflow-hidden rounded-lg p-3 premium-shadow">
-              <img
-                src={heroImage.src}
-                alt={heroImage.alt}
-                width={heroImage.width}
-                height={heroImage.height}
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="aspect-[4/3] w-full rounded-md object-cover"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-          )}
         </div>
       </section>
 

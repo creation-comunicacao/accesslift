@@ -4,7 +4,7 @@ import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { getEquipmentBySlug } from "../../catalog/catalog";
 import { homeFeaturedEquipmentSlugs } from "../../data/equipment";
 import { contactConfig } from "../../data/contact";
-import { operationGallery } from "../../data/officialMedia";
+import { heroImages } from "../../data/heroImages";
 import { platformsContent as content, platformsPageConfig as page } from "../../data/platformsPage";
 import { trackEvent } from "../../analytics/analytics";
 
@@ -27,7 +27,7 @@ function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) 
 }
 
 export function PlatformsPage() {
-  const heroImage = operationGallery[3];
+  const heroImage = heroImages.plataformas;
   const related = homeFeaturedEquipmentSlugs.map(getEquipmentBySlug).filter(item => item !== undefined);
 
   return <>

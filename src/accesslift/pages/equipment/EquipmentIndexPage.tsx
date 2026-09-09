@@ -17,6 +17,7 @@ import { CatalogState } from "../../components/catalog/CatalogState";
 import { Badge } from "../../components/ui/Badge";
 import { Accordion } from "../../components/ui/Accordion";
 import { mockEquipments } from "../../data/equipment";
+import { heroImages } from "../../data/heroImages";
 import type { CatalogFilters, CatalogSort } from "../../types/equipment";
 
 const getFinderFilters = (): CatalogFilters => {
@@ -58,11 +59,13 @@ export function EquipmentIndexPage() {
 
   return (
     <>
-      <section className="industrial-grid border-b border-slate-200 bg-slate-50">
+      <section className="relative isolate overflow-hidden bg-[#0b2d4d] text-white">
+        <img {...heroImages.equipamentos} className="absolute inset-0 -z-20 h-full w-full object-cover" fetchPriority="high" decoding="async" />
+        <div className="absolute inset-0 -z-10 bg-black/65" aria-hidden />
         <div className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12">
-          <span className="section-eyebrow">Equipamentos</span>
-          <h1 className="mt-5 max-w-4xl text-slate-950">Plataformas Elevatórias para Locação</h1>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600">
+          <span className="section-eyebrow !text-white">Equipamentos</span>
+          <h1 className="mt-5 max-w-4xl text-white">Plataformas Elevatórias para Locação</h1>
+          <p className="mt-4 max-w-3xl text-lg text-white">
             Compare os modelos disponíveis de plataformas tesoura e articuladas e encontre o equipamento adequado às características da sua operação.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
