@@ -390,7 +390,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
               <p>Para operações que exigem principalmente elevação vertical, uma plataforma tesoura pode ser suficiente.</p>
             </div>
           </div>
-          <Button href="/plataformas-tesoura/" variant="secondary" className="!border-[#0b2d4d] !bg-[#0b2d4d] !text-white hover:!border-[#09243d] hover:!bg-[#09243d] hover:!text-white">
+          <Button href="/plataformas-tesoura/" variant="secondary" className="w-fit lg:col-start-1 !border-[#0b2d4d] !bg-[#0b2d4d] !text-white hover:!border-[#09243d] hover:!bg-[#09243d] hover:!text-white">
             Conhecer plataformas tesoura
           </Button>
         </div>

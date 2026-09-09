@@ -51,6 +51,7 @@ export function ClientPageTemplate({ page }: { page: ClientPage }) {
     <ConversionHero compact image={heroMedia ? media[heroMedia] : undefined} eyebrow={page.eyebrow} title={page.title} description={page.description} primaryCta={page.actions[0]} secondaryCta={page.actions[1]} />
     {page.sections.map((section, index) => <div key={section.title} data-client-block={index + 2} id={section.form ? "solicitar-assistencia" : section.eyebrow === "Modalidades" ? "modalidades-treinamento" : undefined} className="scroll-mt-32">
       {section.media !== "company-gallery" && (section.items ? <SectionList {...section} items={section.items} eyebrow={section.eyebrow || page.eyebrow} cta={undefined} /> : <ValueSection {...section} description={section.description || ""}
+        lineEyebrow={page.path === "/servicos/" && index === 0}
         editorial={(index === 0 && editorialOpeningPaths.has(page.path)) || (page.path === "/servicos/manutencao-preventiva/" && ["Frota", "Equipamentos de terceiros"].includes(section.eyebrow || ""))}
         ctaClassName={page.path === "/area-de-atendimento/" && index === 0 ? "!border-[#0b2d4d] !bg-[#0b2d4d] !font-semibold !text-white !shadow-[0_12px_28px_rgba(11,45,77,0.18)] hover:!border-[#09243d] hover:!bg-[#09243d] hover:!text-white" : undefined}
       />)}

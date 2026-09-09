@@ -461,6 +461,44 @@ body {
   color: #ffffff;
 }
 
+/* Keep WhatsApp actions consistent, including legacy per-page color overrides. */
+@layer base {
+  .touch-button[href^="https://wa.me/"] {
+    background-color: var(--color-emerald-500) !important;
+    border-color: var(--color-emerald-500) !important;
+    color: #ffffff !important;
+  }
+
+  .touch-button[href^="https://wa.me/"]:hover {
+    background-color: var(--color-emerald-600) !important;
+    border-color: var(--color-emerald-600) !important;
+    color: #ffffff !important;
+  }
+}
+
+.button-secondary {
+  background-color: #0b2d4d;
+  border-color: #0b2d4d;
+  color: #ffffff;
+}
+
+.button-secondary:hover {
+  background-color: #09243d;
+  border-color: #09243d;
+}
+
+/* Secondary actions remain light on the existing dark conversion surfaces. */
+:is(.surface-dark, .hero-photo, .bg-\[\#0b2d4d\], .bg-slate-950) .button-secondary {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #0b2d4d;
+}
+
+:is(.surface-dark, .hero-photo, .bg-\[\#0b2d4d\], .bg-slate-950) .button-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #0b2d4d4d;
+}
+
 /* Custom subtle scrollbar to match the clean aesthetic */
 ::-webkit-scrollbar {
   width: 6px;

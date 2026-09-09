@@ -12,7 +12,7 @@ export function ApplicationsPage() {
     <ConversionHero compact image={heroImages.segmentos} eyebrow={page.eyebrow} title={page.title} description={page.description} />
     {page.contentSections!.map(section => section.items
       ? <SectionList key={section.title} columns={2} eyebrow={section.eyebrow!} title={section.title} items={section.items} />
-      : <ValueSection key={section.title} eyebrow={section.eyebrow} title={section.title} description={section.description!} cta={section.cta} />)}
+      : <ValueSection key={section.title} eyebrow={section.eyebrow} lineEyebrow={section.eyebrow === "Escolha"} title={section.title} description={section.description!} cta={section.cta} />)}
     <FaqSection items={page.faq} />
     <section className="bg-[#0b2d4d] section-space-compact text-white">
       <div className="site-container" data-reveal="fade-up">

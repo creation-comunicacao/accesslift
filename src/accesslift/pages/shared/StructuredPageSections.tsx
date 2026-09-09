@@ -112,6 +112,7 @@ export function ValueSection({
   cta,
   paragraphs = [],
   editorial = false,
+  lineEyebrow = false,
   ctaClassName,
 }: {
   title: string;
@@ -121,12 +122,13 @@ export function ValueSection({
   key?: string;
   paragraphs?: string[];
   editorial?: boolean;
+  lineEyebrow?: boolean;
   ctaClassName?: string;
 }) {
   return (
     <section className="site-container section-space-compact">
       <div data-reveal="fade-up" className={editorial ? undefined : "premium-card rounded-lg p-6 md:p-8"}>
-        {editorial ? <span className="section-eyebrow">{eyebrow}</span> : <Badge tone="steel">{eyebrow}</Badge>}
+        {editorial || lineEyebrow ? <span className="section-eyebrow">{eyebrow}</span> : <Badge tone="steel">{eyebrow}</Badge>}
         <h2 className="mt-4 text-slate-950">{title}</h2>
         <p className="mt-3 max-w-3xl text-slate-600">{description}</p>
         {paragraphs.map((paragraph) => <p key={paragraph} className="mt-5 max-w-3xl text-slate-600">{paragraph}</p>)}
