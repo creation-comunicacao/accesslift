@@ -19,7 +19,6 @@ export type QuoteRequestPayload = {
   utmContent: string | null;
   utmTerm: string | null;
   mensagem: string;
-  aceite: boolean;
   antispam: string;
 };
 
@@ -67,7 +66,7 @@ export async function submitInquiry(kind: "contact" | "support" | "career" | "qu
   }
   const response = await fetch("/api/inquiries", {
     method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ kind, values, attachment }), signal: AbortSignal.timeout(20000),
+    body: JSON.stringify({ kind, values: { pageOrigin: window.location.pathname, ...values }, attachment }), signal: AbortSignal.timeout(20000),
   });
   const result = await response.json().catch(() => null);
   if (!response.ok || result?.ok !== true) throw new Error(result?.message || "Não foi possível enviar. Tente novamente ou entre em contato com a AccessLift.");

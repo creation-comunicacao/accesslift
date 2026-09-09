@@ -15,6 +15,7 @@ import type { EquipmentCategorySlug } from "../../types/equipment";
 import type { ContentItem, CtaLink, FaqItem } from "../../data/pageContent";
 
 type SectionListProps = {
+  columns?: 2 | 3;
   eyebrow: string;
   title: string;
   description?: string;
@@ -45,6 +46,7 @@ export function ConversionHero({
   secondaryCta,
   supportItems = [],
   compact = false,
+  image,
 }: {
   eyebrow: string;
   title: string;
@@ -53,14 +55,19 @@ export function ConversionHero({
   secondaryCta?: CtaLink;
   supportItems?: string[];
   compact?: boolean;
+  image?: { src: string; alt: string; width: number; height: number };
 }) {
   return (
-    <section className="industrial-grid border-b border-slate-200 bg-slate-50">
+    <section className={image ? "relative isolate overflow-hidden bg-[#0b2d4d] text-white" : "industrial-grid border-b border-slate-200 bg-slate-50"}>
+      {image && <>
+        <img {...image} className="absolute inset-0 -z-20 h-full w-full object-cover" fetchPriority="high" decoding="async" />
+        <div className="absolute inset-0 -z-10 bg-black/65" aria-hidden />
+      </>}
       <div className={`site-container grid gap-8 py-12 md:py-16 ${compact ? "" : "lg:grid-cols-[1fr_0.72fr] lg:items-end"}`}>
         <div data-reveal="fade-right">
-          <span className="section-eyebrow">{eyebrow}</span>
-          <h1 className="mt-5 text-slate-950">{title}</h1>
-          <p className="mt-5 max-w-2xl text-lg text-slate-600">{description}</p>
+          <span className={`section-eyebrow ${image ? "!text-white" : ""}`}>{eyebrow}</span>
+          <h1 className={image ? "mt-5 max-w-3xl text-white" : "mt-5 text-slate-950"}>{title}</h1>
+          <p className={`mt-5 max-w-2xl text-lg ${image ? "text-white" : "text-slate-600"}`}>{description}</p>
           {compact && (primaryCta || secondaryCta) && <div className="mt-6 flex flex-wrap gap-3">
             {primaryCta && <ContentCta cta={primaryCta} variant="primary" />}
             {secondaryCta && <ContentCta cta={secondaryCta} />}
@@ -104,6 +111,8 @@ export function ValueSection({
   eyebrow = "Proposta de valor",
   cta,
   paragraphs = [],
+  editorial = false,
+  ctaClassName,
 }: {
   title: string;
   description: string;
@@ -111,23 +120,25 @@ export function ValueSection({
   cta?: CtaLink;
   key?: string;
   paragraphs?: string[];
+  editorial?: boolean;
+  ctaClassName?: string;
 }) {
   return (
     <section className="site-container section-space-compact">
-      <div data-reveal="fade-up" className="premium-card rounded-lg p-6 md:p-8">
-        <Badge tone="steel">{eyebrow}</Badge>
+      <div data-reveal="fade-up" className={editorial ? undefined : "premium-card rounded-lg p-6 md:p-8"}>
+        {editorial ? <span className="section-eyebrow">{eyebrow}</span> : <Badge tone="steel">{eyebrow}</Badge>}
         <h2 className="mt-4 text-slate-950">{title}</h2>
         <p className="mt-3 max-w-3xl text-slate-600">{description}</p>
         {paragraphs.map((paragraph) => <p key={paragraph} className="mt-5 max-w-3xl text-slate-600">{paragraph}</p>)}
         {cta && (
-          <ContentCta cta={cta} className="mt-5" />
+          <ContentCta cta={cta} className={`mt-5 ${ctaClassName || ""}`} />
         )}
       </div>
     </section>
   );
 }
 
-export function SectionList({ eyebrow, title, description, items, cta }: SectionListProps) {
+export function SectionList({ eyebrow, title, description, items, cta, columns = 3 }: SectionListProps) {
   if (items.length === 0) {
     return null;
   }
@@ -139,7 +150,7 @@ export function SectionList({ eyebrow, title, description, items, cta }: Section
         <h2 className="mt-4 text-slate-950">{title}</h2>
         {description && <p className="mt-3 max-w-3xl text-slate-600">{description}</p>}
       </div>
-      <div className="reveal-stagger mt-8 grid gap-5 md:grid-cols-3">
+      <div className={`reveal-stagger mt-8 grid gap-5 ${columns === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
         {items.map((item) => {
           const normalized = typeof item === "string" ? { title: item, description: "" } : item;
 

@@ -4,14 +4,16 @@ type OfficialMediaGalleryProps = {
   title: string;
   description?: string;
   images: OfficialMediaItem[];
+  eyebrow?: string;
 };
 
-export function OfficialMediaGallery({ title, description, images }: OfficialMediaGalleryProps) {
+export function OfficialMediaGallery({ title, description, images, eyebrow }: OfficialMediaGalleryProps) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
+    <section className={eyebrow ? "site-container section-space-compact" : "mx-auto max-w-7xl px-4 py-12 md:px-6"}>
       <div className="mb-6 max-w-3xl">
-        <h2 className="text-slate-950">{title}</h2>
-        {description && <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>}
+        {eyebrow && <span className="section-eyebrow">{eyebrow}</span>}
+        <h2 className={eyebrow ? "mt-4 text-slate-950" : "text-slate-950"}>{title}</h2>
+        {description && <p className={eyebrow ? "mt-3 text-slate-600" : "mt-3 text-sm leading-6 text-slate-600"}>{description}</p>}
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {images.map((image) => (

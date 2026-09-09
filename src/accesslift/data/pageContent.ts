@@ -1,3 +1,4 @@
+import { applicationsPage } from "./applicationsPage";
 import { platformsPageConfig } from "./platformsPage";
 import type { EquipmentCategorySlug } from "../types/equipment";
 import type { PageSeo } from "../types/routes";
@@ -618,101 +619,7 @@ export const servicePages: ServicePageConfig[] = [
 ];
 
 export const segmentPages: SegmentPageConfig[] = [
-  {
-    path: "/segmentos-e-aplicacoes/",
-    eyebrow: "Aplicações",
-    title: "Plataformas Elevatórias para Diferentes Segmentos e Aplicações",
-    description: "Soluções para trabalhos em altura em ambientes industriais, obras, instalações comerciais e outras operações que exigem acesso elevado.",
-    primaryCta: { label: "Encontrar uma plataforma", href: "/equipamentos/" },
-    secondaryCta: { label: "Solicitar orçamento", href: "/solicite-orcamento/" },
-    context: "Altura é apenas um dos fatores envolvidos na escolha de uma plataforma elevatória.",
-    needs: ["Altura aproximada", "Tipo de acesso", "Espaço disponível", "Obstáculos", "Capacidade", "Condições do local"],
-    solutions: ["Plataformas tesoura", "Plataformas articuladas", "Orçamento orientado pela operação"],
-    applications: ["Indústria", "Construção civil", "Supermercados", "Atacados"],
-    differentials: ["Entrega própria", "Retirada própria", "Assistência técnica", "Treinamento"],
-    relatedCategories: ["plataformas-tesoura", "plataformas-articuladas"],
-    contentSections: [
-      {
-        eyebrow: "Escolha",
-        title: "O equipamento deve acompanhar as características do trabalho",
-        description: "Altura é apenas um dos fatores envolvidos na escolha de uma plataforma elevatória. Tipo de acesso, espaço disponível, obstáculos, necessidade de alcance horizontal, capacidade da plataforma e condições do local também influenciam a definição do equipamento.",
-      },
-      {
-        eyebrow: "Segmentos",
-        title: "Aplicações por ambiente",
-        items: [
-          {
-            title: "Plataformas elevatórias para indústria",
-            description: "Ambientes industriais podem exigir acesso elevado para manutenção, instalações, inspeções, montagens e intervenções em estruturas e equipamentos.",
-            cta: { label: "Plataformas para indústria", href: "/segmentos/industria/" },
-          },
-          {
-            title: "Plataformas elevatórias para construção civil",
-            description: "Em obras, plataformas podem apoiar instalação, montagem, acabamento, manutenção e acesso a pontos elevados.",
-            cta: { label: "Plataformas para construção civil", href: "/segmentos/construcao-civil/" },
-          },
-          {
-            title: "Plataformas para supermercados e hipermercados",
-            description: "Grandes instalações comerciais podem demandar trabalhos em altura para manutenção, iluminação, infraestrutura e comunicação visual.",
-            cta: { label: "Plataformas para supermercados", href: "/segmentos/supermercados-e-hipermercados/" },
-          },
-          {
-            title: "Plataformas elevatórias para atacados",
-            description: "Operações atacadistas possuem grandes áreas, instalações elevadas e necessidades de manutenção e infraestrutura.",
-            cta: { label: "Plataformas para atacados", href: "/segmentos/atacados/" },
-          },
-        ],
-      },
-      {
-        eyebrow: "Tipo",
-        title: "O tipo de trabalho ajuda a definir a plataforma",
-        items: [
-          {
-            title: "Plataforma Tesoura",
-            description: "Pode ser considerada quando o trabalho exige principalmente elevação vertical e existe possibilidade de posicionar o equipamento abaixo da área de execução.",
-            cta: { label: "Ver plataformas tesoura", href: "/plataformas-tesoura/" },
-          },
-          {
-            title: "Plataforma Articulada",
-            description: "Pode ser considerada quando existem obstáculos ou quando o ponto de trabalho exige alcance horizontal além da elevação.",
-            cta: { label: "Ver plataformas articuladas", href: "/plataformas-articuladas/" },
-          },
-        ],
-      },
-      {
-        eyebrow: "Planejamento",
-        title: "Não escolha apenas pela altura",
-        description: "Para identificar uma plataforma, considere altura aproximada, acesso ao local, largura e altura de passagens, espaço para posicionamento, obstáculos, alcance horizontal, operadores, ferramentas, piso, ambiente e período de utilização.",
-        cta: { label: "Solicitar orçamento", href: "/solicite-orcamento/" },
-      },
-    ],
-    faq: [
-      {
-        question: "Segmentos são filtros técnicos de equipamentos?",
-        answer: "Não. As páginas de segmento são editoriais e ajudam a explicar aplicações por tipo de ambiente.",
-      },
-      {
-        question: "Um equipamento pode atender mais de um segmento?",
-        answer: "Sim, desde que a aplicação faça sentido para a altura, acesso, capacidade e condições do local.",
-      },
-      {
-        question: "Altura basta para escolher a plataforma?",
-        answer: "Não. Acesso, obstáculos, espaço, capacidade e alcance horizontal também devem ser avaliados.",
-      },
-    ],
-    finalCta: {
-      title: "Conte para a Accesslift como será sua operação",
-      description: "Informe local, altura aproximada, período e características do trabalho para consultar as opções disponíveis.",
-      primary: { label: "Solicitar orçamento", href: "/solicite-orcamento/" },
-      secondary: { label: "Ver equipamentos", href: "/equipamentos/" },
-    },
-    seo: {
-      h1: "Plataformas Elevatórias para Diferentes Segmentos e Aplicações",
-      title: "Plataformas Elevatórias para Diferentes Aplicações | Accesslift",
-      description: "Plataformas elevatórias para indústria, construção civil, supermercados, hipermercados e atacados. Conheça aplicações e encontre o equipamento adequado.",
-      canonicalPath: "/segmentos-e-aplicacoes/",
-    },
-  },
+  applicationsPage,
   {
     path: "/segmentos/construcao-civil/",
     eyebrow: "Segmento",

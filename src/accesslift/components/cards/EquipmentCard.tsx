@@ -12,11 +12,12 @@ type EquipmentCardProps = {
   quoteLabel?: string;
   quoteWhatsappMessage?: string;
   compact?: boolean;
+  detailsVariant?: "secondary" | "dark";
   onDetailsClick?: () => void;
   onQuoteClick?: () => void;
 };
 
-export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage, compact = false, onDetailsClick, onQuoteClick }: EquipmentCardProps) {
+export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage, compact = false, onDetailsClick, onQuoteClick, detailsVariant = "secondary" }: EquipmentCardProps) {
   const accent = getManufacturerAccent(equipment.brand);
   const categoryLabel =
     equipment.category === "plataformas-tesoura"
@@ -95,7 +96,7 @@ export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage, com
         )}
       </dl>
       <div className="mt-6 grid gap-3">
-        <Button href={`/equipamentos/${equipment.slug}/`} variant="secondary" className="w-full" onClick={onDetailsClick}>
+        <Button href={`/equipamentos/${equipment.slug}/`} variant={detailsVariant} className="w-full" onClick={onDetailsClick}>
           Ver detalhes
         </Button>
         <RequestQuoteButton

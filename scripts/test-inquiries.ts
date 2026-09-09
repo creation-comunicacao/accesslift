@@ -26,10 +26,29 @@ test("inquiries: validation and acknowledged delivery", async (t) => {
       assert.equal(response.status, 503); assert.equal(response.ok, false);
     });
     process.env.INQUIRIES_WEBHOOK_URL = "https://example.invalid/inquiries";
+    await t.test("quote requires email and valid phone, not a contact consent checkbox", async () => {
+      const values = { nome: "Teste", whatsapp: "11999999999", email: "teste@example.invalid", cidade: "São Paulo", brand: "JLG", model: "3246ES", pageOrigin: "/equipamentos/jlg-3246es/" };
+      for (const changes of [{ email: "" }, { email: "invalido" }, { whatsapp: "abc" }, { whatsapp: "123" }]) {
+        assert.equal((await request({ kind: "quote", values: { ...values, ...changes } })).status, 400);
+      }
+      globalThis.fetch = async (_url, init) => {
+        const payload = JSON.parse(String(init?.body));
+        assert.equal(payload.email.to, "comercial@accesslift.com.br");
+        assert(payload.email.subject.includes("JLG 3246ES"));
+        assert(payload.email.text.includes("/equipamentos/jlg-3246es/"));
+        assert.equal(payload.values.model, "3246ES");
+        return new Response('{"ok":true,"emailSent":true,"recipient":"comercial@accesslift.com.br"}');
+      };
+      assert.equal((await request({ kind: "quote", values })).ok, true);
+      for (const receipt of [{ ok: true }, { ok: true, emailSent: false }, { ok: true, emailSent: true, recipient: "wrong@example.invalid" }]) {
+        globalThis.fetch = async () => new Response(JSON.stringify(receipt));
+        assert.equal((await request({ kind: "quote", values })).ok, false);
+      }
+    });
     await t.test("forwards contact and requires receiver acknowledgement", async () => {
       globalThis.fetch = async (_url, init) => {
         assert.equal(JSON.parse(String(init?.body)).kind, "contact");
-        return new Response(JSON.stringify({ ok: true }), { status: 200 });
+        return new Response(JSON.stringify({ ok: true, emailSent: true, recipient: "comercial@accesslift.com.br" }), { status: 200 });
       };
       assert.equal((await request({ kind: "contact", values: contact })).ok, true);
       globalThis.fetch = async () => new Response("{}", { status: 200 });
@@ -40,7 +59,7 @@ test("inquiries: validation and acknowledged delivery", async (t) => {
       assert.equal((await request({ kind: "support", values })).status, 400);
       globalThis.fetch = async (_url, init) => {
         assert.equal(JSON.parse(String(init?.body)).values.locacaoAccesslift, false);
-        return new Response('{"ok":true}');
+        return new Response('{"ok":true,"emailSent":true,"recipient":"comercial@accesslift.com.br"}');
       };
       assert.equal((await request({ kind: "support", values: { ...values, locacaoAccesslift: false } })).ok, true);
     });
@@ -52,7 +71,7 @@ test("inquiries: validation and acknowledged delivery", async (t) => {
       assert.equal((await request({ kind: "career", values, attachment: { ...attachment, content: Buffer.from("not a pdf").toString("base64") } })).status, 400);
       globalThis.fetch = async (_url, init) => {
         assert.deepEqual(JSON.parse(String(init?.body)).attachment, attachment);
-        return new Response('{"ok":true}');
+        return new Response('{"ok":true,"emailSent":true,"recipient":"comercial@accesslift.com.br"}');
       };
       assert.equal((await request({ kind: "career", values, attachment })).ok, true);
     });

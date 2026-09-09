@@ -65,7 +65,7 @@ export function PlatformsPage() {
               </div>}
               <h3 className="text-slate-950">{category.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{category.description}</p>
-              <Button href={category.href} variant="secondary" className="mt-5" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>{category.label}</Button>
+              <Button href={category.href} variant="dark" className="mt-5" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>{category.label}</Button>
             </article>;
           })}
         </div>
@@ -83,7 +83,7 @@ export function PlatformsPage() {
         <div className="mt-8 max-w-3xl" data-reveal="fade-up">
           <h3 className="text-slate-950">Precisa de ajuda para escolher?</h3>
           <p className="mt-3 text-slate-600">{content.selection.closing}</p>
-          <Button href="/contato/" variant="secondary" className="mt-5" icon={<Headphones className="h-4 w-4" aria-hidden />}>Fale com um especialista</Button>
+          <Button href="/contato/" variant="dark" className="mt-5" icon={<Headphones className="h-4 w-4" aria-hidden />}>Fale com um especialista</Button>
         </div>
       </div>
     </section>
@@ -101,10 +101,10 @@ export function PlatformsPage() {
       <div className="site-container">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <SectionHeading eyebrow="Catálogo" title="Equipamentos relacionados" />
-          <Button href="/equipamentos/" variant="secondary" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>Ver todos os equipamentos</Button>
+          <Button href="/equipamentos/" variant="dark" icon={<ArrowRight className="h-4 w-4" aria-hidden />}>Ver todos os equipamentos</Button>
         </div>
         <div className="reveal-stagger mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {related.map(equipment => <EquipmentCard key={equipment.id} equipment={equipment} compact quoteLabel="Solicitar cotação" />)}
+          {related.map(equipment => <EquipmentCard key={equipment.id} equipment={equipment} compact detailsVariant="dark" quoteLabel="Solicitar cotação" />)}
         </div>
       </div>
     </section>

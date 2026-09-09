@@ -65,18 +65,13 @@ export function ContactPage() {
           <LeadForm />
         </div>
       </section>
-      <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-12 md:grid-cols-2 md:px-6">
+      <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-12 md:px-6">
           <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-5">
             <h3 className="text-slate-950">Precisa de suporte técnico?</h3>
             <p className="mt-2 text-sm leading-6 text-slate-600">
               Para ocorrências relacionadas a equipamentos em operação, informe o modelo da plataforma, local e descrição da situação.
             </p>
             <Button href="/servicos/assistencia-tecnica/" variant="secondary" className="mt-4" onClick={() => trackEvent({ name: "contact_assistance_click" })}>Solicitar assistência</Button>
-          </div>
-          <div className="mt-6 rounded-lg border border-slate-200 bg-white p-5 soft-shadow">
-            <h3 className="text-slate-950">Onde estamos</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Accesslift Plataformas Elevatórias</p>
-            <p className="mt-1 text-sm font-semibold text-slate-800">{contactConfig.address}</p>
           </div>
       </section>
     </>

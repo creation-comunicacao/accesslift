@@ -2,6 +2,7 @@ import type { MouseEvent, ReactNode } from "react";
 import { navigateTo } from "../../utils/navigation";
 
 type ButtonProps = {
+  type?: "button" | "submit" | "reset";
   children: ReactNode;
   href?: string;
   variant?: "primary" | "secondary" | "ghost" | "dark" | "whatsapp";
@@ -21,6 +22,7 @@ const variants = {
 };
 
 export function Button({
+  type,
   children,
   href,
   variant = "primary",
@@ -39,7 +41,7 @@ export function Button({
 
   if (!href || disabled) {
     return (
-      <button className={classes} disabled={disabled} title={title} onClick={onClick}>
+      <button type={type} className={classes} disabled={disabled} title={title} onClick={onClick}>
         {iconNode}
         <span>{children}</span>
       </button>

@@ -1,4 +1,6 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { buildInquiryEmail, commercialRecipient } from "../server/inquiryEmail";
+import { validEmail, validPhone } from "../src/accesslift/utils/inquiryValidation";
 
 const maxFileBytes = 2 * 1024 * 1024;
 const maxRequestBytes = 3 * 1024 * 1024;
@@ -6,7 +8,7 @@ const requiredByKind: Record<string, string[]> = {
   contact: ["nome", "telefone", "email", "interesse", "mensagem"],
   support: ["nome", "whatsapp", "email", "cidade", "marca", "equipamento", "descricao"],
   career: ["name", "email", "phone", "area"],
-  quote: ["nome", "whatsapp", "cidade"],
+  quote: ["nome", "whatsapp", "email", "cidade"],
 };
 
 export default async function inquiries(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
@@ -41,9 +43,10 @@ export default async function inquiries(req: IncomingMessage & { body?: unknown 
     const { kind, values, attachment } = body as { kind: string; values: Record<string, unknown>; attachment?: { name: string; content: string } };
     if (!Object.hasOwn(requiredByKind, kind) || !values || typeof values !== "object" || values.antispam) return reply(400, "Solicitação inválida.");
     if (requiredByKind[kind].some((field) => typeof values[field] !== "string" || !(values[field] as string).trim())) return reply(400, "Preencha os campos obrigatórios.");
-    if (values.email && (typeof values.email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email))) return reply(400, "Informe um e-mail válido.");
+    if (typeof values.email !== "string" || !validEmail(values.email)) return reply(400, "Informe um e-mail válido.");
+    const phone = values.whatsapp || values.telefone || values.phone;
+    if (typeof phone !== "string" || !validPhone(phone)) return reply(400, "Informe um telefone válido com DDD.");
     if (kind === "support" && typeof values.locacaoAccesslift !== "boolean") return reply(400, "Informe se o equipamento está em locação.");
-    if (kind === "quote" && values.aceite !== true) return reply(400, "Confirme o contato para enviar.");
     if (kind === "career") {
       if (!attachment || typeof attachment.name !== "string" || !/\.(pdf|doc|docx)$/i.test(attachment.name) || typeof attachment.content !== "string" || !/^[A-Za-z0-9+/]+={0,2}$/.test(attachment.content)) return reply(400, "Anexe um currículo em PDF, DOC ou DOCX.");
       const bytes = Buffer.from(attachment.content, "base64");
@@ -58,10 +61,10 @@ export default async function inquiries(req: IncomingMessage & { body?: unknown 
     const response = await fetch(endpoint, {
       method: "POST", signal: AbortSignal.timeout(15000),
       headers: { "Content-Type": "application/json", ...(process.env.INQUIRIES_WEBHOOK_TOKEN ? { Authorization: `Bearer ${process.env.INQUIRIES_WEBHOOK_TOKEN}` } : {}) },
-      body: JSON.stringify({ kind, values, ...(kind === "career" ? { attachment } : {}) }),
+      body: JSON.stringify({ kind, values, email: buildInquiryEmail(kind, values), ...(kind === "career" ? { attachment } : {}) }),
     });
     const result = await response.json().catch(() => null);
-    if (!response.ok || result?.ok !== true) return reply(502, "Não foi possível enviar. Tente novamente ou utilize os canais de contato.");
+    if (!response.ok || result?.ok !== true || result.emailSent !== true || result.recipient !== commercialRecipient) return reply(502, "Não foi possível enviar. Tente novamente ou utilize os canais de contato.");
     return reply(200, "Solicitação enviada com sucesso.", true);
   } catch {
     return reply(400, "Não foi possível enviar. Confira os dados ou entre em contato com a AccessLift.");

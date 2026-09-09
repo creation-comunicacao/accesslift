@@ -1,5 +1,7 @@
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
+import { Button } from "../buttons/Button";
+import { validEmail, validPhone } from "../../utils/inquiryValidation";
 import { trackEvent } from "../../analytics/analytics";
 import { equipmentEventPayload } from "../../catalog/equipmentPresentation";
 import { PrivacyNotice } from "./PrivacyNotice";
@@ -19,7 +21,15 @@ const getStoredUtm = (key: string) => {
 
 const quoteOrigin = () => {
   const origin = new URLSearchParams(window.location.search).get("origem") || "";
-  return ["construction", "industry", "wholesale", "retail", "services", "service_area", "preventiva", "company"].includes(origin) ? origin : null;
+  return ["construction", "industry", "wholesale", "retail", "services", "service_area", "preventiva", "company", "applications"].includes(origin) ? origin : null;
+};
+
+const quoteSourcePaths: Record<string, string> = {
+  construction: "/segmentos/construcao-civil/", industry: "/segmentos/industria/",
+  wholesale: "/segmentos/atacados/", retail: "/segmentos/supermercados-e-hipermercados/",
+  services: "/servicos/", service_area: "/area-de-atendimento/",
+  preventiva: "/servicos/manutencao-preventiva/", company: "/empresa/",
+  applications: "/segmentos-e-aplicacoes/",
 };
 
 const createInitialValues = (equipment: Equipment | null): QuoteRequestPayload => ({
@@ -36,31 +46,30 @@ const createInitialValues = (equipment: Equipment | null): QuoteRequestPayload =
   model: equipment?.model || null,
   category: equipment?.category === "plataformas-tesoura" ? "tesoura" : equipment?.category === "plataformas-articuladas" ? "articulada" : null,
   power: equipment?.specs.alimentacao?.toLowerCase().includes("eletric") ? "eletrica" : null,
-  pageOrigin: quoteOrigin() || window.location.pathname,
+  pageOrigin: equipment ? `/equipamentos/${equipment.slug}/` : quoteSourcePaths[quoteOrigin() || ""] || window.location.pathname,
   utmSource: getStoredUtm("utm_source"),
   utmMedium: getStoredUtm("utm_medium"),
   utmCampaign: getStoredUtm("utm_campaign"),
   utmContent: getStoredUtm("utm_content"),
   utmTerm: getStoredUtm("utm_term"),
   mensagem: "",
-  aceite: false,
   antispam: "",
 });
 
 const validate = (values: QuoteRequestPayload) => {
   const errors: Partial<Record<keyof QuoteRequestPayload, string>> = {};
   if (!values.nome.trim()) errors.nome = "Informe seu nome.";
-  if (!values.whatsapp.trim()) errors.whatsapp = "Informe seu WhatsApp.";
+  if (!validPhone(values.whatsapp)) errors.whatsapp = "Informe um WhatsApp válido com DDD.";
   if (!values.cidade.trim()) errors.cidade = "Informe sua cidade.";
-  if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+  if (!validEmail(values.email)) {
     errors.email = "Informe um e-mail válido.";
   }
-  if (!values.aceite) errors.aceite = "Aceite o contato para enviar a solicitação.";
   if (values.antispam) errors.antispam = "Falha na validação antispam.";
   return errors;
 };
 
-export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment | null }) {
+export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment | null; key?: string }) {
+  const started = useRef(false);
   const initialValues = useMemo(() => createInitialValues(equipment), [equipment]);
   const [values, setValues] = useState<QuoteRequestPayload>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof QuoteRequestPayload, string>>>({});
@@ -74,6 +83,12 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
 
   return (
     <form
+      noValidate
+      onChange={() => {
+        if (started.current) return;
+        started.current = true;
+        trackEvent({ name: "quote_form_start", payload: { ...(equipment ? equipmentEventPayload(equipment) : {}), source_page: values.pageOrigin } });
+      }}
       data-reveal="fade-up"
       className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
@@ -95,7 +110,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           await submitQuoteRequest(values);
           setStatus("success");
           setMessage(
-            "Solicitação enviada. A equipe Accesslift avaliará a necessidade e entrará em contato para alinhar equipamento, período, local e condições comerciais.",
+            "Solicitação enviada com sucesso. Recebemos as informações do seu orçamento. A equipe AccessLift poderá entrar em contato pelos dados informados para dar continuidade ao atendimento.",
           );
           trackEvent({
             name: "form_submit",
@@ -107,12 +122,13 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
             },
           });
           const origin = quoteOrigin();
+          trackEvent({ name: "quote_form_submit", payload: { ...(equipment ? equipmentEventPayload(equipment) : {}), source_page: values.pageOrigin } });
           if (equipment) trackEvent({ name: "equipment_quote_submit", payload: equipmentEventPayload(equipment) });
           if (origin) trackEvent({ name: `${origin}_form_submit`, payload: { form: "quote" } });
           setValues(createInitialValues(equipment));
-        } catch (error) {
+        } catch {
           setStatus("error");
-          setMessage(error instanceof Error ? error.message : "Não foi possível enviar.");
+          setMessage("Não foi possível enviar sua solicitação. Tente novamente ou entre em contato com a AccessLift pelos canais disponíveis no site.");
         }
       }}
     >
@@ -141,6 +157,8 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
         <input
           className={inputClasses}
           autoComplete="name"
+          required
+          aria-invalid={Boolean(errors.nome)}
           value={values.nome}
           onChange={(event) => updateValue("nome", event.target.value)}
           placeholder="Seu nome"
@@ -164,6 +182,9 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
         <input
           className={inputClasses}
           autoComplete="tel"
+          type="tel"
+          required
+          aria-invalid={Boolean(errors.whatsapp)}
           inputMode="tel"
           value={values.whatsapp}
           onChange={(event) => updateValue("whatsapp", event.target.value)}
@@ -173,10 +194,13 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
       </label>
 
       <label className={labelClasses}>
-        E-mail
+        E-mail *
         <input
           className={inputClasses}
           autoComplete="email"
+          type="email"
+          required
+          aria-invalid={Boolean(errors.email)}
           inputMode="email"
           value={values.email}
           onChange={(event) => updateValue("email", event.target.value)}
@@ -190,6 +214,8 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
         <input
           className={inputClasses}
           autoComplete="address-level2"
+          required
+          aria-invalid={Boolean(errors.cidade)}
           value={values.cidade}
           onChange={(event) => updateValue("cidade", event.target.value)}
           placeholder="Cidade onde a plataforma será utilizada"
@@ -232,8 +258,8 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           onChange={(event) => updateValue("tipo", event.target.value)}
         >
           <option value="nao-sei">Não sei qual preciso</option>
-          <option value="tesoura">Tesoura</option>
-          <option value="articulada">Articulada</option>
+          <option value="tesoura">Plataforma Tesoura</option>
+          <option value="articulada">Plataforma Articulada</option>
         </select>
       </label>
 
@@ -253,21 +279,9 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
         />
       </label>
 
-      <PrivacyNotice />
-
-      <label className="flex gap-3 rounded-md bg-slate-50 p-3 text-sm font-semibold text-slate-700 md:col-span-2">
-        <input
-          type="checkbox"
-          checked={values.aceite}
-          onChange={(event) => updateValue("aceite", event.target.checked)}
-          className="mt-1 h-4 w-4 accent-[#0b2d4d]"
-        />
-        Aceito ser contatado pela Accesslift para retorno sobre esta solicitação.
-      </label>
-      {errors.aceite && <span className="text-xs font-bold text-red-600 md:col-span-2">{errors.aceite}</span>}
-
       {message && (
         <div
+          role={status === "success" ? "status" : "alert"}
           className={`flex items-start gap-2 rounded-md p-3 text-sm font-semibold md:col-span-2 ${
             status === "success" ? "bg-[#0b2d4d]/8 text-[#0b2d4d]" : "bg-red-50 text-red-700"
           }`}
@@ -277,13 +291,15 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
         </div>
       )}
 
-      <button
-        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-slate-950 px-4 text-sm font-extrabold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50 md:col-span-2"
+      <PrivacyNotice />
+      <Button
+        type="submit"
+        className="md:col-span-2"
+        icon={<Send className="h-4 w-4" aria-hidden />}
         disabled={status === "loading"}
       >
-        <Send className="h-4 w-4" aria-hidden />
         {status === "loading" ? "Enviando..." : "Solicitar orçamento"}
-      </button>
+      </Button>
     </form>
   );
 }
