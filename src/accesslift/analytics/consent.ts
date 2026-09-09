@@ -1,3 +1,5 @@
+import { getTagManagerId } from "./tagManager";
+
 export type CookiePreferences = { version: 1; necessary: true; analytics: boolean; advertising: boolean };
 export const consentKey = "accesslift-cookie-preferences";
 let preferences: CookiePreferences | null = null;
@@ -29,7 +31,9 @@ let booted = false;
 export function applyPreferences(value: CookiePreferences | null) {
   if (typeof window === "undefined") return;
   if (!booted) {
-    googleCommand("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+    if (!window.dataLayer?.some(command => command[0] === "consent" && command[1] === "default")) {
+      googleCommand("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+    }
     booted = true;
   }
   googleCommand("consent", "update", {
@@ -38,7 +42,9 @@ export function applyPreferences(value: CookiePreferences | null) {
     ad_user_data: value?.advertising ? "granted" : "denied",
     ad_personalization: value?.advertising ? "granted" : "denied",
   });
-  const tags = configuredTags();
+  const gtmId = getTagManagerId();
+  window.dataLayer!.push({ event: "accesslift_consent_update", analytics_consent: Boolean(value?.analytics), advertising_consent: Boolean(value?.advertising) });
+  const tags = gtmId ? { analytics: "", advertising: "" } : configuredTags();
   if (tags.analytics) (window as unknown as Record<string, unknown>)[`ga-disable-${tags.analytics}`] = !value?.analytics;
   for (const [category, id] of Object.entries(tags)) {
     if (!id || !value?.[category as "analytics" | "advertising"] || initialized.has(id)) continue;

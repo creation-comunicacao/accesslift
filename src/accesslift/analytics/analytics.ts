@@ -1,4 +1,5 @@
 import { googleCommand, readPreferences } from "./consent";
+import { getTagManagerId } from "./tagManager";
 
 export type AnalyticsEventName = string;
 
@@ -18,6 +19,12 @@ export const trackEvent = (event: AnalyticsEvent) => {
   if (typeof window === "undefined") return;
   const consent = readPreferences();
   const career = event.name.startsWith("career_");
+  if (getTagManagerId()) {
+    if (!consent?.analytics && (!consent?.advertising || career)) return;
+    window.dataLayer ||= [];
+    window.dataLayer.push({ ...event.payload, event: event.name, analytics_consent: Boolean(consent?.analytics), advertising_consent: Boolean(consent?.advertising && !career) });
+    return;
+  }
   const destinations: string[] = [];
   const env = import.meta.env;
   if (consent?.analytics && /^G-[A-Z0-9]+$/.test(env.VITE_GA4_ID || "")) destinations.push(env.VITE_GA4_ID);
