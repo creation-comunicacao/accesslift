@@ -1,5 +1,5 @@
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { trackEvent } from "../../analytics/analytics";
 import { PrivacyNotice } from "./PrivacyNotice";
 import { submitSupportRequest, type SupportRequestPayload } from "../../services/leadService";
@@ -22,6 +22,7 @@ const initialValues: SupportRequestPayload = {
 };
 
 export function SupportRequestForm() {
+  const submitting = useRef(false);
   const [values, setValues] = useState<SupportRequestPayload>(initialValues);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -37,13 +38,14 @@ export function SupportRequestForm() {
       className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 premium-shadow md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
-        if (status === "loading") return;
+        if (submitting.current) return;
         if (!valid) {
           setStatus("error");
           setMessage("Informe nome, WhatsApp, e-mail válido, cidade, marca, modelo, descrição e se o equipamento está em locação.");
           return;
         }
 
+        submitting.current = true;
         setStatus("loading");
         setMessage("");
         try {
@@ -55,6 +57,8 @@ export function SupportRequestForm() {
         } catch (error) {
           setStatus("error");
           setMessage(error instanceof Error ? error.message : "Não foi possível registrar a solicitação.");
+        } finally {
+          submitting.current = false;
         }
       }}
     >
@@ -67,7 +71,7 @@ export function SupportRequestForm() {
       <label className={labelClasses}>Marca do equipamento *<input className={inputClasses} value={values.marca} onChange={(event) => update("marca", event.target.value)} /></label>
       <label className={`${labelClasses} md:col-span-2`}>Modelo do equipamento *<input className={inputClasses} value={values.equipamento} onChange={(event) => update("equipamento", event.target.value)} /></label>
       <label className={`${labelClasses} md:col-span-2`}>Descrição da ocorrência *<textarea className={`${inputClasses} min-h-32 py-3`} value={values.descricao} onChange={(event) => update("descricao", event.target.value)} placeholder="Descreva a situação, local e qualquer informação que ajude a avaliação técnica." /></label>
-      <fieldset className="rounded-md bg-slate-50 p-3 text-sm font-semibold text-slate-700 md:col-span-2"><legend>O equipamento está em locação com a AccessLift? *</legend><div className="flex gap-6">{[true, false].map((value) => <label key={String(value)} className="flex items-center gap-2"><input type="radio" name="locacaoAccesslift" checked={values.locacaoAccesslift === value} onChange={() => update("locacaoAccesslift", value)} />{value ? "Sim" : "Não"}</label>)}</div></fieldset>
+      <fieldset className="rounded-md bg-slate-50 p-3 text-sm font-semibold text-slate-700 md:col-span-2"><legend>O equipamento está em locação com a Accesslift? *</legend><div className="flex gap-6">{[true, false].map((value) => <label key={String(value)} className="flex items-center gap-2"><input type="radio" name="locacaoAccesslift" checked={values.locacaoAccesslift === value} onChange={() => update("locacaoAccesslift", value)} />{value ? "Sim" : "Não"}</label>)}</div></fieldset>
       <PrivacyNotice />
       {message && <div className={`flex items-start gap-2 rounded-md p-3 text-sm font-semibold md:col-span-2 ${status === "success" ? "bg-[#0b2d4d]/8 text-[#0b2d4d]" : "bg-red-50 text-red-700"}`} role={status === "error" ? "alert" : "status"}>{status === "success" ? <CheckCircle2 className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}{message}</div>}
       <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-slate-950 px-4 text-sm font-extrabold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50 md:col-span-2" disabled={status === "loading"}><Send className="h-4 w-4" aria-hidden />{status === "loading" ? "Enviando..." : "Enviar solicitação de assistência"}</button>

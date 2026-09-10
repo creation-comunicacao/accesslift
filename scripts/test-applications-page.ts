@@ -25,7 +25,7 @@ test("every form email uses the commercial recipient and omits empty/unknown dat
     assert.equal(email.to, "comercial@accesslift.com.br");
     assert.equal(email.replyTo, "teste@example.invalid");
     assert(!/undefined|null|wrong@example/.test(email.text));
-    assert(email.text.includes("Origem: Site AccessLift"));
-    assert(email.subject.includes("Site AccessLift"));
+    assert(email.text.includes("Origem: Site Accesslift"));
+    assert(email.subject.includes("Site Accesslift"));
   }
 });

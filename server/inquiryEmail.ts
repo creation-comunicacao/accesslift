@@ -12,7 +12,7 @@ const labels: Record<string, string> = {
   cidade: "Cidade da operação", periodo: "Período desejado", altura: "Altura aproximada",
   tipo: "Tipo de plataforma", mensagem: "Mensagem", interesse: "Assunto",
   marca: "Marca", equipamento: "Equipamento", descricao: "Descrição",
-  locacaoAccesslift: "Equipamento em locação com a AccessLift", area: "Área de interesse",
+  locacaoAccesslift: "Equipamento em locação com a Accesslift", area: "Área de interesse",
 };
 const choices: Record<string, string> = {
   diaria: "Diária", semanal: "Semanal", mensal: "Mensal",
@@ -23,8 +23,8 @@ const textValue = (value: unknown) => typeof value === "string" ? value.trim() :
 
 export function buildInquiryEmail(kind: string, values: Record<string, unknown>) {
   const equipment = [textValue(values.brand), textValue(values.model)].filter(Boolean).join(" ");
-  const subject = `${purposes[kind] || "Nova solicitação"}${equipment ? ` — ${equipment}` : ""} — Site AccessLift`.replace(/[\r\n]/g, " ");
-  const lines = ["Origem: Site AccessLift", `Finalidade: ${purposes[kind] || kind}`];
+  const subject = `${purposes[kind] || "Nova solicitação"}${equipment ? ` — ${equipment}` : ""} — Site Accesslift`.replace(/[\r\n]/g, " ");
+  const lines = ["Origem: Site Accesslift", `Finalidade: ${purposes[kind] || kind}`];
   if (equipment) lines.push(`Equipamento de interesse: ${equipment}`);
   for (const [key, label] of Object.entries(labels)) {
     const value = textValue(values[key]);

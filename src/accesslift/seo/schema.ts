@@ -12,7 +12,7 @@ export const buildOrganizationSchema = (): JsonLd => ({
   "@type": ["Organization", "LocalBusiness"],
   name: "Accesslift",
   url: SITE_ORIGIN,
-  areaServed: "São Paulo e regiões em raio de até 150 km da base",
+  areaServed: "São Paulo e região, com outras localidades sob avaliação comercial",
 });
 
 export const buildBreadcrumbSchema = (items: BreadcrumbItem[]): JsonLd | null => {
@@ -20,7 +20,7 @@ export const buildBreadcrumbSchema = (items: BreadcrumbItem[]): JsonLd | null =>
     return null;
   }
 
-  const allItems = [{ label: "Inicio", path: "/" }, ...items];
+  const allItems = [{ label: "Início", path: "/" }, ...items];
 
   return {
     "@context": "https://schema.org",

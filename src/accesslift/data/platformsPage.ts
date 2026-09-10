@@ -18,12 +18,12 @@ export const platformsContent = {
   selection: {
     title: "O que considerar na escolha de uma plataforma elevatória?",
     criteria: ["Altura de trabalho", "Alcance horizontal", "Espaço disponível", "Capacidade da plataforma", "Condição do local", "Acesso e obstáculos"],
-    closing: "A equipe AccessLift pode orientar na identificação do equipamento mais adequado às características da sua operação.",
+    closing: "A equipe Accesslift pode ajudar a identificar o equipamento mais adequado de acordo com a altura, o ambiente, os acessos e as características da operação.",
   },
   applications: {
     title: "Plataformas para diferentes aplicações",
     paragraphs: [
-      "A AccessLift disponibiliza equipamentos para diferentes necessidades de trabalho em altura, incluindo opções elétricas, adequadas especialmente a operações que exigem baixo nível de ruído e ausência de emissão direta de gases durante o uso.",
+      "A Accesslift disponibiliza equipamentos para diferentes necessidades de trabalho em altura, incluindo opções elétricas, adequadas especialmente a operações que exigem baixo nível de ruído e ausência de emissão direta de gases durante o uso.",
       "A escolha deve considerar as características do ambiente e da operação.",
     ],
   },
@@ -39,7 +39,7 @@ export const platformsPageConfig: CommercialPageConfig = {
   path: "/plataformas-elevatorias/",
   eyebrow: "Plataformas elevatórias",
   title: "Plataformas Elevatórias para Trabalhos em Altura",
-  description: "Plataformas tesoura e articuladas para diferentes trabalhos em altura, com equipamentos selecionados para atender às necessidades de cada operação, entrega própria e suporte técnico especializado da AccessLift.",
+  description: "Plataformas tesoura e articuladas para diferentes trabalhos em altura, com equipamentos selecionados para atender às necessidades de cada operação, entrega própria e suporte técnico especializado da Accesslift.",
   valueProposition: "",
   benefits: platformsContent.differentials,
   process: [],

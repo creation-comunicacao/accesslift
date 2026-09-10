@@ -37,7 +37,7 @@ type CommercialPageTemplateProps = {
 };
 
 const rentalWhatsappMessage =
-  "Olá! Estou no site da AccessLift e gostaria de solicitar informações sobre locação de plataformas elevatórias.";
+  "Olá! Estou no site da Accesslift e gostaria de solicitar informações sobre locação de plataformas elevatórias.";
 
 const rentalPeriodItems = [
   {
@@ -82,7 +82,7 @@ const rentalSteps = [
   },
   {
     title: "Entrega do equipamento",
-    description: "A AccessLift realiza a entrega conforme as condições acordadas.",
+    description: "A Accesslift realiza a entrega conforme as condições acordadas.",
   },
   {
     title: "Suporte durante a utilização",
@@ -92,7 +92,7 @@ const rentalSteps = [
   {
     title: "Retirada",
     description:
-      "Ao término do período contratado, a retirada é realizada conforme o processo da AccessLift.",
+      "Ao término do período contratado, a retirada é realizada conforme o processo da Accesslift.",
   },
 ];
 
@@ -144,7 +144,7 @@ function RentalPage() {
           <RentalSectionHeading
             eyebrow="Escolha"
             title="Uma locação que começa pela escolha do equipamento"
-            description="A escolha da plataforma deve considerar altura necessária, alcance horizontal, acesso ao local, espaço disponível e características da operação. Caso você ainda não saiba exatamente qual modelo precisa, a equipe AccessLift pode auxiliar na identificação da plataforma adequada ao seu trabalho."
+            description="A escolha da plataforma deve considerar altura necessária, alcance horizontal, acesso ao local, espaço disponível e características da operação. Caso você ainda não saiba exatamente qual modelo precisa, a equipe Accesslift pode auxiliar na identificação da plataforma adequada ao seu trabalho."
           />
           <div data-reveal="fade-left" className="premium-card rounded-lg p-6 md:p-8">
             <HelpCircle className="h-8 w-8 text-[#0b2d4d]" aria-hidden />
@@ -218,7 +218,7 @@ function RentalPage() {
           <RentalSectionHeading
             eyebrow="Suporte"
             title="Suporte durante a locação"
-            description="A locação não termina quando o equipamento é entregue. A AccessLift oferece estrutura própria para acompanhar a operação durante o período contratado."
+            description="A locação não termina quando o equipamento é entregue. A Accesslift oferece estrutura própria para acompanhar a operação durante o período contratado."
           />
           <div className="reveal-stagger mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rentalSupportItems.map((item) => (
@@ -271,7 +271,7 @@ function RentalPage() {
             <RentalSectionHeading
               eyebrow="Atendimento"
               title="Atendimento em São Paulo e região"
-              description="A AccessLift atende São Paulo e municípios dentro de um raio aproximado de até 150 km de sua base, conforme disponibilidade e condições da operação."
+              description="A Accesslift atende São Paulo e região, tendo 150 km como referência aproximada, com outras localidades sob avaliação comercial."
             />
             <div data-reveal="fade-up" className="mt-6 rounded-lg border border-slate-200 bg-white p-5">
               <MapPin className="h-7 w-7 text-[#d8242f]" aria-hidden />
@@ -287,7 +287,7 @@ function RentalPage() {
           <figure data-reveal="fade-left" className="media-frame overflow-hidden rounded-lg p-2">
             <img
               src="/images/accesslift/atendimento/mapa-raio-atendimento-accesslift.jpeg"
-              alt="Mapa ilustrando a área de atendimento da AccessLift em um raio aproximado de 150 km"
+              alt="Mapa ilustrando a área de atendimento da Accesslift em um raio aproximado de 150 km"
               width={1600}
               height={900}
               loading="lazy"
@@ -309,22 +309,22 @@ function RentalPage() {
           {
             question: "Como saber qual plataforma preciso?",
             answer:
-              "A escolha depende de fatores como altura, tipo de acesso, alcance horizontal, ambiente e espaço disponível. A equipe AccessLift pode auxiliar nessa definição.",
+              "A escolha depende de fatores como altura, tipo de acesso, alcance horizontal, ambiente e espaço disponível. A equipe Accesslift pode auxiliar nessa definição.",
           },
           {
-            question: "A AccessLift entrega o equipamento?",
+            question: "A Accesslift entrega o equipamento?",
             answer:
-              "Sim. A AccessLift realiza entrega e retirada próprias dentro da área de atendimento, conforme as condições acordadas para a locação.",
+              "Sim. A Accesslift realiza entrega e retirada próprias dentro da área de atendimento, conforme as condições acordadas para a locação.",
           },
           {
             question: "Existe suporte durante a locação?",
             answer:
-              "Sim. A AccessLift oferece suporte técnico durante o período contratado, conforme a necessidade da operação.",
+              "Sim. A Accesslift oferece suporte técnico durante o período contratado, conforme a necessidade da operação.",
           },
           {
             question: "Vocês atendem minha região?",
             answer:
-              "A AccessLift atende São Paulo e municípios em um raio aproximado de até 150 km da base. Consulte a equipe para validar sua localização.",
+              "A Accesslift atende São Paulo e região, com outras localidades sob avaliação comercial. Consulte a equipe para validar sua localização.",
           },
         ]}
       />

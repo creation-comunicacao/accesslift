@@ -5,6 +5,16 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { findClientPage } from "../src/accesslift/data/clientPageRegistry";
 import { ClientPageTemplate } from "../src/accesslift/pages/shared/ClientPageTemplate";
 import { ValueSection } from "../src/accesslift/pages/shared/StructuredPageSections";
+import App from "../src/App";
+
+for (const path of ["/area-de-atendimento/", "/trabalhe-conosco/"]) {
+  test(`new hero image is rendered by the actual route: ${path}`, () => {
+    const html = renderToStaticMarkup(createElement(App, { initialPath: path }));
+    const src = `/images/accesslift/heroes${path.slice(0, -1)}.png`;
+    assert.equal(html.split(`src="${src}"`).length - 1, 1);
+    assert(html.slice(html.indexOf("<h1") - 1600, html.indexOf("<h1")).includes(`src="${src}"`));
+  });
+}
 
 function render(path: string) {
   const page = findClientPage(path);

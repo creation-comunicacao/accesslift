@@ -11,7 +11,7 @@ const media = {
   services: heroImages.servicos,
   assistance: { src: "/images/accesslift/servicos/treinamento-assistencia-03.jpeg", alt: "Equipe Accesslift em atendimento em ambiente industrial", width: 960, height: 1280 },
   training: { src: "/images/accesslift/servicos/treinamento-assistencia.jpeg", alt: "Equipe Accesslift em atendimento em ambiente industrial", width: 960, height: 1280 },
-  company: { src: "/images/accesslift/empresa/operacao-access-lift-em-ambiente-industrial.jpeg", alt: "Operação da Access Lift em ambiente industrial", width: 1086, height: 1448 },
+  company: { src: "/images/accesslift/empresa/operacao-access-lift-em-ambiente-industrial.jpeg", alt: "Operação da Accesslift em ambiente industrial", width: 1086, height: 1448 },
 };
 
 const heroMediaByPath: Record<string, keyof typeof media> = {
@@ -28,6 +28,7 @@ const editorialOpeningPaths = new Set([
 ]);
 
 const heroImageByPath: Record<string, (typeof heroImages)[keyof typeof heroImages]> = {
+  "/area-de-atendimento/": heroImages.atendimento,
   "/servicos/": heroImages.servicos,
   "/empresa/": heroImages.empresa,
   "/servicos/assistencia-tecnica/": heroImages.assistencia,
@@ -48,7 +49,7 @@ function SectionMedia({ section, heroMedia }: { section: ClientSection; heroMedi
       <OfficialMediaGallery eyebrow={heroMedia === "company" ? section.eyebrow : undefined} title={section.title} description={section.description} images={companyGallery.filter((image) => heroMedia !== "company" || image.src !== "/images/accesslift/empresa/empresa.jpeg")} />
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">
         <span className="section-eyebrow">Clientes</span>
-        <h2 className="mt-4 text-slate-950">Empresas que já confiaram na AccessLift</h2>
+        <h2 className="mt-4 text-slate-950">Empresas que já confiaram na Accesslift</h2>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{clientProofs.map((client) => <article key={client.name} className="flex min-h-24 items-center justify-center rounded-lg border border-slate-200 bg-white p-4 text-center soft-shadow">
           {client.logoUrl ? <img src={client.logoUrl} alt={client.name} className="max-h-20 w-auto max-w-full object-contain" loading="lazy" decoding="async" /> : client.name}
         </article>)}</div>

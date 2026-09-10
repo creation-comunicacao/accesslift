@@ -3,7 +3,7 @@ import type { AppRoute } from "../types/routes";
 export const MAIN_ROUTES: AppRoute[] = [
   {
     path: "/",
-    label: "Inicio",
+    label: "Início",
     kind: "home",
     seo: {
       title: "Locação de Plataformas Elevatórias em SP | Accesslift",
@@ -199,7 +199,7 @@ export const MAIN_ROUTES: AppRoute[] = [
     kind: "static",
     seo: {
       title: "Locação de Plataformas Elevatórias em São Paulo | Accesslift",
-      description: "Locação de plataformas elevatórias em São Paulo e região, com atendimento em um raio de até 150 km da base Accesslift. Consulte sua cidade.",
+      description: "Locação de plataformas elevatórias em São Paulo e região, com outras localidades sob avaliação comercial. Consulte sua cidade.",
       canonicalPath: "/area-de-atendimento/",
     },
   },

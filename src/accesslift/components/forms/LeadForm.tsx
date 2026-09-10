@@ -1,5 +1,5 @@
 import { Send } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { trackEvent } from "../../analytics/analytics";
 import { submitInquiry } from "../../services/leadService";
 import { PrivacyNotice } from "./PrivacyNotice";
@@ -10,6 +10,7 @@ const inputClasses =
 const labelClasses = "grid gap-1.5 text-xs font-black uppercase tracking-wider text-slate-600";
 
 export function LeadForm() {
+  const submitting = useRef(false);
   const [values, setValues] = useState({
     nome: "",
     telefone: "",
@@ -33,7 +34,7 @@ export function LeadForm() {
       className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
-        if (status === "loading") return;
+        if (submitting.current) return;
         const nextErrors: Partial<Record<keyof typeof values, string>> = {};
 
         if (!values.nome.trim()) nextErrors.nome = "Informe seu nome.";
@@ -54,13 +55,14 @@ export function LeadForm() {
           return;
         }
 
+        submitting.current = true;
         setStatus("loading");
         setMessage("");
         try {
         await submitInquiry("contact", values);
         setStatus("success");
         setMessage("Mensagem enviada com sucesso. Recebemos suas informações. Nossa equipe poderá dar continuidade ao atendimento pelos dados de contato informados.");
-        trackEvent({ name: "contact_form_submit", payload: { form: "contact" } });
+        trackEvent({ name: "contact_form_submit", payload: { form: "contact", form_type: "contact", contact_subject: values.interesse } });
         setValues({
           nome: "",
           telefone: "",
@@ -72,7 +74,9 @@ export function LeadForm() {
         });
         } catch {
           setStatus("error");
-          setMessage("Não foi possível enviar sua mensagem. Tente novamente ou entre em contato com a AccessLift pelos canais disponíveis nesta página.");
+          setMessage("Não foi possível enviar sua mensagem. Tente novamente ou entre em contato com a Accesslift pelos canais disponíveis nesta página.");
+        } finally {
+          submitting.current = false;
         }
       }}
     >

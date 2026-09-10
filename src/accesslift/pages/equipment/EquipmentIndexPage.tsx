@@ -44,7 +44,7 @@ export function EquipmentIndexPage() {
   const heightRanges = useMemo(() => getAvailableHeightRangeFilters(mockEquipments), []);
   const powerOptions = useMemo(() => getAvailablePowerOptions(mockEquipments), []);
   const equipmentWhatsAppMessage =
-    "Olá! Estou consultando os equipamentos no site da AccessLift e gostaria de ajuda para escolher uma plataforma para minha operação.";
+    "Olá! Estou consultando os equipamentos no site da Accesslift e gostaria de ajuda para escolher uma plataforma para minha operação.";
 
   const results = useMemo(
     () => sortEquipment(filterEquipment(mockEquipments, filters), sort),
@@ -131,7 +131,7 @@ export function EquipmentIndexPage() {
                 key={equipment.id}
                 equipment={equipment}
                 quoteLabel="Solicitar cotação"
-                quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da AccessLift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
+                quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da Accesslift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
               />
             ))}
           </div>
@@ -213,7 +213,7 @@ export function EquipmentIndexPage() {
                   id: "equipamentos-escolha",
                   title: "Como saber qual plataforma é adequada para o meu trabalho?",
                   content:
-                    "Considere altura, acesso, obstáculos e características do local. Se ainda tiver dúvida, fale com a equipe AccessLift para orientar a escolha.",
+                    "Considere altura, acesso, obstáculos e características do local. Se ainda tiver dúvida, fale com a equipe Accesslift para orientar a escolha.",
                 },
                 {
                   id: "equipamentos-diferenca-categorias",
@@ -225,7 +225,7 @@ export function EquipmentIndexPage() {
                   id: "equipamentos-disponibilidade",
                   title: "Como consultar a disponibilidade de um equipamento?",
                   content:
-                    "Use a cotação do modelo desejado ou entre em contato com a equipe AccessLift informando qual plataforma você quer consultar.",
+                    "Use a cotação do modelo desejado ou entre em contato com a equipe Accesslift informando qual plataforma você quer consultar.",
                 },
                 {
                   id: "equipamentos-cotacao",

@@ -27,7 +27,7 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
         <section className="mx-auto max-w-7xl px-4 pt-12 md:px-6">
           <img
             src="/images/accesslift/empresa/operacao-access-lift-em-ambiente-industrial.jpeg"
-            alt="Operação da Access Lift em ambiente industrial"
+            alt="Operação da Accesslift em ambiente industrial"
             width={1086}
             height={1448}
             sizes="(min-width: 1024px) 1184px, 100vw"
@@ -148,7 +148,7 @@ export function InstitutionalPage({ page }: InstitutionalPageProps) {
       )}
       {page.path === "/area-de-atendimento/" && (
         <ValueSection
-          title="São Paulo + raio de até 150 km"
+          title="São Paulo e região"
           description="Esta página comunica apenas a área estrutural definida no blueprint. Não foram criadas páginas por cidade ou bairro."
         />
       )}

@@ -67,16 +67,16 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
       {
         question: "Existem plataformas tesoura elétricas?",
         answer:
-          "Sim. A frota cadastrada da AccessLift inclui modelos de plataforma tesoura com alimentação elétrica.",
+          "Sim. A frota cadastrada da Accesslift inclui modelos de plataforma tesoura com alimentação elétrica.",
       },
       {
         question: "Como solicitar a locação de uma plataforma tesoura?",
         answer:
-          "Solicite um orçamento ou fale pelo WhatsApp para que a equipe AccessLift avalie período, local e características da operação.",
+          "Solicite um orçamento ou fale pelo WhatsApp para que a equipe Accesslift avalie período, local e características da operação.",
       },
     ];
     const scissorWhatsAppMessage =
-      "Olá! Estou no site da AccessLift e gostaria de informações sobre locação de plataformas tesoura.";
+      "Olá! Estou no site da Accesslift e gostaria de informações sobre locação de plataformas tesoura.";
 
     return (
       <>
@@ -129,7 +129,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
                 </span>
                 <h2 className="mt-4 text-slate-950">Modelos de plataformas tesoura disponíveis</h2>
                 <p className="mt-2 max-w-3xl text-slate-600">
-                  Equipamentos da categoria Plataforma Tesoura disponíveis na frota AccessLift, com as principais informações para comparação.
+                  Equipamentos da categoria Plataforma Tesoura disponíveis na frota Accesslift, com as principais informações para comparação.
                 </p>
               </div>
               <Button href="/equipamentos/" variant="secondary">
@@ -143,7 +143,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
                   key={equipment.id}
                   equipment={equipment}
                   quoteLabel="Solicitar cotação"
-                  quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da AccessLift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
+                  quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da Accesslift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
                 />
               ))}
             </div>
@@ -167,7 +167,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
           <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-5 md:p-6">
             <h3 className="text-xl text-slate-950">Precisa de ajuda para escolher?</h3>
             <p className="mt-2 max-w-3xl text-slate-600">
-              A equipe AccessLift pode auxiliar na identificação do modelo mais adequado às características da sua operação.
+              A equipe Accesslift pode auxiliar na identificação do modelo mais adequado às características da sua operação.
             </p>
             <TalkToSpecialistButton className="mt-5" label="Fale com um especialista" />
           </div>
@@ -211,7 +211,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
               <span className="section-eyebrow text-white">Locação</span>
               <h2 className="mt-4 text-white">Encontre a plataforma tesoura adequada à sua operação</h2>
               <p className="mt-3 max-w-2xl text-slate-300">
-                Locação diária, semanal ou mensal, com suporte da equipe AccessLift para ajudar na escolha do equipamento adequado ao seu trabalho.
+                Locação diária, semanal ou mensal, com suporte da equipe Accesslift para ajudar na escolha do equipamento adequado ao seu trabalho.
               </p>
             </div>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -272,16 +272,16 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
     {
       question: "Existem plataformas articuladas elétricas?",
       answer:
-        "Sim. A frota cadastrada da AccessLift inclui modelos de plataforma articulada com alimentação elétrica.",
+        "Sim. A frota cadastrada da Accesslift inclui modelos de plataforma articulada com alimentação elétrica.",
     },
     {
       question: "Como solicitar a locação de uma plataforma articulada?",
       answer:
-        "Solicite um orçamento ou entre em contato com a equipe AccessLift para avaliar modelo, período e condições da operação.",
+        "Solicite um orçamento ou entre em contato com a equipe Accesslift para avaliar modelo, período e condições da operação.",
     },
   ];
   const articulatedWhatsAppMessage =
-    "Olá! Estou no site da AccessLift e gostaria de informações sobre locação de plataformas articuladas.";
+    "Olá! Estou no site da Accesslift e gostaria de informações sobre locação de plataformas articuladas.";
 
   return (
     <>
@@ -334,7 +334,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
               </span>
               <h2 className="mt-4 text-slate-950">Modelos de plataformas articuladas disponíveis</h2>
               <p className="mt-2 max-w-3xl text-slate-600">
-                Equipamentos da categoria Plataforma Articulada disponíveis na frota AccessLift, com as principais informações para comparação.
+                Equipamentos da categoria Plataforma Articulada disponíveis na frota Accesslift, com as principais informações para comparação.
               </p>
             </div>
             <Button href="/equipamentos/" variant="secondary">
@@ -348,7 +348,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
                 key={equipment.id}
                 equipment={equipment}
                 quoteLabel="Solicitar cotação"
-                quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da AccessLift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
+                quoteWhatsappMessage={`Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da Accesslift e gostaria de consultar disponibilidade e solicitar uma cotação.`}
               />
             ))}
           </div>
@@ -372,7 +372,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
         <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-5 md:p-6">
           <h3 className="text-xl text-slate-950">Precisa de ajuda para escolher?</h3>
           <p className="mt-2 max-w-3xl text-slate-600">
-            A equipe AccessLift pode auxiliar na identificação do modelo mais adequado às características da sua operação.
+            A equipe Accesslift pode auxiliar na identificação do modelo mais adequado às características da sua operação.
           </p>
           <TalkToSpecialistButton className="mt-5" label="Fale com um especialista" />
         </div>
@@ -416,7 +416,7 @@ export function CategoryTemplate({ slug }: CategoryTemplateProps) {
             <span className="section-eyebrow text-white">Locação</span>
             <h2 className="mt-4 text-white">Encontre a plataforma articulada adequada à sua operação</h2>
             <p className="mt-3 max-w-2xl text-slate-300">
-              Locação diária, semanal ou mensal, com suporte da equipe AccessLift para ajudar na escolha do equipamento adequado ao seu trabalho.
+              Locação diária, semanal ou mensal, com suporte da equipe Accesslift para ajudar na escolha do equipamento adequado ao seu trabalho.
             </p>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">

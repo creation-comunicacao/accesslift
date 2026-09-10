@@ -30,7 +30,7 @@ export const homeFinderFields: HomeFinderField[] = [
 ];
 
 export const homeTrustItems = [
-  { title: "Entrega e Retirada", description: "própria e ágil" },
+  { title: "Entrega e retirada", description: "próprias e ágeis" },
   { title: "Equipamentos", description: "revisados e seguros" },
   { title: "Assistência técnica", description: "própria e especializada" },
   { title: "Locação flexível", description: "diária, semanal e mensal" },
@@ -114,7 +114,7 @@ export const homeGoogleReviews: HomeGoogleReview[] = [
     id: "google-edil-rodrigues",
     author: "edil Rodrigues",
     rating: 5,
-    excerpt: "Pontualidade na entrega e equipamentos em excelente estado .",
+    excerpt: "Pontualidade na entrega e equipamentos em excelente estado.",
   },
   {
     id: "google-marcelo-kruze",
@@ -126,7 +126,7 @@ export const homeGoogleReviews: HomeGoogleReview[] = [
     id: "google-cassio-simonetti-santos-neto",
     author: "Cassio Simonetti Santos Neto",
     rating: 5,
-    excerpt: "Máquinas em ótimo estado de conservação !!!",
+    excerpt: "Máquinas em ótimo estado de conservação!!!",
   },
 ];
 export const googleReviewsProfileUrl =
@@ -143,13 +143,13 @@ export const homeRentalSteps = [
 export const homeFaqItems = [
   {
     id: "faq-tesoura-articulada",
-    title: "Qual e a diferença entre plataforma tesoura e articulada?",
+    title: "Qual é a diferença entre plataforma tesoura e articulada?",
     content:
-      "A plataforma tesoura e indicada para acesso vertical com área de trabalho estavel. A articulada atende operações que podem exigir alcance e acesso contornando obstáculos.",
+      "A plataforma tesoura é indicada para acesso vertical com área de trabalho estável. A articulada atende operações que podem exigir alcance e acesso contornando obstáculos.",
   },
   {
     id: "faq-escolha",
-    title: "Como saber qual plataforma e mais adequada para minha operação?",
+    title: "Como saber qual plataforma é mais adequada para minha operação?",
     content:
       "A escolha depende da altura, do acesso, do ambiente e do espaço de trabalho. Nossa equipe pode ajudar a identificar o equipamento adequado para sua operação.",
   },
@@ -166,7 +166,7 @@ export const homeFaqItems = [
   },
   {
     id: "faq-atendimento",
-    title: "Qual e a área de atendimento da Accesslift?",
-    content: "São Paulo e regiões em um raio de até 150 km da base.",
+    title: "Qual é a área de atendimento da Accesslift?",
+    content: "São Paulo e região, com outras localidades sob avaliação comercial.",
   },
 ];

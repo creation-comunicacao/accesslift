@@ -2,15 +2,16 @@ import { link, quote, whatsapp, type ClientPage } from "./clientPages";
 
 const equipment = link("Consultar equipamentos", "/equipamentos/", "nr35_equipment_click");
 const specialist = whatsapp("Falar com um especialista", "Olá! Estou consultando informações sobre plataformas elevatórias para um trabalho em altura e gostaria de ajuda para identificar o equipamento adequado à operação.", "nr35_specialist_click");
-const consult = whatsapp("Consultar atendimento", "Olá! Gostaria de verificar a possibilidade de atendimento da AccessLift para uma operação. Vou informar a cidade e as características da locação.", "service_area_contact_click");
+const consult = whatsapp("Consultar atendimento", "Olá! Gostaria de verificar a possibilidade de atendimento da Accesslift para uma operação. Vou informar a cidade e as características da locação.", "service_area_contact_click");
 
 export const clientInstitutionalPages: ClientPage[] = [
   {
-    path: "/empresa/", eyebrow: "Institucional", title: "AccessLift Plataformas Elevatórias",
-    description: "Há 12 anos, a AccessLift atua com locação de plataformas elevatórias e serviços relacionados, combinando equipamentos, estrutura própria e atendimento próximo para apoiar operações em altura.",
-    actions: [quote("company_quote_click"), link("Falar com a AccessLift", "/contato/", "company_contact_click")],
+    path: "/empresa/", eyebrow: "Institucional", title: "Accesslift Plataformas Elevatórias",
+    seoTitle: "Accesslift | Locação de Plataformas Elevatórias em SP",
+    description: "Há 12 anos, a Accesslift atua com locação de plataformas elevatórias e serviços relacionados, combinando equipamentos, estrutura própria e atendimento próximo para apoiar operações em altura.",
+    actions: [quote("company_quote_click"), link("Falar com a Accesslift", "/contato/", "company_contact_click")],
     sections: [
-      { eyebrow: "Empresa", title: "Quem somos", description: "A AccessLift é especializada em locação de plataformas elevatórias para trabalhos em altura, atendendo empresas em diferentes necessidades de manutenção, instalação, construção e operação.", paragraphs: ["Nossa estrutura reúne frota própria, logística de entrega e retirada, assistência técnica, manutenção preventiva e treinamento de operadores, permitindo acompanhar o cliente antes e durante a utilização dos equipamentos."], media: "company" },
+      { eyebrow: "Empresa", title: "Quem somos", description: "A Accesslift é especializada em locação de plataformas elevatórias para trabalhos em altura, atendendo empresas em diferentes necessidades de manutenção, instalação, construção e operação.", paragraphs: ["Nossa estrutura reúne frota própria, logística de entrega e retirada, assistência técnica, manutenção preventiva e treinamento de operadores, permitindo acompanhar o cliente antes e durante a utilização dos equipamentos."], media: "company" },
       { eyebrow: "Estrutura", title: "Estrutura para apoiar cada operação", items: [
         { title: "12 anos de experiência", description: "Experiência no atendimento a empresas que utilizam plataformas elevatórias em trabalhos em altura." },
         { title: "Frota própria", description: "Equipamentos para diferentes necessidades de elevação e acesso." },
@@ -19,16 +20,16 @@ export const clientInstitutionalPages: ClientPage[] = [
         { title: "Manutenção preventiva", description: "Cuidado contínuo com a frota para manter os equipamentos preparados para utilização.", cta: link("Manutenção Preventiva", "/servicos/manutencao-preventiva/") },
         { title: "Treinamento de operadores", description: "Treinamento para utilização das plataformas, realizado conforme a necessidade do cliente.", cta: link("Treinamento de Operadores", "/servicos/treinamento-de-operadores/") },
       ] },
-      { eyebrow: "Operação", title: "AccessLift em operação", description: "Estrutura, equipamentos e equipe fazendo parte da rotina de atendimento da AccessLift.", media: "company-gallery" },
+      { eyebrow: "Operação", title: "Accesslift em operação", description: "Estrutura, equipamentos e equipe fazendo parte da rotina de atendimento da Accesslift.", media: "company-gallery" },
     ], faq: [],
-    final: { title: "Precisa de uma plataforma elevatória?", description: "Conte para a AccessLift sobre sua necessidade. Nossa equipe pode ajudar a identificar o equipamento e a solução adequados para sua operação.", actions: [quote("company_quote_click"), link("Falar com a AccessLift", "/contato/", "company_contact_click"), whatsapp("Falar pelo WhatsApp", "Olá! Conheci a AccessLift pelo site e gostaria de informações para minha operação.", "company_whatsapp_click")] },
+    final: { title: "Precisa de uma plataforma elevatória?", description: "Conte para a Accesslift sobre sua necessidade. Nossa equipe pode ajudar a identificar o equipamento e a solução adequados para sua operação.", actions: [quote("company_quote_click"), link("Falar com a Accesslift", "/contato/", "company_contact_click"), whatsapp("Falar pelo WhatsApp", "Olá! Conheci a Accesslift pelo site e gostaria de informações para minha operação.", "company_whatsapp_click")] },
   },
   {
     path: "/area-de-atendimento/", eyebrow: "Área de atendimento", title: "Locação de Plataformas Elevatórias em São Paulo e Região",
     description: "Atendimento a operações em São Paulo e diversos municípios da região, com análise de outras localidades conforme as características de cada locação.",
     actions: [consult, quote("service_area_quote_click")],
     sections: [
-      { eyebrow: "Atendimento", title: "Atendimento em São Paulo e região", description: "A AccessLift atende operações em São Paulo e diversos municípios da região, considerando como referência uma área aproximada de 150 km da base.", paragraphs: ["Solicitações para outras localidades também podem ser avaliadas pela equipe comercial, considerando distância, logística, período de locação, equipamento e características da operação.", "Sua operação está mais distante? Fale com nossa equipe para avaliarmos a possibilidade de atendimento."], cta: consult },
+      { eyebrow: "Atendimento", title: "Atendimento em São Paulo e região", description: "A Accesslift atende operações em São Paulo e diversos municípios da região, considerando como referência uma área aproximada de 150 km da base.", paragraphs: ["Solicitações para outras localidades também podem ser avaliadas pela equipe comercial, considerando distância, logística, período de locação, equipamento e características da operação.", "Sua operação está mais distante? Fale com nossa equipe para avaliarmos a possibilidade de atendimento."], cta: consult },
       { eyebrow: "Estrutura", title: "Como funciona o atendimento na região", items: [
         { title: "Entrega e retirada próprias", description: "Logística dos equipamentos conforme as condições definidas para a locação." },
         { title: "Avaliação de cada operação", description: "Localidade, período, equipamento e características da operação são considerados na análise do atendimento." },
@@ -36,16 +37,17 @@ export const clientInstitutionalPages: ClientPage[] = [
       ] },
     ],
     faq: [
-      { question: "A AccessLift atende somente a cidade de São Paulo?", answer: "Não. A AccessLift atende São Paulo e diversos municípios da região. Cada solicitação é avaliada conforme a localização e as características da operação." },
-      { question: "A AccessLift atende localidades além de 150 km?", answer: "A área aproximada de 150 km é uma referência de atendimento, e não necessariamente um limite absoluto. Solicitações para localidades mais distantes podem ser avaliadas pela equipe comercial conforme as características da operação." },
-      { question: "Como saber se a AccessLift atende minha cidade?", answer: "Entre em contato e informe a cidade onde será realizada a operação. Nossa equipe avaliará a possibilidade de atendimento considerando a localização e as demais características da locação." },
-      { question: "A AccessLift entrega e retira a plataforma no local?", answer: "A AccessLift possui estrutura própria para entrega e retirada dos equipamentos, conforme as condições definidas para cada locação." },
+      { question: "A Accesslift atende somente a cidade de São Paulo?", answer: "Não. A Accesslift atende São Paulo e diversos municípios da região. Cada solicitação é avaliada conforme a localização e as características da operação." },
+      { question: "A Accesslift atende localidades além de 150 km?", answer: "A área aproximada de 150 km é uma referência operacional e comercial, não um limite fixo de atendimento. Solicitações para localidades mais distantes podem ser avaliadas pela equipe comercial conforme a logística, o equipamento e as características da operação." },
+      { question: "Como saber se a Accesslift atende minha cidade?", answer: "Entre em contato e informe a cidade onde será realizada a operação. Nossa equipe avaliará a possibilidade de atendimento considerando a localização e as demais características da locação." },
+      { question: "A Accesslift entrega e retira a plataforma no local?", answer: "A Accesslift possui estrutura própria para entrega e retirada dos equipamentos, conforme as condições definidas para cada locação." },
       { question: "Posso solicitar uma avaliação mesmo estando mais distante?", answer: "Sim. Entre em contato e informe a localização e as características da operação para que a equipe comercial possa avaliar a possibilidade de atendimento." },
     ],
     final: { title: "Consulte o atendimento para sua operação", description: "Mesmo que sua localidade esteja além da região habitual de atendimento, fale com nossa equipe. Cada solicitação é avaliada individualmente.", actions: [consult, quote("service_area_quote_click")] },
   },
   {
     path: "/seguranca-e-nr35/", eyebrow: "Segurança", title: "NR-35 e Plataformas Elevatórias no Trabalho em Altura",
+    seoTitle: "NR-35 e Plataformas Elevatórias para Trabalho em Altura | Accesslift",
     description: "A utilização de plataformas elevatórias em trabalhos em altura deve considerar as características da atividade, as condições da operação e os requisitos de segurança aplicáveis.",
     actions: [equipment, specialist],
     sections: [

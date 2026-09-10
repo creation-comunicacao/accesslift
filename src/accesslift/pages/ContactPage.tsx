@@ -22,7 +22,7 @@ export function ContactPage() {
         compact
         image={heroImages.contato}
         eyebrow="Contato"
-        title="Fale com a AccessLift"
+        title="Fale com a Accesslift"
         description="Entre em contato para locação de plataformas elevatórias, suporte técnico ou outras informações."
       />
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -47,7 +47,7 @@ export function ContactPage() {
                 ) : label === "E-mail" ? (
                   <a className="mt-1 block break-all text-sm font-semibold text-slate-600" href={`mailto:${contactConfig.email}`} onClick={() => trackEvent({ name: "contact_email_click" })}>{value}</a>
                 ) : label === "WhatsApp" ? (
-                  <a className="mt-1 block text-sm font-semibold text-slate-600" href={`${contactConfig.whatsappUrl}?text=${encodeURIComponent("Olá! Estou entrando em contato pelo site da AccessLift e gostaria de informações.")}`} onClick={() => trackEvent({ name: "contact_whatsapp_click" })}>{value}</a>
+                  <a className="mt-1 block text-sm font-semibold text-slate-600" href={`${contactConfig.whatsappUrl}?text=${encodeURIComponent("Olá! Estou entrando em contato pelo site da Accesslift e gostaria de informações.")}`} onClick={() => trackEvent({ name: "contact_whatsapp_click" })}>{value}</a>
                 ) : (
                   <p className="mt-1 text-sm font-semibold text-slate-600">{value}</p>
                 )}
@@ -59,7 +59,7 @@ export function ContactPage() {
             if (href) trackEvent({ name: href.includes("wa.me") ? "contact_whatsapp_click" : "contact_quote_click" });
           }}>
             <RequestQuoteButton />
-            <WhatsAppButton message="Olá! Estou entrando em contato pelo site da AccessLift e gostaria de informações." />
+            <WhatsAppButton message="Olá! Estou entrando em contato pelo site da Accesslift e gostaria de informações." />
           </div>
         </div>
         <div>

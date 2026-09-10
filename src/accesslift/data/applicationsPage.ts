@@ -1,6 +1,6 @@
 import type { SegmentPageConfig } from "./pageContent";
 
-export const applicationsWhatsappMessage = "Olá! Estou consultando as aplicações de plataformas elevatórias no site da AccessLift e gostaria de ajuda para identificar o equipamento adequado para minha operação.";
+export const applicationsWhatsappMessage = "Olá! Estou consultando as aplicações de plataformas elevatórias no site da Accesslift e gostaria de ajuda para identificar o equipamento adequado para minha operação.";
 export const applicationsPage: SegmentPageConfig = {
   path: "/segmentos-e-aplicacoes/",
   eyebrow: "Aplicações",
@@ -29,11 +29,11 @@ export const applicationsPage: SegmentPageConfig = {
     { question: "Como escolher uma plataforma elevatória para minha aplicação?", answer: "A escolha deve considerar fatores como altura necessária, alcance horizontal, acessos, espaço disponível, obstáculos, condições do piso, capacidade e características da atividade." },
     { question: "Qual a diferença entre plataforma tesoura e articulada?", answer: "A plataforma tesoura é utilizada principalmente quando a necessidade é de elevação predominantemente vertical. A articulada permite combinar altura e alcance horizontal, sendo especialmente útil quando existem obstáculos entre o equipamento e o ponto de trabalho." },
     { question: "A altura é o único fator para escolher uma plataforma?", answer: "Não. Além da altura, é importante considerar as características do ambiente, acessos, espaço para posicionamento e movimentação, obstáculos, piso, capacidade e tipo de atividade." },
-    { question: "Não encontrei meu segmento entre as aplicações. A AccessLift pode avaliar minha necessidade?", answer: "Sim. Os segmentos apresentados no site representam algumas das aplicações atendidas. Outras necessidades podem ser avaliadas pela equipe AccessLift de acordo com as características da operação." },
+    { question: "Não encontrei meu segmento entre as aplicações. A Accesslift pode avaliar minha necessidade?", answer: "Sim. Os segmentos apresentados no site representam algumas das aplicações atendidas. Outras necessidades podem ser avaliadas pela equipe Accesslift de acordo com as características da operação." },
   ],
   finalCta: {
     title: "Não encontrou sua aplicação?",
-    description: "Conte para a AccessLift onde o trabalho será realizado, a altura aproximada, os acessos e as características da atividade. Nossa equipe pode ajudar a identificar a plataforma adequada para sua operação.",
+    description: "Conte para a Accesslift onde o trabalho será realizado, a altura aproximada, os acessos e as características da atividade. Nossa equipe pode ajudar a identificar a plataforma adequada para sua operação.",
     primary: { label: "Solicitar cotação", href: "/solicite-orcamento/?origem=applications", event: "applications_quote_click" },
     secondary: { label: "Falar com um especialista", href: "/contato/", event: "applications_specialist_click" },
   },

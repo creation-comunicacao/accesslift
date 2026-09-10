@@ -183,7 +183,7 @@ export const commercialPages: CommercialPageConfig[] = [
       {
         eyebrow: "Área de atendimento",
         title: "Locação de plataformas elevatórias em São Paulo e região",
-        description: "A Accesslift atende São Paulo e municípios dentro de um raio de até 150 km de sua base, conforme disponibilidade e condições da operação.",
+        description: "A Accesslift atende São Paulo e região, com outras localidades sob avaliação comercial, conforme disponibilidade e condições da operação.",
         cta: { label: "Consultar área de atendimento", href: "/area-de-atendimento/" },
       },
     ],
@@ -206,7 +206,7 @@ export const commercialPages: CommercialPageConfig[] = [
       },
       {
         question: "Vocês atendem minha região?",
-        answer: "A Accesslift atende São Paulo e municípios em um raio aproximado de até 150 km da base. Consulte a equipe para validar sua localização.",
+        answer: "A Accesslift atende São Paulo e região, com outras localidades sob avaliação comercial. Consulte a equipe para validar sua localização.",
       },
     ],
     faqSchemaEligible: true,

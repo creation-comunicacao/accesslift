@@ -24,7 +24,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
             }}
           >
             <Home className="h-3.5 w-3.5" aria-hidden />
-            Inicio
+            Início
           </a>
         </li>
         {items.map((item) => (

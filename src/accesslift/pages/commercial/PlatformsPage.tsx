@@ -111,7 +111,7 @@ export function PlatformsPage() {
 
     <section data-platform-block="differentials" className="section-space-compact bg-slate-50">
       <div className="site-container">
-        <SectionHeading eyebrow="AccessLift" title="Diferenciais AccessLift" />
+        <SectionHeading eyebrow="Accesslift" title="Diferenciais Accesslift" />
         <ul className="reveal-stagger mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {content.differentials.map(item => <li key={item} data-reveal="fade-up" className="flex items-center gap-3 text-slate-700">
             <BadgeCheck className="h-6 w-6 shrink-0 text-[#0b2d4d]" aria-hidden />{item}

@@ -69,6 +69,6 @@ export async function submitInquiry(kind: "contact" | "support" | "career" | "qu
     body: JSON.stringify({ kind, values: { pageOrigin: window.location.pathname, ...values }, attachment }), signal: AbortSignal.timeout(20000),
   });
   const result = await response.json().catch(() => null);
-  if (!response.ok || result?.ok !== true) throw new Error(result?.message || "Não foi possível enviar. Tente novamente ou entre em contato com a AccessLift.");
+  if (!response.ok || result?.ok !== true) throw new Error(result?.message || "Não foi possível enviar. Tente novamente ou entre em contato com a Accesslift.");
   return { ok: true, integration: "webhook" };
 }

@@ -28,7 +28,7 @@ export function StandardPage({ route }: StandardPageProps) {
           <div className="mt-8 rounded-md border border-slate-200 bg-slate-50 p-5">
             <h2 className="text-xl font-black text-slate-950">Área de atendimento</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              São Paulo e regiões em raio de até 150 km da base.
+              São Paulo e região, com outras localidades sob avaliação comercial.
             </p>
           </div>
         )}

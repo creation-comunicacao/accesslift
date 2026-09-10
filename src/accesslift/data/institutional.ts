@@ -27,8 +27,8 @@ export type ClientProof = {
 
 export const clientProofs: ClientProof[] = [
   { name: "Lorenzetti", logoUrl: "/images/accesslift/clientes/logo-lorenzetti.png", testimonial: null, caseSummary: null, referenceUrl: null },
-  { name: "Assai", logoUrl: "/images/accesslift/clientes/logo-assai-atacadista.png", testimonial: null, caseSummary: null, referenceUrl: null },
-  { name: "Atacadao", logoUrl: "/images/accesslift/clientes/logo-atacadao.png", testimonial: null, caseSummary: null, referenceUrl: null },
+  { name: "Assaí Atacadista", logoUrl: "/images/accesslift/clientes/logo-assai-atacadista.png", testimonial: null, caseSummary: null, referenceUrl: null },
+  { name: "Atacadão", logoUrl: "/images/accesslift/clientes/logo-atacadao.png", testimonial: null, caseSummary: null, referenceUrl: null },
   { name: "Claro", logoUrl: "/images/accesslift/clientes/logo-claro.png", testimonial: null, caseSummary: null, referenceUrl: null },
   { name: "EZTEC", logoUrl: "/images/accesslift/clientes/logo-eztec.png", testimonial: null, caseSummary: null, referenceUrl: null },
 ];
@@ -72,7 +72,7 @@ export const institutionalPages: InstitutionalPageConfig[] = [
       {
         title: "Atuação",
         description:
-          "Atendimento em São Paulo e municípios dentro de um raio de até 150 km da base, conforme disponibilidade e condições da operação.",
+          "Atendimento em São Paulo e região, com outras localidades sob avaliação comercial, conforme disponibilidade e condições da operação.",
       },
     ],
     seo: {
@@ -87,11 +87,11 @@ export const institutionalPages: InstitutionalPageConfig[] = [
     eyebrow: "Área de atendimento",
     title: "Locação de Plataformas Elevatórias em São Paulo e Região",
     description:
-      "Atendimento a operações em São Paulo e municípios dentro de um raio de até 150 km da base Accesslift, conforme disponibilidade e condições da operação.",
+      "Atendimento a operações em São Paulo e região, com outras localidades sob avaliação comercial, conforme disponibilidade e condições da operação.",
     sections: [
       {
         title: "Cobertura comunicada",
-        description: "São Paulo e regiões em raio de até 150 km da base.",
+        description: "São Paulo e região, com outras localidades sob avaliação comercial.",
       },
       {
         title: "Sem páginas automáticas",

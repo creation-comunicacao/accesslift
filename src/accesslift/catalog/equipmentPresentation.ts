@@ -9,7 +9,7 @@ export const equipmentEventPayload = (equipment: Equipment) => ({
 });
 
 export const equipmentWhatsappMessage = (equipment: Equipment) =>
-  `Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da AccessLift e gostaria de consultar disponibilidade e solicitar uma cotação.`;
+  `Olá! Vi a plataforma ${equipment.brand} ${equipment.model} no site da Accesslift e gostaria de consultar disponibilidade e solicitar uma cotação.`;
 
 export const equipmentFaq = (equipment: Equipment) => equipment.faq.filter((item) => {
   if (!formatPublicSpecValue(item.answer) || /go-live|definitiv|serial|deve.*confirm|precisa.*confirm/i.test(item.answer)) return false;

@@ -56,7 +56,7 @@ export default async function inquiries(req: IncomingMessage & { body?: unknown 
       if (!validSignature || !bytes.length || bytes.length > maxFileBytes) return reply(400, "O currículo deve ser um PDF, DOC ou DOCX válido de até 2 MB.");
     }
     const endpoint = process.env.INQUIRIES_WEBHOOK_URL;
-    if (!endpoint) return reply(503, "Envio indisponível no momento. Entre em contato pelos canais da AccessLift.");
+    if (!endpoint) return reply(503, "Envio indisponível no momento. Entre em contato pelos canais da Accesslift.");
     if (new URL(endpoint).protocol !== "https:") return reply(503, "Envio indisponível no momento.");
     const response = await fetch(endpoint, {
       method: "POST", signal: AbortSignal.timeout(15000),
@@ -67,6 +67,6 @@ export default async function inquiries(req: IncomingMessage & { body?: unknown 
     if (!response.ok || result?.ok !== true || result.emailSent !== true || result.recipient !== commercialRecipient) return reply(502, "Não foi possível enviar. Tente novamente ou utilize os canais de contato.");
     return reply(200, "Solicitação enviada com sucesso.", true);
   } catch {
-    return reply(400, "Não foi possível enviar. Confira os dados ou entre em contato com a AccessLift.");
+    return reply(400, "Não foi possível enviar. Confira os dados ou entre em contato com a Accesslift.");
   }
 }

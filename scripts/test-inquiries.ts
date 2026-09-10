@@ -47,7 +47,10 @@ test("inquiries: validation and acknowledged delivery", async (t) => {
     });
     await t.test("forwards contact and requires receiver acknowledgement", async () => {
       globalThis.fetch = async (_url, init) => {
-        assert.equal(JSON.parse(String(init?.body)).kind, "contact");
+        const payload = JSON.parse(String(init?.body));
+        assert.equal(payload.kind, "contact");
+        assert.equal(payload.values.interesse, contact.interesse);
+        assert(payload.email.text.includes(contact.interesse) || payload.email.text.includes("Locação"));
         return new Response(JSON.stringify({ ok: true, emailSent: true, recipient: "comercial@accesslift.com.br" }), { status: 200 });
       };
       assert.equal((await request({ kind: "contact", values: contact })).ok, true);
@@ -74,6 +77,19 @@ test("inquiries: validation and acknowledged delivery", async (t) => {
         return new Response('{"ok":true,"emailSent":true,"recipient":"comercial@accesslift.com.br"}');
       };
       assert.equal((await request({ kind: "career", values, attachment })).ok, true);
+      const oversized = Buffer.alloc(2 * 1024 * 1024 + 1);
+      oversized.write("%PDF-1.7");
+      assert.equal((await request({ kind: "career", values, attachment: { name: "grande.pdf", content: oversized.toString("base64") } })).ok, false);
+      for (const [name, bytes] of [
+        ["curriculo.doc", Buffer.from("d0cf11e0a1b11ae1", "hex")],
+        ["curriculo.docx", Buffer.from("504b030400000000", "hex")],
+      ] as const) {
+        globalThis.fetch = async (_url, init) => {
+          assert.equal(JSON.parse(String(init?.body)).attachment.name, name);
+          return new Response('{"ok":true,"emailSent":true,"recipient":"comercial@accesslift.com.br"}');
+        };
+        assert.equal((await request({ kind: "career", values, attachment: { name, content: bytes.toString("base64") } })).ok, true);
+      }
     });
   } finally {
     globalThis.fetch = oldFetch;

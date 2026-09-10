@@ -16,6 +16,8 @@ const labelClasses = "grid gap-1.5 text-xs font-black uppercase tracking-wider t
 const getStoredUtm = (key: string) => {
   const consent = readPreferences();
   if (!consent?.analytics && !consent?.advertising) return null;
+  const current = new URLSearchParams(window.location.search).get(key);
+  if (current) return current;
   try { return window.sessionStorage.getItem(`accesslift-${key}`); } catch { return null; }
 };
 
@@ -46,7 +48,7 @@ const createInitialValues = (equipment: Equipment | null): QuoteRequestPayload =
   brand: equipment?.brand || null,
   model: equipment?.model || null,
   category: equipment?.category === "plataformas-tesoura" ? "tesoura" : equipment?.category === "plataformas-articuladas" ? "articulada" : null,
-  power: equipment?.specs.alimentacao?.toLowerCase().includes("eletric") ? "eletrica" : null,
+  power: /el[ée]tric/i.test(equipment?.specs.alimentacao || "") ? "eletrica" : null,
   pageOrigin: equipment ? `/equipamentos/${equipment.slug}/` : quoteSourcePaths[quoteOrigin() || ""] || (typeof window === "undefined" ? "/solicite-orcamento/" : window.location.pathname),
   utmSource: getStoredUtm("utm_source"),
   utmMedium: getStoredUtm("utm_medium"),
@@ -70,6 +72,7 @@ const validate = (values: QuoteRequestPayload) => {
 };
 
 export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment | null; key?: string }) {
+  const submitting = useRef(false);
   const started = useRef(false);
   const initialValues = useMemo(() => createInitialValues(equipment), [equipment]);
   const [values, setValues] = useState<QuoteRequestPayload>(initialValues);
@@ -94,7 +97,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
       className="premium-card grid gap-4 rounded-lg p-4 md:grid-cols-2 md:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
-        if (status === "loading") return;
+        if (submitting.current) return;
         const nextErrors = validate(values);
         setErrors(nextErrors);
 
@@ -104,6 +107,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           return;
         }
 
+        submitting.current = true;
         setStatus("loading");
         setMessage("");
 
@@ -111,7 +115,7 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           await submitQuoteRequest(values);
           setStatus("success");
           setMessage(
-            "Solicitação enviada com sucesso. Recebemos as informações do seu orçamento. A equipe AccessLift poderá entrar em contato pelos dados informados para dar continuidade ao atendimento.",
+            "Solicitação enviada com sucesso. Recebemos as informações do seu orçamento. A equipe Accesslift poderá entrar em contato pelos dados informados para dar continuidade ao atendimento.",
           );
           trackEvent({
             name: "form_submit",
@@ -129,7 +133,9 @@ export function QuoteRequestForm({ equipment = null }: { equipment?: Equipment |
           setValues(createInitialValues(equipment));
         } catch {
           setStatus("error");
-          setMessage("Não foi possível enviar sua solicitação. Tente novamente ou entre em contato com a AccessLift pelos canais disponíveis no site.");
+          setMessage("Não foi possível enviar sua solicitação. Tente novamente ou entre em contato com a Accesslift pelos canais disponíveis no site.");
+        } finally {
+          submitting.current = false;
         }
       }}
     >

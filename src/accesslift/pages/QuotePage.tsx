@@ -31,7 +31,7 @@ export function QuotePage() {
         image={heroImages.orcamento}
         eyebrow="Orçamento"
         title="Solicite um Orçamento de Plataforma Elevatória"
-        description="Conte para a AccessLift as principais características do trabalho. Mesmo que você ainda não saiba qual modelo precisa, nossa equipe pode auxiliar na identificação das opções adequadas."
+        description="Conte para a Accesslift as principais características do trabalho. Mesmo que você ainda não saiba qual modelo precisa, nossa equipe pode auxiliar na identificação das opções adequadas."
       />
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-6 lg:grid-cols-[1fr_0.65fr]">
         <QuoteRequestForm key={equipment?.slug || "general"} equipment={equipment} />
@@ -41,7 +41,7 @@ export function QuotePage() {
             Altura aproximada, espaço disponível, tipo de acesso e existência de obstáculos já ajudam nossa equipe a compreender a necessidade.
           </p>
           <div className="mt-5 rounded-md border border-slate-200 bg-white p-3 text-sm font-semibold text-slate-600">
-            Depois do envio, a equipe AccessLift avalia equipamento, período, local e condições comerciais.
+            Depois do envio, a equipe Accesslift avalia equipamento, período, local e condições comerciais.
           </div>
         </aside>
       </section>

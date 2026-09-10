@@ -5,6 +5,7 @@ import { submitInquiry } from "../services/leadService";
 import { trackEvent } from "../analytics/analytics";
 import { PrivacyNotice } from "../components/forms/PrivacyNotice";
 import { ConversionHero } from "./shared/StructuredPageSections";
+import { heroImages } from "../data/heroImages";
 
 type CareerValues = {
   name: string;
@@ -30,6 +31,7 @@ const inputClasses =
   "min-h-12 rounded-md border border-slate-300 bg-white px-3 text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-[#0b2d4d] focus:ring-2 focus:ring-[#0b2d4d]/15";
 
 export function CareerPage() {
+  const submitting = useRef(false);
   const [values, setValues] = useState<CareerValues>(initialValues);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -37,7 +39,7 @@ export function CareerPage() {
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === "loading") return;
+    if (submitting.current) return;
     const form = event.currentTarget;
     const isValid =
       values.name.trim() &&
@@ -54,17 +56,20 @@ export function CareerPage() {
       return;
     }
 
+    submitting.current = true;
     setStatus("loading");
     try {
       const { resume, ...fields } = values;
       await submitInquiry("career", fields, resume!);
       setStatus("success");
-      trackEvent({ name: "career_form_submit" });
+      trackEvent({ name: "career_form_submit", payload: { form_type: "careers" } });
       setValues(initialValues);
       form.reset();
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : "Não foi possível enviar seu currículo. Tente novamente.");
+    } finally {
+      submitting.current = false;
     }
   };
 
@@ -72,16 +77,17 @@ export function CareerPage() {
     <>
       <ConversionHero
         compact
+        image={heroImages.carreira}
         eyebrow="Trabalhe Conosco"
         title="Trabalhe Conosco"
-        description="Quer fazer parte da equipe AccessLift? Envie seus dados e currículo para nosso banco de profissionais e futuras oportunidades."
+        description="Quer fazer parte da equipe Accesslift? Envie seus dados e currículo para nosso banco de profissionais e futuras oportunidades."
         primaryCta={{ label: "Enviar currículo", href: "#curriculo" }}
       />
       <section id="curriculo" className="mx-auto grid max-w-4xl scroll-mt-32 gap-6 px-4 py-12 md:px-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <h2 className="text-slate-950">Cadastre seu currículo</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            A AccessLift reúne profissionais em áreas relacionadas à operação, atendimento, logística, manutenção e administração. Envie seus dados para nosso banco de profissionais para futuras oportunidades.
+            A Accesslift reúne profissionais em áreas relacionadas à operação, atendimento, logística, manutenção e administração. Envie seus dados para nosso banco de profissionais para futuras oportunidades.
           </p>
           <p className="mt-3 text-sm leading-6 text-slate-600">O envio do currículo não representa garantia de contratação ou participação imediata em processo seletivo.</p>
         </div>

@@ -11,19 +11,19 @@ const asset = (filename: string) => `/images/accesslift/${filename}`;
 export const companyGallery: OfficialMediaItem[] = [
   {
     src: asset("empresa/empresa.jpeg"),
-    alt: "Operação da Access Lift em ambiente industrial",
+    alt: "Operação da Accesslift em ambiente industrial",
     width: 1086,
     height: 1448,
   },
   {
     src: asset("empresa/empresa-01.jpeg"),
-    alt: "Plataforma elevatória da Access Lift em operação",
+    alt: "Plataforma elevatória da Accesslift em operação",
     width: 720,
     height: 1280,
   },
   {
     src: asset("empresa/empresa-02.jpeg"),
-    alt: "Equipe da Access Lift no escritório",
+    alt: "Equipe da Accesslift no escritório",
     width: 900,
     height: 1600,
   },
@@ -32,7 +32,7 @@ export const companyGallery: OfficialMediaItem[] = [
 export const deliveryGallery: OfficialMediaItem[] = [
   { src: asset("logistica/entrega-retirada-plataforma-frota-propria-04.jpeg"), alt: "Caminhão transportando plataformas elevatórias", width: 1280, height: 957 },
   { src: asset("logistica/entrega-retirada-plataforma-frota.jpeg"), alt: "Entrega de plataformas elevatórias por caminhão", width: 957, height: 1280 },
-  { src: asset("logistica/entrega-retirada-plataforma-frota-propria.jpeg"), alt: "Transporte de plataforma elevatória pela frota da Access Lift", width: 868, height: 1160 },
+  { src: asset("logistica/entrega-retirada-plataforma-frota-propria.jpeg"), alt: "Transporte de plataforma elevatória pela frota da Accesslift", width: 868, height: 1160 },
   { src: asset("logistica/entrega-retirada-plataforma-frota-propria-01.jpeg"), alt: "Entrega de plataforma elevatória pela frota própria", width: 957, height: 1280 },
   { src: asset("logistica/entrega-retirada-plataforma-frota-propria-02.jpeg"), alt: "Plataforma elevatória transportada pela frota própria", width: 957, height: 1280 },
   { src: asset("logistica/entrega-retirada-plataforma-frota-propria-03.jpeg"), alt: "Entrega de plataforma JLG pela frota própria", width: 720, height: 1280 },
@@ -65,10 +65,10 @@ export const categoryGalleryBySlug = {
     { src: asset("equipamentos/zoomlion/Zoomlion-ZA14JE.jpeg"), alt: "Plataforma articulada Zoomlion em ambiente operacional", width: 957, height: 1280, caption: "Plataforma articulada em operação." },
     { src: asset("equipamentos/genie/genie-z34-22-02.jpeg"), alt: "Cesto de plataforma articulada Genie visto de frente", width: 957, height: 1280, caption: "Genie Z-34/22." },
     { src: asset("equipamentos/genie/genie-z34-22-01.jpeg"), alt: "Vista traseira de plataforma articulada Genie", width: 957, height: 1280, caption: "Genie Z-34/22." },
-    { src: asset("equipamentos/genie/genie-z34-22-03.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento Lubrax", width: 957, height: 1280, caption: "Genie Z-34/22 em evento externo." },
-    { src: asset("equipamentos/genie/genie-z34-22-04.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Access Lift em evento BYD e Ford", width: 957, height: 1280, caption: "Genie Z-34/22 em evento externo." },
+    { src: asset("equipamentos/genie/genie-z34-22-03.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Accesslift em evento Lubrax", width: 957, height: 1280, caption: "Genie Z-34/22 em evento externo." },
+    { src: asset("equipamentos/genie/genie-z34-22-04.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Accesslift em evento BYD e Ford", width: 957, height: 1280, caption: "Genie Z-34/22 em evento externo." },
   ],
   "plataformas-tesoura": [
-    { src: asset("equipamentos/skyjack/skyjet.jpeg"), alt: "Plataforma tesoura Skyjack da frota Access Lift", width: 957, height: 1280, caption: "Modelo não identificado na imagem." },
+    { src: asset("equipamentos/skyjack/skyjet.jpeg"), alt: "Plataforma tesoura Skyjack da frota Accesslift", width: 957, height: 1280, caption: "Modelo não identificado na imagem." },
   ],
 } satisfies Record<string, OfficialMediaItem[]>;

@@ -45,7 +45,7 @@ const officialImagesBySlug: Partial<
   "jlg-1930es": {
     mainImage: {
       src: asset("equipamentos/jlg/jlg-1930ES.jpeg"),
-      alt: "Plataforma tesoura JLG 1930ES da Access Lift",
+      alt: "Plataforma tesoura JLG 1930ES da Accesslift",
       width: 957,
       height: 1280,
     },
@@ -76,7 +76,7 @@ const officialImagesBySlug: Partial<
   "jlg-3246es": {
     mainImage: {
       src: asset("equipamentos/jlg/jlg-3246ES.jpeg"),
-      alt: "Plataforma tesoura JLG 3246ES da Access Lift",
+      alt: "Plataforma tesoura JLG 3246ES da Accesslift",
       width: 957,
       height: 1280,
     },
@@ -121,7 +121,7 @@ const officialImagesBySlug: Partial<
   "genie-z34": {
     mainImage: {
       src: asset("equipamentos/genie/genie-z34-22.jpeg"),
-      alt: "Plataforma articulada Genie Z-34/22 da Access Lift",
+      alt: "Plataforma articulada Genie Z-34/22 da Accesslift",
       width: 868,
       height: 1160,
     },
@@ -136,7 +136,7 @@ const officialImagesBySlug: Partial<
   "genie-z45": {
     mainImage: {
       src: asset("equipamentos/genie/genie-z45-25.jpeg"),
-      alt: "Plataforma articulada Genie Z-45 da Access Lift",
+      alt: "Plataforma articulada Genie Z-45 da Accesslift",
       width: 957,
       height: 1280,
     },
@@ -147,7 +147,7 @@ const officialImagesBySlug: Partial<
   "skyjack-sj3219": {
     mainImage: {
       src: asset("equipamentos/skyjack/skyjet-sj3219.jpeg"),
-      alt: "Plataforma tesoura Skyjack SJ3219 da Access Lift",
+      alt: "Plataforma tesoura Skyjack SJ3219 da Accesslift",
       width: 957,
       height: 1280,
     },
@@ -160,7 +160,7 @@ const officialImagesBySlug: Partial<
   "skyjack-sj3226": {
     mainImage: {
       src: asset("equipamentos/skyjack/skyjet-sj3226.jpeg"),
-      alt: "Plataforma tesoura Skyjack SJ3226 da Access Lift",
+      alt: "Plataforma tesoura Skyjack SJ3226 da Accesslift",
       width: 957,
       height: 1280,
     },
@@ -169,7 +169,7 @@ const officialImagesBySlug: Partial<
   "skyjack-sj4732": {
     mainImage: {
       src: asset("equipamentos/skyjack/skyjet-sj4732.jpeg"),
-      alt: "Plataforma tesoura Skyjack SJ4732 da Access Lift",
+      alt: "Plataforma tesoura Skyjack SJ4732 da Accesslift",
       width: 957,
       height: 1280,
     },
@@ -181,7 +181,7 @@ const officialImagesBySlug: Partial<
   "zoomlion-zs1212ac": {
     mainImage: {
       src: asset("equipamentos/zoomlion/Zoomlion-ZS1212AC.jpeg"),
-      alt: "Plataforma tesoura Zoomlion ZS1212AC da Access Lift",
+      alt: "Plataforma tesoura Zoomlion ZS1212AC da Accesslift",
       width: 957,
       height: 1280,
     },
@@ -192,7 +192,7 @@ const officialImagesBySlug: Partial<
   "zoomlion-za14je-li": {
     mainImage: {
       src: asset("equipamentos/zoomlion/Zoomlion-ZA14JE-LI.jpeg"),
-      alt: "Plataforma articulada Zoomlion ZA14JE-Li da Access Lift",
+      alt: "Plataforma articulada Zoomlion ZA14JE-Li da Accesslift",
       width: 1170,
       height: 1273,
     },
@@ -508,6 +508,9 @@ const equipmentSpecsBySlug: Record<string, Partial<EquipmentSpecs>> = {
 };
 
 const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
+  "jlg-1930es": {
+    summary: "Plataforma tesoura elétrica compacta para trabalhos de elevação vertical, manutenção e instalações.",
+  },
   "jlg-2630es": {
     summary: "Plataforma elevatória tesoura elétrica para trabalhos de elevação vertical, indicada para operações de manutenção, instalações e montagens em diferentes ambientes.",
     overview: "A JLG 2630ES é uma plataforma tesoura elétrica para trabalhos em que o acesso ao ponto de execução ocorre predominantemente na vertical. Seu formato favorece operações de manutenção, instalações e montagens em ambientes onde circulação e posicionamento do equipamento precisam ser considerados.\n\nA alimentação elétrica contribui para uma operação adequada a diferentes ambientes, sempre respeitando as condições de uso, acesso, piso e capacidade previstas para a máquina.",
@@ -539,7 +542,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
     },
     oldUrl: "/site/index.php/modelos/plataformas-tesoura-accesslift/jlg-2630es",
     technicalDataSource: "Accesslift legacy website",
-    rentalText: "Consulte a disponibilidade da JLG 2630ES para locação diária, semanal ou mensal.\n\nA Accesslift atende São Paulo e localidades em um raio de até 150 km de sua base, com entrega e retirada próprias, assistência técnica e suporte durante a locação.",
+    rentalText: "Consulte a disponibilidade da JLG 2630ES para locação diária, semanal ou mensal.\n\nA Accesslift atende São Paulo e região, com outras localidades sob avaliação comercial, entrega e retirada próprias, assistência técnica e suporte durante a locação.",
   },
   "jlg-2632es": {
     summary: "Plataforma tesoura elétrica para trabalhos de elevação vertical, indicada para operações de manutenção, instalações e montagens em ambientes compatíveis.",

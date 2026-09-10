@@ -227,7 +227,7 @@ function ServiceAreaMap() {
           <MapPin className="h-4 w-4 text-[#d8242f]" aria-hidden />
           Base em São Paulo
         </span>
-        <span>Atendimento em raio de até 150 km, conforme disponibilidade e condições da operação.</span>
+        <span>150 km como referência aproximada; outras localidades sob avaliação comercial.</span>
       </figcaption>
     </figure>
   );
@@ -361,7 +361,7 @@ export function HomePage() {
           <SectionHeader
             eyebrow="Equipamentos"
             title="Plataformas elevatórias para diferentes alturas e aplicações"
-            description="A frota Accesslift reúne plataformas elevatórias das categorias tesoura e articulada, com modelos de fabricantes reconhecidos como JLG, Genie, Skyjack e Zoomlion. Compare os equipamentos por categoria, marca, altura de trabalho e capacidade para encontrar as opções mais adequadas à sua necessidade."
+            description="Conheça alguns dos modelos disponíveis para locação e acesse o catálogo completo para comparar categorias, marcas e alturas de trabalho."
           />
           <div className="reveal-stagger grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {featuredEquipment.map((equipment) => <HomeEquipmentCard key={equipment.id} equipment={equipment} />)}
@@ -399,7 +399,7 @@ export function HomePage() {
             <SectionHeader
               eyebrow="Área de atendimento"
               title="Locação de plataformas elevatórias em São Paulo e região"
-              description="A Accesslift atende empresas em São Paulo e municípios dentro de um raio de até 150 km de nossa base, conforme disponibilidade e condições da operação."
+              description="A Accesslift atende empresas em São Paulo e região, tendo 150 km como referência aproximada, com outras localidades sob avaliação comercial."
             />
             <div className="max-w-2xl space-y-5 text-base leading-7 text-zinc-600">
               <p>Nossa estrutura de atendimento integra locação, entrega e retirada dos equipamentos e suporte técnico durante a operação.</p>
@@ -474,7 +474,7 @@ export function HomePage() {
           </div>
           <div data-reveal="fade-left" className="grid gap-3 sm:grid-cols-2">
             <RequestQuoteButton className="!font-semibold" />
-            <Button href="/contato/" variant="secondary" className="!font-semibold">Falar com a Accesslift</Button>
+            <Button href={contactConfig.whatsappUrl} variant="secondary" className="!font-semibold" onClick={() => trackEvent({ name: "whatsapp_click", payload: { source: "home_final" } })}>Falar pelo WhatsApp</Button>
           </div>
         </div>
       </section>

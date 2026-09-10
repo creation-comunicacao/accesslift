@@ -15,14 +15,14 @@ export function CoveragePage() {
       <ConversionHero
         eyebrow="Área de atendimento"
         title="Locação de Plataformas Elevatórias em São Paulo e Região"
-        description="Atendimento a operações em São Paulo e municípios dentro de um raio de até 150 km da base Accesslift, conforme disponibilidade e condições da operação."
+        description="Atendimento a operações em São Paulo e região, com outras localidades sob avaliação comercial, conforme disponibilidade e condições da operação."
         primaryCta={{ label: "Consultar atendimento na minha cidade", href: "#consulta-cidade" }}
         secondaryCta={{ label: "Solicitar orçamento", href: "/solicite-orcamento/" }}
       />
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-12 md:px-6 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="premium-card rounded-lg p-6">
           <MapPin className="h-9 w-9 text-[#0b2d4d]" aria-hidden />
-          <h2 className="mt-4 text-slate-950">Atendimento em um raio de até 150 km</h2>
+          <h2 className="mt-4 text-slate-950">Atendimento em São Paulo e região</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">A disponibilidade para determinada localidade pode variar de acordo com equipamento, período, logística e condições da operação. Mesmo dentro da região atendida, confirme disponibilidade para a data e equipamento necessários.</p>
           <RequestQuoteButton className="mt-5" />
         </div>
@@ -95,7 +95,7 @@ export function CoveragePage() {
                 {
                   id: "coverage-sp",
                   title: "A Accesslift atende somente a cidade de São Paulo?",
-                  content: "Não. A operação contempla São Paulo e municípios dentro de um raio de até 150 km da base, conforme disponibilidade e condições da locação.",
+                  content: "Não. A operação contempla São Paulo e região, com outras localidades sob avaliação comercial, conforme disponibilidade e condições da locação.",
                 },
                 {
                   id: "coverage-city",
