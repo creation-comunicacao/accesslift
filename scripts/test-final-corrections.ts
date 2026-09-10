@@ -40,5 +40,45 @@ test("requested metadata and Home copy use the existing sources", () => {
   assert.equal(mockEquipments.find(e => e.slug === "jlg-1930es")?.summary, summary);
   assert(home.includes(summary));
   assert(renderStaticPage(template, "/politica-de-privacidade/", false).html.includes("Acess Lift Loc.serv e com de plataformas"));
-  assert(mockEquipments.every(e => !e.technicalSheetPdf && !e.manualPdf));
+  assert(mockEquipments.every(e => !e.manualPdf));
+});
+
+test("JLG E450AJ uses supplied photos and a technical sheet, not an operating manual", () => {
+  const equipment = mockEquipments.find(e => e.slug === "jlg-e450aj")!;
+  assert.equal(equipment.images.length, 6);
+  assert.equal(equipment.mainImage.src, "/images/accesslift/equipamentos/jlg/jlg-e450aj-03.png");
+  for (const photo of equipment.images) {
+    assert(photo.src);
+    assert(readFileSync(new URL(`../public${photo.src}`, import.meta.url)).length > 0);
+  }
+  assert.equal(equipment.technicalSheetPdf, "/documents/accesslift/jlg-e450aj-ficha-tecnica.pdf");
+  assert.equal(equipment.manualPdf, null);
+  const html = renderStaticPage(template, "/equipamentos/jlg-e450aj/", false).html;
+  assert(html.includes(`href="${equipment.technicalSheetPdf}"`));
+  assert(html.includes("Baixar ficha técnica"));
+  assert(!html.includes("Baixar manual"));
+});
+
+test("confirmed technical sheets exist and are linked on the matching equipment pages", () => {
+  for (const slug of ["jlg-1930es", "jlg-2630es", "zoomlion-zs1212ac"]) {
+    const equipment = mockEquipments.find(e => e.slug === slug)!;
+    assert.equal(equipment.technicalSheetPdf, `/documents/accesslift/${slug}-ficha-tecnica.pdf`);
+    const pdf = readFileSync(new URL(`../public${equipment.technicalSheetPdf}`, import.meta.url));
+    assert.equal(pdf.subarray(0, 5).toString(), "%PDF-");
+    const html = renderStaticPage(template, `/equipamentos/${slug}/`, false).html;
+    assert(html.includes(`href="${equipment.technicalSheetPdf}"`));
+    assert(html.includes("Baixar ficha técnica"));
+  }
+  for (const [slug, file] of [
+    ["jlg-3246es", "jlg-es3246"],
+    ["skyjack-sj3219", "skyjack-sj3219-e"],
+    ["skyjack-sj3226", "skyjack-sj3226-e"],
+    ["skyjack-sj4732", "skyjack-sj4732-e"],
+  ]) {
+    const equipment = mockEquipments.find(e => e.slug === slug)!;
+    assert.equal(equipment.technicalSheetPdf, `/documents/accesslift/${file}-ficha-tecnica.pdf`);
+    assert.equal(readFileSync(new URL(`../public${equipment.technicalSheetPdf}`, import.meta.url)).subarray(0, 5).toString(), "%PDF-");
+    const html = renderStaticPage(template, `/equipamentos/${slug}/`, false).html;
+    assert(html.includes(`href="${equipment.technicalSheetPdf}"`));
+  }
 });

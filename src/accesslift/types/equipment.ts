@@ -72,6 +72,7 @@ export type Equipment = {
   title: string;
   summary: string;
   specs: EquipmentSpecs;
+  commercialSpecs?: Partial<EquipmentSpecs>;
   images: EquipmentImage[];
   characteristics: string[];
   differentials: string[];

@@ -25,6 +25,7 @@ export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage, com
       : "Plataforma Articulada";
   const isElectric = equipment.specs.alimentacao?.toLowerCase().includes("eletric") ?? false;
   const alturaTrabalho = formatPublicSpecValue(equipment.specs.alturaTrabalho);
+  const altura = alturaTrabalho || formatPublicSpecValue(equipment.specs.alturaPlataforma);
   const capacidade = formatPublicSpecValue(equipment.specs.capacidade);
   const alcanceHorizontal = formatPublicSpecValue(equipment.specs.alcanceHorizontal);
 
@@ -67,13 +68,13 @@ export function EquipmentCard({ equipment, quoteLabel, quoteWhatsappMessage, com
           </dt>
           <dd className="font-medium text-slate-800">{equipment.model}</dd>
         </div>}
-        {alturaTrabalho && (
+        {altura && (
           <div className="flex justify-between gap-4 border-t border-slate-100 pt-2">
             <dt className="flex items-center gap-2 text-slate-500">
               <Ruler className="h-4 w-4" aria-hidden />
-              Altura de trabalho
+              {alturaTrabalho ? "Altura de trabalho" : "Altura da plataforma"}
             </dt>
-            <dd className="text-right font-medium text-slate-800">{alturaTrabalho}</dd>
+            <dd className="text-right font-medium text-slate-800">{altura}</dd>
           </div>
         )}
         {capacidade && (

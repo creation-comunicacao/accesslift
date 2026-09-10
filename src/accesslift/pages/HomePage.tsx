@@ -141,7 +141,7 @@ function HomeEquipmentCard({ equipment }: { equipment: Equipment; key?: string }
     ["Alimentação", formatPublicSpecValue(equipment.specs.alimentacao)],
     ["Capacidade", formatPublicSpecValue(equipment.specs.capacidade)],
   ].filter((item): item is [string, string] => Boolean(item[1]));
-  const primarySpecs = [["Altura de trabalho", formatPublicSpecValue(equipment.specs.alturaTrabalho)]]
+  const primarySpecs = [[equipment.specs.alturaTrabalho ? "Altura de trabalho" : "Altura da plataforma", formatPublicSpecValue(equipment.specs.alturaTrabalho || equipment.specs.alturaPlataforma)]]
     .filter((item): item is [string, string] => Boolean(item[1]))
     .concat(specs)
     .slice(0, 2);

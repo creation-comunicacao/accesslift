@@ -1,4 +1,5 @@
-import { Download, Headphones, ImageIcon, MessageCircle, PackageCheck, Ruler, Send, ShieldCheck } from "lucide-react";
+import { Download, Headphones, MessageCircle, PackageCheck, Ruler, Send, ShieldCheck } from "lucide-react";
+import { EquipmentGallery } from "../../components/equipment/EquipmentGallery";
 import { getRelatedEquipment } from "../../catalog/catalog";
 import { equipmentEventPayload, equipmentFaq, equipmentOperationalPoints, equipmentWhatsappMessage } from "../../catalog/equipmentPresentation";
 import { trackEvent } from "../../analytics/analytics";
@@ -15,84 +16,17 @@ type EquipmentDetailPageProps = {
   equipment: Equipment;
 };
 
-const specLabels: Array<{
-  key: keyof Equipment["specs"];
-  label: string;
-}> = [
+const specLabels: Array<{ key: keyof Equipment["specs"]; label: string }> = [
   { key: "alturaTrabalho", label: "Altura de trabalho" },
   { key: "alturaPlataforma", label: "Altura da plataforma" },
-  { key: "capacidade", label: "Capacidade" },
-  { key: "capacidadeExtensao", label: "Capacidade da extensão" },
-  { key: "alimentacao", label: "Alimentação" },
-  { key: "peso", label: "Peso" },
-  { key: "largura", label: "Largura" },
-  { key: "comprimento", label: "Comprimento" },
-  { key: "alturaMaquina", label: "Altura da máquina" },
-  { key: "alturaRecolhida", label: "Altura recolhida" },
-  { key: "dimensaoPlataforma", label: "Dimensões da plataforma" },
-  { key: "extensaoDeck", label: "Extensão do deck" },
-  { key: "distanciaEntreEixos", label: "Distância entre eixos" },
-  { key: "distanciaSolo", label: "Distância do solo" },
-  { key: "raioGiro", label: "Raio de giro" },
-  { key: "raioGiroInterno", label: "Raio de giro interno" },
-  { key: "raioGiroExterno", label: "Raio de giro externo" },
-  { key: "sistemaEletrico", label: "Sistema elétrico" },
-  { key: "pneus", label: "Pneus" },
-  { key: "bateria", label: "Bateria" },
-  { key: "carregador", label: "Carregador" },
   { key: "alcanceHorizontal", label: "Alcance horizontal" },
   { key: "alturaSobreObstaculo", label: "Altura sobre obstáculo" },
+  { key: "capacidade", label: "Capacidade" },
+  { key: "capacidadeExtensao", label: "Capacidade da extensão" },
+  { key: "largura", label: "Largura total" },
+  { key: "extensaoDeck", label: "Extensão da plataforma" },
+  { key: "alimentacao", label: "Alimentação" },
 ];
-
-function ImagePanel({ equipment }: EquipmentDetailPageProps) {
-  const accent = getManufacturerAccent(equipment.brand);
-
-  return (
-    <div className="grid gap-4">
-      {equipment.mainImage.src ? (
-        <div className={`media-frame overflow-hidden rounded-lg p-3 premium-shadow ring-4 ${accent.ring}`}>
-          <img
-            src={equipment.mainImage.src}
-            alt={equipment.mainImage.alt}
-            width={equipment.mainImage.width}
-            height={equipment.mainImage.height}
-            sizes="(min-width: 1024px) 48vw, 100vw"
-            className="aspect-[4/3] w-full rounded-md object-contain"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      ) : (
-        <div className={`media-frame flex aspect-[4/3] w-full flex-col items-center justify-center rounded-lg border-dashed px-6 text-center premium-shadow ring-4 ${accent.ring}`}>
-          <ImageIcon className="h-12 w-12 text-slate-400" aria-hidden />
-          <p className="mt-4 text-sm font-extrabold text-slate-600">
-            Foto específica deste modelo ainda não cadastrada.
-          </p>
-        </div>
-      )}
-
-      {equipment.gallery.length > 0 && (
-        <div className="grid grid-cols-3 gap-3">
-          {equipment.gallery.map((image) =>
-            image.src ? (
-              <img
-                key={`${image.src}-${image.alt}`}
-                src={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                sizes="(min-width: 1024px) 160px, 33vw"
-                className="aspect-square rounded-md border border-slate-200 bg-slate-50 object-contain"
-                loading="lazy"
-                decoding="async"
-              />
-            ) : null,
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
 
 function TextBlock({ children }: { children: string }) {
   return (
@@ -107,18 +41,31 @@ function TextBlock({ children }: { children: string }) {
 const getAvailableSpecs = (equipment: Equipment) =>
   specLabels
     .map((item) => ({ ...item, value: formatPublicSpecValue(equipment.specs[item.key]) }))
-    .filter((item) => Boolean(item.value));
+    .filter((item) => Boolean(item.value))
+    .flatMap(item => {
+      const conditions = item.value?.match(/^(.*?) interna \/ (.*?) externa$/);
+      if (conditions) return [
+        { ...item, label: `${item.label} (interna)`, value: conditions[1] },
+        { ...item, label: `${item.label} (externa)`, value: conditions[2] },
+      ];
+      const restrictions = item.value?.match(/^(.*?) sem restrição \/ (.*?) com restrição$/);
+      return restrictions ? [
+        { ...item, label: "Capacidade total sem restrição", value: restrictions[1] },
+        { ...item, label: "Capacidade total com restrição", value: restrictions[2] },
+      ] : [item];
+    });
 
 function HeroSpecs({ equipment }: EquipmentDetailPageProps) {
+  const commercialSpecs = { ...equipment.specs, ...equipment.commercialSpecs };
   const highlightKeys: Array<keyof Equipment["specs"]> = [
-    "alturaTrabalho",
-    "alturaPlataforma",
+    equipment.specs.alturaTrabalho ? "alturaTrabalho" : "alturaPlataforma",
+    equipment.category === "plataformas-articuladas" ? "alcanceHorizontal" : "largura",
     "capacidade",
     "alimentacao",
   ];
   const specs = specLabels
     .filter((item) => highlightKeys.includes(item.key))
-    .map((item) => ({ ...item, value: formatPublicSpecValue(equipment.specs[item.key]) }))
+    .map((item) => ({ ...item, value: formatPublicSpecValue(commercialSpecs[item.key]) }))
     .filter((item) => Boolean(item.value));
 
   if (specs.length === 0) {
@@ -147,13 +94,17 @@ function SpecsTable({ equipment }: EquipmentDetailPageProps) {
       <table className="w-full text-left text-sm">
         <tbody>
           {specs.map((spec) => (
-            <tr key={spec.key} className="border-b border-slate-100 last:border-b-0">
+            <tr key={spec.label} className="border-b border-slate-100 last:border-b-0">
               <th className="w-1/2 bg-slate-50 px-4 py-3 font-black uppercase tracking-wider text-slate-500">
                 {spec.label}
               </th>
               <td className="px-4 py-3 font-bold text-slate-900">{spec.value}</td>
             </tr>
           ))}
+          <tr className="border-b border-slate-100 last:border-b-0">
+            <th className="w-1/2 bg-slate-50 px-4 py-3 font-black uppercase tracking-wider text-slate-500">Tipo</th>
+            <td className="px-4 py-3 font-bold text-slate-900">{equipment.category === "plataformas-tesoura" ? "Tesoura" : "Articulada"}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -183,7 +134,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
     <>
       <section className="industrial-grid border-b border-slate-200 bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:px-6 lg:grid-cols-[0.95fr_1fr] lg:items-center">
-          <div data-reveal="fade-right"><ImagePanel equipment={equipment} /></div>
+          <div data-reveal="fade-right"><EquipmentGallery equipment={equipment} /></div>
           <div data-reveal="fade-left" className="relative overflow-hidden rounded-lg bg-white/70 p-5 shadow-[0_18px_45px_rgba(11,45,77,0.08)] ring-1 ring-slate-200/70 md:p-6">
             <span className={`absolute inset-x-0 top-0 h-1 ${accent.bar}`} aria-hidden />
             <div className="flex flex-wrap gap-2">
@@ -220,10 +171,10 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
               <SpecsTable equipment={equipment} />
             </div>
           )}
-          {(equipment.technicalSheetPdf || equipment.manualPdf) && (
-            <div className="mt-5 flex flex-wrap gap-3">
+          {equipment.technicalSheetPdf && (
+            <div className="mt-5 grid justify-items-start gap-3">
+              <h3 className="text-xl font-black text-slate-950">Documentos do equipamento</h3>
               {equipment.technicalSheetPdf && <Button variant="secondary" href={equipment.technicalSheetPdf} icon={<Download className="h-4 w-4" aria-hidden />} onClick={() => track("technical_sheet_download")}>Baixar ficha técnica</Button>}
-              {equipment.manualPdf && <Button variant="secondary" href={equipment.manualPdf} icon={<Download className="h-4 w-4" aria-hidden />} onClick={() => track("technical_sheet_download")}>Baixar manual</Button>}
             </div>
           )}
         </section>
@@ -283,7 +234,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
         <div className="rounded-lg bg-slate-950 p-6 text-white md:p-8">
           <h2>Consulte a disponibilidade da {modelName}</h2>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">
-            Informe a cidade, período e características da operação para consultar a disponibilidade deste equipamento e solicitar uma cotação.
+            Informe o local da operação, período e características da operação para consultar a disponibilidade deste equipamento e solicitar uma cotação.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             {quoteButton}
