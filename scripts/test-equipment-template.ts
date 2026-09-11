@@ -34,12 +34,28 @@ for (const equipment of mockEquipments) {
     assert.equal(equipmentEventPayload(equipment).equipment_model, equipment.model);
     const related = getRelatedEquipment(equipment);
     assert(related.length <= 3);
-    assert(related.every(item => item.category === equipment.category && item.status === "published" && item.id !== equipment.id));
+    assert(related.every(item => item.category === equipment.category && item.id !== equipment.id));
+    if (equipment.category !== "plataformas-articuladas") assert(related.every(item => item.status === "published"));
     const card = renderToStaticMarkup(createElement(EquipmentCard, { equipment, compact: true, quoteLabel: "Solicitar cotação" }));
     assert(!card.includes(equipment.summary));
     assert(!card.includes("Alcance horizontal"));
   });
 }
+
+test("four articulated pages restore dynamic related cards without changing publication or documents", () => {
+  const slugs = ["genie-z34", "genie-z45", "jlg-e450aj", "zoomlion-za14je-li"];
+  for (const slug of slugs) {
+    const equipment = mockEquipments.find(item => item.slug === slug)!;
+    const related = getRelatedEquipment(equipment);
+    assert.equal(related.length, 3);
+    assert.deepEqual(new Set(related.map(item => item.slug)), new Set(slugs.filter(item => item !== slug)));
+    assert.equal(equipment.status, "draft");
+    const html = renderToStaticMarkup(createElement(EquipmentDetailPage, { equipment }));
+    assert.equal((html.match(/Equipamentos relacionados/g) || []).length, 1);
+    for (const item of related) assert(html.includes(`href="/equipamentos/${item.slug}/"`));
+  }
+  assert.equal(mockEquipments.find(item => item.slug === "jlg-e450aj")!.technicalSheetPdf, "/documents/accesslift/jlg-e450aj-ficha-tecnica.pdf");
+});
 
 test("missing specifications do not render an empty table or labels", () => {
   const equipment = { ...mockEquipments[0], specs: { alturaTrabalho: null, alturaPlataforma: null, capacidade: null, alimentacao: null, peso: null, largura: null } };

@@ -48,14 +48,18 @@ export function Button({
     );
   }
 
+  const opensNewTab = /^https:\/\/wa\.me\//.test(href) || /\.pdf(?:[?#]|$)/i.test(href);
+
   return (
     <a
       className={classes}
       href={href}
+      target={opensNewTab ? "_blank" : undefined}
+      rel={opensNewTab ? "noopener noreferrer" : undefined}
       title={title}
       onClick={(event: MouseEvent<HTMLAnchorElement>) => {
         onClick?.();
-        if (href.startsWith("/")) {
+        if (!opensNewTab && href.startsWith("/")) {
           event.preventDefault();
           navigateTo(href);
         }

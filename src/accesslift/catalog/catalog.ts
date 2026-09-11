@@ -27,8 +27,17 @@ const relatedPriorityBySlug: Record<string, string[]> = {
   "jlg-2630es": ["jlg-2632es", "genie-gs2632", "skyjack-sj3226", "jlg-3246es"],
 };
 
+// These existing public detail pages are explicitly enabled for related cards
+// without changing their separate publication/SEO review status.
+const articulatedRelatedSlugs = new Set([
+  "genie-z34", "genie-z45", "jlg-e450aj", "zoomlion-za14je-li",
+]);
+
 export const getRelatedEquipment = (equipment: Equipment, limit = 3) => {
-  const sameCategory = getPublishedEquipment().filter(
+  const candidates = articulatedRelatedSlugs.has(equipment.slug)
+    ? mockEquipments.filter(candidate => articulatedRelatedSlugs.has(candidate.slug))
+    : getPublishedEquipment();
+  const sameCategory = candidates.filter(
     (candidate) =>
       candidate.id !== equipment.id && candidate.category === equipment.category,
   );

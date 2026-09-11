@@ -11,6 +11,12 @@ const template = readFileSync(new URL("../index.html", import.meta.url), "utf8")
 test("every public WhatsApp link includes one nonempty message", () => {
   for (const path of staticPaths) {
     const html = renderStaticPage(template, path, false).html;
+    for (const match of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)) {
+      if (match[1].startsWith("https://wa.me/") || /\.pdf(?:[?#]|$)/i.test(match[1])) {
+        assert(match[0].includes('target="_blank"'), path + " " + match[1]);
+        assert(match[0].includes('rel="noopener noreferrer"'), path);
+      }
+    }
     for (const match of html.matchAll(/href="(https:\/\/wa\.me\/[^\"]+)"/g)) {
       const url = new URL(match[1].replaceAll("&amp;", "&"));
       assert.equal(url.pathname, "/551123895259", path);

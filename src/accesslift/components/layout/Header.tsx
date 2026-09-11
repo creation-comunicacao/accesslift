@@ -76,6 +76,7 @@ export function Header({ currentPath }: HeaderProps) {
             {contactConfig.whatsappUrl && (
               <a
                 href={contactConfig.whatsappUrl}
+                target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center text-white transition hover:text-slate-200"
                 aria-label={`Abrir WhatsApp da Accesslift ${contactConfig.whatsappNumber}`}
               >
@@ -141,6 +142,7 @@ export function Header({ currentPath }: HeaderProps) {
           </div>
           <a
             href={contactConfig.whatsappUrl || "/contato/"}
+            target="_blank" rel="noopener noreferrer"
             className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-500 text-white shadow-[0_10px_25px_rgba(16,185,129,0.25)] sm:hidden"
             title="Falar pelo WhatsApp"
             aria-label="Falar pelo WhatsApp"
