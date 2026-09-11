@@ -141,7 +141,7 @@ export function AccessliftApp({ initialPath }: AccessliftAppProps) {
         ? configuredPage.faq
         : undefined;
     const equipmentFaqItems =
-      equipment?.status === "published" && equipment.seo.indexDirective === "index"
+      equipment
         ? equipmentFaq(equipment)
         : undefined;
     const faqSchema = buildFaqSchema(configuredFaq || equipmentFaqItems);
@@ -149,7 +149,7 @@ export function AccessliftApp({ initialPath }: AccessliftAppProps) {
       buildOrganizationSchema(),
       breadcrumbSchema,
       faqSchema,
-      equipment?.status === "published" && equipment.seo.indexDirective === "index"
+      equipment
         ? buildEquipmentSchema(equipment)
         : null,
     ].filter((schema): schema is NonNullable<typeof schema> => Boolean(schema));

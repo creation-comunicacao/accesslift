@@ -74,7 +74,7 @@ const officialImagesBySlug: Partial<
       height: 1024,
     },
     gallery: [
-      { src: asset("equipamentos/jlg/jlg-es2632-01.png"), alt: "Imagem ilustrativa da plataforma JLG 2632ES elevada", width: 1059, height: 1485 },
+      { src: asset("equipamentos/jlg/jlg-es2632-01.png"), alt: "Imagem ilustrativa da plataforma JLG ES2632 elevada", width: 1059, height: 1485 },
       { src: asset("equipamentos/jlg/jlg-es2632-02.png"), alt: "Vista de catálogo da plataforma tesoura JLG ES2632 recolhida", width: 1448, height: 1086 },
     ],
   },
@@ -417,6 +417,9 @@ const equipmentSpecsBySlug: Record<string, Partial<EquipmentSpecs>> = {
 const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
   "jlg-1930es": {
     summary: "Plataforma tesoura elétrica compacta para trabalhos de elevação vertical, manutenção e instalações.",
+    seo: {
+      description: "Conheça a plataforma tesoura JLG 1930ES: altura de trabalho, capacidade, especificações e aplicações. Consulte disponibilidade para locação.",
+    },
   },
   "jlg-2630es": {
     summary: "Plataforma elevatória tesoura elétrica para trabalhos de elevação vertical, indicada para operações de manutenção, instalações e montagens em diferentes ambientes.",
@@ -641,7 +644,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
       { question: "A ficha da ZS1212AC-Li pode ser usada?", answer: "Não automaticamente. A ZS1212AC e a ZS1212AC-Li devem permanecer separadas quando houver diferenças de bateria e configuração." },
     ],
     seo: {
-      title: "Zoomlion ZS1212AC: Plataforma Tesoura | Accesslift",
+      title: "Zoomlion ZS1212AC: Plataforma Tesoura para Locação | Accesslift",
       description: "Conheça a plataforma tesoura elétrica Zoomlion ZS1212AC, com capacidade de 350 kg e plataforma extensível para elevação vertical. Consulte disponibilidade.",
       h1: "Plataforma Tesoura Zoomlion ZS1212AC",
     },

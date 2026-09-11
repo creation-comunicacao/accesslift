@@ -6,8 +6,33 @@ import { mockEquipments } from "../src/accesslift/data/equipment";
 import { buildOrganizationSchema } from "../src/accesslift/seo/schema";
 import { buildInquiryEmail } from "../server/inquiryEmail";
 import { buildWhatsappUrl, defaultWhatsappMessage } from "../src/accesslift/data/contact";
+import { equipmentFaq } from "../src/accesslift/catalog/equipmentPresentation";
 
 const template = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+test("individual equipment schemas match visible products and FAQs regardless of indexing status", () => {
+  for (const equipment of mockEquipments) {
+    const { seo } = renderStaticPage(template, `/equipamentos/${equipment.slug}/`, true);
+    const schemas = seo.structuredData || [];
+    const products = schemas.filter(schema => schema["@type"] === "Product");
+    const faqs = schemas.filter(schema => schema["@type"] === "FAQPage");
+    assert.equal(products.length, 1, equipment.slug);
+    assert.equal(products[0].model, equipment.model);
+    assert.equal(products[0].description, equipment.summary);
+    assert.equal(faqs.length, equipmentFaq(equipment).length ? 1 : 0);
+    if (faqs.length) assert.deepEqual(faqs[0].mainEntity, equipmentFaq(equipment).map(item => ({
+      "@type": "Question", name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })));
+    assert.equal(seo.indexDirective, equipment.seo.indexDirective);
+    assert.equal(seo.canonicalPath, equipment.seo.canonical);
+    assert.equal(seo.openGraphTitle, equipment.seo.openGraphTitle);
+  }
+});
+test("three requested scissor text corrections", () => {
+  assert.equal(mockEquipments.find(item => item.slug === "jlg-1930es")!.seo.description, "Conheça a plataforma tesoura JLG 1930ES: altura de trabalho, capacidade, especificações e aplicações. Consulte disponibilidade para locação.");
+  assert(mockEquipments.find(item => item.slug === "jlg-2632es")!.images.some(image => image.alt === "Imagem ilustrativa da plataforma JLG ES2632 elevada"));
+  assert.equal(mockEquipments.find(item => item.slug === "zoomlion-zs1212ac")!.seo.title, "Zoomlion ZS1212AC: Plataforma Tesoura para Locação | Accesslift");
+});
 test("every public WhatsApp link includes one nonempty message", () => {
   for (const path of staticPaths) {
     const html = renderStaticPage(template, path, false).html;
