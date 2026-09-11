@@ -1,0 +1,13 @@
+{
+  "name": "accesslift/forms",
+  "description": "Private form backend for the Accesslift website",
+  "license": "proprietary",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "ext-openssl": "*",
+    "ext-zip": "*",
+    "phpmailer/phpmailer": "^7.0"
+  },
+  "config": { "sort-packages": true, "allow-plugins": false }
+}

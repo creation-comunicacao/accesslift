@@ -4,7 +4,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { ApplicationsPage } from "../src/accesslift/pages/segments/ApplicationsPage";
 import { applicationsPage } from "../src/accesslift/data/applicationsPage";
-import { buildInquiryEmail } from "../server/inquiryEmail";
+import { buildInquiryEmail } from "./php-email-test-bridge";
 
 test("applications hub has only seven top-level blocks and unique segment links", () => {
   const html = renderToStaticMarkup(createElement(ApplicationsPage));

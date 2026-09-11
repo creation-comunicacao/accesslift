@@ -4,7 +4,7 @@ import test from "node:test";
 import { renderStaticPage, staticPaths } from "./static-pages";
 import { mockEquipments } from "../src/accesslift/data/equipment";
 import { buildOrganizationSchema } from "../src/accesslift/seo/schema";
-import { buildInquiryEmail } from "../server/inquiryEmail";
+import { buildInquiryEmail } from "./php-email-test-bridge";
 import { buildWhatsappUrl, defaultWhatsappMessage } from "../src/accesslift/data/contact";
 import { equipmentFaq } from "../src/accesslift/catalog/equipmentPresentation";
 

@@ -1,5 +1,9 @@
 # Envio dos formularios pela Locaweb
 
+> HISTORICO: o backend Node.js/Vercel descrito abaixo foi substituido por PHP.
+> Para publicacao use [locaweb-php.md](locaweb-php.md). Credenciais agora ficam em
+> accesslift-private/config.local.php, fora de public_html. Nao ha fallback webhook.
+
 O endpoint `/api/inquiries` atende contato, orcamento, assistencia e curriculos.
 O envio SMTP ocorre exclusivamente no servidor, sem alterar os formularios.
 

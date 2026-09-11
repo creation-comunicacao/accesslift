@@ -1,0 +1,13 @@
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+ErrorDocument 404 /404.html
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+RewriteEngine On
+# Do not redirect POST requests: dispatch internally to PHP.
+RewriteRule ^api/inquiries/?$ api/inquiries.php [END]
+RewriteRule ^api/ - [END]

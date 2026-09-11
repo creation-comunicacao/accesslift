@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
+    "dev": "node scripts/dev-local.mjs",
     "build": "vite build && tsx scripts/prerender-pages.tsx",
-    "preview": "vite preview",
+    "preview": "node scripts/dev-local.mjs --preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "test": "tsx --test scripts/test-inquiries.ts scripts/test-equipment-template.ts scripts/test-platforms-page.ts scripts/test-applications-page.ts scripts/test-client-visuals.ts scripts/test-static-pages.ts scripts/test-tag-manager.ts scripts/test-final-corrections.ts"
+    "test": "npm run test:php && tsx --test scripts/test-equipment-template.ts scripts/test-platforms-page.ts scripts/test-applications-page.ts scripts/test-client-visuals.ts scripts/test-static-pages.ts scripts/test-tag-manager.ts scripts/test-final-corrections.ts",
+    "test:php": "php php/tests/inquiries-test.php",
+    "package:locaweb": "npm run build && node scripts/package-locaweb.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -19,7 +21,6 @@
     "express": "^4.21.2",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
-    "nodemailer": "^10.0.3",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "vite": "^6.2.3"
@@ -27,7 +28,6 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
-    "@types/nodemailer": "^8.0.1",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.25.0",
     "tailwindcss": "^4.1.14",
