@@ -1,5 +1,6 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { buildInquiryEmail, commercialRecipient } from "../server/inquiryEmail";
+import { sendInquirySmtp, smtpConfigured } from "../server/inquirySmtp";
 import { validEmail, validPhone } from "../src/accesslift/utils/inquiryValidation";
 
 const maxFileBytes = 2 * 1024 * 1024;
@@ -54,6 +55,14 @@ export default async function inquiries(req: IncomingMessage & { body?: unknown 
       const signature = bytes.subarray(0, 8).toString("hex");
       const validSignature = extension === "pdf" ? bytes.subarray(0, 5).toString() === "%PDF-" : extension === "doc" ? signature === "d0cf11e0a1b11ae1" : signature.startsWith("504b0304");
       if (!validSignature || !bytes.length || bytes.length > maxFileBytes) return reply(400, "O currículo deve ser um PDF, DOC ou DOCX válido de até 2 MB.");
+    }
+    if (smtpConfigured()) {
+      try {
+        await sendInquirySmtp(kind, values, kind === "career" ? attachment : undefined);
+        return reply(200, "Solicitação enviada com sucesso.", true);
+      } catch {
+        return reply(502, "Não foi possível enviar. Tente novamente ou utilize os canais de contato.");
+      }
     }
     const endpoint = process.env.INQUIRIES_WEBHOOK_URL;
     if (!endpoint) return reply(503, "Envio indisponível no momento. Entre em contato pelos canais da Accesslift.");

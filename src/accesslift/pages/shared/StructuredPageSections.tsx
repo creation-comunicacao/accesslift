@@ -15,6 +15,7 @@ import type { EquipmentCategorySlug } from "../../types/equipment";
 import type { ContentItem, CtaLink, FaqItem } from "../../data/pageContent";
 
 type SectionListProps = {
+  logos?: Record<string, string>;
   columns?: 2 | 3;
   eyebrow: string;
   title: string;
@@ -140,7 +141,7 @@ export function ValueSection({
   );
 }
 
-export function SectionList({ eyebrow, title, description, items, cta, columns = 3 }: SectionListProps) {
+export function SectionList({ eyebrow, title, description, items, cta, columns = 3, logos }: SectionListProps) {
   if (items.length === 0) {
     return null;
   }
@@ -158,8 +159,12 @@ export function SectionList({ eyebrow, title, description, items, cta, columns =
 
           return (
           <article key={normalized.title} data-reveal="fade-up" className="premium-card premium-card-hover rounded-lg p-5 md:p-6">
-            <BadgeCheck className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
-            <h3 className="mt-4 text-slate-950">{normalized.title}</h3>
+            {logos?.[normalized.title] ? (
+              <img src={logos[normalized.title]} alt={normalized.title} width={300} height={100} className="h-24 w-full object-contain" loading="lazy" decoding="async" />
+            ) : <>
+              <BadgeCheck className="h-7 w-7 text-[#0b2d4d]" aria-hidden />
+              <h3 className="mt-4 text-slate-950">{normalized.title}</h3>
+            </>}
             {normalized.description && <p className="mt-2 text-sm leading-6 text-slate-600">{normalized.description}</p>}
             {normalized.cta && (
               <ContentCta cta={normalized.cta} variant="ghost" className="mt-4" />

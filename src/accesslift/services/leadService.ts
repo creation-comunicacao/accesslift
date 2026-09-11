@@ -24,7 +24,7 @@ export type QuoteRequestPayload = {
 
 export type LeadSubmissionResult = {
   ok: true;
-  integration: "webhook";
+  integration: "server";
 };
 
 export type SupportRequestPayload = {
@@ -70,5 +70,5 @@ export async function submitInquiry(kind: "contact" | "support" | "career" | "qu
   });
   const result = await response.json().catch(() => null);
   if (!response.ok || result?.ok !== true) throw new Error(result?.message || "Não foi possível enviar. Tente novamente ou entre em contato com a Accesslift.");
-  return { ok: true, integration: "webhook" };
+  return { ok: true, integration: "server" };
 }

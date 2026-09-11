@@ -1,6 +1,21 @@
 {
   "redirects": [
     {
+      "source": "/site/index.php/modelos/plataformas-tesoura-accesslift/jlg-3246es",
+      "destination": "/equipamentos/jlg-3246es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/site/index.php/modelos/plataformas-articulada-accesslift/genie-z34",
+      "destination": "/equipamentos/genie-z34/",
+      "statusCode": 301
+    },
+    {
+      "source": "/site/index.php/modelos/plataformas-articulada-accesslift/genie-z45",
+      "destination": "/equipamentos/genie-z45/",
+      "statusCode": 301
+    },
+    {
       "source": "/site/index.php/modelos/plataformas-tesoura-accesslift/jlg-2630es",
       "destination": "/equipamentos/jlg-2630es/",
       "statusCode": 301

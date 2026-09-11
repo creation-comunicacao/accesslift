@@ -14,6 +14,13 @@ const media = {
   company: { src: "/images/accesslift/empresa/operacao-access-lift-em-ambiente-industrial.jpeg", alt: "Operação da Accesslift em ambiente industrial", width: 1086, height: 1448 },
 };
 
+const assistanceLogos = {
+  JLG: "/images/accesslift/marcas/jlg.png",
+  Genie: "/images/accesslift/marcas/genie.png",
+  Skyjack: "/images/accesslift/marcas/skyjack.png",
+  Zoomlion: "/images/accesslift/marcas/zoomlion.png",
+};
+
 const heroMediaByPath: Record<string, keyof typeof media> = {
   "/servicos/": "services",
   "/empresa/": "company",
@@ -44,7 +51,7 @@ function SectionMedia({ section, heroMedia }: { section: ClientSection; heroMedi
   const photo = section.media && section.media !== "company-gallery" ? media[section.media] : null;
   return <>
     {photo && section.media !== heroMedia && <div className="mx-auto max-w-7xl px-4 pt-12 md:px-6"><img {...photo} sizes="(min-width: 1024px) 1184px, 100vw" className="aspect-[16/7] w-full rounded-lg border border-slate-200 object-cover premium-shadow" loading="lazy" decoding="async" /></div>}
-    {section.media === "training" && <OfficialMediaGallery title="Equipe em atendimento" description="Registros da equipe e dos equipamentos em atendimento." images={trainingGallery.filter((image) => !heroMedia || image.src !== media[heroMedia].src)} />}
+    {section.media === "training" && <OfficialMediaGallery title="Treinamento de operadores" description="Registros de orientação para operação de plataformas elevatórias." images={trainingGallery} />}
     {section.media === "company-gallery" && <>
       <OfficialMediaGallery eyebrow={heroMedia === "company" ? section.eyebrow : undefined} title={section.title} description={section.description} images={companyGallery.filter((image) => heroMedia !== "company" || image.src !== "/images/accesslift/empresa/empresa.jpeg")} />
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">
@@ -63,7 +70,7 @@ export function ClientPageTemplate({ page }: { page: ClientPage }) {
   return <>
     <ConversionHero compact image={heroImageByPath[page.path]} eyebrow={page.eyebrow} title={page.title} description={page.description} primaryCta={page.actions[0]} secondaryCta={page.actions[1]} />
     {page.sections.map((section, index) => <div key={section.title} data-client-block={index + 2} id={section.form ? "solicitar-assistencia" : section.eyebrow === "Modalidades" ? "modalidades-treinamento" : undefined} className="scroll-mt-32">
-      {section.media !== "company-gallery" && (section.items ? <SectionList {...section} items={section.items} eyebrow={section.eyebrow || page.eyebrow} cta={undefined} /> : <ValueSection {...section} description={section.description || ""}
+      {section.media !== "company-gallery" && (section.items ? <SectionList {...section} logos={page.path === "/servicos/assistencia-tecnica/" && section.eyebrow === "Marcas" ? assistanceLogos : undefined} items={section.items} eyebrow={section.eyebrow || page.eyebrow} cta={undefined} /> : <ValueSection {...section} description={section.description || ""}
         lineEyebrow={page.path === "/servicos/" && index === 0}
         editorial={(index === 0 && editorialOpeningPaths.has(page.path)) || (page.path === "/servicos/manutencao-preventiva/" && ["Frota", "Equipamentos de terceiros"].includes(section.eyebrow || ""))}
         ctaClassName={page.path === "/area-de-atendimento/" && index === 0 ? "!border-[#0b2d4d] !bg-[#0b2d4d] !font-semibold !text-white !shadow-[0_12px_28px_rgba(11,45,77,0.18)] hover:!border-[#09243d] hover:!bg-[#09243d] hover:!text-white" : undefined}

@@ -43,8 +43,6 @@ export const deliveryGallery: OfficialMediaItem[] = [
 export const trainingGallery: OfficialMediaItem[] = [
   { src: asset("servicos/treinamento-assistencia.jpeg"), alt: "Treinamento para operação de plataforma elevatória", width: 960, height: 1280 },
   { src: asset("servicos/treinamento-assistencia-01.jpeg"), alt: "Treinamento de plataforma elevatória em ambiente industrial", width: 960, height: 1280 },
-  { src: asset("servicos/treinamento-assistencia-02.jpeg"), alt: "Assistência técnica em plataforma elevatória compacta", width: 960, height: 1280 },
-  { src: asset("servicos/treinamento-assistencia-03.jpeg"), alt: "Profissional realizando assistência em plataforma elevatória", width: 960, height: 1280 },
 ];
 
 export const operationGallery: OfficialMediaItem[] = [

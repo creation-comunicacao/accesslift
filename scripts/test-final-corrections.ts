@@ -4,8 +4,22 @@ import test from "node:test";
 import { renderStaticPage, staticPaths } from "./static-pages";
 import { mockEquipments } from "../src/accesslift/data/equipment";
 import { buildOrganizationSchema } from "../src/accesslift/seo/schema";
+import { buildInquiryEmail } from "../server/inquiryEmail";
 
 const template = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+test("assistance displays all four supplied brand logos only on its own page", () => {
+  const html = renderStaticPage(template, "/servicos/assistencia-tecnica/", false).html;
+  for (const brand of ["jlg", "genie", "skyjack", "zoomlion"]) {
+    const src = `/images/accesslift/marcas/${brand}.png`;
+    assert(html.includes(`src="${src}"`));
+    assert(readFileSync(new URL(`../public${src}`, import.meta.url)).length > 0);
+    assert(!renderStaticPage(template, "/servicos/", false).html.includes(src));
+  }
+});
+test("SMTP email preserves attribution and equipment context", () => {
+  const mail = buildInquiryEmail("quote", { email: "qa@example.invalid", brand: "JLG", model: "1930ES", pageOrigin: "/segmentos/construcao-civil/", utmSource: "google", utmMedium: "cpc", utmCampaign: "locacao", utmContent: "anuncio", utmTerm: "tesoura" });
+  for (const value of ["JLG 1930ES", "/segmentos/construcao-civil/", "google", "cpc", "locacao", "anuncio", "tesoura"]) assert(`${mail.subject}\n${mail.text}`.includes(value));
+});
 test("mapped legacy redirects retain specific destinations and use 301", () => {
   const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
   for (const redirect of config.redirects) {
@@ -80,5 +94,29 @@ test("confirmed technical sheets exist and are linked on the matching equipment 
     assert.equal(readFileSync(new URL(`../public${equipment.technicalSheetPdf}`, import.meta.url)).subarray(0, 5).toString(), "%PDF-");
     const html = renderStaticPage(template, `/equipamentos/${slug}/`, false).html;
     assert(html.includes(`href="${equipment.technicalSheetPdf}"`));
+  }
+});
+
+test("GS-1930, GS-2632 and ES2632 use the new three-image packages and matching PDFs", () => {
+  for (const [slug, imagePath, pdfName] of [
+    ["genie-gs1930", "genie/gs-1930", "genie-gs1930"],
+    ["genie-gs2632", "genie/gs-2632", "genie-gs2632"],
+    ["jlg-2632es", "jlg/jlg-es2632", "jlg-es2632"],
+  ]) {
+    const equipment = mockEquipments.find(item => item.slug === slug)!;
+    assert.equal(equipment.images.length, 3);
+    assert.equal(equipment.mainImage.src, `/images/accesslift/equipamentos/${imagePath}.png`);
+    for (const [index, image] of equipment.images.entries()) {
+      assert.equal(image.src, `/images/accesslift/equipamentos/${imagePath}${index ? "-0" + index : ""}.png`);
+      const png = readFileSync(new URL(`../public${image.src}`, import.meta.url));
+      assert.equal(png.readUInt32BE(16), image.width);
+      assert.equal(png.readUInt32BE(20), image.height);
+    }
+    assert.equal(equipment.technicalSheetPdf, `/documents/accesslift/${pdfName}-ficha-tecnica.pdf`);
+    assert.equal(readFileSync(new URL(`../public${equipment.technicalSheetPdf}`, import.meta.url)).subarray(0, 5).toString(), "%PDF-");
+    const html = renderStaticPage(template, `/equipamentos/${slug}/`, false).html;
+    assert(html.includes(`href="${equipment.technicalSheetPdf}"`));
+    assert.equal((html.match(/aria-label="Ampliar imagem:/g) || []).length, 3);
+    assert(html.includes(`src="${equipment.mainImage.src}"`));
   }
 });

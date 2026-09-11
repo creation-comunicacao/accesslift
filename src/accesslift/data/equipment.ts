@@ -66,12 +66,15 @@ const officialImagesBySlug: Partial<
   },
   "jlg-2632es": {
     mainImage: {
-      src: asset("operacoes/plataformas-04.jpeg"),
-      alt: "Imagem representativa de plataforma elevatória em operação interna",
-      width: 1200,
-      height: 1600,
+      src: asset("equipamentos/jlg/jlg-es2632.png"),
+      alt: "Imagem de catálogo da plataforma tesoura JLG ES2632",
+      width: 1536,
+      height: 1024,
     },
-    gallery: [],
+    gallery: [
+      { src: asset("equipamentos/jlg/jlg-es2632-01.png"), alt: "Imagem ilustrativa da plataforma JLG 2632ES elevada", width: 1059, height: 1485 },
+      { src: asset("equipamentos/jlg/jlg-es2632-02.png"), alt: "Vista de catálogo da plataforma tesoura JLG ES2632 recolhida", width: 1448, height: 1086 },
+    ],
   },
   "jlg-3246es": {
     mainImage: {
@@ -105,24 +108,27 @@ const officialImagesBySlug: Partial<
   },
   "genie-gs1930": {
     mainImage: {
-      src: asset("equipamentos/genie/genie.jpeg"),
-      alt: "Imagem representativa de plataforma elevatória em manutenção industrial",
-      width: 957,
-      height: 1280,
+      src: asset("equipamentos/genie/gs-1930.png"),
+      alt: "Plataforma tesoura Genie GS-1930 elevada em galpão",
+      width: 1536,
+      height: 1024,
     },
     gallery: [
-      { src: asset("equipamentos/genie/genie-01.jpeg"), alt: "Imagem representativa de plataforma elevatória Genie", width: 957, height: 1280 },
-      { src: asset("equipamentos/genie/genie-0.jpeg"), alt: "Detalhe ilustrativo de plataforma elevatória Genie", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/gs-1930-01.png"), alt: "Vista da plataforma tesoura Genie GS-1930 recolhida", width: 1145, height: 1374 },
+      { src: asset("equipamentos/genie/gs-1930-02.png"), alt: "Vista frontal da plataforma tesoura Genie GS-1930", width: 1024, height: 1536 },
     ],
   },
   "genie-gs2632": {
     mainImage: {
-      src: asset("operacoes/plataformas-02.jpeg"),
-      alt: "Imagem representativa de plataforma elevatória em trabalho próximo ao teto",
-      width: 1200,
-      height: 1600,
+      src: asset("equipamentos/genie/gs-2632.png"),
+      alt: "Plataforma tesoura Genie GS-2632 elevada em galpão",
+      width: 1145,
+      height: 1374,
     },
-    gallery: [],
+    gallery: [
+      { src: asset("equipamentos/genie/gs-2632-01.png"), alt: "Vista da plataforma tesoura Genie GS-2632 recolhida", width: 1145, height: 1374 },
+      { src: asset("equipamentos/genie/gs-2632-02.png"), alt: "Vista lateral da plataforma tesoura Genie GS-2632 elevada", width: 1122, height: 1402 },
+    ],
   },
   "genie-z34": {
     mainImage: {
@@ -661,6 +667,9 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
 };
 
 const technicalSheetsBySlug: Partial<Record<string, string>> = {
+  "genie-gs1930": "/documents/accesslift/genie-gs1930-ficha-tecnica.pdf",
+  "genie-gs2632": "/documents/accesslift/genie-gs2632-ficha-tecnica.pdf",
+  "jlg-2632es": "/documents/accesslift/jlg-es2632-ficha-tecnica.pdf",
   "jlg-3246es": "/documents/accesslift/jlg-es3246-ficha-tecnica.pdf",
   "skyjack-sj3219": "/documents/accesslift/skyjack-sj3219-e-ficha-tecnica.pdf",
   "skyjack-sj3226": "/documents/accesslift/skyjack-sj3226-e-ficha-tecnica.pdf",

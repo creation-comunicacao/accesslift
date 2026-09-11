@@ -13,6 +13,8 @@ const labels: Record<string, string> = {
   tipo: "Tipo de plataforma", mensagem: "Mensagem", interesse: "Assunto",
   marca: "Marca", equipamento: "Equipamento", descricao: "Descrição",
   locacaoAccesslift: "Equipamento em locação com a Accesslift", area: "Área de interesse",
+  utmSource: "UTM source", utmMedium: "UTM medium", utmCampaign: "UTM campaign",
+  utmContent: "UTM content", utmTerm: "UTM term",
 };
 const choices: Record<string, string> = {
   diaria: "Diária", semanal: "Semanal", mensal: "Mensal",
@@ -28,7 +30,7 @@ export function buildInquiryEmail(kind: string, values: Record<string, unknown>)
   if (equipment) lines.push(`Equipamento de interesse: ${equipment}`);
   for (const [key, label] of Object.entries(labels)) {
     const value = textValue(values[key]);
-    if (value) lines.push(`${label}: ${choices[value] || value}`);
+    if (value) lines.push(`${label}: ${key.startsWith("utm") ? value : choices[value] || value}`);
   }
   return { to: commercialRecipient, subject, text: lines.join("\n"), replyTo: textValue(values.email) };
 }
