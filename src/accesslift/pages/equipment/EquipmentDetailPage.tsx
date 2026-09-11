@@ -3,7 +3,7 @@ import { EquipmentGallery } from "../../components/equipment/EquipmentGallery";
 import { getRelatedEquipment } from "../../catalog/catalog";
 import { equipmentEventPayload, equipmentFaq, equipmentOperationalPoints, equipmentWhatsappMessage } from "../../catalog/equipmentPresentation";
 import { trackEvent } from "../../analytics/analytics";
-import { contactConfig } from "../../data/contact";
+import { buildWhatsappUrl } from "../../data/contact";
 import { EquipmentCard } from "../../components/cards/EquipmentCard";
 import { Button } from "../../components/buttons/Button";
 import { Accordion } from "../../components/ui/Accordion";
@@ -238,7 +238,7 @@ export function EquipmentDetailPage({ equipment }: EquipmentDetailPageProps) {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             {quoteButton}
-            <Button href={`${contactConfig.whatsappUrl}?text=${encodeURIComponent(equipmentWhatsappMessage(equipment))}`} variant="whatsapp" icon={<MessageCircle className="h-4 w-4" aria-hidden />} onClick={() => track("equipment_whatsapp_click")}>
+            <Button href={buildWhatsappUrl(equipmentWhatsappMessage(equipment))} variant="whatsapp" icon={<MessageCircle className="h-4 w-4" aria-hidden />} onClick={() => track("equipment_whatsapp_click")}>
               Falar pelo WhatsApp
             </Button>
           </div>

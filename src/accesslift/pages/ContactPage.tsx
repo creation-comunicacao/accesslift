@@ -2,7 +2,7 @@ import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { heroImages } from "../data/heroImages";
 import { trackEvent } from "../analytics/analytics";
 import { LeadForm } from "../components/forms/LeadForm";
-import { contactConfig } from "../data/contact";
+import { buildWhatsappUrl, contactConfig } from "../data/contact";
 import { ConversionHero } from "./shared/StructuredPageSections";
 import { RequestQuoteButton, WhatsAppButton } from "../components/buttons/CtaButtons";
 import { Button } from "../components/buttons/Button";
@@ -47,7 +47,7 @@ export function ContactPage() {
                 ) : label === "E-mail" ? (
                   <a className="mt-1 block break-all text-sm font-semibold text-slate-600" href={`mailto:${contactConfig.email}`} onClick={() => trackEvent({ name: "contact_email_click" })}>{value}</a>
                 ) : label === "WhatsApp" ? (
-                  <a className="mt-1 block text-sm font-semibold text-slate-600" href={`${contactConfig.whatsappUrl}?text=${encodeURIComponent("Olá! Estou entrando em contato pelo site da Accesslift e gostaria de informações.")}`} onClick={() => trackEvent({ name: "contact_whatsapp_click" })}>{value}</a>
+                  <a className="mt-1 block text-sm font-semibold text-slate-600" href={buildWhatsappUrl("Olá! Estou entrando em contato pelo site da Accesslift e gostaria de informações.")} onClick={() => trackEvent({ name: "contact_whatsapp_click" })}>{value}</a>
                 ) : (
                   <p className="mt-1 text-sm font-semibold text-slate-600">{value}</p>
                 )}

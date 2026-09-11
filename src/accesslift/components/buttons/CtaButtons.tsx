@@ -1,6 +1,6 @@
 import { Headphones, MessageCircle, PackageCheck, Send } from "lucide-react";
 import { trackEvent } from "../../analytics/analytics";
-import { contactConfig } from "../../data/contact";
+import { buildWhatsappUrl, contactConfig } from "../../data/contact";
 import { Button } from "./Button";
 
 export function RequestQuoteButton({
@@ -20,7 +20,7 @@ export function RequestQuoteButton({
     ? `/solicite-orcamento/?equipamento=${encodeURIComponent(equipmentSlug)}`
     : "/solicite-orcamento/";
   const href = contactConfig.whatsappUrl && whatsappMessage
-    ? `${contactConfig.whatsappUrl}?text=${encodeURIComponent(whatsappMessage)}`
+    ? buildWhatsappUrl(whatsappMessage)
     : quoteHref;
 
   return (
@@ -86,7 +86,7 @@ export function WhatsAppButton({
 }) {
   const buttonLabel = label ?? (compact ? "WhatsApp" : "Falar no WhatsApp");
   const href = contactConfig.whatsappUrl && message
-    ? `${contactConfig.whatsappUrl}?text=${encodeURIComponent(message)}`
+    ? buildWhatsappUrl(message)
     : contactConfig.whatsappUrl || undefined;
 
   return (

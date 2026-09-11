@@ -1,4 +1,5 @@
 import { applicationsPage } from "./applicationsPage";
+import { contactConfig } from "./contact";
 import { platformsPageConfig } from "./platformsPage";
 import type { EquipmentCategorySlug } from "../types/equipment";
 import type { PageSeo } from "../types/routes";
@@ -119,7 +120,7 @@ export const commercialPages: CommercialPageConfig[] = [
     description:
       "Plataformas tesoura e articuladas para locação, com períodos flexíveis, entrega e retirada próprias e suporte técnico durante a operação.",
     primaryCta: { label: "Solicite seu orçamento", href: "/solicite-orcamento/" },
-    secondaryCta: { label: "Falar pelo WhatsApp", href: "https://wa.me/551123895259" },
+    secondaryCta: { label: "Falar pelo WhatsApp", href: contactConfig.whatsappUrl },
     supportItems: [
       "Plataformas Tesoura e Articuladas",
       "Locação diária, semanal e mensal",

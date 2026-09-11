@@ -5,8 +5,24 @@ import { renderStaticPage, staticPaths } from "./static-pages";
 import { mockEquipments } from "../src/accesslift/data/equipment";
 import { buildOrganizationSchema } from "../src/accesslift/seo/schema";
 import { buildInquiryEmail } from "../server/inquiryEmail";
+import { buildWhatsappUrl, defaultWhatsappMessage } from "../src/accesslift/data/contact";
 
 const template = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+test("every public WhatsApp link includes one nonempty message", () => {
+  for (const path of staticPaths) {
+    const html = renderStaticPage(template, path, false).html;
+    for (const match of html.matchAll(/href="(https:\/\/wa\.me\/[^\"]+)"/g)) {
+      const url = new URL(match[1].replaceAll("&amp;", "&"));
+      assert.equal(url.pathname, "/551123895259", path);
+      assert.equal(url.searchParams.getAll("text").length, 1, path);
+      assert(url.searchParams.get("text")?.trim(), path);
+      assert(!url.searchParams.get("text")?.includes("?text="), path);
+    }
+  }
+  assert.equal(new URL(buildWhatsappUrl()).searchParams.get("text"), defaultWhatsappMessage);
+  const message = "Olá! JLG 1930ES & manutenção + São Paulo?\nOrçamento";
+  assert.equal(new URL(buildWhatsappUrl(message)).searchParams.get("text"), message);
+});
 test("assistance displays all four supplied brand logos only on its own page", () => {
   const html = renderStaticPage(template, "/servicos/assistencia-tecnica/", false).html;
   for (const brand of ["jlg", "genie", "skyjack", "zoomlion"]) {

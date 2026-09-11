@@ -1,5 +1,5 @@
 import type { ContentSection, CtaLink, FaqItem } from "./pageContent";
-import { contactConfig } from "./contact";
+import { buildWhatsappUrl } from "./contact";
 
 export type ClientSection = ContentSection & {
   paragraphs?: string[];
@@ -26,7 +26,7 @@ export type ClientPage = {
 
 export const link = (label: string, href: string, event?: string): CtaLink => ({ label, href, event });
 export const whatsapp = (label: string, message: string, event?: string): CtaLink =>
-  link(label, `${contactConfig.whatsappUrl}?text=${encodeURIComponent(message)}`, event);
+  link(label, buildWhatsappUrl(message), event);
 export const quote = (event?: string, label = "Solicitar orçamento") => link(label, event ? `/solicite-orcamento/?origem=${encodeURIComponent(event.replace(/_quote_click$/, ""))}` : "/solicite-orcamento/", event);
 const assistance = "/servicos/assistencia-tecnica/";
 const maintenance = "/servicos/manutencao-preventiva/";

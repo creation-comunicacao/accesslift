@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { applicationsPage as page, applicationsWhatsappMessage } from "../../data/applicationsPage";
-import { contactConfig } from "../../data/contact";
+import { buildWhatsappUrl } from "../../data/contact";
 import { heroImages } from "../../data/heroImages";
 import { trackEvent } from "../../analytics/analytics";
 import { Button } from "../../components/buttons/Button";
@@ -21,7 +21,7 @@ export function ApplicationsPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <ContentCta cta={page.finalCta!.primary} variant="primary" />
           <ContentCta cta={page.finalCta!.secondary!} />
-          <Button href={`${contactConfig.whatsappUrl}?text=${encodeURIComponent(applicationsWhatsappMessage)}`} variant="whatsapp" icon={<MessageCircle className="h-4 w-4" aria-hidden />} onClick={() => trackEvent({ name: "applications_whatsapp_click", payload: { source_page: page.path } })}>Falar pelo WhatsApp</Button>
+          <Button href={buildWhatsappUrl(applicationsWhatsappMessage)} variant="whatsapp" icon={<MessageCircle className="h-4 w-4" aria-hidden />} onClick={() => trackEvent({ name: "applications_whatsapp_click", payload: { source_page: page.path } })}>Falar pelo WhatsApp</Button>
         </div>
       </div>
     </section>
