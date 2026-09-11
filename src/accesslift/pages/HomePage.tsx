@@ -209,9 +209,6 @@ function ServiceAreaMap() {
       data-reveal="fade-left"
       className="relative overflow-hidden rounded-lg border border-slate-200/70 bg-slate-50 p-5"
     >
-      <div className="absolute right-5 top-5 z-10 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-zinc-600">
-        raio aproximado
-      </div>
       <img
         src="/images/accesslift/atendimento/mapa-raio-atendimento-accesslift.jpeg"
         alt="Mapa visual da área de atendimento da Accesslift com base em São Paulo e raio aproximado de 150 km"
@@ -227,7 +224,6 @@ function ServiceAreaMap() {
           <MapPin className="h-4 w-4 text-[#d8242f]" aria-hidden />
           Base em São Paulo
         </span>
-        <span>150 km como referência aproximada; outras localidades sob avaliação comercial.</span>
       </figcaption>
     </figure>
   );
@@ -398,6 +394,7 @@ export function HomePage() {
           <div data-reveal="fade-right">
             <SectionHeader
               eyebrow="Área de atendimento"
+              className="mb-5"
               title="Locação de plataformas elevatórias em São Paulo e região"
               description="A Accesslift atende empresas em São Paulo e região, tendo 150 km como referência aproximada, com outras localidades sob avaliação comercial."
             />
