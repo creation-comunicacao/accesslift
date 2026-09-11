@@ -96,7 +96,7 @@ test("JLG E450AJ uses supplied photos and a technical sheet, not an operating ma
 });
 
 test("confirmed technical sheets exist and are linked on the matching equipment pages", () => {
-  for (const slug of ["jlg-1930es", "jlg-2630es", "zoomlion-zs1212ac"]) {
+  for (const slug of ["jlg-1930es", "jlg-2630es", "zoomlion-zs1212ac", "genie-z34", "genie-z45", "zoomlion-za14je-li"]) {
     const equipment = mockEquipments.find(e => e.slug === slug)!;
     assert.equal(equipment.technicalSheetPdf, `/documents/accesslift/${slug}-ficha-tecnica.pdf`);
     const pdf = readFileSync(new URL(`../public${equipment.technicalSheetPdf}`, import.meta.url));

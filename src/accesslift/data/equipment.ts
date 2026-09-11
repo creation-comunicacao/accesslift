@@ -57,12 +57,14 @@ const officialImagesBySlug: Partial<
   },
   "jlg-2630es": {
     mainImage: {
-      src: asset("equipamentos/jlg/plataforma-tesoura-jlg-2630.jpg"),
-      alt: "Imagem de catálogo da plataforma tesoura elétrica JLG 2630ES",
-      width: 286,
-      height: 600,
+      src: asset("equipamentos/jlg/jlg-2630es.png"),
+      alt: "Plataforma tesoura JLG 2630ES recolhida",
+      width: 1086,
+      height: 1448,
     },
-    gallery: [],
+    gallery: [
+      { src: asset("equipamentos/jlg/jlg-2630-es-01.png"), alt: "Vista lateral da plataforma tesoura JLG 2630ES elevada", width: 1024, height: 1536 },
+    ],
   },
   "jlg-2632es": {
     mainImage: {
@@ -667,6 +669,9 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
 };
 
 const technicalSheetsBySlug: Partial<Record<string, string>> = {
+  "genie-z34": "/documents/accesslift/genie-z34-ficha-tecnica.pdf",
+  "genie-z45": "/documents/accesslift/genie-z45-ficha-tecnica.pdf",
+  "zoomlion-za14je-li": "/documents/accesslift/zoomlion-za14je-li-ficha-tecnica.pdf",
   "genie-gs1930": "/documents/accesslift/genie-gs1930-ficha-tecnica.pdf",
   "genie-gs2632": "/documents/accesslift/genie-gs2632-ficha-tecnica.pdf",
   "jlg-2632es": "/documents/accesslift/jlg-es2632-ficha-tecnica.pdf",
