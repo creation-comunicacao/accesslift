@@ -32,7 +32,8 @@ export function Button({
   title,
   onClick,
 }: ButtonProps) {
-  const classes = `touch-button group/button inline-flex items-center justify-center gap-2 px-5 text-sm font-extrabold transition duration-200 active:translate-y-px disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className}`;
+  const isWhatsApp = /^https:\/\/wa\.me\//.test(href || "");
+  const classes = `touch-button group/button inline-flex items-center justify-center gap-2 px-5 text-sm font-extrabold transition duration-200 active:translate-y-px disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className} ${isWhatsApp ? "order-first" : ""}`;
   const iconNode = icon ? (
     <span className="inline-flex shrink-0 transition-transform duration-200 group-hover/button:translate-x-1">
       {icon}

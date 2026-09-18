@@ -14,7 +14,7 @@ export const contactConfig = {
   whatsappUrl: buildWhatsappUrl(),
   phone: "(11) 2389-5259",
   email: "comercial@accesslift.com.br",
-  address: "Rua Artur Lobo, 127 - Jardim Jabaquara - CEP 04384-060 - São Paulo/SP",
+  address: "Rua Eudoro Lincoln Berlinck, 338 – Galpão 14 – Jardim Arpoador – São Paulo/SP – CEP: 05565-200",
   socialLinks: [
     { label: "Instagram", href: null },
     { label: "LinkedIn", href: null },

@@ -1,4 +1,5 @@
 import { ConversionHero } from "./shared/StructuredPageSections";
+import { contactConfig } from "../data/contact";
 
 const sections = [
   {
@@ -73,7 +74,7 @@ export function PrivacyPage() {
         <p>Última atualização: setembro de 2026</p>
         <p>A Accesslift valoriza a privacidade e a proteção dos dados pessoais dos usuários de seu site e de seus canais de atendimento. Esta Política de Privacidade apresenta informações sobre a coleta e o tratamento de dados pessoais realizados por meio deste site, de acordo com as finalidades relacionadas às atividades da empresa e com a legislação aplicável.</p>
         <p>Para fins desta Política, as referências à “Accesslift” correspondem ao controlador identificado abaixo:</p>
-        <address className="not-italic">Acess Lift Loc.serv e com de plataformas<br />CNPJ: 20.504.105/0001-95<br />Rua Artur Lobo, 127 – Jardim Jabaquara – CEP 04384-060 – São Paulo/SP<br /><a className="underline" href="mailto:comercial@accesslift.com.br">comercial@accesslift.com.br</a></address>
+        <address className="not-italic">Acess Lift Loc.serv e com de plataformas<br />CNPJ: 20.504.105/0001-95<br />{contactConfig.address}<br /><a className="underline" href="mailto:comercial@accesslift.com.br">comercial@accesslift.com.br</a></address>
       </div>
       {sections.map((section) => <section key={section.title} className="space-y-5">
         <h2 className="text-slate-950">{section.title}</h2>

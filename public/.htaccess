@@ -8,6 +8,34 @@ ErrorDocument 404 /404.html
 </FilesMatch>
 
 RewriteEngine On
+
+# =========================================================
+# ACCESSLIFT 2.0 - REDIRECIONAMENTOS 301 DO SITE LEGADO
+# O diretório /site/ pode permanecer fisicamente no servidor.
+# As URLs antigas abaixo são redirecionadas para suas equivalentes novas.
+# =========================================================
+
+# Home antiga
+RewriteRule ^site/?$ / [R=301,END,QSD]
+
+# Institucional / aplicações / formulários
+RewriteRule ^site/index\.php/empresa/?$ /empresa/ [R=301,END,QSD]
+RewriteRule ^site/index\.php/aplicacoes/?$ /segmentos-e-aplicacoes/ [R=301,END,QSD]
+RewriteRule ^site/index\.php/contatos/fale-conosco/?$ /contato/ [R=301,END,QSD]
+RewriteRule ^site/index\.php/solicite-orcamento/?$ /solicite-orcamento/ [R=301,END,QSD]
+
+# Equipamentos - Tesoura
+RewriteRule ^site/index\.php/modelos/plataformas-tesoura-accesslift/jlg-1930es/?$ /equipamentos/jlg-1930es/ [R=301,END,QSD]
+RewriteRule ^site/index\.php/modelos/plataformas-tesoura-accesslift/jlg-2630es/?$ /equipamentos/jlg-2630es/ [R=301,END,QSD]
+RewriteRule ^site/index\.php/modelos/plataformas-tesoura-accesslift/jlg-3246es/?$ /equipamentos/jlg-3246es/ [R=301,END,QSD]
+
+# Equipamentos - Articuladas
+RewriteRule ^site/index\.php/modelos/plataformas-articulada-accesslift/genie-z34/?$ /equipamentos/genie-z34/ [R=301,END,QSD]
+RewriteRule ^site/index\.php/modelos/plataformas-articulada-accesslift/genie-z45/?$ /equipamentos/genie-z45/ [R=301,END,QSD]
+
+# =========================================================
+# API - manter regras originais do DEV
+# =========================================================
 # Do not redirect POST requests: dispatch internally to PHP.
 RewriteRule ^api/inquiries/?$ api/inquiries.php [END]
 RewriteRule ^api/ - [END]

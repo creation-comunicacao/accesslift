@@ -5,10 +5,39 @@ import { renderStaticPage, staticPaths } from "./static-pages";
 import { mockEquipments } from "../src/accesslift/data/equipment";
 import { buildOrganizationSchema } from "../src/accesslift/seo/schema";
 import { buildInquiryEmail } from "./php-email-test-bridge";
-import { buildWhatsappUrl, defaultWhatsappMessage } from "../src/accesslift/data/contact";
+import { buildWhatsappUrl, contactConfig, defaultWhatsappMessage } from "../src/accesslift/data/contact";
 import { equipmentFaq } from "../src/accesslift/catalog/equipmentPresentation";
 
 const template = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+test("post-feedback address and WhatsApp visual priority apply across public routes", () => {
+  assert.equal(contactConfig.address, "Rua Eudoro Lincoln Berlinck, 338 – Galpão 14 – Jardim Arpoador – São Paulo/SP – CEP: 05565-200");
+  for (const path of staticPaths) {
+    const { html } = renderStaticPage(template, path, true);
+    assert(!/Artur Lobo|Jardim Jabaquara|04384-060/.test(html), path);
+    assert(html.includes(contactConfig.address), path);
+    for (const [anchor] of html.matchAll(/<a\b[^>]*>/g)) {
+      if (anchor.includes("touch-button") && anchor.includes("https://wa.me/")) {
+        assert(anchor.includes("order-first"), path);
+        assert(anchor.includes('target="_blank"'), path);
+        assert(anchor.includes("?text="), path);
+      }
+    }
+  }
+});
+
+test("Genie Z-34 uses BYD as main photo and preserves the previous photo in its gallery", () => {
+  const equipment = mockEquipments.find(item => item.slug === "genie-z34")!;
+  assert(equipment.mainImage.src.endsWith("/genie-z34-22-06.jpeg"));
+  assert(equipment.gallery.some(item => item.src.endsWith("/genie-z34-22.jpeg")));
+  for (const suffix of ["05", "06"]) {
+    const photo = [equipment.mainImage, ...equipment.gallery].find(item => item.src.endsWith(`/genie-z34-22-${suffix}.jpeg`));
+    assert(photo);
+    assert.equal(photo.width, 1197);
+    assert.equal(photo.height, 1600);
+    assert(readFileSync(new URL(`../public${photo.src}`, import.meta.url)).length > 0);
+  }
+});
+
 test("individual equipment schemas match visible products and FAQs regardless of indexing status", () => {
   for (const equipment of mockEquipments) {
     const { seo } = renderStaticPage(template, `/equipamentos/${equipment.slug}/`, true);

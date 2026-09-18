@@ -134,16 +134,18 @@ const officialImagesBySlug: Partial<
   },
   "genie-z34": {
     mainImage: {
-      src: asset("equipamentos/genie/genie-z34-22.jpeg"),
-      alt: "Plataforma articulada Genie Z-34/22 da Accesslift",
-      width: 868,
-      height: 1160,
+      src: asset("equipamentos/genie/genie-z34-22-06.jpeg"),
+      alt: "Plataforma articulada Genie Z-34/22 da Accesslift junto aos estandes BYD e Ford",
+      width: 1197,
+      height: 1600,
     },
     gallery: [
       { src: asset("equipamentos/genie/genie-z34-22-01.jpeg"), alt: "Vista lateral da plataforma Genie Z-34/22", width: 957, height: 1280 },
       { src: asset("equipamentos/genie/genie-z34-22-02.jpeg"), alt: "Vista frontal da plataforma Genie Z-34/22", width: 957, height: 1280 },
       { src: asset("equipamentos/genie/genie-z34-22-03.jpeg"), alt: "Plataforma Genie Z-34/22 em operação", width: 957, height: 1280 },
       { src: asset("equipamentos/genie/genie-z34-22-04.jpeg"), alt: "Cesto da plataforma articulada Genie Z-34/22", width: 957, height: 1280 },
+      { src: asset("equipamentos/genie/genie-z34-22-05.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Accesslift junto ao estande Lubrax", width: 1197, height: 1600 },
+      { src: asset("equipamentos/genie/genie-z34-22.jpeg"), alt: "Plataforma articulada Genie Z-34/22 da Accesslift", width: 868, height: 1160 },
       { src: asset("equipamentos/genie/plataforma-articulada-z34-genie.jpg"), alt: "Imagem de catálogo da plataforma articulada Genie Z-34", width: 313, height: 599 },
     ],
   },

@@ -74,7 +74,9 @@ tambem deve corresponder ao Host do pedido. Nao usar wildcard.
 
 .htaccess encaminha /api/inquiries para PHP sem redirect, preservando POST.
 Desativa listagem de diretorios/MultiViews e configura /404.html como erro 404.
-O empacotador converte as regras 301 conhecidas de vercel.json, sem inventar outras.
+O empacotador copia public/.htaccess com as regras 301 aprovadas em producao,
+sem acrescentar regras de vercel.json. O sitemap aprovado fica em public/sitemap.xml
+e e preservado pelo build; futuras alteracoes na lista devem ser feitas nesse arquivo.
 Mesclar cuidadosamente regras SSL/dominio existentes. Nao publicar esse pacote em
 Vercel/static-only: esses ambientes nao executam PHP e podem expor codigo-fonte.
 
