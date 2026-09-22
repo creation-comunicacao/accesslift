@@ -5,6 +5,14 @@ import { staticPaths, renderStaticPage, escapeHtml } from "./static-pages";
 import { getSeoHead, SITE_ORIGIN } from "../src/accesslift/seo/head";
 
 const template = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+test("requested September indexing corrections apply only in production", () => {
+  for (const path of ["/equipamentos/jlg-e450aj/", "/equipamentos/jlg-1930es/", "/equipamentos/skyjack-sj3226/", "/equipamentos/genie-gs2632/", "/equipamentos/genie-gs1930/", "/trabalhe-conosco/", "/politica-de-privacidade/"]) {
+    const { html, seo } = renderStaticPage(template, path, true);
+    assert(html.includes('<meta name="robots" content="index,follow"'), path);
+    assert.equal(seo.canonicalPath, path);
+    assert(renderStaticPage(template, path, false).html.includes('<meta name="robots" content="noindex,nofollow"'), path);
+  }
+});
 for (const path of staticPaths) {
   test(`static HTML contains route-specific content and unique metadata: ${path}`, () => {
     const { html, seo } = renderStaticPage(template, path, true);

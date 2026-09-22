@@ -421,6 +421,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
     summary: "Plataforma tesoura elétrica compacta para trabalhos de elevação vertical, manutenção e instalações.",
     seo: {
       description: "Conheça a plataforma tesoura JLG 1930ES: altura de trabalho, capacidade, especificações e aplicações. Consulte disponibilidade para locação.",
+      indexDirective: "index",
     },
   },
   "jlg-2630es": {
@@ -505,6 +506,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
     ],
     seo: {
       title: "JLG E450AJ: Plataforma Articulada Elétrica | Accesslift",
+      indexDirective: "index",
       description: "Conheça a plataforma articulada elétrica JLG E450AJ para locação, com até 15,72 m de altura de trabalho e alcance horizontal. Consulte disponibilidade.",
       h1: "Plataforma Articulada Elétrica JLG E450AJ",
     },
@@ -522,6 +524,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
     ],
     seo: {
       title: "Genie GS-1930: Plataforma Tesoura para Locação | Accesslift",
+      indexDirective: "index",
       description: "Conheça a plataforma tesoura elétrica Genie GS-1930 para locação, compacta para trabalhos de elevação vertical. Consulte disponibilidade com a Accesslift.",
       h1: "Plataforma Tesoura Genie GS-1930",
     },
@@ -540,6 +543,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
     ],
     seo: {
       title: "Genie GS-2632: Plataforma Tesoura para Locação | Accesslift",
+      indexDirective: "index",
       description: "Conheça a plataforma tesoura elétrica Genie GS-2632 para locação, com formato estreito para trabalhos de elevação vertical. Consulte disponibilidade.",
       h1: "Plataforma Tesoura Genie GS-2632",
     },
@@ -613,6 +617,7 @@ const equipmentContentBySlug: Record<string, EquipmentContentOverride> = {
     ],
     seo: {
       title: "Skyjack SJ3226 E: Plataforma Tesoura para Locação | Accesslift",
+      indexDirective: "index",
       description: "Conheça a plataforma tesoura Skyjack SJ3226 E para locação, com formato estreito e elevação vertical para diferentes operações. Consulte disponibilidade.",
       h1: "Plataforma Tesoura Skyjack SJ3226 E",
     },

@@ -251,7 +251,7 @@ export const MAIN_ROUTES: AppRoute[] = [
       title: "Trabalhe Conosco | Accesslift",
       description: "Envie seu currículo para a Accesslift e registre seu interesse em futuras oportunidades profissionais.",
       canonicalPath: "/trabalhe-conosco/",
-      indexDirective: "noindex",
+      indexDirective: "index",
     },
   },
   {
@@ -262,7 +262,7 @@ export const MAIN_ROUTES: AppRoute[] = [
       title: "Política de Privacidade | Accesslift",
       description: "Política de privacidade da Accesslift.",
       canonicalPath: "/politica-de-privacidade/",
-      indexDirective: "noindex",
+      indexDirective: "index",
     },
   },
   {
